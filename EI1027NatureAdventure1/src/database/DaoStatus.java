@@ -15,7 +15,7 @@ import classes.Status;
  */
 public class DaoStatus {
 	private final static Logger Log = Logger.getLogger(DaoStatus.class.getName());
-
+ 
 	
 	public DaoStatus() {
 		super();
@@ -40,9 +40,10 @@ public class DaoStatus {
 			while (result.next()) {
 				Status status = new Status();
 				
-				status.setIDbooking(result.getInt("innerIdBooking"));
+				status.setIDbooking(result.getInt("inneridbooking"));
 				status.setDateRevision(result.getDate("dateRevision"));
 				status.setStatus(result.getString("status"));
+				status.setSsNumber(result.getString("ssNumber"));
 				
 					
 				stats.put(status.getIDbooking(),status);
@@ -77,7 +78,7 @@ public class DaoStatus {
 		ResultSet result = null;
 		// Peticion a la db
 		try {
-			statement = conn.prepareStatement("SELECT * FROM Client WHERE innerIdBooking=?");
+			statement = conn.prepareStatement("SELECT * FROM Status WHERE inneridbooking=?");
 			
 			statement.setInt(1, IDstatus);
 
@@ -86,9 +87,10 @@ public class DaoStatus {
 			if (result.next()) {
 				Status status = new Status();;
 				
-				status.setIDbooking(result.getInt("innerIdBooking"));
+				status.setIDbooking(result.getInt("inneridbooking"));
 				status.setDateRevision(result.getDate("dateRevision"));
 				status.setStatus(result.getString("status"));
+				status.setSsNumber(result.getString("ssNumber"));
 					
 				return status;
 			}
@@ -118,11 +120,12 @@ public class DaoStatus {
 		// Sentencia SQL para el add
 		try {
 			statement = conn
-					.prepareStatement("INSERT INTO Status(innerIdBooking, daterevision, status) "
-							+ "values(?, ?, ?)");
+					.prepareStatement("INSERT INTO Status(innerIdBooking, daterevision, status, ssNumber) "
+							+ "values(?, ?, ?, ?)");
 			statement.setInt(1, status.getIDbooking());
 			statement.setDate(2, status.getDateRevision());
 			statement.setString(3, status.getStatus());
+			statement.setString(4, status.getSsNumber());
 			
 			statement.execute();
 		} catch (SQLException e) {
@@ -149,13 +152,15 @@ public class DaoStatus {
 			statement = conn.prepareStatement("UPDATE Status " + "SET "
 					+ "innerIdBooking = ?," 
 					+ "dateRevision = ?," 
-					+ "status = ?"
+					+ "status = ?,"
+					+ "ssNumber = ?" 
 					+ " WHERE innerIdBooking = ?");
 			
 			statement.setInt(1, status.getIDbooking());
 			statement.setDate(2, status.getDateRevision());
 			statement.setString(3, status.getStatus());
-			statement.setInt(4, status.getIDbooking());
+			statement.setString(4, status.getSsNumber());
+			statement.setInt(5, status.getIDbooking());
 
 			statement.execute();
 		} catch (SQLException e) {

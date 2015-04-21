@@ -5,17 +5,12 @@ import static org.junit.Assert.*;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import classes.Activity;
 import classes.Booking;
-import classes.Client;
-import classes.Instructor;
 import database.DaoBooking;
 
 /*	
@@ -29,10 +24,13 @@ public class DaoBookingTest {
 	static Map<Integer, Booking> expected;
 	static DaoBooking dao;
 	static String[][] datosIniciales = {
-		// InnID   gSize     dActivity            dCreation         CliID    Price  ActID    info       InstrID    BookID
-			{"1",	"4",	"2012-03-14",		"2012-03-9", 		"X1", 	"14.0",	"2",	"puenting",	"2030",		"1"},
-			{"2",	"7",	"2012-01-24",		"2011-12-4",		"X1",	"20.0",	"1",	"esqui",	"2030",		"2"},
-			{"3",	"7",	"2011-12-24",		"2011-12-4", 		"X2",	"20.0",	"1",	"esqui",	null,		null}};
+		//Datos internos
+		// InnID   gSize     dActivity            dCreation         CliID   GPrice  	ActID      info   BookID
+			{"1",	"4",	"2012-03-14",		"2012-03-9", 		"X1", 	"81.2",		"2031",	 	"",	   "1"},
+			{"2",	"7",	"2012-01-24",		"2011-12-4",		"X1",	"85.4",		"2032",	 	"",	   "2"},
+			
+		//Dato de test
+			{"3",	"7",	"2011-12-24",		"2011-12-4", 		"X2",	"64.61",	"2033",	 	"",	   null}};
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -45,15 +43,13 @@ public class DaoBookingTest {
 			booking.setGroupSize(Integer.parseInt(reserva[1]));
 			booking.setDateActivity(Date.valueOf(reserva[2]));
 			booking.setDateCreation(Date.valueOf(reserva[3]));
-			Client client = new Client(); client.setClientId(reserva[4]); booking.setClient(client);
+			booking.setClientId(reserva[4]);
 			booking.setPrice(Float.parseFloat(reserva[5]));
-			Activity activity = new Activity(); activity.setIdAct(Integer.parseInt(reserva[6]));booking.setActivity(activity);
+			booking.setIdAct(Integer.parseInt(reserva[6]));
 			booking.setInformation(reserva[7]);
-			Instructor instructor = new Instructor(); instructor.setIdNumber(reserva[8]); booking.setInstructor(instructor);
-			booking.setIdBooking(Integer.parseInt(reserva[9]));
-			
+			if(reserva[8]!=null) booking.setIdBooking(Integer.parseInt(reserva[8]));
+			 
 			expected.put(booking.getInnerIdBooking(), booking);
-			dao.addBooking(booking);	
 		}
 	}
 	
@@ -85,7 +81,7 @@ public class DaoBookingTest {
 	@Test
 	public void test4UpdateBookings() {
         Booking a3updated = new Booking(expected.get(3));
-        Client cliente = new Client(); cliente.setClientName("NuevoNombre");cliente.setClientId("X2");a3updated.setClient(cliente);
+        a3updated.setInformation("randomInfo");
         dao.updateBooking(a3updated);
         assertEquals(a3updated, dao.getBooking(3));
 	}
@@ -94,13 +90,6 @@ public class DaoBookingTest {
 	public void test5DeleteBookings() {
         dao.deleteBooking(3);
         assertNull(dao.getBooking(3));
-	}
-	
-	@AfterClass
-	public static void closeTest() {
-		dao.deleteBooking(1);
-		dao.deleteBooking(2);
-		dao.deleteBooking(3);
 	}
 	
 }

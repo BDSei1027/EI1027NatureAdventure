@@ -27,13 +27,10 @@ public class DaoStatusTest {
 	static DaoStatus dao;
 	static String[][] datosIniciales = {
 		// Caso base existente en la db
-		//   ID     DateRevision             Status
-			{"1",	"2012-05-02",			"aprobado"},
-			{"2",	"2012-03-24",			"aprobado"},
-			{"3",	"2011-12-23",			"rechazado"},
+		//   ID     DateRevision             Status			InstrSSN
+			{"1",	"2012-05-02",			"aprobado",		"2031"},
+			{"2",	"2012-03-24",			"aprobado",		"2032"}};
 			
-		// Caso no existente
-			{"4",	"2013-04-23", 			"aprobado"}};
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -46,14 +43,13 @@ public class DaoStatusTest {
 			status.setIDbooking(Integer.parseInt(statusData[0]));
 			status.setDateRevision(Date.valueOf(statusData[1]));
 			status.setStatus(statusData[2]);
+			status.setSsNumber(statusData[3]);
 			
 			expected.put(status.getIDbooking(), status);
 			
+			
 		}
-	
-		for(Status status: expected.values()){
-			dao.addStatus(status);
-		}
+
 	}
 	
 	@Test
@@ -62,7 +58,6 @@ public class DaoStatusTest {
 		
 		assertTrue(result.containsKey(1));
 		assertTrue(result.containsKey(2));
-		assertTrue(result.containsKey(3));
 		assertFalse(result.containsKey(7));
 	}
 	
@@ -74,34 +69,37 @@ public class DaoStatusTest {
         Status result2 = dao.getStatus(2);
         assertTrue(result2.equals(expected.get(2)));
         
-        Status result3 = dao.getStatus(3);
-        assertTrue(result3.equals(expected.get(3)));
          
 		
 	}
 	
-	@Test
-	public void test3AddStatus() {
-		
-        dao.addStatus(expected.get(4));
-        assertEquals(expected.get(4), dao.getStatus(4));
-	}
+	//Los stats no se pueden anadir manualmente. Se crean automaticamente al crear la reserva
+//	@Test
+//	public void test3AddStatus() {
+//		
+//        dao.addStatus(expected.get(4));
+//        assertEquals(expected.get(4), dao.getStatus(4));
+//	}
 	
 	@Test
 	public void test4UpdateStatus() {
-        Status a3updated = new Status(expected.get(4));
-        a3updated.setStatus("en espera");
+        Status s2updated = new Status(expected.get(2));
+        s2updated.setStatus("en espera");
         
-        dao.updateStatus(a3updated);
+        dao.updateStatus(s2updated);
         
-        assertEquals(a3updated, dao.getStatus(4));
+        assertEquals(s2updated, dao.getStatus(2));
+        
+        s2updated.setStatus("aprobado");
+        dao.updateStatus(s2updated);
 	}
 	
-	@Test
-	public void test5DeleteClient() {
-        dao.deleteStatus(4);
-        assertNull(dao.getStatus(4));
-	}
+	//Los stats no se pueden borrar. Se borran al borrar la reserva
+//	@Test
+//	public void test5DeleteStatus() {
+//        dao.deleteStatus(4);
+//        assertNull(dao.getStatus(4));
+//	}
 	
 	
 }

@@ -18,18 +18,12 @@ import exceptions.InvalidPriceException;
  */
 public class DaoBooking {
 	private final static Logger Log = Logger.getLogger(DaoBooking.class.getName());
-	private DaoInstructor daoInstructor;
-	private DaoActivity daoActivity;
-	private DaoClient daoClient;
 	private DaoStatus daoStatus;
 
 	
 	//Las reservas estan relacionadas con el monitor, la actividad y el cliente.
 	public DaoBooking() {
 		super();
-		daoInstructor = new DaoInstructor();
-		daoActivity = new DaoActivity();
-		daoClient = new DaoClient();
 		daoStatus = new DaoStatus();
 	}
 
@@ -46,7 +40,7 @@ public class DaoBooking {
 		PreparedStatement statement = null;
 		// Peticion a la DB
 		try {
-			statement = conn.prepareStatement("SELECT * FROM Booking");
+			statement = conn.prepareStatement("SELECT * FROM Booking"); 
 			result = statement.executeQuery();
 			
 			while (result.next()) {
@@ -55,13 +49,11 @@ public class DaoBooking {
 				reserva.setGroupSize(result.getInt("groupSize"));
 				reserva.setDateActivity(result.getDate("dateActivity"));
 				reserva.setDateCreation(result.getDate("dateCreation"));
-				reserva.setClient(daoClient.getClient(result.getString("clientId")));
+				reserva.setClientId(result.getString("clientId"));
 				reserva.setPrice(result.getFloat("price"));
-				reserva.setActivity(daoActivity.getActivity(result.getInt("idAct")));
+				reserva.setIdAct(result.getInt("idAct"));
 				reserva.setInformation(result.getString("information"));
-				reserva.setInstructor(daoInstructor.getInstructor(result.getString("ssNumber")));
 				reserva.setIdBooking(result.getInt("idBooking"));
-				reserva.setStatus(daoStatus.getStatus(result.getInt("innerIdBooking")));
 					
 				reservas.put(reserva.getInnerIdBooking(),reserva);
 			}
@@ -109,17 +101,15 @@ public class DaoBooking {
 			if (result.next()) {
 				Booking reserva = new Booking();
 				
-				reserva.setInnerIdBooking(result.getInt("innerIdBooking"));
+				reserva.setInnerIdBooking(result.getInt("inneridbooking"));
 				reserva.setGroupSize(result.getInt("groupSize"));
 				reserva.setDateActivity(result.getDate("dateActivity"));
 				reserva.setDateCreation(result.getDate("dateCreation"));
-				reserva.setClient(daoClient.getClient(result.getString("clientId")));
+				reserva.setClientId(result.getString("clientId"));
 				reserva.setPrice(result.getFloat("price"));
-				reserva.setActivity(daoActivity.getActivity(result.getInt("idAct")));
+				reserva.setIdAct(result.getInt("idAct"));
 				reserva.setInformation(result.getString("information"));
-				reserva.setInstructor(daoInstructor.getInstructor(result.getString("ssNumber")));
 				reserva.setIdBooking(result.getInt("idBooking"));
-				reserva.setStatus(daoStatus.getStatus(result.getInt("innerIdBooking")));
 				
 					
 				return reserva;
@@ -156,18 +146,19 @@ public class DaoBooking {
 		// Sentencia SQL para el add
 		try {
 			statement = conn
-					.prepareStatement("INSERT INTO Booking(innerIdBooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, ssNumber, idBooking) "
-							+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					.prepareStatement("INSERT INTO Booking(inneridbooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, idBooking) "
+							+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			statement.setInt(1, reserva.getInnerIdBooking());
 			statement.setInt(2, reserva.getGroupSize());
 			statement.setDate(3, reserva.getDateActivity());
 			statement.setDate(4, reserva.getDateCreation());
-			statement.setString(5, reserva.getClient().getClientId());
+			statement.setString(5, reserva.getClientId());
 			statement.setFloat(6, reserva.getPrice());
-			statement.setInt(7, reserva.getActivity().getIdAct());
+			statement.setInt(7, reserva.getIdAct());
 			statement.setString(8, reserva.getInformation());
-			statement.setString(9, reserva.getInstructor().getSsNumber());
-			statement.setInt(10, reserva.getIdBooking());
+			statement.setInt(9, reserva.getIdBooking());
+			
+			statement.execute();
 			
 			//Nuevo estado vacio
 			Status status = new Status();
@@ -175,7 +166,6 @@ public class DaoBooking {
 			daoStatus.addStatus(status);
 			
 			
-			statement.execute();
 		} catch (SQLException e) {
 			Log.severe("Error al ejecutar el statement");
 			e.printStackTrace();
@@ -206,7 +196,6 @@ public class DaoBooking {
 					+ "price = ?,"
 					+ "idAct = ?," 
 					+ "information = ?," 
-					+ "ssNumber = ?,"
 					+ "idBooking = ?" 
 					+ " WHERE innerIdBooking = ?");
 			
@@ -214,13 +203,12 @@ public class DaoBooking {
 			statement.setInt(2, reserva.getGroupSize());
 			statement.setDate(3, reserva.getDateActivity());
 			statement.setDate(4, reserva.getDateCreation());
-			statement.setString(5, reserva.getClient().getClientId());
+			statement.setString(5, reserva.getClientId());
 			statement.setFloat(6, reserva.getPrice());
-			statement.setInt(7, reserva.getActivity().getIdAct());
+			statement.setInt(7, reserva.getIdAct());
 			statement.setString(8, reserva.getInformation());
-			statement.setString(9, reserva.getInstructor().getSsNumber());
-			statement.setInt(10, reserva.getIdBooking());
-			statement.setInt(11, reserva.getInnerIdBooking());
+			statement.setInt(9, reserva.getIdBooking());
+			statement.setInt(10, reserva.getInnerIdBooking());
 
 			statement.execute();
 		} catch (SQLException e) {

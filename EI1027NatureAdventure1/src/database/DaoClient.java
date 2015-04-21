@@ -14,7 +14,7 @@ import classes.Client;
  * Dao para gestionar los clientes de la base de datos.
  */
 public class DaoClient {
-	private final static Logger Log = Logger.getLogger(DaoClient.class.getName());
+	private final static Logger Log = Logger.getLogger(DaoClient.class.getName()); 
 
 	
 	public DaoClient() {
