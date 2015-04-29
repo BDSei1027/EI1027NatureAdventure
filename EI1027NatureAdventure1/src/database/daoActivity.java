@@ -68,10 +68,18 @@ public class daoActivity implements DaoInterface {
 				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup());
 		// Get the instructors who can teach it
 		
-		//TODO esto es una locura que he visto puede sobrecargar la conexion
-		//TODO he visto una manera cachi de hacerlo pero no podriamos utilizar la ? y tendriamos que montar el SQL
-		sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?,?)";
+		
 		final List<String> listIns = activity.getInstructors();
+		// Forma cachi
+		StringBuilder sb = new StringBuilder("INSERT INTO instruidas(idact, ssnumber) VALUES ");
+		for(int i = 0; i < listIns.size(); i++) {
+			if ( i != 0 ) sb.append(", ");
+			sb.append("(" + activity.getIdAct() + ", " + listIns.get(i) + ")");
+		 }
+		 dataSource.update(sb.toString());
+		
+		/* Forma no cachi y sobrecarga la conexion
+		 * sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?,?)";
 		dataSource.batchUpdate(sql, new BatchPreparedStatementSetter() {
 			
 			@SuppressWarnings("unused")
@@ -84,7 +92,7 @@ public class daoActivity implements DaoInterface {
 			public int getBatchSize() {
 				return listIns.size();
 			}
-		});
+		}); */
 	}
 
 	/**
