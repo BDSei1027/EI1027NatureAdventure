@@ -70,14 +70,15 @@ public class daoActivity implements DaoInterface {
 		
 		
 		final List<String> listIns = activity.getInstructors();
-		// Forma cachi
-		StringBuilder sb = new StringBuilder("INSERT INTO instruidas(idact, ssnumber) VALUES ");
-		for(int i = 0; i < listIns.size(); i++) {
-			if ( i != 0 ) sb.append(", ");
-			sb.append("(" + activity.getIdAct() + ", " + listIns.get(i) + ")");
-		 }
-		 dataSource.update(sb.toString());
-		
+			// Forma cachi
+		if (listIns.size() != 0) {
+			StringBuilder sb = new StringBuilder("INSERT INTO instruidas(idact, ssnumber) VALUES ");
+			for(int i = 0; i < listIns.size(); i++) {
+				if ( i != 0 ) sb.append(", ");
+				sb.append("(" + activity.getIdAct() + ", " + listIns.get(i) + ")");
+			 }
+			 dataSource.update(sb.toString());
+		}
 		/* Forma no cachi y sobrecarga la conexion
 		 * sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?,?)";
 		dataSource.batchUpdate(sql, new BatchPreparedStatementSetter() {
