@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import classes.Activity;
-import database.DaoActivity;
+import database.oldDaos.DaoActivity;
 
 /*	Como los test tiene que ser en el orden determinado
  *  los métodos se llaman de forma test<numero><nombre>

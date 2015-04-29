@@ -1,4 +1,4 @@
-package database;
+package database.oldDaos;
 /*
  * Llig les propietats de la connexió d'un fitxer jdbc.properties
  * situat a la base del classpath (directament baix el directori src a Eclipse) 

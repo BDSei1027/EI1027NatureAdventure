@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import classes.Status;
-import database.DaoStatus;
+import database.oldDaos.DaoStatus;
 
 /*	
  *  FixMethodOrder utilizado para ejecutar 

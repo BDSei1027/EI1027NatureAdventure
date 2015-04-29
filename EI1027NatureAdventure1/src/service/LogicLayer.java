@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import classes.Instructor;
-import database.DaoActivity;
-import database.DaoBooking;
-import database.DaoClient;
-import database.DaoInstructor;
-import database.DaoStatus;
+import database.oldDaos.DaoActivity;
+import database.oldDaos.DaoBooking;
+import database.oldDaos.DaoClient;
+import database.oldDaos.DaoInstructor;
+import database.oldDaos.DaoStatus;
 
 //TODO Cambiar referencias daos viejos
 //Implementación palera 

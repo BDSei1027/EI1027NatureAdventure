@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import classes.Client;
-import database.DaoClient;
+import database.oldDaos.DaoClient;
 
 /*	
  *  FixMethodOrder utilizado para ejecutar 

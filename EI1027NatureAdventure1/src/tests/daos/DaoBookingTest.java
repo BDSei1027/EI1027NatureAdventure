@@ -5,13 +5,14 @@ import static org.junit.Assert.*;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import classes.Booking;
-import database.DaoBooking;
+import database.oldDaos.DaoBooking;
 
 /*	
  *  FixMethodOrder utilizado para ejecutar 

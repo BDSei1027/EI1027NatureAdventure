@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import classes.Instructor;
-import database.DaoInstructor;
+import database.oldDaos.DaoInstructor;
 
 /*	Como los test tiene que ser en el orden determinado
  *  los métodos se llaman de forma test<numero><nombre>
@@ -153,7 +153,7 @@ public class DaoInstructorTest {
 	 */
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {
-		database.DaoActivity daoAct = new database.DaoActivity();
+		database.oldDaos.DaoActivity daoAct = new database.oldDaos.DaoActivity();
 		daoAct.assignInstructorToActivity("2033", 2033);
 		daoAct.assignInstructorToActivity("2033", 2031);
 	}
