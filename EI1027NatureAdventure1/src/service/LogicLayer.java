@@ -83,6 +83,7 @@ public class LogicLayer {
 			return;
 		}
 		miDao.deleteInstructor(code);
+		miDao.deleteInstructorFromActivities(code);
 	}
 	
 	/**
