@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Activity;
+import classes.Instructor;
 
 
 
@@ -122,11 +123,6 @@ public class daoActivity implements DaoInterface {
 		dataSource.update(sql, activity.getIdAct());
 	}
 
-	private List<String> getInstructorActivity(int idAct) {
-        	String sql = "SELECT ssNumber from instruidas WHERE idAct=?";
-        	return (List<String>) dataSource.queryForList(sql, String.class, idAct);
-	}
-
 	@Override
 	public Object getElement(Object identifier) {
 		//TODO Mirando si se puede hacer por joins, improbable
@@ -148,6 +144,33 @@ public class daoActivity implements DaoInterface {
 			map.put(act.getIdAct(), act);
 		}
 		return map;
+	}
+	
+	private List<String> getInstructorActivity(int idAct) {
+    	String sql = "SELECT ssNumber from instruidas WHERE idAct=?";
+    	return (List<String>) dataSource.queryForList(sql, String.class, idAct);
+	}
+	
+	// TODO cambiamos el nombre?
+	public void addInstructor(int idact, String ssnum) {
+		String sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?, ?)";
+		dataSource.update(sql, idact, ssnum);
+	}
+	
+	// TODO si no os gusta esta sobrecarga la quitamos
+	public void addInstructor(int idact, Instructor inst) {
+		this.addInstructor(idact, inst.getSsNumber());
+	}
+	
+	// TODO cambiamos el nombre?
+	public void addInstructors(int idact, List<String> listSS) {
+		if (listSS.size() != 0) {
+			StringBuilder sb = new StringBuilder("INSERT INTO instruidas(idact, ssnumber) VALUES ");
+			for(int i = 0; i < listSS.size(); i++) {
+				if ( i != 0 ) sb.append(", ");
+				sb.append("(" + idact + ", " + listSS.get(i) + ")");
+			 }
+			 dataSource.update(sb.toString());
 	}
 	
 }
