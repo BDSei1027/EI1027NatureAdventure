@@ -171,6 +171,7 @@ public class daoActivity implements DaoInterface {
 				sb.append("(" + idact + ", " + listSS.get(i) + ")");
 			 }
 			 dataSource.update(sb.toString());
+		}
 	}
 	
 }
