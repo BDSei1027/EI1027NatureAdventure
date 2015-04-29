@@ -8,8 +8,21 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan 
-		base-package="testing" />
+	<context:annotation-config />
+
+	<!-- Configuration of DB -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<bean id="jdbc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+	
+	<!-- Spring's Components -->
+	<context:component-scan base-package="database" />
+	<context:component-scan base-package="classes" />	
+	
 		
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -17,5 +30,18 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- BEANS -->
+	<!-- Components -->
+	<bean id="activity" class="classes.Activity" />
+	<bean id="instructor" class="classes.Instructor" />
+	
+	<!-- Repositories -->
+	<bean id="activityDAO" class="database.daoActivity">
+		<property name="dataSource" ref="jdbc" />
+	</bean>
+	
+	<bean id="test" class="database.Test">
 	</bean>
 </beans>

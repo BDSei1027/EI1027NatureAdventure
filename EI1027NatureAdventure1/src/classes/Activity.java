@@ -2,9 +2,12 @@ package classes;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by ratadp on 9/03/15.
  */
+@Component
 public class Activity {
     private int idAct;
     private String name;
