@@ -67,8 +67,7 @@ public class daoClient implements DaoInterface {
 	public Object getElement(Object identifier) {
 		String id = (String) identifier;
 		String sql = "SELECT * FROM Client WHERE clientId=?";
-		Client cl = dataSource.queryForObject(sql, new ClientMapper(), id);
-		return cl;
+		return dataSource.queryForObject(sql, new ClientMapper(), id);
 	}
 
 	@Override
