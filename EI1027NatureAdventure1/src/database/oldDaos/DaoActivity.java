@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import classes.Activity;
+import exceptions.InvalidGroupSizeException;
 
 /**
  * Dao para gestionar las actividades con la base de datos
@@ -42,7 +43,7 @@ public class DaoActivity {
                 actividad.setName( result.getString("name") );
                 actividad.setLevel( result.getInt("leveldif") );
                 actividad.setSchedule( result.getString("schedule") );
-                actividad.setPrice( result.getDouble("price") );
+                actividad.setPrice( result.getFloat("price") );
                 actividad.setPlace( result.getString("place") );
                 actividad.setMinimumGroup( result.getInt("mingroup") );
                 actividad.setMaximumGroup( result.getInt("maxgroup") );
@@ -55,6 +56,8 @@ public class DaoActivity {
             Log.severe("Error al preparedStatement");
             e.printStackTrace();
             return null;
+        } catch (Exception e) {
+        	e.printStackTrace();
         } finally {
             // Tancar el result
             if (result != null) {
@@ -162,7 +165,7 @@ public class DaoActivity {
                     actividad.setName(result.getString("name"));
                     actividad.setLevel(result.getInt("leveldif"));
                     actividad.setSchedule(result.getString("schedule"));
-                    actividad.setPrice(result.getDouble("price"));
+                    actividad.setPrice(result.getFloat("price"));
                     actividad.setPlace(result.getString("place"));
                     actividad.setMinimumGroup(result.getInt("mingroup"));
                     actividad.setMaximumGroup(result.getInt("maxgroup"));
@@ -172,7 +175,7 @@ public class DaoActivity {
                 return actividad;
             }
             else return null;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             Log.severe("Error al preparedStatement");
             e.printStackTrace();
             return null;

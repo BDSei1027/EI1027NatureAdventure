@@ -4,19 +4,20 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-/**
- * Created by ratadp on 9/03/15.
- */
+import exceptions.InvalidGroupSizeException;
+import exceptions.InvalidLevelException;
+import exceptions.InvalidPriceException;
+
 @Component
 public class Activity {
     private int idAct;
     private String name;
     private int level;
     private String schedule;
-    private double price;
+    private float price;
     private String place;
-    private int minimumGroup;
-    private int maximumGroup;
+    private Integer minimumGroup;
+    private Integer maximumGroup;
     private boolean isActive;
     private List<String> qualifiedInstructors;
 
@@ -24,7 +25,7 @@ public class Activity {
         super();
     }
 
-    public Activity(Activity actividad) {
+    public Activity(Activity actividad) throws InvalidLevelException, InvalidPriceException, InvalidGroupSizeException {
         super();
         setIdAct(actividad.getIdAct());
         setName(actividad.getName());
@@ -93,11 +94,9 @@ public class Activity {
         return level;
     }
 
-    public void setLevel(int level) {
-        if ( level > 3 )
-            level = 3;
-        if ( level < 0 )
-            level = 0;
+    public void setLevel(int level) throws InvalidLevelException {
+        if ( level > 3 || level < 0)
+            throw new InvalidLevelException(level);
         this.level = level;
     }
 
@@ -109,14 +108,14 @@ public class Activity {
         this.schedule = schedule;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        // Comprobar que sea mayor que 0 más arriba
-    	
-        this.price = Math.rint(price*100)/100;
+    public void setPrice(float price) throws InvalidPriceException {
+        if (price < 0.0)
+        	throw new InvalidPriceException(price);   
+        this.price = price;
     }
 
     public String getPlace() {
@@ -131,10 +130,14 @@ public class Activity {
         return minimumGroup;
     }
 
-    public void setMinimumGroup(int minimumGroup) {
+    public void setMinimumGroup(int minimumGroup) throws InvalidGroupSizeException {
         // Cambiar el 1 según reglas de la empresa del grupo minimo.
         if ( minimumGroup < 0 )
-            minimumGroup = 0;
+            throw new InvalidGroupSizeException(minimumGroup);
+        if (maximumGroup != null) {
+        	if (minimumGroup > this.maximumGroup)
+        		throw new InvalidGroupSizeException(minimumGroup);
+        }
         this.minimumGroup = minimumGroup;
     }
 
@@ -142,8 +145,10 @@ public class Activity {
         return maximumGroup;
     }
 
-    public void setMaximumGroup(int maximumGroup) {
-        this.maximumGroup = maximumGroup;
+    public void setMaximumGroup(int maximumGroup) throws InvalidGroupSizeException{
+   		if (maximumGroup < 1 || maximumGroup < this.minimumGroup) 
+   			throw new InvalidGroupSizeException(maximumGroup);
+   		else this.maximumGroup = maximumGroup;
     }
     
     public void setIsActive(boolean state) {

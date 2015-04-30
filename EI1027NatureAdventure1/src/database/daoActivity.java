@@ -1,6 +1,5 @@
 package database;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.HashMap;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -22,7 +20,7 @@ import classes.Instructor;
 
 @Repository
 public class daoActivity implements DaoInterface {
-	
+//TODO Poner los comentarios de los metodos
 	private JdbcTemplate dataSource;
 	
 	@Autowired()
@@ -36,20 +34,24 @@ public class daoActivity implements DaoInterface {
 		super();
 	}
 	/**
-	 * This class make and activity from the database outputs
+	 * This class make an activity from the database outputs
 	 */
 	private static final class ActivityMapper implements RowMapper<Activity> {
 		public Activity mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Activity activity = new Activity();
-			activity.setIdAct(rs.getInt("idact"));
-			activity.setName(rs.getString("name"));
-			activity.setLevel(rs.getInt("leveldif"));
-			activity.setSchedule(rs.getString("schedule"));
-			activity.setPrice(rs.getDouble("price"));
-			activity.setPlace(rs.getString("place"));
-			activity.setMinimumGroup(rs.getInt("mingroup"));
-			activity.setMaximumGroup(rs.getInt("maxgroup"));
-			activity.setIsActive(rs.getBoolean("isactive"));
+			try {
+				activity.setIdAct(rs.getInt("idact"));
+				activity.setName(rs.getString("name"));
+				activity.setLevel(rs.getInt("leveldif"));
+				activity.setSchedule(rs.getString("schedule"));
+				activity.setPrice(rs.getFloat("price"));
+				activity.setPlace(rs.getString("place"));
+				activity.setMinimumGroup(rs.getInt("mingroup"));
+				activity.setMaximumGroup(rs.getInt("maxgroup"));
+				activity.setIsActive(rs.getBoolean("isactive"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return activity;			
 		}
 	}
