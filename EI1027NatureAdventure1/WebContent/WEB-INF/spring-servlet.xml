@@ -35,13 +35,27 @@
 	<!-- BEANS -->
 	<!-- Components -->
 	<bean id="activity" class="classes.Activity" />
+	<bean id="booking" class="classes.Booking" />
+	<bean id="client" class="classes.Client" />
 	<bean id="instructor" class="classes.Instructor" />
+	<bean id="status" class="classes.Status" />
 	
 	<!-- Repositories -->
 	<bean id="activityDAO" class="database.daoActivity">
 		<property name="dataSource" ref="jdbc" />
 	</bean>
-	
-	<bean id="test" class="database.Test">
+	<bean id="statusDAO" class="database.daoStatus">
+		<property name="dataSource" ref="jdbc" />
 	</bean>
+	<bean id="bookingDAO" class="database.daoBooking">
+		<property name="dataSource" ref="jdbc" />
+		<property name="daoStatus" ref="daoStatus" />
+	</bean>
+	<bean id="clientDAO" class="database.daoClient">
+		<property name="dataSource" ref="jdbc" />
+	</bean>
+	<bean id="instructorDAO" class="database.daoInstructor">
+		<property name="dataSource" ref="jdbc" />
+	</bean>
+	
 </beans>
