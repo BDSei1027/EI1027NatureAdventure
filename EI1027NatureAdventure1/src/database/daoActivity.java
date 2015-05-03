@@ -24,15 +24,12 @@ public class daoActivity implements DaoInterface {
 	private JdbcTemplate dataSource;
 	
 	@Autowired()
-	public void setDataSource(DataSource datasource) {
+	private void setDataSource(DataSource datasource) {
 		System.out.println(datasource);
 		this.dataSource = new JdbcTemplate(datasource);
 		System.out.println(this.dataSource);
 	}
 	
-	public daoActivity() {
-		super();
-	}
 	/**
 	 * This class make an activity from the database outputs
 	 */
@@ -158,12 +155,7 @@ public class daoActivity implements DaoInterface {
 		String sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?, ?)";
 		dataSource.update(sql, idact, ssnum);
 	}
-	
-	// TODO si no os gusta esta sobrecarga la quitamos
-	public void addInstructor(int idact, Instructor inst) {
-		this.addInstructor(idact, inst.getSsNumber());
-	}
-	
+		
 	// TODO cambiamos el nombre?
 	public void addInstructors(int idact, List<String> listSS) {
 		if (listSS.size() != 0) {
