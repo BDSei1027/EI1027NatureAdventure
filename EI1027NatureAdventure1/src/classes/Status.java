@@ -2,6 +2,9 @@ package classes;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Status {
 
 	//Clave primaria

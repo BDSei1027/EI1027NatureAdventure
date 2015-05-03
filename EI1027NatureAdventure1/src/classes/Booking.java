@@ -2,13 +2,13 @@ package classes;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 import exceptions.InvalidGroupSizeException;
 import exceptions.InvalidPriceException;
 
 
-/**
- * Created by cdd on 16/03/15.
- */
+@Component
 public class Booking {
 	//Clave primaria: ID interna
 	private int innerIdBooking;

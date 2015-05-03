@@ -1,5 +1,8 @@
 package classes;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Client {
 	
 	//Clave primaria

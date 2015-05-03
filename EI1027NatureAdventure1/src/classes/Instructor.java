@@ -4,10 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-
-/**
- * Created by serrano on 11/03/15.
- */
 @Component
 public class Instructor {
 	private String ssNumber;
