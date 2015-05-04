@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
 import classes.Booking;
 import classes.Status;
 
+
+//TODO getMaxInnerID, getMaxActiveID
 @Repository
 public class daoBooking implements DaoInterface {
 

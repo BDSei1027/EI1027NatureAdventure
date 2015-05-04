@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import classes.Instructor;
-import database.oldDaos.DaoActivity;
-import database.oldDaos.DaoBooking;
-import database.oldDaos.DaoClient;
-import database.oldDaos.DaoInstructor;
-import database.oldDaos.DaoStatus;
+import database.DaoInterface;
+import database.daoActivity;
+import database.daoBooking;
+import database.daoClient;
+import database.daoInstructor;
+import database.daoStatus;
 
 //TODO Cambiar referencias daos viejos
 //Implementación palera 
@@ -23,11 +24,11 @@ import database.oldDaos.DaoStatus;
 @Service
 public class LogicLayer {
 	//DAOS
-	private DaoActivity daoActivity;
-	private DaoBooking daoBooking;
-	private DaoClient daoClient;
-	private DaoInstructor daoInstructor;
-	private DaoStatus daoStatus;
+	private DaoInterface daoActivity;
+	private DaoInterface daoBooking;
+	private DaoInterface daoClient;
+	private DaoInterface daoInstructor;
+	private DaoInterface daoStatus;
 	
 	//ID autoincrementales
 	private int innerBookingID;
@@ -68,22 +69,25 @@ public class LogicLayer {
 	 * Add a instructor in the database.
 	 */
 	public void addInstructor(Instructor instructor){
-		DaoInstructor miDao = (DaoInstructor) daoInstructor; //Casting preparado para cuando se establezca el cambio a abstract
-													   //Como en este momento no tengo la interfaz delante lo dejo asi pendiente de cambiar el método
-		miDao.addInstructor(instructor);
+//		daoInstructor miDao = (daoInstructor) daoInstructor; //Casting preparado para cuando se establezca el cambio a abstract
+//													   //Como en este momento no tengo la interfaz delante lo dejo asi pendiente de cambiar el método
+//		miDao.addInstructor(instructor);
+		daoInstructor.addElement(instructor);
 		
 	}
 	
 	/**
 	 * Delete a instructor from the database. The ssNumber is required
+	 * TODO realizar operacion de borrar en instruidas
 	 */
 	public void deleteInstructor(String code){
-		DaoInstructor miDao = (DaoInstructor) daoInstructor;
+		//daoInstructor miDao = (daoInstructor) daoInstructor;
 		if (this.getInstructor(code)==null){
 			return;
 		}
-		miDao.deleteInstructorFromActivities(code);
-		miDao.deleteInstructor(code);
+		//miDao.deleteInstructorFromActivities(code);
+		//miDao.deleteInstructor(code);
+		daoInstructor.deleteElement(code);
 		
 	}
 	
@@ -92,11 +96,12 @@ public class LogicLayer {
 	 */
 	
 	public void updateInstructor(Instructor instructor){
-		DaoInstructor miDao = (DaoInstructor) daoInstructor; 
+		//daoInstructor miDao = (daoInstructor) daoInstructor; 
 		if (this.getInstructor(instructor.getSsNumber())==null){
 			return;
 		}
-		miDao.updateInstructor(instructor);
+		//miDao.updateInstructor(instructor);
+		daoInstructor.updateElement(instructor);
 	}
 
 	/**
@@ -105,8 +110,9 @@ public class LogicLayer {
 	 */
 	
 	public Instructor getInstructor(String code){
-		DaoInstructor miDao = (DaoInstructor) daoInstructor; 
-		Instructor myInstructor = miDao.getInstructor(code);
+//		daoInstructor miDao = (daoInstructor) daoInstructor; 
+//		Instructor myInstructor = miDao.getInstructor(code);
+		Instructor myInstructor = (Instructor) daoInstructor.getElement(code);
 		return myInstructor;
 	}
 	
@@ -115,12 +121,12 @@ public class LogicLayer {
 	 * @return A collection of Instructor with all instructors
 	 */
 	
-	public Collection<Instructor> getAllInstructors(){ //Devuelvo solo lista de Instructores para facilitar tarea a la vista
-		DaoInstructor miDao = (DaoInstructor) daoInstructor; 
-		Map<String,Instructor> allInstructors =  miDao.getInstructors();
-		Collection<Instructor> allInstructorsClasses= allInstructors.values();
-		return allInstructorsClasses;
-	}
+//	public Collection<Instructor> getAllInstructors(){ //Devuelvo solo lista de Instructores para facilitar tarea a la vista
+//		daoInstructor miDao = (daoInstructor) daoInstructor; 
+//		Map<String,Instructor> allInstructors =  miDao.getInstructors();
+//		Collection<Instructor> allInstructorsClasses= allInstructors.values();
+//		return allInstructorsClasses;
+//	}
 	
 	
 		
@@ -131,27 +137,27 @@ public class LogicLayer {
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
 	
 	@Autowired
-	public void setDaoActivity(DaoActivity daoActivity) {
+	public void setDaoActivity(daoActivity daoActivity) {
 		this.daoActivity = daoActivity;
 	}
 	
 	@Autowired
-	public void setDaoBooking(DaoBooking daoBooking) {
+	public void setDaoBooking(daoBooking daoBooking) {
 		this.daoBooking = daoBooking;
 	}
 	
 	@Autowired
-	public void setDaoClient(DaoClient daoClient) {
+	public void setDaoClient(daoClient daoClient) {
 		this.daoClient = daoClient;
 	}
 	
 	@Autowired
-	public void setDaoInstructor(DaoInstructor daoInstructor) {
+	public void setDaoInstructor(daoInstructor daoInstructor) {
 		this.daoInstructor = daoInstructor;
 	}
 	
 	@Autowired
-	public void setDaoStatus(DaoStatus daoStatus) {
+	public void setDaoStatus(daoStatus daoStatus) {
 		this.daoStatus = daoStatus;
 	}
 	

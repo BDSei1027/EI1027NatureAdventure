@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Instructor;
-
+//TODO getMaxID, deleteInstructorFromActivities getElements
 @Repository
 public class daoInstructor implements DaoInterface {
 
