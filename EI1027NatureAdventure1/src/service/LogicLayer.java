@@ -34,7 +34,6 @@ public class LogicLayer {
 	private int innerBookingID;
 	private int activeBookingID;
 	private int activityID;
-	private int instructorID;
 	
 	/**
 	 * Inicializa las IDs para que se puedan autoincrementar.
@@ -48,10 +47,14 @@ public class LogicLayer {
 	 * Pide uan conexion a traves de los daos de la ID max
 	 */
 	private void inicializarIds() {
-		this.innerBookingID = daoBooking.getMaxInnerID();
-		this.activeBookingID = daoBooking.getMaxActiveID();
-		this.activityID = daoActivity.getMaxID();
-		this.instructorID = daoInstructor.getMaxID();
+		daoBooking daoBook = (daoBooking) this.daoBooking;
+		daoActivity daoAct = (daoActivity) this.daoActivity;
+		
+		this.innerBookingID = daoBook.getMaxInnerID();
+		this.activeBookingID = daoBook.getMaxActiveID();
+		this.activityID = daoAct.getMaxID();
+		// El instructor no tiene idMaxima que es el dni
+		//this.instructorID = daoInstructor.getMaxID();
 	}
 
 	
@@ -78,7 +81,8 @@ public class LogicLayer {
 	
 	/**
 	 * Delete a instructor from the database. The ssNumber is required
-	 * TODO realizar operacion de borrar en instruidas
+	 * TODO realizar operacion de borrar en instruidas (Solucionado, lo hace el dao al borrar el instructor)
+	 * 
 	 */
 	public void deleteInstructor(String code){
 		//daoInstructor miDao = (daoInstructor) daoInstructor;
