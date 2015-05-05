@@ -17,7 +17,7 @@ import classes.Status;
 
 @Repository
 public class daoStatus implements DaoInterface {
-//TODO Poner los comentarios
+
 	private JdbcTemplate dataSource;
 	
 	@Autowired
@@ -25,6 +25,9 @@ public class daoStatus implements DaoInterface {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
+	/*
+	 * RowMapper for the class Status
+	 */
 	private static final class StatusMapper implements RowMapper<Status> {
 		public Status mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Status st = new Status();
@@ -36,6 +39,12 @@ public class daoStatus implements DaoInterface {
 		}
 	}
 	
+	/**
+	 * Method to add an Status into the DB
+	 * @see database.DaoInterface#addElement(java.lang.Object)
+	 * @param element Status, class Status
+	 * TODO Comprobar que lo que le pasamos es un Status
+	 */
 	@Override
 	public void addElement(Object element) {
 		Status st = (Status) element;
@@ -44,6 +53,11 @@ public class daoStatus implements DaoInterface {
 		dataSource.update(sql, st.getIDbooking(), st.getDateRevision(), st.getStatus(), st.getSsNumber());
 	}
 
+	/**
+	 * Method to remove an Status from the DB
+	 * @see database.DaoInterface#deleteElement(java.lang.Object)
+	 * @param element Integer with the booking's identifier
+	 */
 	@Override
 	public void deleteElement(Object element) {
 		int id = (int) element;
@@ -51,6 +65,12 @@ public class daoStatus implements DaoInterface {
 		dataSource.update(sql, id);
 	}
 
+	/**
+	 * Method to update an Status in the DB
+	 * @see database.DaoInterface#updateElement(java.lang.Object)
+	 * @param element Status, class Status
+	 * TODO Comprobar que es de la clase Status
+	 */
 	@Override
 	public void updateElement(Object element) {
 		Status st = (Status) element;
@@ -61,6 +81,12 @@ public class daoStatus implements DaoInterface {
 		dataSource.update(sql, st.getIDbooking(), st.getDateRevision(), st.getStatus(), st.getSsNumber());
 	}
 
+	/**
+	 * Method to obtain an Status from the DB
+	 * @see database.DaoInterface#getElement(java.lang.Object)
+	 * @param identifier Integer with the booking's identifier
+	 * @return a Status with all the field
+	 */
 	@Override
 	public Object getElement(Object identifier) {
 		int id = (int) identifier;
@@ -68,9 +94,13 @@ public class daoStatus implements DaoInterface {
 		return dataSource.queryForObject(sql, new StatusMapper(), id);
 	}
 
+	/**
+	 * Method to obtain all the status from the DB
+	 * @see database.DaoInterface#getElements()
+	 * @return Map<Integer, Status>, key: booking's id, value: Status 
+	 */
 	@Override
 	public Object getElements() {
-		// TODO Tiene que haber otra forma de hacerlo
 		String sql = "SELECT * FROM Status";
 		List<Status> list = dataSource.query(sql, new StatusMapper());
 		Map<Integer, Status> map = new HashMap<Integer, Status>();
