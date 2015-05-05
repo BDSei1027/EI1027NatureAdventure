@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Activity;
-
+//TODO ¿Un metodo para dar de baja una actividad? (cambiar isActive a false), lo mismo para activar (se podria hacer que fuesen una misma)
 @Repository
 public class daoActivity implements DaoInterface {
 
