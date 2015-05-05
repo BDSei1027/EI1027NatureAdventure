@@ -58,8 +58,9 @@ public class daoInstructor implements DaoInterface {
 		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive) "
 							+ "values(?, ?, ?, ?, ?, ?,?)";
 		dataSource.update(sql, instr.getSsNumber(), instr.getIdNumber(), instr.getName(), instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive());
-		
-		addActivities(instr.getSsNumber(), instr.getActivities());
+		if (instr.getActivities().size() != 0) {
+			addActivities(instr.getSsNumber(), instr.getActivities());
+		}
 	}
 
 	/**
