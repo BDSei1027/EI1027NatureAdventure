@@ -14,7 +14,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Activity;
-import classes.Instructor;
 
 @Repository
 public class daoActivity implements DaoInterface {
