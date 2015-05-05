@@ -16,8 +16,6 @@ import org.springframework.stereotype.Repository;
 import classes.Activity;
 import classes.Instructor;
 
-//TODO getMaxId
-
 @Repository
 public class daoActivity implements DaoInterface {
 //TODO Poner los comentarios de los metodos
@@ -168,4 +166,8 @@ public class daoActivity implements DaoInterface {
 		}
 	}
 	
+	public Integer getMaxID() {
+		String sql = "SELECT MAX(idact) FROM activity";
+		return dataSource.queryForObject(sql, Integer.class);
+	}
 }
