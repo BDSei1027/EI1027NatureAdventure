@@ -16,8 +16,6 @@ import org.springframework.stereotype.Repository;
 import classes.Booking;
 import classes.Status;
 
-
-//TODO getMaxInnerID, getMaxActiveID
 @Repository
 public class daoBooking implements DaoInterface {
 
@@ -107,6 +105,16 @@ public class daoBooking implements DaoInterface {
 		List<Booking> list = dataSource.query(sql, new BookingMapper());
 		for (Booking book: list) map.put(book.getInnerIdBooking(), book);
 		return map;
+	}
+	
+	public Integer getMaxInnerID() {
+		String sql = "SELECT MAX(inneridbooking) FROM booking";
+		return dataSource.queryForObject(sql, Integer.class);
+	}
+	
+	public Integer getMaxActiveID() {
+		String sql = "SELECT MAX(idbooking) FROM booking";
+		return dataSource.queryForObject(sql, Integer.class);
 	}
 
 }
