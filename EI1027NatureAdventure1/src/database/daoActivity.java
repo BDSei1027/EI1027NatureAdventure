@@ -18,14 +18,12 @@ import classes.Instructor;
 
 @Repository
 public class daoActivity implements DaoInterface {
-//TODO Poner los comentarios de los metodos
+
 	private JdbcTemplate dataSource;
 	
 	@Autowired()
 	private void setDataSource(DataSource datasource) {
-		System.out.println(datasource);
 		this.dataSource = new JdbcTemplate(datasource);
-		System.out.println(this.dataSource);
 	}
 	
 	/**
@@ -52,8 +50,10 @@ public class daoActivity implements DaoInterface {
 	}
 	
 	/**
-	 * Method for add a new Activity to the DB
-	 * @param element Must be a class Activity to add.
+	 * Method to add an Activity into the DB
+	 * @see database.DaoInterface#addElement(java.lang.Object)
+	 * @param element Activity, class Activity
+	 * TODO Comprobar que lo que le pasamos es una actividad
 	 */
 	@Override
 	public void addElement(Object element) {
@@ -64,39 +64,16 @@ public class daoActivity implements DaoInterface {
                             "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		dataSource.update(sql, activity.getIdAct(), activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
 				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup());
+		
 		// Get the instructors who can teach it
-		
-		
 		final List<String> listIns = activity.getInstructors();
-			// Forma cachi
-		if (listIns.size() != 0) {
-			StringBuilder sb = new StringBuilder("INSERT INTO instruidas(idact, ssnumber) VALUES ");
-			for(int i = 0; i < listIns.size(); i++) {
-				if ( i != 0 ) sb.append(", ");
-				sb.append("(" + activity.getIdAct() + ", " + listIns.get(i) + ")");
-			 }
-			 dataSource.update(sb.toString());
-		}
-		/* Forma no cachi y sobrecarga la conexion
-		 * sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?,?)";
-		dataSource.batchUpdate(sql, new BatchPreparedStatementSetter() {
-			
-			@SuppressWarnings("unused")
-			@Override
-			public void setValues(PreparedStatement ps, int arg) throws SQLException {
-				String instructor = listIns.get(arg);
-			}
-			
-			@Override
-			public int getBatchSize() {
-				return listIns.size();
-			}
-		}); */
+		addInstructors(activity.getIdAct(), listIns);
 	}
 
 	/**
-	 * Method to delete the Activity from the DB
-	 * @param element Must be an int which is the ID
+	 * Method to remove an Activity from the DB
+	 * @see database.DaoInterface#deleteElement(java.lang.Object)
+	 * @param element Integer with the idAct
 	 */
 	@Override
 	public void deleteElement(Object element) {
@@ -110,6 +87,12 @@ public class daoActivity implements DaoInterface {
 		dataSource.update(sql, id);
 	}
 	
+	/**
+	 * Method to update an Activity in the DB
+	 * @see database.DaoInterface#updateElement(java.lang.Object)
+	 * @param element Activity, class Instructor
+	 * TODO Comprobar que es de la clase Activity
+	 */
 	@Override
 	public void updateElement(Object element) {
 		// Cast Objecto to Activity
@@ -120,6 +103,12 @@ public class daoActivity implements DaoInterface {
 		dataSource.update(sql, activity.getIdAct());
 	}
 
+	/**
+	 * Method to obtain an Activity from the DB
+	 * @see database.DaoInterface#getElement(java.lang.Object)
+	 * @param identifier Integer with the idAct
+	 * @return an Activity with all the field, includes Instructors
+	 */
 	@Override
 	public Object getElement(Object identifier) {
 		//TODO Mirando si se puede hacer por joins, improbable
@@ -130,9 +119,13 @@ public class daoActivity implements DaoInterface {
 		return act;
 	}
 
+	/**
+	 * Method to obtain all the activities from the DB
+	 * @see database.DaoInterface#getElements()
+	 * @return Map<Integer, Activity>, key: idact, value: Activity with all the fields, includes Instructors
+	 */
 	@Override
 	public Object getElements() {
-		//TODO Tiene que haber otra forma de hacerlo, segun StackOverflow es la forma correcta
 		String sql = "SELECT * FROM activity";
 		List<Activity> list = dataSource.query(sql, new ActivityMapper());
 		Map<Integer, Activity> map = new HashMap<Integer, Activity>();
@@ -143,18 +136,33 @@ public class daoActivity implements DaoInterface {
 		return map;
 	}
 	
+	/**
+	 * Method to get the instructors that can supervise this activity
+	 * @param idAct Integer with the idact
+	 * @return List<String> with the ssNumber of the instructors
+	 */
 	private List<String> getInstructorActivity(int idAct) {
     	String sql = "SELECT ssNumber from instruidas WHERE idAct=?";
     	return (List<String>) dataSource.queryForList(sql, String.class, idAct);
 	}
 	
 	// TODO cambiamos el nombre?
+	/**
+	 * Methos to add an Instructor that can supervise the activity
+	 * @param idact Activity's identifier
+	 * @param ssnum Instructor's identifier
+	 */
 	public void addInstructor(int idact, String ssnum) {
 		String sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?, ?)";
 		dataSource.update(sql, idact, ssnum);
 	}
 		
 	// TODO cambiamos el nombre?
+	/**
+	 * Method to add some instructors that can supervise an activity
+	 * @param idact Activity's identifier
+	 * @param listSS List<String> Instructors' identifiers
+	 */
 	public void addInstructors(int idact, List<String> listSS) {
 		if (listSS.size() != 0) {
 			StringBuilder sb = new StringBuilder("INSERT INTO instruidas(idact, ssnumber) VALUES ");
@@ -166,6 +174,29 @@ public class daoActivity implements DaoInterface {
 		}
 	}
 	
+	/**
+	 * Method to remove an Instructor that can supervise the activity
+	 * @param idact Activity's identifier
+	 * @param ssnum Instructor's identifier
+	 */
+	public void deleteActivityFromInstructor(int idact, String ssnum) {
+		String sql = "DELETE FROM instruidas WHERE idact = ?, ssnumber = ?";
+		dataSource.update(sql, idact, ssnum);
+	}
+	
+	/**
+	 * Method to remove all the instructors than can supervise the activity
+	 * @param idact Activity's Identifier
+	 */
+	public void deleteActivityFromInstructors(int idact) {
+		String sql = "DELETE FROM instruidas WHERE idact = ?";
+		dataSource.update(sql, idact);
+	}
+	
+	/**
+	 * Method to obtain the maximum identifier of the activity
+	 * @return Integer with the maximum ID
+	 */
 	public Integer getMaxID() {
 		String sql = "SELECT MAX(idact) FROM activity";
 		return dataSource.queryForObject(sql, Integer.class);
