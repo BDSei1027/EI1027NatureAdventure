@@ -32,6 +32,9 @@ public class daoBooking implements DaoInterface {
 		this.daoStatus = (daoStatus) daoStatus;
 	}
 	
+	/*
+	 * RowMapper for the class Booking
+	 */
 	private final static class BookingMapper implements RowMapper<Booking> {
 		public Booking mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Booking booking = new Booking();
@@ -52,6 +55,12 @@ public class daoBooking implements DaoInterface {
 		}
 	}
 	
+	/**
+	 * Method to add a Booking into the DB
+	 * @see database.DaoInterface#addElement(java.lang.Object)
+	 * @param element Booking, class Booking
+	 * TODO Comprobar que lo que le pasamos es un Bookin
+	 */
 	@Override
 	public void addElement(Object element) {
 		Booking book = (Booking) element;
@@ -64,16 +73,27 @@ public class daoBooking implements DaoInterface {
 
 	}
 
+	/**
+	 * Method to remove a Booking from the DB
+	 * @see database.DaoInterface#deleteElement(java.lang.Object)
+	 * @param element Integer with the identifier
+	 */
 	@Override
 	public void deleteElement(Object element) {
 		int id = (int) element;
 		String sql = "DELETE FROM booking WHERE inneridbooking = ?";
 		dataSource.update(sql, id);
 		
-		// TODO Si se borra la reserva el status tambien
-		// daoStatus.deleteElement(id);
+		// Si se borra la reserva el status tambien
+		daoStatus.deleteElement(id);
 	}
 
+	/**
+	 * Method to update a Booking in the DB
+	 * @see database.DaoInterface#updateElement(java.lang.Object)
+	 * @param element Booking, class Booking
+	 * TODO Comprobar que es de la clase Booking
+	 */
 	@Override
 	public void updateElement(Object element) {
 		Booking book = (Booking) element;
@@ -91,6 +111,12 @@ public class daoBooking implements DaoInterface {
 		dataSource.update(sql, book.getInnerIdBooking(), book.getGroupSize(), book.getDateActivity(), book.getDateCreation(), book.getClientId(), book.getPrice(),book.getIdAct(), book.getInformation(), book.getIdBooking());
 	}
 
+	/**
+	 * Method to obtain a Booking from the DB
+	 * @see database.DaoInterface#getElement(java.lang.Object)
+	 * @param identifier Intenger with the identifier
+	 * @return a Booking with all the field
+	 */
 	@Override
 	public Object getElement(Object identifier) {
 		int id = (int) identifier;
@@ -98,6 +124,11 @@ public class daoBooking implements DaoInterface {
 		return dataSource.queryForObject(sql, new BookingMapper(), id);
 	}
 
+	/**
+	 * Method to obtain all the bookings from the DB
+	 * @see database.DaoInterface#getElements()
+	 * @return Map<Integer, Booking>, key: id, value: Booking 
+	 */
 	@Override
 	public Object getElements() {
 		String sql = "SELECT * FROM booking";
@@ -107,11 +138,19 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
+	/**
+	 * Method to obtain the maximum inner Identifier of the booking
+	 * @return Integer with the maximum ID
+	 */
 	public Integer getMaxInnerID() {
 		String sql = "SELECT MAX(inneridbooking) FROM booking";
 		return dataSource.queryForObject(sql, Integer.class);
 	}
 	
+	/**
+	 * Method to obtain the maximum identifier of the activity
+	 * @return Integer with the maximum ID
+	 */
 	public Integer getMaxActiveID() {
 		String sql = "SELECT MAX(idbooking) FROM booking";
 		return dataSource.queryForObject(sql, Integer.class);
