@@ -125,12 +125,12 @@ public class LogicLayer {
 	 * @return A collection of Instructor with all instructors
 	 */
 	
-//	public Collection<Instructor> getAllInstructors(){ //Devuelvo solo lista de Instructores para facilitar tarea a la vista
-//		daoInstructor miDao = (daoInstructor) daoInstructor; 
-//		Map<String,Instructor> allInstructors =  miDao.getInstructors();
-//		Collection<Instructor> allInstructorsClasses= allInstructors.values();
-//		return allInstructorsClasses;
-//	}
+	public Collection<Instructor> getAllInstructors(){ //Devuelvo solo lista de Instructores para facilitar tarea a la vista
+		//daoInstructor miDao = (daoInstructor) daoInstructor; 
+		Map<String,Instructor> allInstructors = (Map<String,Instructor>) daoInstructor.getElements();
+		Collection<Instructor> allInstructorsClasses= allInstructors.values();
+		return allInstructorsClasses;
+	}
 	
 	
 		
