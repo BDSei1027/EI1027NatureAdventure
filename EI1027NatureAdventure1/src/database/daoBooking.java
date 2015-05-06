@@ -65,7 +65,7 @@ public class daoBooking implements DaoInterface {
 	public void addElement(Object element) {
 		Booking book = (Booking) element;
 		String sql = "INSERT INTO Booking(inneridbooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, idBooking) "
-							+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+							+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, book.getInnerIdBooking(), book.getGroupSize(), book.getDateActivity(), book.getDateCreation(), book.getClientId(), book.getPrice(), book.getIdAct(), book.getInformation(), book.getIdBooking());
 		Status status = new Status();
 		status.setIDbooking(book.getInnerIdBooking());
@@ -81,7 +81,7 @@ public class daoBooking implements DaoInterface {
 	@Override
 	public void deleteElement(Object element) {
 		int id = (int) element;
-		String sql = "DELETE FROM booking WHERE inneridbooking = ?";
+		String sql = "DELETE FROM booking WHERE inneridbooking = ?;";
 		dataSource.update(sql, id);
 		
 		// Si se borra la reserva el status tambien
@@ -107,7 +107,7 @@ public class daoBooking implements DaoInterface {
 				+ "idAct = ?," 
 				+ "information = ?," 
 				+ "idBooking = ?" 
-				+ " WHERE innerIdBooking = ?";
+				+ " WHERE innerIdBooking = ?;";
 		dataSource.update(sql, book.getInnerIdBooking(), book.getGroupSize(), book.getDateActivity(), book.getDateCreation(), book.getClientId(), book.getPrice(),book.getIdAct(), book.getInformation(), book.getIdBooking());
 	}
 
@@ -120,7 +120,7 @@ public class daoBooking implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		int id = (int) identifier;
-		String sql = "SELECT * FROM booking WHERE inneridbooking = ?";
+		String sql = "SELECT * FROM booking WHERE inneridbooking = ?;";
 		return dataSource.queryForObject(sql, new BookingMapper(), id);
 	}
 
@@ -131,7 +131,7 @@ public class daoBooking implements DaoInterface {
 	 */
 	@Override
 	public Object getElements() {
-		String sql = "SELECT * FROM booking";
+		String sql = "SELECT * FROM booking;";
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
 		List<Booking> list = dataSource.query(sql, new BookingMapper());
 		for (Booking book: list) map.put(book.getInnerIdBooking(), book);
@@ -143,7 +143,7 @@ public class daoBooking implements DaoInterface {
 	 * @return Integer with the maximum ID
 	 */
 	public Integer getMaxInnerID() {
-		String sql = "SELECT MAX(inneridbooking) FROM booking";
+		String sql = "SELECT MAX(inneridbooking) FROM booking;";
 		return dataSource.queryForObject(sql, Integer.class);
 	}
 	
@@ -152,7 +152,7 @@ public class daoBooking implements DaoInterface {
 	 * @return Integer with the maximum ID
 	 */
 	public Integer getMaxActiveID() {
-		String sql = "SELECT MAX(idbooking) FROM booking";
+		String sql = "SELECT MAX(idbooking) FROM booking;";
 		return dataSource.queryForObject(sql, Integer.class);
 	}
 

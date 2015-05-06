@@ -49,7 +49,7 @@ public class daoClient implements DaoInterface {
 	public void addElement(Object element) {
 		Client cl = (Client) element;
 		String sql = "INSERT INTO Client(clientId, clientName, clientLastName, clientEmail) "
-							+ "values(?, ?, ?, ?)";
+							+ "values(?, ?, ?, ?);";
 		dataSource.update(sql, cl.getClientId(), cl.getClientName(), cl.getClientLastName(), cl.getClientEmail());
 	}
 
@@ -61,7 +61,7 @@ public class daoClient implements DaoInterface {
 	@Override
 	public void deleteElement(Object element) {
 		String id = (String) element;
-		String sql = "DELETE FROM Client WHERE clientId=?";
+		String sql = "DELETE FROM Client WHERE clientId=?;";
 		dataSource.update(sql, id);
 	}
 
@@ -79,7 +79,7 @@ public class daoClient implements DaoInterface {
 					+ "clientName = ?," 
 					+ "clientLastName = ?,"
 					+ "clientEmail = ?" 
-					+ " WHERE clientId = ?";
+					+ " WHERE clientId = ?;";
 		dataSource.update(sql, cl.getClientId(), cl.getClientName(), cl.getClientLastName(), cl.getClientEmail(), cl.getClientId());
 	}
 
@@ -92,7 +92,7 @@ public class daoClient implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		String id = (String) identifier;
-		String sql = "SELECT * FROM Client WHERE clientId=?";
+		String sql = "SELECT * FROM Client WHERE clientId=?;";
 		return dataSource.queryForObject(sql, new ClientMapper(), id);
 	}
 
@@ -103,7 +103,7 @@ public class daoClient implements DaoInterface {
 	 */
 	@Override
 	public Object getElements() {
-		String sql = "SELECT * FROM Client";
+		String sql = "SELECT * FROM Client;";
 		List<Client> list = dataSource.query(sql, new ClientMapper());
 		Map<String, Client> map = new HashMap<String, Client>();
 		for(Client cl: list) map.put(cl.getClientId(), cl);

@@ -49,7 +49,7 @@ public class daoStatus implements DaoInterface {
 	public void addElement(Object element) {
 		Status st = (Status) element;
 		String sql = "INSERT INTO Status(inneridbooking, dateRevision, status, ssnumber)"
-				+ " VALUES(?, ?, ?, ?)";
+				+ " VALUES(?, ?, ?, ?);";
 		dataSource.update(sql, st.getIDbooking(), st.getDateRevision(), st.getStatus(), st.getSsNumber());
 	}
 
@@ -61,7 +61,7 @@ public class daoStatus implements DaoInterface {
 	@Override
 	public void deleteElement(Object element) {
 		int id = (int) element;
-		String sql = "DELETE FROM Status WHERE inneridbooking = ?";
+		String sql = "DELETE FROM Status WHERE inneridbooking = ?;";
 		dataSource.update(sql, id);
 	}
 
@@ -77,7 +77,7 @@ public class daoStatus implements DaoInterface {
 		String sql = "UPDATE Status SET inneridbooking = ?, "
 				+ "dateRevision = ?, "
 				+ "status = ?, "
-				+ "ssnumber = ?";
+				+ "ssnumber = ?;";
 		dataSource.update(sql, st.getIDbooking(), st.getDateRevision(), st.getStatus(), st.getSsNumber());
 	}
 
@@ -90,7 +90,7 @@ public class daoStatus implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		int id = (int) identifier;
-		String sql = "SELECT * FROM Status WHERE inneridbooking = ?";
+		String sql = "SELECT * FROM Status WHERE inneridbooking = ?;";
 		return dataSource.queryForObject(sql, new StatusMapper(), id);
 	}
 
@@ -101,7 +101,7 @@ public class daoStatus implements DaoInterface {
 	 */
 	@Override
 	public Object getElements() {
-		String sql = "SELECT * FROM Status";
+		String sql = "SELECT * FROM Status;";
 		List<Status> list = dataSource.query(sql, new StatusMapper());
 		Map<Integer, Status> map = new HashMap<Integer, Status>();
 		for(Status st: list) map.put(st.getIDbooking(), st);

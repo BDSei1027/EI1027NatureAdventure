@@ -57,7 +57,7 @@ public class daoInstructor implements DaoInterface {
 	public void addElement(Object element) {
 		Instructor instr = (Instructor) element;
 		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive, expireDate) "
-							+ "values(?, ?, ?, ?, ?, ?, ?, ?)";
+							+ "values(?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, instr.getSsNumber(), instr.getIdNumber(), instr.getName(), instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive());
 		if (instr.getActivities().size() != 0) {
 			addActivities(instr.getSsNumber(), instr.getActivities());
@@ -72,7 +72,7 @@ public class daoInstructor implements DaoInterface {
 	@Override
 	public void deleteElement(Object element) {
 		String id = (String) element;
-		String sql = "DELETE FROM instructor WHERE ssNumber = ?";
+		String sql = "DELETE FROM instructor WHERE ssNumber = ?;";
 		dataSource.update(sql, id);
 		deleteInstructorFromActivities(id);
 	}
@@ -88,7 +88,7 @@ public class daoInstructor implements DaoInterface {
 		Instructor instr = (Instructor) element;
 		String sql = "UPDATE instructor " + "SET "
 					+ "idNumber = ?," + "name = ?," + "lastname = ?,"
-					+ "email = ?," + "telephone = ?, " + " isActive = ?, " + "expireDate = ? " + "WHERE ssNumber = ?";
+					+ "email = ?," + "telephone = ?, " + " isActive = ?, " + "expireDate = ? " + "WHERE ssNumber = ?;";
 		dataSource.update(sql, instr.getIdNumber(), instr.getName(),instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive(), instr.getExpireDate(), instr.getSsNumber());
 	}
 
@@ -101,7 +101,7 @@ public class daoInstructor implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		String id = (String) identifier;
-		String sql = "SELECT * FROM instructor WHERE = ?";
+		String sql = "SELECT * FROM instructor WHERE = ?;";
 		Instructor instructor = dataSource.queryForObject(sql, new InstructorMapper(), id);
 		instructor.setActivities(getActivitiesInstructor(id));
 		return instructor;
@@ -114,7 +114,7 @@ public class daoInstructor implements DaoInterface {
 	 */
 	@Override
 	public Object getElements() {
-		String sql = "SELECT * FROM instructor";
+		String sql = "SELECT * FROM instructor;";
 		Map<String, Instructor> map = new HashMap<String, Instructor>();
 		List<Instructor> list = dataSource.query(sql, new InstructorMapper());
 		for(Instructor i: list) {
@@ -130,7 +130,7 @@ public class daoInstructor implements DaoInterface {
 	 * @return List<Integer> with the idact of the activities
 	 */
 	private List<Integer> getActivitiesInstructor(String id) {
-		String sql = "SELECT idact FROM instruidas WHERE ssnumber = ?";
+		String sql = "SELECT idact FROM instruidas WHERE ssnumber = ?;";
 		return (List<Integer>) dataSource.queryForList(sql, Integer.class, id);
 	}
 	
@@ -141,7 +141,7 @@ public class daoInstructor implements DaoInterface {
 	 * @param idact Activity's identifier
 	 */
 	public void addActivity(String ssnum, int idact) {
-		String sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(? ,?)";
+		String sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(? ,?);";
 		dataSource.update(sql, idact, ssnum);
 	}
 	
@@ -158,6 +158,7 @@ public class daoInstructor implements DaoInterface {
 				if (i != 0) sb.append(", ");
 				sb.append("(" + acts.get(i) + ", " + ssnum + ")");
 			}
+			sb.append(";");
 			dataSource.update(sb.toString());
 		}
 	}
@@ -168,7 +169,7 @@ public class daoInstructor implements DaoInterface {
 	 * @param idact Activity's identifier
 	 */
 	public void deleteInstructorFromActivity(String ssnum, int idact) {
-		String sql = "DELETE FROM instruidas WHERE ssnumber = ?, idact = ?";
+		String sql = "DELETE FROM instruidas WHERE ssnumber = ?, idact = ?;";
 		dataSource.update(sql, ssnum, idact);
 	}
 	
@@ -177,7 +178,7 @@ public class daoInstructor implements DaoInterface {
 	 * @param ssnum Instructor's identifier
 	 */
 	public void deleteInstructorFromActivities(String ssnum) {
-		String sql = "DELETE FROM instruidas WHERE ssnumber = ?";
+		String sql = "DELETE FROM instruidas WHERE ssnumber = ?;";
 		dataSource.update(sql, ssnum);
 	}
 }
