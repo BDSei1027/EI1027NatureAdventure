@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import classes.Instructor;
 import service.LogicLayer;
 
+
 @Controller
 @RequestMapping("/instructor")
 public class InstructorController {
@@ -22,13 +23,27 @@ public class InstructorController {
 		this.service=service;
 	}
 
+	/**
+	 * Method used to open the form of instructor's registration
+	 * @param model
+	 * @return the url of the form
+	 */
 	@RequestMapping(value="/add")
 	public String addInstructor(Model model){
 		model.addAttribute("instructor", new Instructor());
         return "instructor/add";
 
 	}
+	
+	
+	
 	//TODO implementar y utilizar el validador
+	
+	/**
+	 * @param instructor
+	 * @param bindingResult
+	 * @return the url of the list
+	 */
 	@RequestMapping(value="/add", method=RequestMethod.POST)  
 	public String processAddSubmit(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult) {  
 	     if (bindingResult.hasErrors()) 
