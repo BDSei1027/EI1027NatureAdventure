@@ -145,6 +145,8 @@ public class LogicLayer {
 	 * @param The activity
 	 */
 	public void addActivity(Activity activity){
+		activity.setIdAct(activityID);
+		this.activityID ++;
 		daoActivity.addElement(activity);
 	}
 	
