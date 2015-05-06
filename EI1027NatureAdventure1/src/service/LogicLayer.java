@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import classes.Activity;
+import classes.Booking;
 import classes.Instructor;
 import database.DaoInterface;
 import database.daoActivity;
@@ -128,7 +129,7 @@ public class LogicLayer {
 	}
 	
 	/**
-	 * Get all the instructors in the database
+	 * Get all the instructors from the database
 	 * @return A collection of Instructor with all instructors
 	 */
 	
@@ -207,6 +208,27 @@ public class LogicLayer {
 	}
 	
 	
+	/**
+	 * Get all the activities from the database
+	 * @return A collection of Activity  with all activities
+	 */
+	public Collection<Activity> getAllActivities(){ //Devuelvo solo lista de actividades para facilitar tarea a la vista
+		Map<String,Activity> allInstructors = (Map<String,Activity>) daoActivity.getElements();
+		Collection<Activity> allInstructorsClasses= allInstructors.values();
+		return allInstructorsClasses;
+		
+	}
+	
+	
+	/**
+	 * BOOKING ZONE
+	 */
+	
+	
+//	public void addBooking(Booking booking){
+//		
+//	}
+//	
 	
 	
 	
