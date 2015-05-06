@@ -1,7 +1,9 @@
-package Validators;
+package validators;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import classes.User;
 
 public class UserValidator implements Validator {
 
@@ -14,7 +16,7 @@ public class UserValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		User user = (User) obj;
 		
-		if (user.getName().trim().equals("")){
+		if (user.getUser().trim().equals("")){
 			errors.rejectValue("nombre", "obligatorio",
                     "Es necesario introducir un valor");
 
