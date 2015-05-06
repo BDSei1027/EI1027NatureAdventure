@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Activity;
+import exceptions.InvalidLevelException;
 
 @Repository
 public class daoActivity implements DaoInterface {
@@ -60,7 +61,7 @@ public class daoActivity implements DaoInterface {
 		// Cast Object to Activity
 		Activity activity = (Activity) element;
 		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive) " +
-                            "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, activity.getIdAct(), activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
 				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup());
 		
@@ -79,10 +80,10 @@ public class daoActivity implements DaoInterface {
 		// Cast Object to int
 		int id = (int) element;
 		// delete activity
-		String sql = "DELETE FROM activity WHERE idact = ?";
+		String sql = "DELETE FROM activity WHERE idact = ?;";
 		dataSource.update(sql, id);
 		// delete relation activity-instructor
-		sql = "DELETE FROM instruidas WHERE idact = ?";
+		sql = "DELETE FROM instruidas WHERE idact = ?;";
 		dataSource.update(sql, id);
 	}
 	
@@ -98,23 +99,33 @@ public class daoActivity implements DaoInterface {
 		Activity activity = (Activity) element;
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +
             "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? " +
-                            "WHERE idact = ?";
+                            "WHERE idact = ?;";
 		dataSource.update(sql, activity.getIdAct());
 	}
 
 	/**
 	 * Method to obtain an Activity from the DB
 	 * @see database.DaoInterface#getElement(java.lang.Object)
-	 * @param identifier Integer with the idAct
+	 * @param identifier Integer with the idAct or String with the name
 	 * @return an Activity with all the field, includes Instructors
 	 */
 	@Override
 	public Object getElement(Object identifier) {
-		//TODO Mirando si se puede hacer por joins, improbable
-		int id = (int) identifier;
-		String sql = "SELECT * FROM activity WHERE idact=?";
-		Activity act = dataSource.queryForObject(sql, new ActivityMapper(), id);
-		act.setInstructors(getInstructorActivity(act.getIdAct()));
+		String sql;
+		Activity act = null;
+		
+		if (identifier instanceof Integer) { // Si es un entero es el ID
+			int id = (int) identifier;
+			sql = "SELECT * FROM activity WHERE idact=?;";
+			act = dataSource.queryForObject(sql, new ActivityMapper(), id);
+		} else if (identifier instanceof String) { // Si es una String es el nombre
+			String name = (String) identifier;
+			sql = "SELECT * FROM activity WHERE name = ?;";
+			act = dataSource.queryForObject(sql, new ActivityMapper(), name);
+		}
+		
+		if (act != null)
+			act.setInstructors(getInstructorActivity(act.getIdAct()));
 		return act;
 	}
 
@@ -125,7 +136,7 @@ public class daoActivity implements DaoInterface {
 	 */
 	@Override
 	public Object getElements() {
-		String sql = "SELECT * FROM activity";
+		String sql = "SELECT * FROM activity;";
 		List<Activity> list = dataSource.query(sql, new ActivityMapper());
 		Map<Integer, Activity> map = new HashMap<Integer, Activity>();
 		for(Activity act: list) {
@@ -136,12 +147,38 @@ public class daoActivity implements DaoInterface {
 	}
 	
 	/**
+	 * Method to obtain all the activities with the level from the DB
+	 * @param level Integer, the level of the activities
+	 * @return List<Activity> Only contains the activities with this level
+	 */
+	public List<Activity> getElementsWithLevel(int level) throws InvalidLevelException {
+		if (level < 0 || level > 3) throw new InvalidLevelException(level);
+		
+		String sql = "SELECT * FROM activity WHERE leveldif = ?;";
+		List<Activity> list = dataSource.query(sql, new ActivityMapper());
+		for (Activity act : list) act.setInstructors(getInstructorActivity(act.getIdAct()));
+		return list;
+	}
+	
+	/**
+	 * Method to obtain all the activities with this schedule from the DB
+	 * @param schedule String, the shedule of the activities
+	 * @return List<Activity> Only contains the activities with this schedule
+	 */
+	public List<Activity> getElementsWithSchedule(String schedule) {
+		String sql = "SELECT * FROM activity WHERE schedule = ?;";
+		List<Activity> list = dataSource.query(sql, new ActivityMapper());
+		for (Activity act : list) act.setInstructors(getInstructorActivity(act.getIdAct()));
+		return list;
+	}
+	
+	/**
 	 * Method to get the instructors that can supervise this activity
 	 * @param idAct Integer with the idact
 	 * @return List<String> with the ssNumber of the instructors
 	 */
 	private List<String> getInstructorActivity(int idAct) {
-    	String sql = "SELECT ssNumber from instruidas WHERE idAct=?";
+    	String sql = "SELECT ssNumber from instruidas WHERE idAct=?;";
     	return (List<String>) dataSource.queryForList(sql, String.class, idAct);
 	}
 	
@@ -152,11 +189,10 @@ public class daoActivity implements DaoInterface {
 	 * @param ssnum Instructor's identifier
 	 */
 	public void addInstructor(int idact, String ssnum) {
-		String sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?, ?)";
+		String sql = "INSERT INTO instruidas(idact, ssnumber) VALUES(?, ?);";
 		dataSource.update(sql, idact, ssnum);
 	}
 		
-	// TODO cambiamos el nombre?
 	/**
 	 * Method to add some instructors that can supervise an activity
 	 * @param idact Activity's identifier
@@ -169,7 +205,8 @@ public class daoActivity implements DaoInterface {
 				if ( i != 0 ) sb.append(", ");
 				sb.append("(" + idact + ", " + listSS.get(i) + ")");
 			 }
-			 dataSource.update(sb.toString());
+			sb.append(";");
+			dataSource.update(sb.toString());
 		}
 	}
 	
@@ -179,7 +216,7 @@ public class daoActivity implements DaoInterface {
 	 * @param ssnum Instructor's identifier
 	 */
 	public void deleteActivityFromInstructor(int idact, String ssnum) {
-		String sql = "DELETE FROM instruidas WHERE idact = ?, ssnumber = ?";
+		String sql = "DELETE FROM instruidas WHERE idact = ?, ssnumber = ?;";
 		dataSource.update(sql, idact, ssnum);
 	}
 	
@@ -188,7 +225,7 @@ public class daoActivity implements DaoInterface {
 	 * @param idact Activity's Identifier
 	 */
 	public void deleteActivityFromInstructors(int idact) {
-		String sql = "DELETE FROM instruidas WHERE idact = ?";
+		String sql = "DELETE FROM instruidas WHERE idact = ?;";
 		dataSource.update(sql, idact);
 	}
 	
@@ -197,7 +234,7 @@ public class daoActivity implements DaoInterface {
 	 * @return Integer with the maximum ID
 	 */
 	public Integer getMaxID() {
-		String sql = "SELECT MAX(idact) FROM activity";
+		String sql = "SELECT MAX(idact) FROM activity;";
 		return dataSource.queryForObject(sql, Integer.class);
 	}
 }
