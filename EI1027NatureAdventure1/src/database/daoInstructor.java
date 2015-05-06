@@ -39,6 +39,7 @@ public class daoInstructor implements DaoInterface {
 				instructor.setEmail(rs.getString("email"));
 				instructor.setTelephone(rs.getString("telephone"));
 				instructor.setActive(rs.getBoolean("isActive"));
+				instructor.setExpireDate(rs.getDate("expireDate"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -55,8 +56,8 @@ public class daoInstructor implements DaoInterface {
 	@Override
 	public void addElement(Object element) {
 		Instructor instr = (Instructor) element;
-		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive) "
-							+ "values(?, ?, ?, ?, ?, ?,?)";
+		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive, expireDate) "
+							+ "values(?, ?, ?, ?, ?, ?, ?, ?)";
 		dataSource.update(sql, instr.getSsNumber(), instr.getIdNumber(), instr.getName(), instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive());
 		if (instr.getActivities().size() != 0) {
 			addActivities(instr.getSsNumber(), instr.getActivities());
@@ -87,8 +88,8 @@ public class daoInstructor implements DaoInterface {
 		Instructor instr = (Instructor) element;
 		String sql = "UPDATE instructor " + "SET "
 					+ "idNumber = ?," + "name = ?," + "lastname = ?,"
-					+ "email = ?," + "telephone = ?, " + " isActive = ? " + "WHERE ssNumber = ?";
-		dataSource.update(sql, instr.getIdNumber(), instr.getName(),instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive(), instr.getSsNumber());
+					+ "email = ?," + "telephone = ?, " + " isActive = ?, " + "expireDate = ? " + "WHERE ssNumber = ?";
+		dataSource.update(sql, instr.getIdNumber(), instr.getName(),instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive(), instr.getExpireDate(), instr.getSsNumber());
 	}
 
 	/**

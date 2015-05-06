@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ public class Instructor {
 	private String email;
 	private String telephone;
 	private boolean isActive;
+	private Date expireDate;
 	private List<Integer> activities;
 	
 	
@@ -30,6 +32,7 @@ public class Instructor {
 		setEmail(monitor.getEmail());
 		setTelephone(monitor.getTelephone());
 		setActive(monitor.isActive());
+		setExpireDate(monitor.getExpireDate());
 		setActivities(monitor.getActivities());
 	}
 	
@@ -46,6 +49,7 @@ public class Instructor {
         if ( !email.equals(instructor.getEmail()) ) return false;
         if ( !telephone.equals(instructor.getTelephone()) ) return false;
         if ( isActive != instructor.isActive() ) return false;
+        if ( !expireDate.equals(instructor.getExpireDate())) return false;
         if ( !activities.containsAll(instructor.getActivities()) ) return false;
         
 		return true;
@@ -109,6 +113,14 @@ public class Instructor {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	
+	public Date getExpireDate() {
+		return expireDate;
+	}
+	
+	public void setExpireDate(Date date) {
+		this.expireDate = date;
 	}
 	
 	public List<Integer> getActivities() {
