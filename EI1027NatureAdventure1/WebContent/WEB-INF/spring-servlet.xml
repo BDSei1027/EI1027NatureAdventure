@@ -39,6 +39,8 @@
 	<bean id="client" class="classes.Client" />
 	<bean id="instructor" class="classes.Instructor" />
 	<bean id="status" class="classes.Status" />
+	<bean id="user" class="classes.User" />
+	<bean id="avaliableforbooking" class="classes.AvaliableForBooking" />
 	
 	<!-- Repositories -->
 	<bean id="activityDAO" class="database.daoActivity">
@@ -56,6 +58,23 @@
 	</bean>
 	<bean id="instructorDAO" class="database.daoInstructor">
 		<property name="dataSource" ref="jdbc" />
+	</bean>
+	<bean id="userDAO" class="database.daoUser">
+		<property name="dataSource" ref="jdbc" />
+	</bean>
+	<bean id="avaliablebookDAO" class="database.daoAvaliableBook">
+		<property name="dataSource" ref="jdbc" />
+	</bean>
+	
+	<!-- Service -->
+	<bean id="manager" class="service.LogicLayer">
+		<property name="daoActivity" ref="activityDAO" />
+		<property name="daoBooking" ref="bookingDAO" />
+		<property name="daoClient" ref="clientDAO" />
+		<property name="daoInstructor" ref="instructorDAO" />
+		<property name="daoStatus" ref="statusDAO" />
+		<property name="daoUser" ref="userDAO" />
+		<property name="daoAvaliable" ref="avaliablebookDAO" />
 	</bean>
 	
 </beans>

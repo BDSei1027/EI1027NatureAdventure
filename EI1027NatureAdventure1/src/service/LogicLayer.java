@@ -15,6 +15,8 @@ import database.daoBooking;
 import database.daoClient;
 import database.daoInstructor;
 import database.daoStatus;
+import database.daoUser;
+import database.daoAvaliableBook;
 
 //TODO Cambiar referencias daos viejos
 //Implementación palera 
@@ -31,6 +33,8 @@ public class LogicLayer {
 	private DaoInterface daoClient;
 	private DaoInterface daoInstructor;
 	private DaoInterface daoStatus;
+	private DaoInterface daoUser;
+	private DaoInterface daoAvaliable;
 	
 	//ID autoincrementales
 	private int innerBookingID;
@@ -55,8 +59,6 @@ public class LogicLayer {
 		this.innerBookingID = daoBook.getMaxInnerID();
 		this.activeBookingID = daoBook.getMaxActiveID();
 		this.activityID = daoAct.getMaxID();
-		// El instructor no tiene idMaxima que es el dni
-		//this.instructorID = daoInstructor.getMaxID();
 	}
 
 	
@@ -75,9 +77,6 @@ public class LogicLayer {
 	 * @param The instructor
 	 */
 	public void addInstructor(Instructor instructor){
-//		daoInstructor miDao = (daoInstructor) daoInstructor; //Casting preparado para cuando se establezca el cambio a abstract
-//													   //Como en este momento no tengo la interfaz delante lo dejo asi pendiente de cambiar el método
-//		miDao.addInstructor(instructor);
 		daoInstructor.addElement(instructor);
 		
 	}
@@ -85,17 +84,11 @@ public class LogicLayer {
 	/**
 	 * Set inactive an instructor from the database. The ssNumber is required
 	 * @param ssnumber of the instructor
-	 * TODO realizar operacion de borrar en instruidas (Solucionado, lo hace el dao al borrar el instructor)
 	 * 
 	 */
 	public void deleteInstructor(String code){
-		//daoInstructor miDao = (daoInstructor) daoInstructor;
 		Instructor myInstructor= this.getInstructor(code);
-		if (myInstructor==null){
-			return;
-		}
-		//miDao.deleteInstructorFromActivities(code);
-		//miDao.deleteInstructor(code);
+		if (myInstructor==null)	return;
 		
 		myInstructor.setActive(false);
 	    this.updateInstructor(myInstructor);
@@ -106,13 +99,8 @@ public class LogicLayer {
 	 * Update an instructor from the database. This operation is only allowed when the instructor was registered before in the database
 	 * @param The instructor
 	 */
-	
 	public void updateInstructor(Instructor instructor){
-		//daoInstructor miDao = (daoInstructor) daoInstructor; 
-		if (this.getInstructor(instructor.getSsNumber())==null){
-			return;
-		}
-		//miDao.updateInstructor(instructor);
+		if (this.getInstructor(instructor.getSsNumber()) == null) return;
 		daoInstructor.updateElement(instructor);
 	}
 
@@ -122,8 +110,6 @@ public class LogicLayer {
 	 */
 	
 	public Instructor getInstructor(String code){
-//		daoInstructor miDao = (daoInstructor) daoInstructor; 
-//		Instructor myInstructor = miDao.getInstructor(code);
 		Instructor myInstructor = (Instructor) daoInstructor.getElement(code);
 		return myInstructor;
 	}
@@ -132,9 +118,7 @@ public class LogicLayer {
 	 * Get all the instructors from the database
 	 * @return A collection of Instructor with all instructors
 	 */
-	
 	public Collection<Instructor> getAllInstructors(){ //Devuelvo solo lista de Instructores para facilitar tarea a la vista
-		//daoInstructor miDao = (daoInstructor) daoInstructor; 
 		Map<String,Instructor> allInstructors = (Map<String,Instructor>) daoInstructor.getElements();
 		Collection<Instructor> allInstructorsClasses= allInstructors.values();
 		return allInstructorsClasses;
@@ -144,7 +128,6 @@ public class LogicLayer {
 	 * change the active property of the instructor in the database
 	 * @param The instructor 
 	 */
-	
 	public void setInstructorAvailable(Instructor instructor){
 		instructor.setActive(true);
 		daoInstructor.updateElement(instructor);	
@@ -165,37 +148,25 @@ public class LogicLayer {
 		daoActivity.addElement(activity);
 	}
 	
-	
 	/**
 	 * Set inactive an activity from the database. The ssNumber is required
 	 * @param idActivity of the activity
-	 * TODO realizar operacion de borrar en instruidas (Solucionado, lo hace el dao al borrar el instructor)
-	 * 
 	 */
 	public void deleteActivity(String code){
 		Activity myActivity = this.getActivity(code);
-		if (myActivity==null){
-			return;
-		}
+		if (myActivity==null) return;
 		myActivity.setIsActive(false);
-		this.updateActivity(myActivity);
-		
-		
+		this.updateActivity(myActivity);	
 	}
-	
 	
 	/**
 	 * Update an activity from the database. This operation is only allowed when the activity was registered before in the database
 	 * @param The activity
 	 */
 	public void updateActivity(Activity activity){
-		if (this.getActivity(""+ activity.getIdAct())==null){
-			return;
-		}
+		if (this.getActivity(""+ activity.getIdAct())==null) return;
 		daoActivity.updateElement(activity);
 	}
-	
-	
 	
 	/**
 	 * Given a code a activity is delivered. If the activity doesn't exist in the database it returns null 
@@ -204,9 +175,7 @@ public class LogicLayer {
 	public Activity getActivity(String code){
 		Activity myActivity = (Activity) daoActivity.getElement(code);
 		return myActivity;
-		
 	}
-	
 	
 	/**
 	 * Get all the activities from the database
@@ -269,4 +238,13 @@ public class LogicLayer {
 		this.daoStatus = daoStatus;
 	}
 	
+	@Autowired
+	public void setDaoUser(daoUser daoUser) {
+		this.daoUser = daoUser;
+	}
+	
+	@Autowired
+	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
+		this.daoAvaliable = daoAvaliable;
+	}
 }
