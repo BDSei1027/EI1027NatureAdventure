@@ -131,7 +131,6 @@ public class Activity {
     }
 
     public void setMinimumGroup(int minimumGroup) throws InvalidGroupSizeException {
-        // Cambiar el 1 según reglas de la empresa del grupo minimo.
         if ( minimumGroup < 0 )
             throw new InvalidGroupSizeException(minimumGroup);
         if (maximumGroup != null) {

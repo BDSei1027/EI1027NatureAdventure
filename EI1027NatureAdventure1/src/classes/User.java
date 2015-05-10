@@ -12,6 +12,13 @@ public class User {
 	public User() {
 		super();
 	}
+	
+	public User(User user) {
+		super();
+		this.setUser(user.getUser());
+		this.setPassword(user.getPassword());
+		this.setType(user.getType());
+	}
 
 	public String getUser() {
 		return user;
@@ -37,5 +44,7 @@ public class User {
 		this.type = type;
 	}
 	
-	
+	public void clearPassword() {
+		this.password = null;
+	}
 }

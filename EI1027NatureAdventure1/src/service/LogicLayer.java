@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import classes.Activity;
 import classes.Booking;
 import classes.Instructor;
+import classes.User;
 import database.DaoInterface;
 import database.daoActivity;
 import database.daoBooking;
@@ -66,12 +67,12 @@ public class LogicLayer {
 	}
 
 	
-	/**
+	/*
 	 * ALPHA VERSION
 	 */
 	
 	
-	/**
+	/*
 	 * INSTRUCTOR ZONE
 	 */
 	
@@ -138,7 +139,7 @@ public class LogicLayer {
 	}
 		
 	
-	/**
+	/*
 	 * ACTIVITY ZONE
 	 */
 	
@@ -195,7 +196,7 @@ public class LogicLayer {
 	}
 	
 	
-	/**
+	/*
 	 * BOOKING ZONE
 	 */
 	
@@ -205,8 +206,19 @@ public class LogicLayer {
 //	}
 //	
 	
+	/*
+	 * USER ZONE
+	 */
 	
-	
+	public User loginUser(String user, String password) {
+		User u = (User) daoUser.getElement(user.trim());
+		if ( u == null ) return null;
+		if ( encryptor.checkPassword(password, u.getPassword()) ) {
+			u.clearPassword();
+			return u;
+		}
+		else return null; // Bad Login
+	}
 	
 	
 	
