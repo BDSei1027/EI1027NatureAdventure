@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import sun.util.locale.provider.AvailableLanguageTags;
 import classes.AvaliableForBooking;
 
 @Repository

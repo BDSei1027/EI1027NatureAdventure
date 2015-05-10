@@ -3,6 +3,8 @@ package service;
 import java.util.Collection;
 import java.util.Map;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.jasypt.util.password.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,6 @@ import database.daoStatus;
 import database.daoUser;
 import database.daoAvaliableBook;
 
-//TODO Cambiar referencias daos viejos
 //Implementación palera 
 //TODO trabajar en memoria
 //TODO guardar en fichero local
@@ -40,6 +41,9 @@ public class LogicLayer {
 	private int innerBookingID;
 	private int activeBookingID;
 	private int activityID;
+	
+	// Encriptacion
+	private PasswordEncryptor encryptor = new BasicPasswordEncryptor(); 
 	
 	/**
 	 * Inicializa las IDs para que se puedan autoincrementar.
