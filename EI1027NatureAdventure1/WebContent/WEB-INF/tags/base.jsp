@@ -36,7 +36,7 @@
     <!-- Pie de pagina -->
     <footer>
     <hr>
-    <p class="text-muted" align="center">
+    <p class="text-muted text-center">
     Website designed for NatureAdventure.
     EI1027 - Disseny i Implementació de Sistemes d'Informació - Universitat Jaume I - UJI
     WebApp developed by <a href="mailto:alxxxxxx@uji.es">Catalín Denis</a>, <a href="mailto:alxxxxxx@uji.es">David Serrano</a> &amp; <a href="mailto:al259292@uji.es">Borja Blasco</a>.
