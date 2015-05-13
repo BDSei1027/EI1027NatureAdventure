@@ -12,6 +12,7 @@ import classes.Activity;
 import classes.Booking;
 import classes.Client;
 import classes.Instructor;
+import classes.Status;
 import classes.User;
 import database.DaoInterface;
 import database.daoActivity;
@@ -290,7 +291,40 @@ public class LogicLayer {
 	
 	
 	
+	/** Add a status to the database
+	 * @param status
+	 */
+	public void addStatus(Status status){
+		daoStatus.addElement(status);
+	}
 	
+	public void deleteStatus(Status status){
+		
+	}
+	
+	/** Retrieves a status. InnerIdBooking is required
+	 * @param idBooking
+	 * @return The status
+	 */
+	public Status getStatus(String idBooking){
+		Status myStatus = (Status) daoStatus.getElement(idBooking);
+		return myStatus;
+		
+	}
+	
+	/** Retrieves a status.
+	 * @param booking
+	 * @return The status
+	 */
+	public Status getStatus(Booking booking){
+		return this.getStatus(String.valueOf(booking.getInnerIdBooking()));
+	}
+	
+	public Collection<Status> getAllStatus(){
+		Map<Integer,Status> allStatus = (Map<Integer,Status>) daoStatus.getElements();
+		Collection<Status> allStatusClasses= allStatus.values();
+		return allStatusClasses;
+	}
 	
 	
 	
