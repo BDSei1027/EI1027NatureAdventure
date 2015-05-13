@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import classes.Activity;
 import classes.Booking;
+import classes.Client;
 import classes.Instructor;
 import classes.User;
 import database.DaoInterface;
@@ -27,6 +28,7 @@ import database.daoAvaliableBook;
 //TODO subir cada X tiempo
 //TODO boton subir ++
 
+//TODO getAllActivities(Instructor)
 @Service
 public class LogicLayer {
 	//DAOS
@@ -91,7 +93,7 @@ public class LogicLayer {
 	 * @param ssnumber of the instructor
 	 * 
 	 */
-	public void deleteInstructor(String code){
+	public void inactiveInstructor(String code){
 		Instructor myInstructor= this.getInstructor(code);
 		if (myInstructor==null)	return;
 		
@@ -99,6 +101,19 @@ public class LogicLayer {
 	    this.updateInstructor(myInstructor);
 		
 	}
+	
+	
+	/**
+	 * Set inactive an instructor from the database.
+	 * @param the instructor
+	 * 
+	 */
+	public void inactiveInstructor(Instructor instructor){
+		this.inactiveInstructor(instructor.getIdNumber());
+		
+	}
+	
+	
 	
 	/**
 	 * Update an instructor from the database. This operation is only allowed when the instructor was registered before in the database
@@ -114,10 +129,20 @@ public class LogicLayer {
 	 *@return an instructor or null
 	 */
 	
-	public Instructor getInstructor(String code){
-		Instructor myInstructor = (Instructor) daoInstructor.getElement(code);
+	public Instructor getInstructor(String ssNumber){
+		Instructor myInstructor = (Instructor) daoInstructor.getElement(ssNumber);
 		return myInstructor;
 	}
+	
+	
+	
+	
+	
+	public Instructor getInstructor(User user){
+		Instructor myInstructor= daoInstructor.getInstructorwithIdNumber(user.getUser());
+		return myInstructor;
+	}
+	
 	
 	/**
 	 * Get all the instructors from the database
@@ -150,8 +175,8 @@ public class LogicLayer {
 	 * @param The activity
 	 */
 	public void addActivity(Activity activity){
-		activity.setIdAct(activityID);
 		this.activityID ++;
+		activity.setIdAct(activityID);
 		daoActivity.addElement(activity);
 	}
 	
@@ -159,12 +184,24 @@ public class LogicLayer {
 	 * Set inactive an activity from the database. The ssNumber is required
 	 * @param idActivity of the activity
 	 */
-	public void deleteActivity(String code){
+	public void inactiveActivity(String code){
 		Activity myActivity = this.getActivity(code);
 		if (myActivity==null) return;
 		myActivity.setIsActive(false);
 		this.updateActivity(myActivity);	
 	}
+	
+	
+	/**
+	 * Set inactive an activity from the database.
+	 * @param The activity
+	 */
+	public void inactiveActivity(Activity activity){
+		this.inactiveActivity(String.valueOf(activity.getIdAct()));	
+	}
+	
+	
+	
 	
 	/**
 	 * Update an activity from the database. This operation is only allowed when the activity was registered before in the database
@@ -201,11 +238,64 @@ public class LogicLayer {
 	 */
 	
 	
-//	public void addBooking(Booking booking){
-//		
-//	}
-//	
+	/** Add the booking in the database
+	 * @param booking
+	 */
+	public void addBooking(Booking booking){
+		this.innerBookingID ++;
+		booking.setInnerIdBooking(innerBookingID);
+		daoBooking.addElement(booking);
+	}
 	
+	
+	/** Delete the booking in the database. The innerBooking is required.
+	 * @param id
+	 */
+	public void deleteBooking(String id){
+		Booking myBooking = this.getBooking(id);
+		if(myBooking==null) return;
+		daoBooking.deleteElement(myBooking);
+	}
+	
+	/** Delete the booking in the database
+	 * @param booking
+	 */
+	public void deleteBooking(Booking booking){
+		this.deleteBooking(String.valueOf(booking.getInnerIdBooking()));
+		
+	}
+	
+	/** Retrieves the desired booking
+	 * @param id
+	 * @return The booking
+	 */
+	public Booking getBooking(String id) {
+		Booking myBooking = (Booking) daoBooking.getElement(id);
+		return myBooking;
+	}
+	
+	/**
+	 * Get all the bookings from the database
+	 * @return A collection of Booking  with all bookings
+	 */
+	public Collection<Booking> getAllBookings(){
+		Map<String,Booking> allBookings = (Map<String,Booking>) daoBooking.getElements();
+		Collection<Booking> allBookingsClasses= allBookings.values();
+		return allBookingsClasses;
+	}
+	
+	/*
+	 * STATUS ZONE
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+
 	/*
 	 * USER ZONE
 	 */
@@ -233,7 +323,7 @@ public class LogicLayer {
 	}
 	
 	public void updateUser(User user){
-		if (this.getUser(""+ user.getUser())==null) return;
+		if (this.getUser(String.valueOf(user.getUser()))==null) return;
 		daoUser.updateElement(user);
 		
 	}
@@ -252,7 +342,49 @@ public class LogicLayer {
 	}
 	
 	
+	/*
+	 * CLIENT ZONE
+	 */
 	
+	
+	public void addClient(Client client){
+		daoClient.addElement(client);
+		
+	}
+	
+	public void deleteClient(Client client){
+		this.deleteClient(client.getClientId());
+		
+	}
+	
+	public void deleteClient(String clientID){
+		Client myClient = this.getClient(clientID);
+		if (myClient==null) return;
+		daoClient.deleteElement(myClient);
+	}
+	
+	
+	public Client getClient(String clientID){
+		Client myClient= (Client) daoClient.getElement(clientID);
+		return myClient;
+	}
+	
+	
+	/** Retrieves the desired Client
+	 * @param user
+	 * @return The client
+	 */
+	public Client getClient(User user){
+		return (Client) daoClient.getElement(user.getUser());
+		
+	}
+	
+	public Collection<Client> getAllClients(){
+		Map<String,Client> allClients =  (Map<String, Client>) daoClient.getElements();
+		Collection<Client> allClientsClasses = allClients.values();
+		return allClientsClasses;
+		
+	}
 	
 	
 	

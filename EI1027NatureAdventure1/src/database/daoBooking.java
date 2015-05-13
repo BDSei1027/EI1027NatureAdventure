@@ -81,11 +81,13 @@ public class daoBooking implements DaoInterface {
 	@Override
 	public void deleteElement(Object element) {
 		int id = (int) element;
+		// Si se borra la reserva el status tambien
+		daoStatus.deleteElement(id);
 		String sql = "DELETE FROM booking WHERE inneridbooking = ?;";
 		dataSource.update(sql, id);
 		
-		// Si se borra la reserva el status tambien
-		daoStatus.deleteElement(id);
+		
+		
 	}
 
 	/**
