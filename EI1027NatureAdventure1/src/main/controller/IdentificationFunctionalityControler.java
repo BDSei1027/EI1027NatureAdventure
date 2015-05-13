@@ -16,7 +16,7 @@ import service.LogicLayer;
 
 
 @Controller
-public class IdentificationControler {
+public class IdentificationFunctionalityControler {
 	
 	private LogicLayer service;
 
