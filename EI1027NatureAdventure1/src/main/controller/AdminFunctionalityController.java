@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import classes.Client;
+import classes.Instructor;
 import classes.User;
 import validators.UserValidator;
 import service.LogicLayer;
@@ -47,12 +48,114 @@ public class AdminFunctionalityController {
 		//Check if the user has permissions
 		if(user.getType() != 0) return "redirect:restricted.jsp";
 		
-		return "account";
+		return "admin";
 		
 	}
 	
 	
-	@RequestMapping(value="/monitorManagment")
+	@RequestMapping(value="/instructorManagment")
+	public String instructorsPage(Model model, HttpSession session){
+		//Check if the user is logged
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:login.jsp";
+		
+		//Check if the user has permissions
+		if(user.getType() != 0) return "redirect:restricted.jsp";
+		
+		return "admin/instructorManagment";
+		
+	}
+	
+	@RequestMapping(value="/instructorManagement/add")
+	public String instructorsAddPage(Model model, HttpSession session){
+		//Check if the user is logged
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:login.jsp";
+		
+		//Check if the user has permissions
+		if(user.getType() != 0) return "redirect:restricted.jsp";
+		
+		//Instance new instructor used by the form
+		model.addAttribute("instructor", new Instructor());
+		
+		return "admin/instructorManagement/add";
+	}
+	
+	@RequestMapping(value="/instructorManagement/add", method=RequestMethod.POST)
+	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+		//Check if the user is logged
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:login.jsp";
+		
+		//Check if the user has permissions
+		if(user.getType() != 0) return "redirect:restricted.jsp";
+		
+		
+		ValidatorInstructor validator = new ValidatorInstructor();
+		validator.validate(instructor, bindingResult);
+		
+		if(bindingResult.hasErrors()) return "admin/instructorManagement/add";
+		
+		service.addInstructor(instructor);
+		
+		return "admin/instructorManagement/add";
+	}
+	
+	@RequestMapping(value="/instructorManagement/disable")
+	public String instructorsDisablePage(Model model, HttpSession session){
+		//Check if the user is logged
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:login.jsp";
+		
+		//Check if the user has permissions
+		if(user.getType() != 0) return "redirect:restricted.jsp";
+		
+		//Instance new instructor used by the form
+		model.addAttribute("instructor", new Instructor());
+		
+		return "admin/instructorManagement/disable";
+	}
+	
+	@RequestMapping(value="/instructorManagement/disable", method=RequestMethod.POST)
+	public String instructorsDisablePage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+		//Check if the user is logged
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:login.jsp";
+		
+		//Check if the user has permissions
+		if(user.getType() != 0) return "redirect:restricted.jsp";
+		
+		service.inactiveInstructor(instructor);
+		
+		return "admin/instructorManagement/disable";
+	}
+	
+	@RequestMapping(value="/instructorManagement/modify")
+	public String instructorsModifyPage(Model model, HttpSession session){
+		//Check if the user is logged
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:login.jsp";
+		
+		//Check if the user has permissions
+		if(user.getType() != 0) return "redirect:restricted.jsp";
+		
+		
+		return "admin/instructorManagement/modify";
+	}
+	
+	@RequestMapping(value="/instructorManagement/add", method=RequestMethod.POST)
+	public String instructorsModifyPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+		//Check if the user is logged
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:login.jsp";
+		
+		//Check if the user has permissions
+		if(user.getType() != 0) return "redirect:restricted.jsp";
+		
+		service.updateInstructor(instructor);
+		
+		return "admin/instructorManagement/modify";
+	}
 	
 	
 

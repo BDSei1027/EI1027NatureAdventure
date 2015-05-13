@@ -72,7 +72,7 @@ public class IdentificationFunctionalityControler {
 		String nextPage = (String) session.getAttribute("nextPage");
 		
 		//Return the page that called the login or go to the main page
-		if(nextPage != null) return nextPage;
+		if(nextPage != null) return "redirect:"+nextPage;
 		return "redirect:index.jsp";
 		
 	}
