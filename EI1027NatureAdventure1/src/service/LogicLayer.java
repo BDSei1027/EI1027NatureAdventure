@@ -220,6 +220,36 @@ public class LogicLayer {
 		else return null; // Bad Login
 	}
 	
+	public void addUser(User user){
+		daoUser.addElement(user);
+		
+	}
+	
+	public void deleteUser(String identifier){
+		User myUser = this.getUser(identifier);
+		if (myUser==null) return;
+		daoUser.deleteElement(myUser);	
+		
+	}
+	
+	public void updateUser(User user){
+		if (this.getUser(""+ user.getUser())==null) return;
+		daoUser.updateElement(user);
+		
+	}
+	
+	public User getUser(String identifier){
+		User myUser = (User) daoUser.getElement(identifier);
+		return myUser;
+		
+	}
+	
+	public Collection<User> getAllUsers(){
+		Map<String,User> allUsers =  (Map<String, User>) daoUser.getElements();
+		Collection<User> allUsersClasses = allUsers.values();
+		return allUsersClasses;
+		
+	}
 	
 	
 	
