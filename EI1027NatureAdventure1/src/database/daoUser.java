@@ -36,6 +36,7 @@ public class daoUser implements DaoInterface {
 				user.setUser(rs.getString("user"));
 				user.setPassword(rs.getString("password"));
 				user.setType(rs.getString("type"));
+				user.setLanguage(rs.getString("language"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -47,7 +48,7 @@ public class daoUser implements DaoInterface {
 	@Override
 	public void addElement(Object element) {
 		User u = (User) element;
-		String sql = "INSERT INTO User(user,password,type) VALUES(?, ?, ?);";
+		String sql = "INSERT INTO User(user,password,type, language) VALUES(?, ?, ?);";
 		dataSource.update(sql, u.getUser(), u.getPassword(), u.getType());
 	}
 
@@ -68,7 +69,7 @@ public class daoUser implements DaoInterface {
 	@Override
 	public void updateElement(Object element) {
 		User u = (User) element;
-		String sql = "UPDATE User SET password = ?, type = ? WHERE user = ?;";
+		String sql = "UPDATE User SET password = ?, type = ?, language = ? WHERE user = ?;";
 		dataSource.update(sql, u.getPassword(), u.getType(), u.getUser());
 
 	}
