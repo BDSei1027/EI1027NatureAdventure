@@ -26,7 +26,7 @@ public class IdentificationControler {
 	 * @param service Service to inject
 	 */
 	@Autowired
-	public void setServicio(LogicLayer service){
+	public void setService(LogicLayer service){
 		this.service = service;
 	}
 	
@@ -43,7 +43,7 @@ public class IdentificationControler {
 	}
 	
 	/**
-	 * Method used to process login form data
+	 * Method used to process the login form data
 	 * @param user User data gathered by the form
 	 * @param bindingResult Result of processing the form
 	 * @param session Http session used to store the user information
@@ -73,7 +73,7 @@ public class IdentificationControler {
 		
 		//Return the page that called the login or go to the main page
 		if(nextPage != null) return nextPage;
-		return "redirect:index.html";
+		return "redirect:index.jsp";
 		
 	}
 	
