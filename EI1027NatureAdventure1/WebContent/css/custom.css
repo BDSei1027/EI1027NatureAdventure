@@ -1,0 +1,23 @@
+footer {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	position: relative;
+	/*text-shadow: 1px 1px 1px #FFFFFF;*/
+	background-color: #222;
+	border-top-style: solid;	
+	border-top-width: 3px;
+	border-top-color: red;
+	/*box-shadow: 10px 10px 5px #00FF00; */
+}
+
+footer p {
+	font-size:10px;
+}
+
+.languages {
+	border-bottom-left-radius: 100px 50px;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	background-color: #222;
+	border-color: #080808;
+}
