@@ -101,7 +101,9 @@ public class daoInstructor implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		String id = (String) identifier;
-		String sql = "SELECT * FROM instructor WHERE = ?;";
+		String sql;
+		if (id.length() > 9) sql = "SELECT * FROM instructor WHERE ssnumber = ?;";
+		else sql = "SELECT * FROM instructor WHERE idnumber = ?";
 		Instructor instructor = dataSource.queryForObject(sql, new InstructorMapper(), id);
 		instructor.setActivities(getActivitiesInstructor(id));
 		return instructor;

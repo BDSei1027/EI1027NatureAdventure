@@ -140,7 +140,7 @@ public class LogicLayer {
 	
 	
 	public Instructor getInstructor(User user){
-		Instructor myInstructor= daoInstructor.getInstructorwithIdNumber(user.getUser());
+		Instructor myInstructor= (Instructor) daoInstructor.getElement(user.getUser());
 		return myInstructor;
 	}
 	
