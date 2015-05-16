@@ -53,7 +53,7 @@ public class AdminFunctionalityController {
 	}
 	
 	
-	@RequestMapping(value="/instructorManagment")
+	@RequestMapping(value="/instructorManagement")
 	public String instructorsPage(Model model, HttpSession session){
 		//Check if the user is logged
 		User user = (User) session.getAttribute("user");
@@ -62,7 +62,7 @@ public class AdminFunctionalityController {
 		//Check if the user has permissions
 		if(user.getType() != 0) return "redirect:restricted.jsp";
 		
-		return "admin/instructorManagment";
+		return "admin/instructorManagement";
 		
 	}
 	
@@ -143,7 +143,7 @@ public class AdminFunctionalityController {
 		return "admin/instructorManagement/modify";
 	}
 	
-	@RequestMapping(value="/instructorManagement/add", method=RequestMethod.POST)
+	@RequestMapping(value="/instructorManagement/modify", method=RequestMethod.POST)
 	public String instructorsModifyPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
 		//Check if the user is logged
 		User user = (User) session.getAttribute("user");

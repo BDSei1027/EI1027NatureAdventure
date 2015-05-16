@@ -24,9 +24,8 @@
 				<li><a href="#about">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Sign in</a></li>
-      <li class="active"><a href="#">Sign up!  
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
+      <li><a href="#">Actions</a></li>
+      <li class="active"><a href="#">Log out</a></li>
     </ul>
   </div>
 </nav>

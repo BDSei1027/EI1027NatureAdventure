@@ -34,16 +34,22 @@
 <link
     href="${pageContext.request.contextPath}/css/custom.css"
     rel="stylesheet">
+<script 
+	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script 
+  src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 
 <body class="container">
 	<!-- Idiomas -->
-	<div class="col-lg-3 pull-right" style="padding-right: 0px">	
-	<div class="languages text-right">
-		<div = class="container-fluid">		
-			<a href=""><fmt:message key="lang.en" /></a> | <a href=""><fmt:message key="lang.es" /></a>
+	<div class="col-xs-5 col-sm-4 col-md-3 col-lg-3 pull-right" style="padding-right: 0px">	
+		<div class="languages text-right">
+			<div class="container-fluid">
+				<div class="col-xs-5"><a href="">English</a></div>
+				<div class="col-xs-2"> | </div>
+				<div class="col-xs-5"><a href="">Spanish</a></div>
+			</div>
 		</div>
-	</div>
 	</div>
 	<!-- Fin idioma -->
 	
