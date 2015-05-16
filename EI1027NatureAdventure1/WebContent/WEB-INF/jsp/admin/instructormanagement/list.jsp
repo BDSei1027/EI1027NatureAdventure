@@ -22,6 +22,7 @@
 	            <th>is Active?</th>
 	            <th></th>
 	            <th></th>
+	            <th></th>
 	        </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@
 	        	<td>${instructor.expiredate}</td>
 	        	<td>${instructor.isactive}</td>
 	        	<td><a href="modify/${instructor.ssnumber}.html"><span class="label label-info">Edit</span></a></td>
+	        	<td><a href="inactive/${instructor.ssnumber}.html"><span class="label label-warning">Inactivate</span></a>
 	        	<td><a href="delete/${instructor.ssnumber}.html"><span class="label label-danger">Delete</span></a></td>
 	        </tr>
 	        </c:forEach>
