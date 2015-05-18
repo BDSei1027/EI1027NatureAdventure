@@ -1,9 +1,7 @@
 <%@ tag description="This tag contains the basic structure of the website, the header with the menu and the footer" pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<%@ attribute name="title" required="false"%>
 
 <!DOCTYPE html>
 
@@ -11,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title}</title>
+<title>NatureAdventure</title>
 
 <!-- Bootstrap -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.css"
