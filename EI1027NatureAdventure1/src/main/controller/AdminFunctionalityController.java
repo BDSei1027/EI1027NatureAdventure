@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -97,47 +98,39 @@ public class AdminFunctionalityController {
 		return "admin/instructorManagement/add";
 	}
 	
-	@RequestMapping(value="/instructorManagement/disable")
-	public String instructorsDisablePage(Model model, HttpSession session){
+	@RequestMapping(value="/instructorManagement/disable/{idInstructor}")
+	public String instructorsDisablePage(@PathVariable String idInstructor , HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
-		//Instance new instructor used by the form
-		model.addAttribute("instructor", new Instructor());
+		service.inactiveInstructor(idInstructor);
 		
-		return "admin/instructorManagement/disable";
+		return "redirect:/admin/instructorManagement";
 	}
 	
-	@RequestMapping(value="/instructorManagement/disable", method=RequestMethod.POST)
-	public String instructorsDisablePage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+	@RequestMapping(value="/instructorManagement/modify/{idInstructor}", method=RequestMethod.GET)
+	public String instructorsModifyPage(@PathVariable String idInstructor, Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
-
-		service.inactiveInstructor(instructor);
 		
-		return "admin/instructorManagement/disable";
-	}
-	
-	@RequestMapping(value="/instructorManagement/modify")
-	public String instructorsModifyPage(Model model, HttpSession session){
-		//Check if the user is allowed to enter this page
-		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
-		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
+		model.addAttribute("instructorData", service.getInstructor(idInstructor));
 		
 		return "admin/instructorManagement/modify";
 	}
 	
-	@RequestMapping(value="/instructorManagement/modify", method=RequestMethod.POST)
+	@RequestMapping(value="/instructorManagement/modify/{idInstructor}", method=RequestMethod.POST)
 	public String instructorsModifyPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
+		
+		//Check errors
+		if(bindingResult.hasErrors()) return "admin/instructorManagement/moidify/{idInstructor}";
 
 		service.updateInstructor(instructor);
 		
