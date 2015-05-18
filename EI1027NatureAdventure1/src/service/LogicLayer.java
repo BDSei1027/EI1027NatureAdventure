@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -88,6 +89,7 @@ public class LogicLayer {
 	 * @param The instructor
 	 */
 	public void addInstructor(Instructor instructor){
+		if (instructor.getActivities() == null) instructor.setActivities(new ArrayList<Integer>());
 		daoInstructor.addElement(instructor);
 		
 	}
