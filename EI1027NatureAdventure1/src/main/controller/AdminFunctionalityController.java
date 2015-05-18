@@ -118,7 +118,10 @@ public class AdminFunctionalityController {
 		if(!user.isLogged()) return "redirect:login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
-		model.addAttribute("instructorData", service.getInstructor(idInstructor));
+		Instructor instructor = service.getInstructor(idInstructor);
+		
+		model.addAttribute("instructor", instructor);
+		model.addAttribute("activities", instructor.getActivities());
 		
 		return "admin/instructorManagement/modify";
 	}
