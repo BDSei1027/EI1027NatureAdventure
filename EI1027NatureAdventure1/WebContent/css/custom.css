@@ -1,3 +1,4 @@
+/* Pie de pagina */
 footer {
 	margin-top: 15px;
 	padding-top: 10px;
@@ -12,15 +13,21 @@ footer {
 }
 
 footer p {
-	font-size:10px;
+	font-size: 10px;
 }
 
+/* Barra de lengujes */
 #languages {
 	border-bottom-left-radius: 100px 50px;
 	padding-top: 3px;
 	padding-bottom: 5px;
 	background-color: #222;
 	border-color: #080808;
+}
+
+/* Login page */
+form login {
+	padding-left: 20px;
 }
 
 #login {
@@ -30,6 +37,3 @@ footer p {
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.13);
 }
 
-form.login {
-	padding-left: 20px;
-}
