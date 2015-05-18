@@ -67,7 +67,7 @@
 	</bean>
 	
 	 <!-- Service -->
-	<bean id="serviceLayer" class="service.LogicLayer">
+	<bean id="service" class="service.LogicLayer">
 		<property name="daoActivity" ref="activityDAO" />
 		<property name="daoBooking" ref="bookingDAO" />
 		<property name="daoClient" ref="clientDAO" />
@@ -76,5 +76,6 @@
 		<property name="daoUser" ref="userDAO" />
 		<property name="daoAvaliable" ref="avaliablebookDAO" />
 	</bean>
+	
 
 </beans>
