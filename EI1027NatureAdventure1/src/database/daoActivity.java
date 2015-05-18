@@ -2,13 +2,12 @@ package database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -21,8 +20,11 @@ public class daoActivity implements DaoInterface {
 
 	private JdbcTemplate dataSource;
 	
-	@Autowired()
-	private void setDataSource(DataSource datasource) {
+	public daoActivity() {
+		super();
+	}
+	
+	public void setDataSource(DataSource datasource) {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	

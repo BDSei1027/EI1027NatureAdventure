@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -22,13 +21,15 @@ public class daoBooking implements DaoInterface {
 	private JdbcTemplate dataSource;
 	private daoStatus daoStatus;
 	
-	@Autowired
-	private void setDataSource(DataSource datasource) {
+	public daoBooking() {
+		super();
+	}
+	
+	public void setDataSource(DataSource datasource) {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
-	@Autowired
-	private void setDaoStatus(DaoInterface daoStatus) {
+	public void setDaoStatus(DaoInterface daoStatus) {
 		this.daoStatus = (daoStatus) daoStatus;
 	}
 	

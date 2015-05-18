@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -19,8 +18,12 @@ public class daoAvaliableBook implements DaoInterface {
 
 	private JdbcTemplate dataSource;
 	
-	@Autowired
-	private void setDataSource(DataSource datasource) {
+	
+	public daoAvaliableBook() {
+		super();
+	}
+	
+	public void setDataSource(DataSource datasource) {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
