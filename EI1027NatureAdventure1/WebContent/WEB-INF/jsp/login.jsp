@@ -7,7 +7,7 @@
 	<div class="container" id="login">
 		<div class="login">
 			<h3>Sign in</h3>
-			<form:form role="form" method="post" style="padding-left: 20px">
+			<form:form role="form" method="post" modelAttribute="user">
 				<div class="form-group">
 					<form:label path="user" for="user" class="control-label">Identificator: </form:label>
 					<form:input path="user" type="text" class="form-control" id="user" placeholder="Your ID" />
