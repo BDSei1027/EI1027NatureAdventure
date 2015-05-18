@@ -28,15 +28,15 @@
 				</div>
 				<div class="form-group">
 					<form:label path="email" for="email" class="control-label">Email: </form:label>
-					<form:input path="email" type="email" class="form-control" id="email" />
+					<form:input path="email" type="email" class="form-control" id="email" placeholder="${instructor.email}" />
 				</div>
 				<div class="form-group">
 					<form:label path="telephone" for="tlf" class="control-label"> Telephone: </form:label>
-					<form:input path="telephone" type="tel" class="form-control" id="tlf" />
+					<form:input path="telephone" type="tel" class="form-control" id="tlf" placeholder="${instructor.telephone}" />
 				</div>
 				<div class="form-group">
 					<form:label path="expiredate" for="edate">Expire date: </form:label>
-					<form:input path="expiredate" type="date" class="form-control" id="edate"/>
+					<form:input path="expiredate" type="date" class="form-control" id="edate" placeholder="${instructor.expiredate}"/>
 				</div>
 				<div class="form-group">
 					<form:label path="isactive" class="control-label">Can work?: </form:label>

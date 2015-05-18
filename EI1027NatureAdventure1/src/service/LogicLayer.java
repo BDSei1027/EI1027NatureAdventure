@@ -345,6 +345,7 @@ public class LogicLayer {
 	}
 	
 	public void addUser(User user){
+		user.setPassword(encryptor.encryptPassword(user.getPassword()));
 		daoUser.addElement(user);
 		
 	}

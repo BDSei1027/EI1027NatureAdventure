@@ -1,11 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-	<jsp:directive.page contentType="text/html; charset=UTF-8" 
-		pageEncoding="UTF-8" session="false"/>
-	<jsp:output doctype-root-element="html"
-		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
-		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
-		omit-xml-declaration="true" />
 <%@ tag description="This tag contains the basic structure of the website, the header with the menu and the footer" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -15,11 +7,7 @@
 
 <!DOCTYPE html>
 
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="src.languages.text" />
-
-<html lang="${language}">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,10 +56,6 @@
     <!-- NavBar -->
     <t:navbarbasic />
     
-    
-    <!-- Información del usuario 
-    <div class="loggeduser"><t:logininfo /></div>
-    -->
     <!-- Cuerpo -->
     <div class="container">
         <jsp:doBody />
@@ -82,4 +66,3 @@
 	
 </body>
 </html>
-</jsp:root>
