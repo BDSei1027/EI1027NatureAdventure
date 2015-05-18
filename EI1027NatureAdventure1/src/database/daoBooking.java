@@ -124,7 +124,9 @@ public class daoBooking implements DaoInterface {
 	public Object getElement(Object identifier) {
 		int id = (int) identifier;
 		String sql = "SELECT * FROM booking WHERE inneridbooking = ?;";
-		return dataSource.queryForObject(sql, new BookingMapper(), id);
+		List<Booking> list = dataSource.query(sql, new BookingMapper(), id);
+		if (list.size() == 0 || list.size() < 1) return null;
+		else return list.get(0);
 	}
 
 	/**

@@ -92,7 +92,9 @@ public class daoAvaliableBook implements DaoInterface {
 	
 	public AvaliableForBooking getElement(String ssnum, Date date, String schedule) {
 		String sql = "SELECT * FROM avaliableforbook WHERE ssnumber = ?, date = ?, schedule = ?;";
-		return dataSource.queryForObject(sql, new AvaliableMapper(), ssnum, date, schedule);
+		List<AvaliableForBooking> list = dataSource.query(sql, new AvaliableMapper(), ssnum, date, schedule);
+		if (list.size() == 0 || list.size() < 1) return null;
+		else return list.get(0);
 	}
 
 }

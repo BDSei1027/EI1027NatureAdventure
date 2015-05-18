@@ -51,7 +51,7 @@ public class daoUser implements DaoInterface {
 	public void addElement(Object element) {
 		User u = (User) element;
 		String sql = "INSERT INTO User(user,password,type,language) VALUES(?, ?, ?, ?);";
-		dataSource.update(sql, u.getUser(), u.getPassword(), u.getType());
+		dataSource.update(sql, u.getUser(), u.getPassword(), u.getType(), u.getLanguage());
 	}
 
 	@Override
@@ -80,7 +80,9 @@ public class daoUser implements DaoInterface {
 	public Object getElement(Object identifier) {
 		String user = (String) identifier;
 		String sql = "SELECT * FROM user WHERE user = ?;";
-		return dataSource.queryForObject(sql, new UserMapper(), user);
+		List<User> list = dataSource.query(sql, new UserMapper(), user);
+		if (list.size() == 0 || list.size() > 1) return null;
+		else return list.get(0);
 	}
 
 	@Override

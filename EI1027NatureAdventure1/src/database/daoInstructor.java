@@ -106,8 +106,15 @@ public class daoInstructor implements DaoInterface {
 		String sql;
 		if (id.length() > 9) sql = "SELECT * FROM instructor WHERE ssnumber = ?;";
 		else sql = "SELECT * FROM instructor WHERE idnumber = ?";
-		Instructor instructor = dataSource.queryForObject(sql, new InstructorMapper(), id);
-		instructor.setActivities(getActivitiesInstructor(id));
+		
+		Instructor instructor = null;
+		List<Instructor> list = dataSource.query(sql, new InstructorMapper(), id);
+		if (list.size() == 0 || list.size() < 1) instructor = null;
+		else instructor = list.get(0);
+		
+		if (instructor != null) {
+			instructor.setActivities(getActivitiesInstructor(id));
+		}
 		return instructor;
 	}
 

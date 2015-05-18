@@ -115,15 +115,19 @@ public class daoActivity implements DaoInterface {
 	public Object getElement(Object identifier) {
 		String sql;
 		Activity act = null;
-		
+		List<Activity> list = null;
 		if (identifier instanceof Integer) { // Si es un entero es el ID
 			int id = (int) identifier;
 			sql = "SELECT * FROM activity WHERE idact=?;";
-			act = dataSource.queryForObject(sql, new ActivityMapper(), id);
+			list = dataSource.query(sql, new ActivityMapper(), id);
+			if (list.size() == 0 || list.size() > 1) act = null;
+			else act = list.get(0);
 		} else if (identifier instanceof String) { // Si es una String es el nombre
 			String name = (String) identifier;
 			sql = "SELECT * FROM activity WHERE name = ?;";
-			act = dataSource.queryForObject(sql, new ActivityMapper(), name);
+			list = dataSource.query(sql, new ActivityMapper(), name);
+			if (list.size() == 0 || list.size() > 1) act = null;
+			else act = list.get(0);
 		}
 		
 		if (act != null)
