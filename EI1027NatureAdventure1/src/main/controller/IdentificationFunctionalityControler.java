@@ -2,6 +2,7 @@ package main.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,7 @@ public class IdentificationFunctionalityControler {
 	@RequestMapping(value="/login")
 	public String login(Model model){
 		model.addAttribute("user", new User());
+		System.out.println("Enter login");
 		return "login";
 		
 	}
@@ -71,9 +73,10 @@ public class IdentificationFunctionalityControler {
 		//Get the page that called the login
 		String nextPage = (String) session.getAttribute("nextPage");
 		
+		
 		//Return the page that called the login or go to the main page
 		if(nextPage != null) return "redirect:"+nextPage;
-		return "redirect:index.jsp";
+		return "redirect:/index.jsp";
 		
 	}
 	
