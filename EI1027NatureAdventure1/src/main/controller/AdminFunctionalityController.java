@@ -60,6 +60,8 @@ public class AdminFunctionalityController {
 		if(!user.isLogged()) return "redirect:login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
+		model.addAttribute("instructorList", service.getAllInstructors());
+		
 		return "admin/instructorManagement";
 		
 	}
