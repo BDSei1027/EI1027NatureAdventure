@@ -1,6 +1,8 @@
 package service;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.jasypt.util.password.BasicPasswordEncryptor;
@@ -175,6 +177,22 @@ public class LogicLayer {
 		daoInstructor.updateElement(instructor);	
 	}
 		
+	
+	/*
+	 * Instruidas subzone
+	 */
+	
+	public Collection<Activity> getAllActivities(Instructor instructor){
+		daoInstructor myDaoInstructor = (daoInstructor) daoInstructor;
+		List <Integer> myData = (List<Integer>) myDaoInstructor.getActivitiesInstructor(instructor.getSsNumber());
+		Collection<Activity> myActivities= new LinkedList<Activity>();
+		for(int i=0;i<myData.size();i++){
+			myActivities.add((Activity) daoActivity.getElement(myData.get(i)));
+		}
+		return myActivities;
+		
+	}
+	
 	
 	/*
 	 * ACTIVITY ZONE
