@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import classes.Activity;
 import classes.Client;
 import classes.Instructor;
 import classes.User;
@@ -141,6 +142,40 @@ public class AdminFunctionalityController {
 		return "admin/instructorManagement/modify";
 	}
 	
+	@RequestMapping(value="/instructorManagement/modify/addActivity")
+	public String instructorsAddActivity(Model model, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
+		
+		model.addAttribute("idActivity", new Integer(0));
+		model.addAttribute("idMonitor", new String());
+		
+		return "admin/instructorManagement/modify/addActivity";
+	}
 	
+	@RequestMapping(value="/instructorManagement/modify/addActivity", method=RequestMethod.POST)
+	public String instructorsAddActivity(@ModelAttribute("idMonitor") String idMonitor, @ModelAttribute("idActivity") Integer idActivity, BindingResult bindingResult, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 
+		service.addInstructed(idMonitor, idActivity);
+		
+		return "redirect:admin/instructorManagement/modify/addActivity";
+	}
+
+	@RequestMapping(value="/instructorManagement/modify/removeActivity", method=RequestMethod.POST)
+	public String instructorsRemoveActivity(@ModelAttribute("idMonitor") String idMonitor, @ModelAttribute("idActivity") Integer idActivity, BindingResult bindingResult, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
+
+		service.removeInstructed(idMonitor, idActivity);
+		
+		return "redirect:admin/instructorManagement/modify/addActivity";
+	}
 }
