@@ -15,6 +15,7 @@ import classes.Activity;
 import classes.Client;
 import classes.Instructor;
 import classes.User;
+import validators.InstructorValidator;
 import validators.SessionValidator;
 import validators.UserValidator;
 import service.LogicLayer;
@@ -88,7 +89,7 @@ public class AdminFunctionalityController {
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		//Check the instructor input format
-		ValidatorInstructor validator = new ValidatorInstructor();
+		InstructorValidator validator = new InstructorValidator();
 		validator.validate(instructor, bindingResult);
 		
 		if(bindingResult.hasErrors()) return "admin/instructorManagement/add";
@@ -106,6 +107,18 @@ public class AdminFunctionalityController {
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		service.inactiveInstructor(idInstructor);
+		
+		return "redirect:/admin/instructorManagement";
+	}
+	
+	@RequestMapping(value="/instructorManagement/enable/{idInstructor}")
+	public String instructorsEnablePage(@PathVariable String idInstructor , HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.jsp";;
+		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
+		
+		service.activeInstructor(idInstructor);
 		
 		return "redirect:/admin/instructorManagement";
 	}

@@ -104,6 +104,16 @@ public class LogicLayer {
 		
 	}
 	
+
+	public void activeInstructor(String code) {
+		Instructor myInstructor= this.getInstructor(code);
+		if (myInstructor==null)	return;
+		
+		myInstructor.setActive(true);
+	    this.updateInstructor(myInstructor);
+		
+	}
+	
 	
 	/**
 	 * Set inactive an instructor from the database.
@@ -456,6 +466,8 @@ public class LogicLayer {
 	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
 		this.daoAvaliable = daoAvaliable;
 	}
+
+
 
 
 
