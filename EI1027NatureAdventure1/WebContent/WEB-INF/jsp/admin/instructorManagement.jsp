@@ -8,7 +8,7 @@
 	<p>The following table lists all the instructor, which are in the data base.
 	<br>
 	To see the activities of the instructor, click on <span class="label label-info">Edit</span></p>
-	<div class="text-center"><a href="instructorManagement/add.html"><span class="label label-info">Add instructor</span></a></div>
+	<div class="text-center"><a href="instructorManagement/add.html"><button class="btn btn-primary">Add instructor</button></a></div>
 	<h3>List of instructors</h3>
 	<table class="table table-striped">
 		<thead>

@@ -6,7 +6,7 @@
 <t:template>
 	<jsp:body>
 	<h2>Instructor management</h2>
-	<h3>Modify instructor ${instructor.name} ${instructor.lastname} (${instructor.idnumber})</h3>
+	<h3>Modify instructor <strong>${instructor.name} ${instructor.lastName}</strong> (${instructor.idNumber})</h3>
 	<div class="col-lg-5">
 		<form:form method="post" modelAttribute="instructor" role="form">
 			<div class="form-group">
@@ -55,7 +55,7 @@
 			<div class="row">
 				<p>Clicking on the following button you can add an activity for this instructor.<br>
 		
-				<a href="#"><button class="btn btn-primary">Add activity</button></a>
+				<a href="admin/instructorManagement/modify/addActivity"><button class="btn btn-primary">Add activity</button></a>
 			</div>
 		
 		<h4>This instructor can teach</h4>
@@ -71,9 +71,9 @@
 		 	<tbody>
 		 		<c:forEach items="${activities}" var="act">
 		 		<tr>
-		 			<td>${act.idact}</td>
+		 			<td>${act}</td>
 		 			<td></td>
-		 			<td><a href=""><span class="label label-danger">Delete</span></a></td>
+		 			<td><a href="admin/instructorManagement/modify/removeActivity"><span class="label label-danger">Delete</span></a></td>
 		 		</tr>
 		 		</c:forEach>
 		 		</tbody>
