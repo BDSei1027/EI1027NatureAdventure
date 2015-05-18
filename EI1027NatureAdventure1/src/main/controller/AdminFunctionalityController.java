@@ -46,7 +46,7 @@ public class AdminFunctionalityController {
 	public String adminPage(HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		return "admin";
@@ -58,7 +58,7 @@ public class AdminFunctionalityController {
 	public String instructorsPage(Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		model.addAttribute("instructorList", service.getAllInstructors());
@@ -84,7 +84,7 @@ public class AdminFunctionalityController {
 	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		//Check the instructor input format
@@ -102,7 +102,7 @@ public class AdminFunctionalityController {
 	public String instructorsDisablePage(@PathVariable String idInstructor , HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		service.inactiveInstructor(idInstructor);
@@ -126,7 +126,7 @@ public class AdminFunctionalityController {
 	public String instructorsModifyPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		//Check errors
@@ -141,7 +141,7 @@ public class AdminFunctionalityController {
 	public String instructorsAddActivity(Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		model.addAttribute("idActivity", new Integer(0));
@@ -154,7 +154,7 @@ public class AdminFunctionalityController {
 	public String instructorsAddActivity(@ModelAttribute("idMonitor") String idMonitor, @ModelAttribute("idActivity") Integer idActivity, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 
 		service.addInstructed(idMonitor, idActivity);
@@ -166,7 +166,7 @@ public class AdminFunctionalityController {
 	public String instructorsRemoveActivity(@ModelAttribute("idMonitor") String idMonitor, @ModelAttribute("idActivity") Integer idActivity, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.jsp";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 
 		service.removeInstructed(idMonitor, idActivity);
