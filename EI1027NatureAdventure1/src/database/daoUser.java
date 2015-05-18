@@ -35,7 +35,7 @@ public class daoUser implements DaoInterface {
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
 			try {
-				user.setUser(rs.getString("user"));
+				user.setUser(rs.getString("id"));
 				user.setPassword(rs.getString("password"));
 				user.setType(rs.getInt("type"));
 				user.setLanguage(rs.getString("language"));
@@ -50,7 +50,7 @@ public class daoUser implements DaoInterface {
 	@Override
 	public void addElement(Object element) {
 		User u = (User) element;
-		String sql = "INSERT INTO User(user,password,type,language) VALUES(?, ?, ?, ?);";
+		String sql = "INSERT INTO login(user,password,type,language) VALUES(?, ?, ?, ?);";
 		dataSource.update(sql, u.getUser(), u.getPassword(), u.getType(), u.getLanguage());
 	}
 
@@ -63,7 +63,7 @@ public class daoUser implements DaoInterface {
 			User usuario = (User) element;
 			user = usuario.getUser();
 		}
-		String sql = "DELETE FROM User WHERE user = ?;";
+		String sql = "DELETE FROM login WHERE id = ?;";
 		dataSource.update(sql, user);
 
 	}
@@ -71,7 +71,7 @@ public class daoUser implements DaoInterface {
 	@Override
 	public void updateElement(Object element) {
 		User u = (User) element;
-		String sql = "UPDATE User SET password = ?, type = ?, language = ? WHERE user = ?;";
+		String sql = "UPDATE login SET password = ?, type = ?, language = ? WHERE id = ?;";
 		dataSource.update(sql, u.getPassword(), u.getType(), u.getLanguage(), u.getUser());
 
 	}
@@ -79,7 +79,7 @@ public class daoUser implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		String user = (String) identifier;
-		String sql = "SELECT * FROM user WHERE user = ?;";
+		String sql = "SELECT * FROM login WHERE id = ?;";
 		List<User> list = dataSource.query(sql, new UserMapper(), user);
 		if (list.size() == 0 || list.size() > 1) return null;
 		else return list.get(0);
@@ -88,7 +88,7 @@ public class daoUser implements DaoInterface {
 	@Override
 	public Object getElements() {
 		Map<String, User> map = new HashMap<String, User>();
-		String sql = "SELECT * FROM user;";
+		String sql = "SELECT * FROM login;";
 		List<User> list = dataSource.query(sql, new UserMapper());
 		for (User u : list) map.put(u.getUser(), u);
 		return map;

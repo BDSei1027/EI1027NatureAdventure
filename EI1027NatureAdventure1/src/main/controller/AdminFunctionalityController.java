@@ -67,7 +67,7 @@ public class AdminFunctionalityController {
 	public String instructorsAddPage(Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.jsp";;
+		if(!user.isLogged()) return "redirect:/login.html";;
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		//Instance new instructor used by the form
