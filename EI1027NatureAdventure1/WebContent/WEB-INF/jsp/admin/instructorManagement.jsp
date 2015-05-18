@@ -5,9 +5,9 @@
 <t:template>
 <jsp:body>
 	<h2>Instructor management</h2>
-	<pre>The following table lists all the instructor, which are in the data base.
+	<p>The following table lists all the instructor, which are in the data base.
 	<br>
-	To see the activities of the instructor, click on <span class="label label-info">Edit</span></pre>
+	To see the activities of the instructor, click on <span class="label label-info">Edit</span></p>
 	<div class="text-center"><a href="instructorManagement/add.html"><span class="label label-info">Add instructor</span></a></div>
 	<h3>List of instructors</h3>
 	<table class="table table-striped">
@@ -36,9 +36,24 @@
 	        	<td><c:out value="${instructor.email}" /></td>
 	        	<td><c:out value="${instructor.telephone}" /></td>
 	        	<td><c:out value="${instructor.expireDate}" /></td>
-	        	<td></td>
+	        	<td><c:choose>
+	        			<c:when test="${instructor.isActive()}">
+	        				Yes	
+	        			</c:when>
+	        			<c:otherwise>
+	        				No
+	        			</c:otherwise>
+	        		</c:choose></td>
 	        	<td><a href="instructorManagement/modify/${instructor.ssNumber}.html"><span class="label label-info">Edit</span></a></td>
-	        	<td><a href="instructorManagement/inactive/${instructor.ssNumber}.html"><span class="label label-warning">Inactivate</span></a>
+	        	<td>
+	        		<c:choose>
+	        			<c:when test="${instructor.isActive()}">
+	        				<a href="instructorManagement/disable/${instructor.ssNumber}.html"><span class="label label-warning">Inactivate</span></a>	
+	        			</c:when>
+	        			<c:otherwise>
+	        				<a href="instructorManagement/enable/${instructor.ssNumber}.html"><span class="label label-success">Activate</span></a>
+	        			</c:otherwise>
+	        		</c:choose>
 	        	<td><a href="instructorManagement/delete/${instructor.ssNumber}.html"><span class="label label-danger">Delete</span></a></td>
 	        </tr>
 	        </c:forEach>

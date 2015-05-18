@@ -50,38 +50,6 @@
 			</form:form>
 		</div>
 	
-		<div class="col-lg-2"> </div>
-		<div class="col-lg-6">
-			<h3>Activities from this instructor</h3>
-			<div class="row">
-			<p>Clicking on the following button you can add an activity for this instructor.<br>
-			
-					<div style="text-align: center"></div>
-					<a href="#"><button class="btn btn-primary">Add activity</button></a>
-				</div>
-			</div>
-			
-			<h4>This instructor can teach</h4>
-			<div class="row">
-				<table class="table table-striped">
-			 	<thead>
-			 		<tr>
-			 			<th class="col-lg-2">ID activity</th>
-			 			<th class="col-lg-8">Name</th>
-			 			<th class="col-lg-2"></th>
-			 		</tr>
-			 	</thead>
-			 	<tbody>
-			 		<c:forEach items="${activities}" var="act">
-			 		<tr>
-			 			<td>${act.idact}</td>
-			 			<td>${act.name}</td>
-			 			<td><a href=""><span class="label label-danger">Delete</span></a></td>
-			 		</tr>
-			 		</c:forEach>
-			 		</tbody>
-			 	</table>
-		 	</div> <!-- row interno -->
- 		</div>
+		
 </jsp:body>
 </t:template>
