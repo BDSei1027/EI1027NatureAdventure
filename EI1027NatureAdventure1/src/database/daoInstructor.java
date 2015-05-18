@@ -141,7 +141,7 @@ public class daoInstructor implements DaoInterface {
 	 * @param id String with the ssnumber
 	 * @return List<Integer> with the idact of the activities
 	 */
-	private List<Integer> getActivitiesInstructor(String id) {
+	public List<Integer> getActivitiesInstructor(String id) {
 		String sql = "SELECT idact FROM instruidas WHERE ssnumber = ?;";
 		return (List<Integer>) dataSource.queryForList(sql, Integer.class, id);
 	}
