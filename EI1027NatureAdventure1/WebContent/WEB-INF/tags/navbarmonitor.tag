@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ tag description="Estructura de la barra de navegacion"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
@@ -24,8 +26,14 @@
 				<li><a href="#about">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.html">Sign in</a></li>
-      <li class="active"><a href="register.html">Sign up!  
+      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
+         <ul class="dropdown-menu" role="menu">
+           <li><a href="#">Assigned Bookings</a></li>
+           <li class="divider"></li>
+           <li><a href="account.html">Account</a></li>
+         </ul>
+      </li>
+      <li class="active"><a href="logout.html">Log out  
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
     </ul>
   </div>

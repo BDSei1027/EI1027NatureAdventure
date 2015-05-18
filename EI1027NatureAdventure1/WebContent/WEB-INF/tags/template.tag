@@ -1,5 +1,5 @@
 <%@ tag description="This tag contains the basic structure of the website, the header with the menu and the footer" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
@@ -52,8 +52,20 @@
 	<!-- Fin titulo -->
     
     <!-- NavBar -->
-    <t:navbarbasic />
-    
+    <c:choose>
+    	<c:when test="${sessionScope.user.type == 0} ">
+    		<t:navbaradmin />
+    	</c:when>
+    	<c:when test="${sessionScope.user.type == 1} ">
+    		<t:navbarmonitor />
+    	</c:when>
+    	<c:when test="${sessionScope.user.type == 2} ">
+    		<t:navbaruser />
+    	</c:when>
+    	<c:otherwise>
+    		<t:navbarbasic />
+    	</c:otherwise>
+    </c:choose>
     <!-- Cuerpo -->
     <div class="container">
         <jsp:doBody />

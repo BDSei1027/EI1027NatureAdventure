@@ -24,8 +24,12 @@
 				<li><a href="#about">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.html">Sign in</a></li>
-      <li class="active"><a href="register.html">Sign up!  
+      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
+         <ul class="dropdown-menu" role="menu">
+           <li><a href="account.html">Account</a></li>
+         </ul>
+      </li>
+      <li class="active"><a href="logout.html">Log out  
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
     </ul>
   </div>
