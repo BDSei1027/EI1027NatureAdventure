@@ -12,31 +12,29 @@
 		<form:input path="name" type="text" class="form-control" id="name" />
 	</div>
 	<div class="form-group">
-		<form:label path="lastname" for="lname" class="control-label">Last name: </form:label>
-		<form:input path="lastname" type="text" class="form-control" id="lname" />
+		<form:label path="lastName" for="lname" class="control-label">Last name: </form:label>
+		<form:input path="lastName" type="text" class="form-control" id="lname" />
 	</div>
 	<div class="form-group">
-		<form:label path="ssnumber" for="ssn" class="control-label">SS number: </form:label>
-		<form:input path="ssnumber" type="text" class="form-control" id="ssn" />
-		<form:errors path="ssnumber" />
+		<form:label path="ssNumber" for="ssn" class="control-label">SS number: </form:label>
+		<form:input path="ssNumber" type="text" class="form-control" id="ssn" />
+		<form:errors path="ssNumber" />
 	</div>
 	<div class="form-group">
-		<form:label path="idnumber" for="idn" class="control-label">ID number: </form:label>
-		<form:input path="idnumber" type="text" class="form-control" id="idn" />
-		<form:errors path="idnumber" />
+		<form:label path="idNumber" for="idn" class="control-label">ID number: </form:label>
+		<form:input path="idNumber" type="text" class="form-control" id="idn" />
+		<form:errors path="idNumber" />
 	</div>
 	<div class="form-group">
 		<form:label path="email" for="email" class="control-label">Email: </form:label>
 		<form:input path="email" type="email" class="form-control" id="email" />
+		<form:errors path="email" />
 	</div>
 	<div class="form-group">
 		<form:label path="telephone" for="tlf" class="control-label"> Telephone: </form:label>
 		<form:input path="telephone" type="tel" class="form-control" id="tlf" />
 	</div>
-	<div class="form-group">
-		<form:label path="isactive" class="control-label">Ready for work: </form:label>
-		<form:input path="isactive" type="checkbox" />
-	</div>
+	
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form:form>
  

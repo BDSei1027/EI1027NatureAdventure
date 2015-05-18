@@ -130,7 +130,7 @@ public class AdminFunctionalityController {
 		if(!user.hasPermissions(0)) return "redirect:restricted.jsp";
 		
 		//Check errors
-		if(bindingResult.hasErrors()) return "admin/instructorManagement/moidify/{idInstructor}";
+		if(bindingResult.hasErrors()) return "admin/instructorManagement/modify/{idInstructor}";
 
 		service.updateInstructor(instructor);
 		

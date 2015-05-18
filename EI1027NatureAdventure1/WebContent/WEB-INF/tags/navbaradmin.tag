@@ -19,7 +19,7 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.jsp">Home</a></li>
         <li><a href="#about">Activities</a></li>
 				<li><a href="#about">Help</a></li>
     </ul>
@@ -27,7 +27,7 @@
       <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
            <li><a href="#">Activity management</a></li>
-           <li><a href="admin/instructorManagement/list">Instructor management</a></li>
+           <li><a href="admin/instructorManagement.html">Instructor management</a></li>
            <li><a href="#">Booking management</a></li>
            <li class="divider"></li>
            <li><a href="account.html">Account</a></li>

@@ -19,7 +19,7 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.jsp">Home</a></li>
         <li><a href="#about">Activities</a></li>
 				<li><a href="#about">Help</a></li>
     </ul>

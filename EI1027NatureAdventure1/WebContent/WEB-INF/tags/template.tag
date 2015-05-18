@@ -20,10 +20,12 @@
 <link
     href="${pageContext.request.contextPath}/css/custom.css"
     rel="stylesheet">
-<script 
+<!-- <script 
 	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script 
-  src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+  src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 
 <body class="container">
@@ -53,13 +55,13 @@
     
     <!-- NavBar -->
     <c:choose>
-    	<c:when test="${sessionScope.user.type == 0} ">
+    	<c:when test="${user.type eq 0}">
     		<t:navbaradmin />
     	</c:when>
-    	<c:when test="${sessionScope.user.type == 1} ">
+    	<c:when test="${user.type eq 1}">
     		<t:navbarmonitor />
     	</c:when>
-    	<c:when test="${sessionScope.user.type == 2} ">
+    	<c:when test="${user.type eq 2}">
     		<t:navbaruser />
     	</c:when>
     	<c:otherwise>
