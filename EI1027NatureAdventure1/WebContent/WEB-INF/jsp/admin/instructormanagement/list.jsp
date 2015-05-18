@@ -2,7 +2,7 @@
 <%@page contentType="text/html; charset=iso-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
-<t:base>
+<t:template>
 <jsp:body>
 	<h2>Instructor management</h2>
 	<pre>The following table lists all the instructor, which are in the data base.
@@ -44,4 +44,4 @@
 		</tbody>
  	</table>
 </jsp:body>
-</t:base>
+</t:template>

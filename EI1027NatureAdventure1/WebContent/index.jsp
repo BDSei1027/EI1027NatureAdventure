@@ -3,7 +3,11 @@
 <t:template>
 <jsp:body>
 <h2>Example</h2>
-This is the example page to go to the links
+<p>This is the example page to go to the links</p>
+
 <u>Interest Links:</u>
+<ul>
+	<li><a href="test.html">LINK</a></li>
+</ul>
 </jsp:body>
 </t:template>

@@ -26,7 +26,6 @@ public class AccountFunctionalityController {
 	 * Method that allows automatic independence injection
 	 * @param service Service to inject
 	 */
-	@Autowired
 	public void setService(LogicLayer service){
 		this.service = service;
 	}

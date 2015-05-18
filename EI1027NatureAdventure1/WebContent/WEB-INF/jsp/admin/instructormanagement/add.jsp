@@ -2,7 +2,7 @@
 <%@page contentType="text/html; charset=iso-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
-<t:base>
+<t:template>
 <jsp:body>
 <h2>Instructor management</h2>
 <h3>Add Instructor</h3>
@@ -41,4 +41,4 @@
 </form:form>
  
 </jsp:body>
-</t:base>
+</t:template>

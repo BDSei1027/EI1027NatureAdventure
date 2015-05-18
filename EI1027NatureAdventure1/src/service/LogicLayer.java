@@ -53,7 +53,8 @@ public class LogicLayer {
 	 * Inicializa las IDs para que se puedan autoincrementar.
 	 */
 	public LogicLayer() {
-		inicializarIds();
+		super();
+		
 	}
 
 	
@@ -428,37 +429,30 @@ public class LogicLayer {
 	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
 	
-	@Autowired
 	public void setDaoActivity(daoActivity daoActivity) {
 		this.daoActivity = daoActivity;
 	}
 	
-	@Autowired
 	public void setDaoBooking(daoBooking daoBooking) {
 		this.daoBooking = daoBooking;
 	}
 	
-	@Autowired
 	public void setDaoClient(daoClient daoClient) {
 		this.daoClient = daoClient;
 	}
 	
-	@Autowired
 	public void setDaoInstructor(daoInstructor daoInstructor) {
 		this.daoInstructor = daoInstructor;
 	}
 	
-	@Autowired
 	public void setDaoStatus(daoStatus daoStatus) {
 		this.daoStatus = daoStatus;
 	}
 	
-	@Autowired
 	public void setDaoUser(daoUser daoUser) {
 		this.daoUser = daoUser;
 	}
 	
-	@Autowired
 	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
 		this.daoAvaliable = daoAvaliable;
 	}
