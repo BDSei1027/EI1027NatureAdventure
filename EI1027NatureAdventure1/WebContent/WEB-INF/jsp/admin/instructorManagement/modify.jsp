@@ -41,7 +41,7 @@
 			</div>
 			<div class="form-group">
 				<form:label path="expireDate" for="edate">Expire date: </form:label>
-				<form:input path="expireDate" type="date" class="form-control" id="edate" />
+				<form:input path="expireDate" type="datetime" class="form-control" id="edate" />
 				<form:errors path="expireDate" />
 			</div>
 			
@@ -55,7 +55,7 @@
 			<div class="row">
 				<p>Clicking on the following button you can add an activity for this instructor.<br>
 		
-				<a href="admin/instructorManagement/modify/addActivity"><button class="btn btn-primary">Add activity</button></a>
+				<a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/addActivity"><button class="btn btn-primary">Add activity</button></a>
 			</div>
 		
 		<h4>This instructor can teach</h4>
@@ -71,9 +71,10 @@
 		 	<tbody>
 		 		<c:forEach items="${activities}" var="act">
 		 		<tr>
-		 			<td>${act}</td>
-		 			<td></td>
-		 			<td><a href="admin/instructorManagement/modify/removeActivity"><span class="label label-danger">Delete</span></a></td>
+		 			<td>${act.idAct}</td>
+		 			<td>${act.name}</td>
+		 			
+		 			<td><a href="removeActivity/${instructor.ssNumber}&${act.idAct}.html"><span class="label label-danger">Delete</span></a></td>
 		 		</tr>
 		 		</c:forEach>
 		 		</tbody>
