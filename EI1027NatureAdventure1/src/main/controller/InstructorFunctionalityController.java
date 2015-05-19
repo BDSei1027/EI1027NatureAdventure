@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -35,27 +36,27 @@ public class InstructorFunctionalityController {
 	
 	
 	/**
-	 * Method that injects the activity list assigned to a monitor
+	 * Method that injects the activity list assigned to a instructor
 	 * @param model Model of the page
 	 * @param session Session of the user
 	 * @return Main monitors page
 	 */
-	@RequestMapping(value="/monitor")
+	@RequestMapping(value="/instructor")
 	public String monitorPage(Model model, HttpSession session){
 		//If the user is not logged
 		User user = (User) session.getAttribute("user");
 		if(user == null) return "redirect:login.jsp";
 		
 		//If the user is not an instructor
-		if(user.getType() != 1) return "redirect:restricted.jsp";
+		if(user.getType() != 1) return "restricted";
 		
 		//Get the activities of the instructor
 		Instructor instructor = service.getInstructor(user);
-		List<Activity> instructorActivities = service.getAllActivities(instructor);
+		Collection<Activity> instructorActivities = service.getAllActivities(instructor);
 		
 		//Attach the list to the model
-		model.addAttribute("monitorActivities", instructorActivities);
-		return "monitor";
+		model.addAttribute("instructorActivities", instructorActivities);
+		return "instructor";
 		
 	}
 

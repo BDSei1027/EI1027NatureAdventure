@@ -48,7 +48,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		return "admin";
 		
@@ -60,7 +60,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		model.addAttribute("instructorList", service.getAllInstructors());
 		
@@ -73,7 +73,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		//Instance new instructor used by the form
 		model.addAttribute("instructor", new Instructor());
@@ -86,7 +86,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		//Check the instructor input format
 		InstructorValidator validator = new InstructorValidator();
@@ -114,7 +114,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		service.inactiveInstructor(idInstructor);
 		
@@ -126,7 +126,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		service.activeInstructor(idInstructor);
 		
@@ -138,7 +138,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		Instructor instructor = service.getInstructor(idInstructor);
 		Collection<Activity> colActivities = service.getAllActivities(instructor); 
@@ -170,7 +170,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 		
 		model.addAttribute("idActivity", new Integer(0));
 		model.addAttribute("idMonitor", new String());
@@ -183,7 +183,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 
 		service.addInstructed(idMonitor, idActivity);
 		
@@ -195,7 +195,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
+		if(!user.hasPermissions(0)) return "restricted";
 
 		service.removeInstructed(idMonitor, idActivity);
 		

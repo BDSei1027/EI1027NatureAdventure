@@ -9,7 +9,7 @@
 	
 	<p>Sorry boy, you are trying to enter an area you have not permission</p>
 	
-	<p>Go back to the main page, <a href="#">click here</a>.</p>
+	<p>Go back to the main page, <a href="${pageContext.request.contextPath}/index.jsp">click here</a>.</p>
 	
 	<p class="hidden text-danger"> If you are trying to access an restricted area and you will enter, please
 	contact with us, with the following anonymous form <a href="#"><span class="label label-danger">here</span></a>, for solve those possible security problems.

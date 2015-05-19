@@ -13,7 +13,7 @@
 	<p>If you have some complaning about us or want to give us your opinion, please visit <a href="#">Opinions</a>
 	and leave your opinion to improve your experience or contact with us <a href="#">here</a>.</p>
 	
-	<h5 class="text-right">NatureAdventure</h5>
+	<h4 style="padding-left: 60%">NatureAdventure</h4>
 	</div>
 </jsp:body>
 </t:template>
