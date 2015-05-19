@@ -19,13 +19,13 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-        <li><a href="index.jsp">Home</a></li>
-        <li><a href="#about">Activities</a></li>
-				<li><a href="#about">Help</a></li>
+        <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/activities">Activities</a></li>
+				<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="login.html">Sign in</a></li>
-      <li class="active"><a href="register.html">Sign up!  
+      <li><a href="${pageContext.request.contextPath}/login.html">Sign in</a></li>
+      <li class="active"><a href="${pageContext.request.contextPath}/register.html">Sign up!  
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
     </ul>
   </div>

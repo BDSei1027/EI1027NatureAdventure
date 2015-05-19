@@ -19,21 +19,21 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-        <li><a href="index.jsp">Home</a></li>
-        <li><a href="#about">Activities</a></li>
-				<li><a href="#about">Help</a></li>
+        <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/activities">Activities</a></li>
+				<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
-           <li><a href="#">Activity management</a></li>
-           <li><a href="admin/instructorManagement.html">Instructor management</a></li>
+           <li><a href="${pageContext.request.contextPath}/#">Activity management</a></li>
+           <li><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">Instructor management</a></li>
            <li><a href="#">Booking management</a></li>
            <li class="divider"></li>
-           <li><a href="account.html">Account</a></li>
+           <li><a href="${pageContext.request.contextPath}/account.html">Account</a></li>
          </ul>
       </li>
-      <li class="active"><a href="logout.html">Log out  
+      <li class="active"><a href="${pageContext.request.contextPath}/logout.html">Log out  
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
     </ul>
   </div>
