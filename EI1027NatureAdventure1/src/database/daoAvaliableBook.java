@@ -59,7 +59,7 @@ public class daoAvaliableBook implements DaoInterface {
 	@Override
 	public void deleteElement(Object element) {
 		AvaliableForBooking a = (AvaliableForBooking) element;
-		String sql = "DELETE FROM avaliableforbook WHERE ssnumber = ?, date = ?, schedule = ?;";
+		String sql = "DELETE FROM avaliableforbook WHERE ssnumber = ? AND date = ? AND schedule = ?;";
 		dataSource.update(sql, a.getSsNumber(), a.getDate(), a.getSchedule());
 	}
 

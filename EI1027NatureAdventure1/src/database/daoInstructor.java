@@ -58,7 +58,6 @@ public class daoInstructor implements DaoInterface {
 	@Override
 	public void addElement(Object element) {
 		Instructor instr = (Instructor) element;
-		System.out.println(instr);
 		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive, expireDate) "
 							+ "values(?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, instr.getSsNumber(), instr.getIdNumber(), instr.getName(), instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive(), instr.getExpireDate());
@@ -181,7 +180,7 @@ public class daoInstructor implements DaoInterface {
 	 * @param idact Activity's identifier
 	 */
 	public void deleteInstructorFromActivity(String ssnum, int idact) {
-		String sql = "DELETE FROM instruidas WHERE ssnumber = ?, idact = ?;";
+		String sql = "DELETE FROM instruidas WHERE ssnumber=? AND idact =?;";
 		dataSource.update(sql, ssnum, idact);
 	}
 	

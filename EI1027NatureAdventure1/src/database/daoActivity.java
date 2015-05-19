@@ -222,7 +222,7 @@ public class daoActivity implements DaoInterface {
 	 * @param ssnum Instructor's identifier
 	 */
 	public void deleteActivityFromInstructor(int idact, String ssnum) {
-		String sql = "DELETE FROM instruidas WHERE idact = ?, ssnumber = ?;";
+		String sql = "DELETE FROM instruidas WHERE idact = ? AND ssnumber = ?;";
 		dataSource.update(sql, idact, ssnum);
 	}
 	
