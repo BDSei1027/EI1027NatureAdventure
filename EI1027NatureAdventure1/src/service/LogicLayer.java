@@ -184,6 +184,11 @@ public class LogicLayer {
 	 * Instruidas subzone
 	 */
 	
+	/**
+	 * 
+	 * @param instructor
+	 * @return
+	 */
 	public Collection<Activity> getAllActivities(Instructor instructor){
 		daoInstructor myDaoInstructor = (daoInstructor) daoInstructor;
 		List <Integer> myData = (List<Integer>) myDaoInstructor.getActivitiesInstructor(instructor.getSsNumber());
@@ -195,6 +200,25 @@ public class LogicLayer {
 		
 	}
 	
+	/**
+	 * Method to add an activity to the instructor for teach it
+	 * @param idMonitor ssnumber of the instructor
+	 * @param idActivity idact of the activity
+	 */
+	public void addInstructed(String idMonitor, Integer idActivity) {
+		daoInstructor dao = (daoInstructor) daoInstructor;
+		dao.addActivity(idMonitor, idActivity);
+	}
+	
+	/**
+	 * Method to remove an activity that the instructor can teach
+	 * @param idMonitor ssnumber of the instructor
+	 * @param idActivity idact of the activity
+	 */
+	public void removeInstructed(String idMonitor, Integer idActivity) {
+		daoInstructor dao = (daoInstructor) daoInstructor;
+		dao.deleteInstructorFromActivity(idMonitor, idActivity);
+	}
 	
 	/*
 	 * ACTIVITY ZONE

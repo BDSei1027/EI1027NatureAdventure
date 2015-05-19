@@ -2,7 +2,6 @@ package main.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import classes.User;
-import validators.UserValidator;
 import service.LogicLayer;
+import validators.UserValidator;
+import classes.User;
 
 
 @Controller
@@ -39,7 +38,6 @@ public class IdentificationFunctionalityControler {
 	@RequestMapping(value="/login")
 	public String login(Model model){
 		model.addAttribute("user", new User());
-		System.out.println("Enter login");
 		return "login";
 		
 	}
