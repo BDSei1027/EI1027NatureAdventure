@@ -5,7 +5,7 @@
 <t:template>
 <jsp:body>
 	<div class="container" id="bye">
-	<h3>Thank you for your visit, <c:out value="${customer}" /></h3>
+	<h3>Thank you for your visit</h3>
 	
 	<p>We are so glad for your use of our system and the trust you have with us to planify your adventures.</p>
 	<p>Come back when you want, we will be waiting you for new adventures together.</p>
