@@ -87,6 +87,7 @@ public class IdentificationFunctionalityControler {
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session){
 		session.invalidate();
-		return "redirect:bye.html";		
+		return "redirect:logout.html";		
 	}
+	
 }
