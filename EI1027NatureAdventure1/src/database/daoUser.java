@@ -50,7 +50,7 @@ public class daoUser implements DaoInterface {
 	@Override
 	public void addElement(Object element) {
 		User u = (User) element;
-		String sql = "INSERT INTO login(user,password,type,language) VALUES(?, ?, ?, ?);";
+		String sql = "INSERT INTO login(id,password,type,language) VALUES(?, ?, ?, ?);";
 		dataSource.update(sql, u.getUser(), u.getPassword(), u.getType(), u.getLanguage());
 	}
 
