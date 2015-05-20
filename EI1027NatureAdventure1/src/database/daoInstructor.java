@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import classes.Activity;
 import classes.Instructor;
 
 @Repository
@@ -192,4 +193,23 @@ public class daoInstructor implements DaoInterface {
 		String sql = "DELETE FROM instruidas WHERE ssnumber = ?;";
 		dataSource.update(sql, ssnum);
 	}
+	
+	
+	//necesitamos que devuelva paquetes de actividades montados que representan las actividades que puede realizar un instructor
+//	public List<Activity> getAllActivitiesFromInstructor(String ssnum){
+//		String sql = "SELECT a.* FROM instruidas AS i JOIN Activity AS a USING (idAct)  WHERE ssnumber = ?;";
+//		List<Activity> list = (List<Activity>) dataSource.queryForList(sql, ssnum, new RowMapper<Activity>() {
+//			
+//			@Override
+//			public Activity mapRow(ResultSet arg0, int arg1) throws SQLException {
+//				// TODO Auto-generated method stub
+//				return null;
+//			}
+//		};
+//		
+		
+	//}
+	
+	
+	
 }
