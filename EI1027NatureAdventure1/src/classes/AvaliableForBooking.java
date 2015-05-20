@@ -11,7 +11,7 @@ public class AvaliableForBooking {
 	private String ssNumber;
 	private Date date;
 	private String schedule;
-	private int AvaliblePlaces;
+	private int AvaliablePlaces;
 	
 	public AvaliableForBooking() {
 		super();
@@ -49,11 +49,11 @@ public class AvaliableForBooking {
 		this.schedule = schedule;
 	}
 
-	public int getAvaliblePlaces() {
-		return AvaliblePlaces;
+	public int getAvaliablePlaces() {
+		return AvaliablePlaces;
 	}
 
-	public void setAvaliblePlaces(int avaliblePlaces) {
-		AvaliblePlaces = avaliblePlaces;
+	public void setAvaliablePlaces(int avaliblePlaces) {
+		AvaliablePlaces = avaliblePlaces;
 	}
 }

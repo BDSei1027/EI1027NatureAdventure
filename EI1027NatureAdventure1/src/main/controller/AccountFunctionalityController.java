@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import classes.Client;
 import classes.User;
+import validators.ClientValidator;
 import validators.UserValidator;
 import service.LogicLayer;
 
@@ -58,7 +59,7 @@ public class AccountFunctionalityController {
 		
 		
 		//Correct field format validator
-		ClientValidator clientValidator = ClientValidator();
+		ClientValidator clientValidator = new ClientValidator();
 		clientValidator.validate(client, bindingResult);		
 		
 		//Any filed error returns to the form again
