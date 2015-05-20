@@ -90,4 +90,12 @@ public class IdentificationFunctionalityControler {
 		return "logout";		
 	}
 	
+	/**
+	 * Method used to redirect from a restricted area
+	 * @return
+	 */
+	@RequestMapping(value="/restricted")
+	public String restricted(){
+		return "restricted";		
+	}
 }
