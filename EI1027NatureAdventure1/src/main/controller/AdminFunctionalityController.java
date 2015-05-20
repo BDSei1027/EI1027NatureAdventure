@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import comparators.sortActivityActive;
+import comparators.sortActivityDate;
+import comparators.sortActivityId;
+import comparators.sortActivityName;
 import comparators.sortInstructorActive;
 import comparators.sortInstructorName;
 import comparators.sortInstructorSurname;
@@ -81,7 +85,7 @@ public class AdminFunctionalityController {
 		if(!user.hasPermissions(0)) return "restricted";
 		
 		LinkedList<Instructor> instructorList = new LinkedList<Instructor>(service.getAllInstructors());
-		sortList(sort, instructorList);
+		sortInstructors(sort, instructorList);
 		
 		model.addAttribute("instructorList", instructorList);
 		
@@ -90,7 +94,7 @@ public class AdminFunctionalityController {
 	}
 
 
-	private void sortList(String sortMode, LinkedList<Instructor> instructorList) {
+	private void sortInstructors(String sortMode, LinkedList<Instructor> instructorList) {
 		if(sortMode != null) switch(sortMode){
 			case "ASCname":
 				Collections.sort(instructorList, new sortInstructorName('a'));
@@ -98,7 +102,7 @@ public class AdminFunctionalityController {
 			case "ASCsurname":
 				Collections.sort(instructorList, new sortInstructorSurname('a'));
 				break;
-			case "ASCacvite":
+			case "ASCactive":
 				Collections.sort(instructorList, new sortInstructorActive('a'));
 				break;
 			case "DESCname":
@@ -252,5 +256,68 @@ public class AdminFunctionalityController {
 		service.removeInstructed(idMonitor, idActivity);
 		
 		return "redirect:/admin/instructorManagement/modify/{idMonitor}.html";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//ACTIVITIES MANAGEMENT PAGE ---------------------------------------------------------------------------------------
+	@RequestMapping(value="/activitiesManagement/")
+	public String activityManagementPage(@ModelAttribute("sortMode") String sort, Model model, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "restricted";
+
+		
+		LinkedList<Activity> activityList = new LinkedList<Activity>(service.getAllActivities());
+		sortActivities(sort, activityList);
+		
+		model.addAttribute("activityList", activityList);
+		
+		return "redirect:/admin/instructorManagement/modify/{idMonitor}.html";
+	}
+
+
+	private void sortActivities(String sortMode, LinkedList<Activity> activityList) {
+		if(sortMode != null) switch(sortMode){
+		case "ASCname":
+			Collections.sort(activityList, new sortActivityName('a'));
+			break;
+		case "ASCid":
+			Collections.sort(activityList, new sortActivityId('a'));
+			break;
+		case "ASCactive":
+			Collections.sort(activityList, new sortActivityActive('a'));
+			break;
+		case "ASCdate":
+			Collections.sort(activityList, new sortActivityDate('a'));
+			break;
+		case "DESCname":
+			Collections.sort(activityList, new sortActivityName('d'));
+			break;
+		case "DESCid":
+			Collections.sort(activityList, new sortActivityId('d'));
+			break;
+		case "DESCactive":
+			Collections.sort(activityList, new sortActivityActive('d'));
+			break;
+		case "DESdate":
+			Collections.sort(activityList, new sortActivityDate('d'));
+			break;
+	}
+		
 	}
 }
