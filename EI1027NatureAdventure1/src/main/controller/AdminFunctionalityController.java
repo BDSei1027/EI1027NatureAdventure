@@ -61,6 +61,17 @@ public class AdminFunctionalityController {
 		
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //INSTRUCTOR MANAGEMENT PAGE ---------------------------------------------------------------------------------------
 	@RequestMapping(value="/instructorManagement")
 	public String instructorsPage(@ModelAttribute("sort") String sort, Model model, HttpSession session){
@@ -102,7 +113,6 @@ public class AdminFunctionalityController {
 		}
 	}
 	
-//INSTRUCTOR ADD----------------------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/instructorManagement/add")
 	public String instructorsAddPage(Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
@@ -129,22 +139,27 @@ public class AdminFunctionalityController {
 		
 		if(bindingResult.hasErrors()) return "admin/instructorManagement/add";
 		
+		//Add the instructor
 		service.addInstructor(instructor);
 		
-		// Crea el usuario para el instructor
-		// Contraseña sera el telefono
+		// Create the user associated with the instructor using its telephone as password.
+		User newUser = createUserFrom(instructor);
+		service.addUser(newUser);
+		
+		return "redirect:/admin/instructorManagement.html";
+	}
+
+
+	private User createUserFrom(Instructor instructor) {
 		User newUser = new User();
 		newUser.setUser(instructor.getIdNumber());
 		newUser.setPassword(instructor.getTelephone());
 		newUser.setLanguage("EN");
 		newUser.setType(1);
-		
-		service.addUser(newUser);
-		
-		return "redirect:/admin/instructorManagement.html";
+		return newUser;
 	}
 	
-//INSTRUCTOR DISABLE ---------------------------------------------------------------------------------------
+
 	@RequestMapping(value="/instructorManagement/disable/{idInstructor}")
 	public String instructorsDisablePage(@PathVariable String idInstructor , HttpSession session){
 		//Check if the user is allowed to enter this page
@@ -168,7 +183,8 @@ public class AdminFunctionalityController {
 		
 		return "redirect:/admin/instructorManagement.html";
 	}
-	
+
+
 	@RequestMapping(value="/instructorManagement/modify/{idInstructor}", method=RequestMethod.GET)
 	public String instructorsModifyPage(@PathVariable String idInstructor, Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
@@ -193,14 +209,14 @@ public class AdminFunctionalityController {
 		if(!user.hasPermissions(0)) return "redirect:restricted.html";
 		
 		//Check errors
-		//TODO Falla este return siempre entra aqui
-		if(bindingResult.hasErrors()) return "redirect:/admin/instructorManagement/modify/{idInstructor}.html";
+		new InstructorValidator().validate(instructor, bindingResult);
+		if(bindingResult.hasErrors()) return "/admin/instructorManagement/modify/{idInstructor}";
 
 		service.updateInstructor(instructor);
 		
 		return "redirect:/admin/instructorManagement.html";
 	}
-	
+
 	@RequestMapping(value="/instructorManagement/modify/addActivity")
 	public String instructorsAddActivity(Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
