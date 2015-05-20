@@ -1,6 +1,10 @@
 package main.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import comparators.sortInstructorActive;
+import comparators.sortInstructorName;
+import comparators.sortInstructorSurname;
 import service.LogicLayer;
 import validators.InstructorValidator;
 import validators.SessionValidator;
@@ -54,20 +61,48 @@ public class AdminFunctionalityController {
 		
 	}
 	
-	
+//INSTRUCTOR MANAGEMENT PAGE ---------------------------------------------------------------------------------------
 	@RequestMapping(value="/instructorManagement")
-	public String instructorsPage(Model model, HttpSession session){
+	public String instructorsPage(@ModelAttribute("sort") String sort, Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
 		if(!user.hasPermissions(0)) return "restricted";
 		
-		model.addAttribute("instructorList", service.getAllInstructors());
+		LinkedList<Instructor> instructorList = new LinkedList<Instructor>(service.getAllInstructors());
+		sortList(sort, instructorList);
+		
+		model.addAttribute("instructorList", instructorList);
 		
 		return "admin/instructorManagement";
 		
 	}
+
+
+	private void sortList(String sortMode, LinkedList<Instructor> instructorList) {
+		if(sortMode != null) switch(sortMode){
+			case "ASCname":
+				Collections.sort(instructorList, new sortInstructorName('a'));
+				break;
+			case "ASCsurname":
+				Collections.sort(instructorList, new sortInstructorSurname('a'));
+				break;
+			case "ASCacvite":
+				Collections.sort(instructorList, new sortInstructorActive('a'));
+				break;
+			case "DESCname":
+				Collections.sort(instructorList, new sortInstructorName('d'));
+				break;
+			case "DESCsurname":
+				Collections.sort(instructorList, new sortInstructorSurname('d'));
+				break;
+			case "DESCactive":
+				Collections.sort(instructorList, new sortInstructorActive('d'));
+				break;
+		}
+	}
 	
+//INSTRUCTOR ADD----------------------------------------------------------------------------------------------------------------
 	@RequestMapping(value="/instructorManagement/add")
 	public String instructorsAddPage(Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
@@ -109,6 +144,7 @@ public class AdminFunctionalityController {
 		return "redirect:/admin/instructorManagement.html";
 	}
 	
+//INSTRUCTOR DISABLE ---------------------------------------------------------------------------------------
 	@RequestMapping(value="/instructorManagement/disable/{idInstructor}")
 	public String instructorsDisablePage(@PathVariable String idInstructor , HttpSession session){
 		//Check if the user is allowed to enter this page
