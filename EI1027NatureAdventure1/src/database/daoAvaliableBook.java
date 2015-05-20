@@ -39,7 +39,7 @@ public class daoAvaliableBook implements DaoInterface {
 				a.setSsNumber(rs.getString("ssnumber"));
 				a.setDate(rs.getDate("date"));
 				a.setSchedule(rs.getString("schedule"));
-				a.setAvaliblePlaces(rs.getInt("avaliableplaces"));
+				a.setAvaliablePlaces(rs.getInt("avaliableplaces"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -53,7 +53,7 @@ public class daoAvaliableBook implements DaoInterface {
 		AvaliableForBooking a = (AvaliableForBooking) element;
 		String sql = "INSERT INTO avaliableforbook (idact, ssnumber, date, schedule, avaliableplaces) "
 				+ "VALUES(?, ?, ?, ?, ?);";
-		dataSource.update(sql, a.getIdAct(), a.getSsNumber(), a.getDate(), a.getSchedule(), a.getAvaliblePlaces());
+		dataSource.update(sql, a.getIdAct(), a.getSsNumber(), a.getDate(), a.getSchedule(), a.getAvaliablePlaces());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class daoAvaliableBook implements DaoInterface {
 	public void updateElement(Object element) {
 		AvaliableForBooking a = (AvaliableForBooking) element;
 		String sql = "UPDATE avaliableforbook SET avaliableplaces = ? WHERE ssnumber = ?, date = ?, schedule = ?;";
-		dataSource.update(sql, a.getAvaliblePlaces(), a.getSsNumber(), a.getDate(), a.getSchedule());
+		dataSource.update(sql, a.getAvaliablePlaces(), a.getSsNumber(), a.getDate(), a.getSchedule());
 	}
 
 	@Override
