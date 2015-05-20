@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import classes.Activity;
+import classes.AvaliableForBooking;
 import classes.Booking;
 import classes.Client;
 import classes.Instructor;
@@ -534,9 +535,31 @@ public class LogicLayer {
 		
 	}
 	
+	/*
+	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
+	 */
 	
 	
 	
+	
+//	/**
+//	 * @param myProposal
+//	 */
+//	public void addAvaliableForBooking(AvaliableForBooking myProposal){
+//		daoAvaliable.addElement(myProposal);
+//	}
+//	
+//	public void deleteAvaliableForBooking(AvaliableForBooking myProposal){
+//		
+//	}
+//	
+//	public void updateAvaliableForBooking(AvaliableForBooking myProposal){
+//		
+//	}
+//	
+//	public AvaliableForBooking getAvaliableForBooking(){
+//		
+//	}
 	
 	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
