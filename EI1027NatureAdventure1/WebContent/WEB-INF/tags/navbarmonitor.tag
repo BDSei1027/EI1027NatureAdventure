@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <%@ tag description="Estructura de la barra de navegacion"
 	pageEncoding="UTF-8"%>
 	

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <%@page contentType="text/html; charset=iso-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,6 +5,7 @@
 <t:template>
 	<jsp:body>
 	<h2>Instructor management</h2>
+	<hr>
 	<h3>Modify instructor <strong>${instructor.name} ${instructor.lastName}</strong> (${instructor.idNumber})</h3>
 	<div class="col-lg-5">
 		<form:form method="post" modelAttribute="instructor" role="form">
@@ -44,8 +44,9 @@
 				<form:input path="expireDate" type="datetime" class="form-control" id="edate" />
 				<form:errors path="expireDate" />
 			</div>
-			
+						
 			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="reset" class="btn btn-danger">Clear</button>
 		</form:form>
 	</div>
 		
@@ -60,6 +61,7 @@
 		
 		<h4>This instructor can teach</h4>
 		<div class="row">
+		
 			<table class="table table-striped">
 		 	<thead>
 		 		<tr>
@@ -70,18 +72,35 @@
 		 	</thead>
 		 	<tbody>
 		 		<c:forEach items="${activities}" var="act">
+		 		<!-- Aviso MODAL -->
+					<div class="modal fade" id="deleteActModal" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h5 class="modal-title">Delete activity <c:out value="${act.name}" /></h5>
+								</div>
+								<div class="modal-body">
+									<p>Do you want to delete Activity <strong><c:out value="${act.name}" /> (<em><c:out value="${act.idAct}" /></em>)</strong>
+									from the instructor <strong><c:out value="${instructor.name}" /> (<em><c:out value="${instructor.idNumber}" />)</em></strong> ?</p>
+								</div>
+								<div class="modal-footer">
+									<a href="removeActivity/${instructor.ssNumber}&${act.idAct}.html"><button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button></a>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
 		 		<tr>
 		 			<td>${act.idAct}</td>
 		 			<td>${act.name}</td>
 		 			
-		 			<td><a href="removeActivity/${instructor.ssNumber}&${act.idAct}.html"><span class="label label-danger">Delete</span></a></td>
+		 			<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteActModal">Delete</button></td>
 		 		</tr>
 		 		</c:forEach>
 		 		</tbody>
 		 	</table>
 	 	</div> <!-- row interno -->
-	
 	</div>
-		
 </jsp:body>
 </t:template>
