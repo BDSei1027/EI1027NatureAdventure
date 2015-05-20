@@ -57,7 +57,7 @@ public class AdminFunctionalityController {
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
-		if(!user.hasPermissions(0)) return "restricted";
+		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
 		
 		return "admin";
 		
@@ -204,7 +204,7 @@ public class AdminFunctionalityController {
 	}
 	
 	@RequestMapping(value="/instructorManagement/modify/{idInstructor}", method=RequestMethod.POST)
-	public String instructorsModifyPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+	public String instructorsModifyPage(@PathVariable String idInstructor, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
@@ -212,7 +212,7 @@ public class AdminFunctionalityController {
 		
 		//Check errors
 		new InstructorValidator().validate(instructor, bindingResult);
-		if(bindingResult.hasErrors()) return "/admin/instructorManagement/modify/{idInstructor}";
+		if(bindingResult.hasErrors()) return "/admin/instructorManagement/modify/"+idInstructor;
 
 		service.updateInstructor(instructor);
 		
@@ -245,7 +245,7 @@ public class AdminFunctionalityController {
 	}
 
 	@RequestMapping(value="/instructorManagement/modify/removeActivity/{idMonitor}&{idActivity}", method=RequestMethod.GET)
-	public String instructorsRemoveActivity(@PathVariable String idMonitor, @PathVariable Integer idActivity, Model model, HttpSession session){
+	public String instructorsRemoveActivity(@PathVariable String idMonitor, @PathVariable Integer idActivity, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
@@ -343,6 +343,46 @@ public class AdminFunctionalityController {
 		
 		service.addActivity(activity);
 		
-		return "/activitiesManagement/add";
+		return "redirect:/activitiesManagement/add";
 	}
+	
+	@RequestMapping(value="/activitiesManagement/disable/{actId}")
+	public String activityManagementDisable(@PathVariable int actId, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "restricted";
+		
+		service.inactiveActivity(actId);
+		
+		return "redirect:/activitiesManagement/add";
+	}
+	
+	@RequestMapping(value="/activitiesManagement/modify/{actId}")
+	public String activityManagementModify(@PathVariable int actId, Model model, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "restricted";
+		
+		model.addAttribute("activity", service.getActivity(actId));
+		
+		return "activitiesManagement/modify/"+actId;
+	}
+	
+	@RequestMapping(value="/activitiesManagement/modify/{actId}", method=RequestMethod.POST)
+	public String activityManagementModify(@PathVariable int actId, @ModelAttribute("activity") Activity activity, BindingResult bindingResult, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "redirect:/restricted";
+		
+		new ActivityValidator().validate(activity, bindingResult);
+		if(bindingResult.hasErrors()) return "/actiiviteesmanagement/modify/"+actId;
+		
+		return "redirect:/activitiesManagement";
+	}
+
+	
+	
 }
