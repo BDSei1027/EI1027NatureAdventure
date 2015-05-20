@@ -253,7 +253,7 @@ public class AdminFunctionalityController {
 
 		service.removeInstructed(idMonitor, idActivity);
 		
-		return "redirect:/admin/instructorManagement/modify/{idMonitor}.html";
+		return "redirect:/admin/instructorManagement/modify/"+idMonitor+".html";
 	}
 	
 	
