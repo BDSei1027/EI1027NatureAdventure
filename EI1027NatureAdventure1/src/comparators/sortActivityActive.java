@@ -16,7 +16,7 @@ public class sortActivityActive implements Comparator<Activity> {
 	public int compare(Activity theActivity, Activity otherActivity) {
 		if(sort == 'a') 
 			if (theActivity.isActive() && !otherActivity.isActive()) return 1;
-		return 0;
+		return -1;
 	}
 
 }

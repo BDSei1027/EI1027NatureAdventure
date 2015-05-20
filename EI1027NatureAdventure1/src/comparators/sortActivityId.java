@@ -14,8 +14,8 @@ public class sortActivityId implements Comparator<Activity> {
 
 	@Override
 	public int compare(Activity theActivity, Activity otherActivity) {
-		if(sort == 'a')
-		return 0;
+		if(sort == 'a') return theActivity.getIdAct() - otherActivity.getIdAct();
+		return otherActivity.getIdAct() - theActivity.getIdAct();
 	}
 
 }
