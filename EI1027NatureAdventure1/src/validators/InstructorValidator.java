@@ -23,6 +23,19 @@ public class InstructorValidator implements Validator {
 			errors.rejectValue("idNumber", "digitos","La longitud debe ser de 9 carácteres");
 		}
 		
+		if(instructor.getName().trim().equals("")){
+			errors.rejectValue("name", "nameContent","Este campo no puede estar vacío");
+		}
+		
+		if(instructor.getLastName().trim().equals("")){
+			errors.rejectValue("lastName", "lastNameContent","Este campo no puede estar vacío");
+		}
+		
+		if(!instructor.getEmail().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
+			errors.rejectValue("email", "emailAdrress","Debes introducir un email valido");
+		}
+		
 	}
 
 }
