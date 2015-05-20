@@ -1,11 +1,8 @@
 package main.controller;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,7 @@ import comparators.sortInstructorActive;
 import comparators.sortInstructorName;
 import comparators.sortInstructorSurname;
 import service.LogicLayer;
+import validators.ActivityValidator;
 import validators.InstructorValidator;
 import validators.SessionValidator;
 import classes.Activity;
@@ -287,37 +285,64 @@ public class AdminFunctionalityController {
 		
 		model.addAttribute("activityList", activityList);
 		
-		return "redirect:/admin/instructorManagement/modify/{idMonitor}.html";
+		return "/activitiesManagement";
 	}
 
 
 	private void sortActivities(String sortMode, LinkedList<Activity> activityList) {
 		if(sortMode != null) switch(sortMode){
-		case "ASCname":
-			Collections.sort(activityList, new sortActivityName('a'));
-			break;
-		case "ASCid":
-			Collections.sort(activityList, new sortActivityId('a'));
-			break;
-		case "ASCactive":
-			Collections.sort(activityList, new sortActivityActive('a'));
-			break;
-		case "ASCdate":
-			Collections.sort(activityList, new sortActivityDate('a'));
-			break;
-		case "DESCname":
-			Collections.sort(activityList, new sortActivityName('d'));
-			break;
-		case "DESCid":
-			Collections.sort(activityList, new sortActivityId('d'));
-			break;
-		case "DESCactive":
-			Collections.sort(activityList, new sortActivityActive('d'));
-			break;
-		case "DESdate":
-			Collections.sort(activityList, new sortActivityDate('d'));
-			break;
-	}
+			case "ASCname":
+				Collections.sort(activityList, new sortActivityName('a'));
+				break;
+			case "ASCid":
+				Collections.sort(activityList, new sortActivityId('a'));
+				break;
+			case "ASCactive":
+				Collections.sort(activityList, new sortActivityActive('a'));
+				break;
+			case "ASCdate":
+				Collections.sort(activityList, new sortActivityDate('a'));
+				break;
+			case "DESCname":
+				Collections.sort(activityList, new sortActivityName('d'));
+				break;
+			case "DESCid":
+				Collections.sort(activityList, new sortActivityId('d'));
+				break;
+			case "DESCactive":
+				Collections.sort(activityList, new sortActivityActive('d'));
+				break;
+			case "DESdate":
+				Collections.sort(activityList, new sortActivityDate('d'));
+				break;
+		}
 		
+	}
+	
+	@RequestMapping(value="/activitiesManagement/add")
+	public String activityManagementAdd(Model model, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "restricted";
+		
+		model.addAttribute("activity", new Activity());
+		
+		return "/activitiesManagement/add";
+	}
+	
+	@RequestMapping(value="/activitiesManagement/add", method=RequestMethod.POST)
+	public String activityManagementAdd(@ModelAttribute("activity") Activity activity, BindingResult bindingResult, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "restricted";
+		
+		new ActivityValidator().validate(activity, bindingResult);
+		if(bindingResult.hasErrors()) return "/activitiesManagement/add";
+		
+		service.addActivity(activity);
+		
+		return "/activitiesManagement/add";
 	}
 }
