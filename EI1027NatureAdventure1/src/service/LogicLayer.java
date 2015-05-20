@@ -37,13 +37,13 @@ import database.daoAvaliableBook;
 @Service
 public class LogicLayer {
 	//DAOS
-	private DaoInterface daoActivity;
-	private DaoInterface daoBooking;
-	private DaoInterface daoClient;
-	private DaoInterface daoInstructor;
-	private DaoInterface daoStatus;
-	private DaoInterface daoUser;
-	private DaoInterface daoAvaliable;
+	private daoActivity daoActivity;
+	private daoBooking daoBooking;
+	private daoClient daoClient;
+	private daoInstructor daoInstructor;
+	private daoStatus daoStatus;
+	private daoUser daoUser;
+	private daoAvaliableBook daoAvaliable;
 	
 	//ID autoincrementales
 	private int innerBookingID;
@@ -66,12 +66,9 @@ public class LogicLayer {
 	 * Pide una conexion a traves de los daos de la ID max
 	 */
 	private void inicializarIds() {
-		daoBooking daoBook = (daoBooking) this.daoBooking;
-		daoActivity daoAct = (daoActivity) this.daoActivity;
-		
-		this.innerBookingID = daoBook.getMaxInnerID();
-		this.activeBookingID = daoBook.getMaxActiveID();
-		this.activityID = daoAct.getMaxID();
+		this.innerBookingID = daoBooking.getMaxInnerID();
+		this.activeBookingID = daoBooking.getMaxActiveID();
+		this.activityID = daoActivity.getMaxID();
 	}
 
 	
@@ -241,7 +238,7 @@ public class LogicLayer {
 	 * Set inactive an activity from the database. The ssNumber is required
 	 * @param idActivity of the activity
 	 */
-	public void inactiveActivity(String code){
+	public void inactiveActivity(int code){
 		Activity myActivity = this.getActivity(code);
 		if (myActivity==null) return;
 		myActivity.setIsActive(false);
@@ -254,7 +251,7 @@ public class LogicLayer {
 	 * @param The activity
 	 */
 	public void inactiveActivity(Activity activity){
-		this.inactiveActivity(String.valueOf(activity.getIdAct()));	
+		this.inactiveActivity(activity.getIdAct());	
 	}
 	
 	/**
@@ -262,7 +259,7 @@ public class LogicLayer {
 	 * @param The activity
 	 */
 	public void updateActivity(Activity activity){
-		if (this.getActivity(String.valueOf(activity.getIdAct()))==null) return;
+		if (this.getActivity(activity.getIdAct())==null) return;
 		daoActivity.updateElement(activity);
 	}
 	
@@ -270,8 +267,17 @@ public class LogicLayer {
 	 * Given a code a activity is delivered. If the activity doesn't exist in the database it returns null 
 	 *@return an activity or null
 	 */
-	public Activity getActivity(String code){
+	public Activity getActivity(int code){
 		Activity myActivity = (Activity) daoActivity.getElement(code);
+		return myActivity;
+	}
+	
+	/**Given a code a activity is delivered. If the activity doesn't exist in the database it returns null 
+	 * @param name
+	 * @return an activity or null
+	 */
+	public Activity getActivity(String name){
+		Activity myActivity = (Activity) daoActivity.getElement(name);
 		return myActivity;
 	}
 	
