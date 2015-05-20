@@ -62,7 +62,7 @@ public class LogicLayer {
 
 	
 	/**
-	 * Pide uan conexion a traves de los daos de la ID max
+	 * Pide una conexion a traves de los daos de la ID max
 	 */
 	private void inicializarIds() {
 		daoBooking daoBook = (daoBooking) this.daoBooking;
@@ -256,15 +256,12 @@ public class LogicLayer {
 		this.inactiveActivity(String.valueOf(activity.getIdAct()));	
 	}
 	
-	
-	
-	
 	/**
 	 * Update an activity from the database. This operation is only allowed when the activity was registered before in the database
 	 * @param The activity
 	 */
 	public void updateActivity(Activity activity){
-		if (this.getActivity(""+ activity.getIdAct())==null) return;
+		if (this.getActivity(String.valueOf(activity.getIdAct()))==null) return;
 		daoActivity.updateElement(activity);
 	}
 	
@@ -317,6 +314,7 @@ public class LogicLayer {
 	 * @param booking
 	 */
 	public void deleteBooking(Booking booking){
+		if(this.getBooking(String.valueOf(booking.getInnerIdBooking()))==null) return;
 		this.deleteBooking(String.valueOf(booking.getInnerIdBooking()));
 		
 	}
@@ -346,16 +344,30 @@ public class LogicLayer {
 	
 	
 	
-	/** Add a status to the database
+	/** Add a status in the database
 	 * @param status
 	 */
 	public void addStatus(Status status){
 		daoStatus.addElement(status);
 	}
 	
+	/** Delete a status from the database
+	 * @param status
+	 */
 	public void deleteStatus(Status status){
-		
+		if(this.getStatus(String.valueOf(status.getIDbooking()))==null) return;
+		daoStatus.deleteElement(status);
 	}
+	
+	/**update a status in the database
+	 * @param status
+	 */
+	public void updateStatus(Status status){
+		if (this.getStatus(String.valueOf(status.getIDbooking()))==null) return;
+		daoStatus.updateElement(status);
+	}
+	
+	
 	
 	/** Retrieves a status. InnerIdBooking is required
 	 * @param idBooking
@@ -367,6 +379,7 @@ public class LogicLayer {
 		
 	}
 	
+	
 	/** Retrieves a status.
 	 * @param booking
 	 * @return The status
@@ -375,6 +388,9 @@ public class LogicLayer {
 		return this.getStatus(String.valueOf(booking.getInnerIdBooking()));
 	}
 	
+	/** Retrieve all the status from the database
+	 * @return
+	 */
 	public Collection<Status> getAllStatus(){
 		Map<Integer,Status> allStatus = (Map<Integer,Status>) daoStatus.getElements();
 		Collection<Status> allStatusClasses= allStatus.values();
@@ -389,6 +405,11 @@ public class LogicLayer {
 	 * USER ZONE
 	 */
 	
+	/** Login a user in the system
+	 * @param user
+	 * @param password
+	 * @return The user data
+	 */
 	public User loginUser(String user, String password) {
 		User u = (User) daoUser.getElement(user.trim());
 		if ( u == null ) return null;
@@ -399,12 +420,18 @@ public class LogicLayer {
 		else return null; // Bad Login
 	}
 	
+	/** Add a user in the database
+	 * @param user
+	 */
 	public void addUser(User user){
 		user.setPassword(encryptor.encryptPassword(user.getPassword()));
 		daoUser.addElement(user);
 		
 	}
 	
+	/** Delete a user from the database
+	 * @param identifier
+	 */
 	public void deleteUser(String identifier){
 		User myUser = this.getUser(identifier);
 		if (myUser==null) return;
@@ -412,18 +439,28 @@ public class LogicLayer {
 		
 	}
 	
+	/** Update a user in the databse
+	 * @param user
+	 */
 	public void updateUser(User user){
 		if (this.getUser(String.valueOf(user.getUser()))==null) return;
 		daoUser.updateElement(user);
 		
 	}
 	
+	/** Retrieve the desired user form the database. The identifier is required
+	 * @param identifier
+	 * @return
+	 */
 	public User getUser(String identifier){
 		User myUser = (User) daoUser.getElement(identifier);
 		return myUser;
 		
 	}
 	
+	/** Retrieves all the users from the database
+	 * @return
+	 */
 	public Collection<User> getAllUsers(){
 		Map<String,User> allUsers =  (Map<String, User>) daoUser.getElements();
 		Collection<User> allUsersClasses = allUsers.values();
@@ -437,23 +474,44 @@ public class LogicLayer {
 	 */
 	
 	
+	/** Add a client in the database
+	 * @param client
+	 */
 	public void addClient(Client client){
 		daoClient.addElement(client);
 		
 	}
 	
+	/** Delete a client from the database
+	 * @param client
+	 */
 	public void deleteClient(Client client){
+		if(this.getClient(client.getClientId())==null) return;
 		this.deleteClient(client.getClientId());
 		
 	}
 	
+	/** Delete a client in the database. The clientID is required
+	 * @param clientID
+	 */
 	public void deleteClient(String clientID){
 		Client myClient = this.getClient(clientID);
 		if (myClient==null) return;
 		daoClient.deleteElement(myClient);
 	}
 	
+	/** Upadate a client in the database
+	 * @param client
+	 */
+	public void updateClient(Client client){
+		if (this.getClient(client.getClientId())==null) return;
+		daoClient.updateElement(client);
+	}
 	
+	/** Retrieves the desired Client. The clientID is required
+	 * @param clientID
+	 * @return
+	 */
 	public Client getClient(String clientID){
 		Client myClient= (Client) daoClient.getElement(clientID);
 		return myClient;
