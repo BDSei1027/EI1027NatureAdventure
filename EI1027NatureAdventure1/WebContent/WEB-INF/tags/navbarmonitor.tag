@@ -13,10 +13,11 @@
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Desplegable monitor</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
-    </button>    
+    </button>
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">

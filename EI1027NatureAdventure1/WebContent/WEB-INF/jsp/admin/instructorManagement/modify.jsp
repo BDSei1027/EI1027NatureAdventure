@@ -76,15 +76,28 @@
 					<div class="modal fade" id="deleteActModal" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
+								<div class="modal-header" id="delecteActivityModalHead">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h5 class="modal-title">Delete activity <c:out value="${act.name}" /></h5>
+									<h4 class="modal-title">Delete activity <c:out value="${act.name}" /></h4>
 								</div>
-								<div class="modal-body">
-									<p>Do you want to delete Activity <strong><c:out value="${act.name}" /> (<em><c:out value="${act.idAct}" /></em>)</strong>
-									from the instructor <strong><c:out value="${instructor.name}" /> (<em><c:out value="${instructor.idNumber}" />)</em></strong> ?</p>
-								</div>
-								<div class="modal-footer">
+								<div class="modal-body" id="deleteActivityModalBody">
+									<div class="row">
+										<p style="padding-left: 15px">Are you sure you want delete the following activity from this instructor?</p>
+									</div>
+									<div class="row">
+										<div class="col-lg-6 text-center" style="padding-left: 25px; padding-right: 25px;">
+											<p style="border-bottom: 1px solid #E5E5E5"><strong>Instructor</strong></p>
+											<p><c:out value="${instructor.name}" /> <c:out value="${instructor.lastName}" /></p>
+											<p>SS number: <c:out value="${instructor.ssNumber}" /></p>
+										</div>
+										<div class="col-lg-6 text-center" style="padding-left: 25px; padding-right: 25px;">
+											<p style="border-bottom: 1px solid #E5E5E5"><strong>Activity</strong></p>
+											<p><c:out value="${act.name}" /></p>
+											<p>ID activity: <c:out value="${act.idAct}" /></p>
+										</div>
+									</div>
+								</div>	
+								<div class="modal-footer" id="deleteActivityModalFooter">
 									<a href="removeActivity/${instructor.ssNumber}&${act.idAct}.html"><button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button></a>
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 								</div>

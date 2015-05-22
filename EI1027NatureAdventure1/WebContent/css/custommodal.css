@@ -1,0 +1,43 @@
+/* Fichero CSS solo para los modals */
+
+.modal-header {
+	background-color: #5cb85c;
+	color:white !important;
+	text-align: center;
+	font-size: 30px;
+	padding-bottom: 25px;
+}
+
+.modal-body {
+	padding: 30px 50px;
+}
+
+.modal-footer {
+	background-color: #f9f9f9;
+}
+
+/* Login */
+
+#LoginButton {
+	width: 100%;
+	padding: 10px;
+}
+/*#LoginModalHead {
+	background-color: #5cb85c;
+	color:white !important;
+	text-align: center;
+	font-size: 30px;
+	padding-bottom: 25px;
+}
+
+#LoginModalBody {
+	padding: 30px 50px;
+}
+
+#LoginModalFooter {
+	background-color: #f9f9f9;
+}
+
+*/
+
+/* Delecte activity from instructor */

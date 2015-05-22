@@ -4,24 +4,28 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <t:template>
 <jsp:body>
+
+<!-- HTML -->
 	<h2>Instructor management</h2>
-	<p>The following table lists all the instructor, which are in the data base.
-	<br>
-	To see the activities of the instructor, click on <span class="label label-info">Edit</span></p>
+	<p>The following table lists all the instructor, which are in the data base.</p>
+	<p>To see the activities of the instructor, click on <span class="label label-info">Edit</span></p>
 	<div class="text-center"><a href="instructorManagement/add.html"><button class="btn btn-primary">Add instructor</button></a></div>
 	<h3>List of instructors</h3>
-	<table class="table table-striped">
+	<table id="instructorsTable"  
+	  data-toggle="table" 
+      	  data-classes="table table-no-bordered"
+         data-query-params="queryParams"
+         data-pagination="true">
 		<thead>
 	        <tr>
-	            <th>Name</th>
-	            <th>Last name</th>
-	            <th>ssNumber</th>
-	            <th>idNumber</th>
-	            <th>Email</th>
-	            <th>Telephone</th>
-	            <th>Expire date</th>
-	            <th>is Active?</th>
-	            <th></th>
+	            <th data-field="name" data-sortable="true">Name</th>
+	            <th data-field="lname" data-sortable="true">Last name</th>
+	            <th data-field="ssn" data-sortable="true">ssNumber</th>
+	            <th data-field="idn" data-sortable="true">idNumber</th>
+	            <th data-field="email" data-sortable="true">Email</th>
+	            <th data-field="tlf" data-sortable="true">Telephone</th>
+	            <th data-field="expire" data-sortable="true">Expire date</th>
+	            <th data-field="active" data-sortable="true">is Active?</th>
 	            <th></th>
 	            <th></th>
 	        </tr>
@@ -54,10 +58,26 @@
 	        				<a href="instructorManagement/enable/${instructor.ssNumber}.html"><span class="label label-success">Activate</span></a>
 	        			</c:otherwise>
 	        		</c:choose>
-	        	<td><a href="instructorManagement/delete/${instructor.ssNumber}.html"><span class="label label-danger">Delete</span></a></td>
 	        </tr>
 	        </c:forEach>
 		</tbody>
  	</table>
+	 
+<script>
+function queryParams() {
+    return {
+        type: 'owner',
+        sort: 'updated',
+        direction: 'desc',
+        per_page: 100,
+        page: 1
+    };
+}</script>
+
+<script>
+    var $table = $('#instructorsTable');
+    $(function () {
+    });
+</script>
 </jsp:body>
 </t:template>

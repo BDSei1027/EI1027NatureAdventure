@@ -12,20 +12,20 @@
 <title>NatureAdventure</title>
 
 <!-- Bootstrap -->
-<link href="${pageContext.request.contextPath}/css/bootstrap.css"
-    rel="stylesheet">
-<link
-    href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css"
-    rel="stylesheet">
-<link
-    href="${pageContext.request.contextPath}/css/custom.css"
-    rel="stylesheet">
-<!-- <script 
-	src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script 
-  src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/custommodal.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap-table.css" rel="stylesheet">
+
+
+
+<!-- <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> -->
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.7.0/bootstrap-table.min.js"></script>
 </head>
 
 <body class="container">
@@ -69,7 +69,7 @@
     	</c:otherwise>
     </c:choose>
     <!-- Cuerpo -->
-    <div class="container">
+    <div class="container-fluid">
         <jsp:doBody />
     </div>
     
