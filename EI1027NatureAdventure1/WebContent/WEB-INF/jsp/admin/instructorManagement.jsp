@@ -13,9 +13,9 @@
 	<h3>List of instructors</h3>
 	<table id="instructorsTable"  
 	  data-toggle="table" 
-      	  data-classes="table table-no-bordered"
-         data-query-params="queryParams"
-         data-pagination="true">
+      data-classes="table table-no-bordered"
+      data-query-params="queryParams"
+      data-pagination="true">
 		<thead>
 	        <tr>
 	            <th data-field="name" data-sortable="true">Name</th>
@@ -60,7 +60,6 @@
 	        		</c:choose>
 	        </tr>
 	        </c:forEach>
-		</tbody>
  	</table>
 	 
 <script>

@@ -4,7 +4,6 @@
 
 <t:template>
 <jsp:body>
-<div class="container">
 	<h2>Example</h2>
 	<p>This is the example page to go to the links</p>
 	
@@ -12,6 +11,5 @@
 	<ul>
 		<li><a href="test.html">LINK</a></li>
 	</ul>
-</div>
 </jsp:body>
 </t:template>

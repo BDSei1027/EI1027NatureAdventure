@@ -43,6 +43,7 @@
 	<bean id="user" class="classes.User" />
 	<bean id="avaliableforbooking" class="classes.AvaliableForBooking" />
 	<!-- Repositories -->
+	
 	<bean id="activityDAO" class="database.daoActivity">
 		<property name="dataSource" ref="jdbc" />
 	</bean>

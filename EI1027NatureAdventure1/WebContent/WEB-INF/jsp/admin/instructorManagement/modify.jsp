@@ -27,7 +27,7 @@
 			<div class="form-group">
 				<form:label path="idNumber" for="idn" class="control-label">ID number: </form:label>
 				<form:input path="idNumber" type="text" class="form-control" id="idn" />
-				<form:errors path="idNumber" />
+				<form:errors path="idNumber" class="" />
 			</div>
 			<div class="form-group">
 				<form:label path="email" for="email" class="control-label">Email: </form:label>
