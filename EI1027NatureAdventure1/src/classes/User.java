@@ -7,7 +7,7 @@ public class User {
 	
 	private String user;
 	private String password;
-	private int type;
+	private int type = -1;
 	private String language;
 
 	public User() {
