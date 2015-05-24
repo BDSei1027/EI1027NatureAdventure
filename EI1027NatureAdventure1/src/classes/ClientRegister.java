@@ -25,7 +25,21 @@ public class ClientRegister {
 		this.password = cl.getPassword();
 		this.language = cl.getLanguage();
 		this.tocs = cl.isTocs();
-		
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if ( obj == null ) return false;
+        if ( this == obj ) return true;
+        if ( ! (obj instanceof ClientRegister ) ) return false;
+        
+        ClientRegister c = (ClientRegister) obj;
+        if (!this.id.equals(c.getId())) return false;
+        if (!this.name.equals(c.getName())) return false;
+        if (!this.lastName.equals(c.getLastName())) return false;
+        if (!this.language.equals(c.getLanguage())) return false;
+        if (this.tocs != c.isTocs()) return false;
+        return true;
 	}
 	
 	public String getId() {

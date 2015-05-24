@@ -42,6 +42,8 @@
 	<bean id="status" class="classes.Status" />
 	<bean id="user" class="classes.User" />
 	<bean id="avaliableforbooking" class="classes.AvaliableForBooking" />
+	<bean id="clientregister" class="classes.ClientRegister" />
+	
 	<!-- Repositories -->
 	
 	<bean id="activityDAO" class="database.daoActivity">
