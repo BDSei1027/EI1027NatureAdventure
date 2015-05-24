@@ -31,6 +31,13 @@
 					<form:errors path="lastName" class="text-danger" />
 				</div>
 				<div class="row form-group">
+					<form:label path="email" for="email" class="col-lg-1 control-label">Email: </form:label>
+					<div class="col-lg-11">
+						<form:input path="email" type="email" class="form-control" id="email" />
+					</div>
+					<form:errors path="email" class="text-danger" />
+				</div>
+				<div class="row form-group">
 					<form:label path="id" for="id" class="col-lg-1 control-label">ID number: </form:label>
 					<div class="col-lg-11">
 						<form:input path="id" type="text" class="form-control" id="id" />
