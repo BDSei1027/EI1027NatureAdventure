@@ -15,11 +15,6 @@ public class ClientValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Client client = (Client) obj;
-		if (client.getClientName().trim().equals("")){
-			errors.rejectValue("nombre", "obligatorio",
-                    "Es necesario introducir un valor");
-
-		}
 		
 		if(client.getClientName().trim().equals("")){
 			errors.rejectValue("name", "nameContent","Este campo no puede estar vacío");
