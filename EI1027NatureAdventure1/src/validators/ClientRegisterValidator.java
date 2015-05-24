@@ -21,6 +21,10 @@ public class ClientRegisterValidator implements Validator{
 		if(client.getLastName().trim().equals("")){
 			errors.rejectValue("lastName", "lastNameContent","Este campo no puede estar vacío");
 		}
+		if(!client.getEmail().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
+					errors.rejectValue("email", "emailAdrress","Debes introducir un email valido");
+		}
 		if(!client.isTocs()){
 			errors.rejectValue("tocs", "tocsContent","Debes aceptar las condiciones para poder registrarte");
 		}
