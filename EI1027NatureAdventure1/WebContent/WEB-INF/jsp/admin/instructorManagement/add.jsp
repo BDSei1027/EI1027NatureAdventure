@@ -10,6 +10,7 @@
 		<div class="panel-title">Form</div>
 	</div>
 	<div class="panel-body">
+		<div class="container-fluid">
 		<form:form method="post" modelAttribute="instructor" role="form">
 			<div class="row form-group">
 				<form:label path="name" for="name" class="control-label">Name: </form:label>
@@ -45,6 +46,7 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 			<button type="reset" class="btn btn-danger">Clear</button>
 		</form:form>
+		</div>
  	</div>
  </div>
 </jsp:body>

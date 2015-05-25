@@ -1,5 +1,8 @@
 package classes;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ClientRegister {
 	/*
 	 * Esta clase es una clase envoltura para recibir el registro

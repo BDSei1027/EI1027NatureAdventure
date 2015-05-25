@@ -43,6 +43,7 @@
 	<bean id="user" class="classes.User" />
 	<bean id="avaliableforbooking" class="classes.AvaliableForBooking" />
 	<bean id="clientregister" class="classes.ClientRegister" />
+	<bean id="searchinstructor" class="classes.SearchInstructor" />
 	
 	<!-- Repositories -->
 	

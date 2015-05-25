@@ -16,7 +16,6 @@ footer p {
 	font-size: 10px;
 }
 
-
 #navtext {
 	margin: 9px 7px;
 	font-size: 11px;
@@ -41,5 +40,10 @@ form login {
 	width: 400px;
 	padding-bottom: 10px; 
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.13);
+}
+
+.popover-content {
+	max-width: none;
+	width: 250px
 }
 

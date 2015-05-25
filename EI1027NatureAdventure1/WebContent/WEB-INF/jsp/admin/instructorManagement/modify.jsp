@@ -47,6 +47,14 @@
 						
 			<button type="submit" class="btn btn-primary">Submit</button>
 			<button type="reset" class="btn btn-danger">Clear</button>
+			<c:choose>
+	        	<c:when test="${instructor.isActive()}">
+	        		<a href="../disable/${instructor.ssNumber}.html"><button class="btn btn-warning">Set inactive</button></a>	
+	        	</c:when>
+	        	<c:otherwise>
+	        		<a href="../enable/${instructor.ssNumber}.html"><button class="btn btn-success">Set active</button></a>
+	        	</c:otherwise>
+	        </c:choose>
 		</form:form>
 	</div>
 		
