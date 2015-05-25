@@ -61,7 +61,6 @@ public class LogicLayer {
 		
 	}
 
-	
 	/**
 	 * Pide una conexion a traves de los daos de la ID max
 	 */
@@ -80,7 +79,6 @@ public class LogicLayer {
 	/*
 	 * INSTRUCTOR ZONE
 	 */
-	
 	
 	/**
 	 * Add an instructor in the database.
@@ -106,7 +104,6 @@ public class LogicLayer {
 		
 	}
 	
-
 	public void activeInstructor(String code) {
 		Instructor myInstructor= this.getInstructor(code);
 		if (myInstructor==null)	return;
@@ -115,7 +112,6 @@ public class LogicLayer {
 	    this.updateInstructor(myInstructor);
 		
 	}
-	
 	
 	/**
 	 * Set inactive an instructor from the database.
@@ -126,8 +122,6 @@ public class LogicLayer {
 		this.inactiveInstructor(instructor.getIdNumber());
 		
 	}
-	
-	
 	
 	/**
 	 * Update an instructor from the database. This operation is only allowed when the instructor was registered before in the database
@@ -142,21 +136,15 @@ public class LogicLayer {
 	 * Given a ssNumber a Instructor is delivered. If the instructor doesn't exist in the database it returns null 
 	 *@return an instructor or null
 	 */
-	
 	public Instructor getInstructor(String ssNumber){
 		Instructor myInstructor = (Instructor) daoInstructor.getElement(ssNumber);
 		return myInstructor;
 	}
 	
-	
-	
-	
-	
 	public Instructor getInstructor(User user){
 		Instructor myInstructor= (Instructor) daoInstructor.getElement(user.getUser());
 		return myInstructor;
 	}
-	
 	
 	/**
 	 * Get all the instructors from the database
@@ -188,14 +176,14 @@ public class LogicLayer {
 	 * @return
 	 */
 	public Collection<Activity> getAllActivities(Instructor instructor){
-		daoInstructor myDaoInstructor = (daoInstructor) daoInstructor;
-		List <Integer> myData = (List<Integer>) myDaoInstructor.getActivitiesInstructor(instructor.getSsNumber());
-		Collection<Activity> myActivities= new LinkedList<Activity>();
-		for(int i=0;i<myData.size();i++){
-			myActivities.add((Activity) daoActivity.getElement(myData.get(i)));
-		}
-		return myActivities;
-		
+//		daoInstructor myDaoInstructor = (daoInstructor) daoInstructor;
+//		List <Integer> myData = (List<Integer>) myDaoInstructor.getActivitiesInstructor(instructor.getSsNumber());
+//		Collection<Activity> myActivities= new LinkedList<Activity>();
+//		for(int i=0;i<myData.size();i++){
+//			myActivities.add((Activity) daoActivity.getElement(myData.get(i)));
+//		}
+//		return myActivities;
+		return daoInstructor.getAllActivitiesFromInstructor(instructor.getSsNumber());
 	}
 	
 	/**
@@ -218,11 +206,10 @@ public class LogicLayer {
 		dao.deleteInstructorFromActivity(idMonitor, idActivity);
 	}
 	
+	
 	/*
 	 * ACTIVITY ZONE
 	 */
-	
-	
 	
 	/**
 	 * Add a activity in the database.
@@ -244,7 +231,6 @@ public class LogicLayer {
 		myActivity.setIsActive(false);
 		this.updateActivity(myActivity);	
 	}
-	
 	
 	/**
 	 * Set inactive an activity from the database.
@@ -296,8 +282,7 @@ public class LogicLayer {
 	/*
 	 * BOOKING ZONE
 	 */
-	
-	
+
 	/** Add the booking in the database
 	 * @param booking
 	 */
@@ -306,7 +291,6 @@ public class LogicLayer {
 		booking.setInnerIdBooking(innerBookingID);
 		daoBooking.addElement(booking);
 	}
-	
 	
 	/** Delete the booking in the database. The innerBooking is required.
 	 * @param id
@@ -349,8 +333,6 @@ public class LogicLayer {
 	 * STATUS ZONE
 	 */
 	
-	
-	
 	/** Add a status in the database
 	 * @param status
 	 */
@@ -373,8 +355,6 @@ public class LogicLayer {
 		if (this.getStatus(String.valueOf(status.getIDbooking()))==null) return;
 		daoStatus.updateElement(status);
 	}
-	
-	
 	
 	/** Retrieves a status. InnerIdBooking is required
 	 * @param idBooking
@@ -405,9 +385,6 @@ public class LogicLayer {
 	}
 	
 	
-	
-	
-
 	/*
 	 * USER ZONE
 	 */
@@ -480,7 +457,6 @@ public class LogicLayer {
 	 * CLIENT ZONE
 	 */
 	
-	
 	/** Add a client in the database
 	 * @param client
 	 */
@@ -523,7 +499,6 @@ public class LogicLayer {
 		Client myClient= (Client) daoClient.getElement(clientID);
 		return myClient;
 	}
-	
 	
 	/** Retrieves the desired Client
 	 * @param user

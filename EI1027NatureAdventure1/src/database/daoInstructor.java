@@ -194,21 +194,35 @@ public class daoInstructor implements DaoInterface {
 		dataSource.update(sql, ssnum);
 	}
 	
-	
-	//necesitamos que devuelva paquetes de actividades montados que representan las actividades que puede realizar un instructor
-//	public List<Activity> getAllActivitiesFromInstructor(String ssnum){
-//		String sql = "SELECT a.* FROM instruidas AS i JOIN Activity AS a USING (idAct)  WHERE ssnumber = ?;";
-//		List<Activity> list = (List<Activity>) dataSource.queryForList(sql, ssnum, new RowMapper<Activity>() {
-//			
-//			@Override
-//			public Activity mapRow(ResultSet arg0, int arg1) throws SQLException {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//		};
-//		
-		
-	//}
+	/**
+	 * Method to obtain the activities that the instructor can supervise
+	 * @param ssnum Instructor's identifier
+	 * @return List<Activity> Activities that the instructor can teach
+	 */
+	public List<Activity> getAllActivitiesFromInstructor(String ssnum){
+		String sql = "SELECT act.* FROM instruidas AS i JOIN activity AS act USING (idAct) WHERE i.ssnumber = ?;";
+		List<Activity> list = dataSource.query(sql, new Object[] {ssnum}, new RowMapper<Activity>() {
+			@Override
+			public Activity mapRow(ResultSet rs, int intRow) throws SQLException {
+				Activity activity = new Activity();
+				try {
+					activity.setIdAct(rs.getInt("idact"));
+					activity.setName(rs.getString("name"));
+					activity.setLevel(rs.getInt("leveldif"));
+					activity.setSchedule(rs.getString("schedule"));
+					activity.setPrice(rs.getFloat("price"));
+					activity.setPlace(rs.getString("place"));
+					activity.setMinimumGroup(rs.getInt("mingroup"));
+					activity.setMaximumGroup(rs.getInt("maxgroup"));
+					activity.setIsActive(rs.getBoolean("isactive"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return activity;			
+			}
+		});
+		return list;
+	}
 	
 	
 	
