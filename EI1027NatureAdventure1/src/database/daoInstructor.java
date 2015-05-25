@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import classes.Activity;
 import classes.Instructor;
-
+//TODO getAllActivitiesFromInstructor(ssnum)
 @Repository
 public class daoInstructor implements DaoInterface {
 
