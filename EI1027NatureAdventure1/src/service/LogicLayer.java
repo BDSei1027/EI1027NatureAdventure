@@ -157,6 +157,27 @@ public class LogicLayer {
 	}
 	
 	/**
+	 * Get all the instructors, which are active
+	 * @return A collection of active Instructors 
+	 */
+	public Object getAllInstructorsActive() {
+		Map<String, Instructor> map = (Map<String, Instructor>) daoInstructor.getElementsActive();
+		Collection<Instructor> collection = map.values();
+		return collection;
+	}
+	
+	/**
+	 * Get all the instructors, which are inactive
+	 * @return A collection of inactive Instructors 
+	 */
+	public Object getAllInstructorsInacctive() {
+		Map<String, Instructor> map = (Map<String, Instructor>) daoInstructor.getElementsInactive();
+		Collection<Instructor> collection = map.values();
+		return collection;
+	}
+
+	
+	/**
 	 * change the active property of the instructor in the database
 	 * @param The instructor 
 	 */

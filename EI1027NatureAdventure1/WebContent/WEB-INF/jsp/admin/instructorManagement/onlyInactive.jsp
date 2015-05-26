@@ -10,10 +10,11 @@
 	<h2>Instructor management</h2>
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">
-			<ul class="nav na${pageContext.request.contextPath}/admin/instructorManagement.html">All</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyActive.html">Only active</a>
-				<li class="active"><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyInactive.html">Only inactive</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/add.html">New instructor</a></li>
+			<ul class="nav nav-pills nav-stacked">
+				<li role="presentation"><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">All</a></li>
+				<li role="presentation"><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyActive.html">Only active</a>
+				<li role="presentation" class="active"><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyInactive.html">Only inactive</a></li>
+				<li role="presentation"><a href="${pageContext.request.contextPath}/admin/instructorManagement/add.html">New instructor</a></li>
 			</ul>
 		</div>
 		<div id="help" class="col-lg-10">
@@ -29,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-		
+	<h3>List of the inactive instructors</h3>
 	<t:tablaInstructors />
 
 </jsp:body>

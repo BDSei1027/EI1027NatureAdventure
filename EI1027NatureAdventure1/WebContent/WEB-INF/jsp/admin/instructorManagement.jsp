@@ -30,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-		
+	<h3>List of the instructors</h3>
 	<t:tablaInstructors />
 
 </jsp:body>

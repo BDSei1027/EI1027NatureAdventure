@@ -223,6 +223,28 @@ public class daoInstructor implements DaoInterface {
 		});
 		return list;
 	}
+
+	public Map<String, Instructor> getElementsActive() {
+		String sql = "SELECT * FROM instructor WHERE isactive = true;";
+		Map<String, Instructor> map = new HashMap<String, Instructor>();
+		List<Instructor> list = dataSource.query(sql, new InstructorMapper());
+		for(Instructor i: list) {
+			i.setActivities(getActivitiesInstructor(i.getSsNumber()));
+			map.put(i.getSsNumber(), i);
+		}
+		return map;
+	}
+
+	public Map<String, Instructor> getElementsInactive() {
+		String sql = "SELECT * FROM instructor WHERE isactive = false;";
+		Map<String, Instructor> map = new HashMap<String, Instructor>();
+		List<Instructor> list = dataSource.query(sql, new InstructorMapper());
+		for(Instructor i: list) {
+			i.setActivities(getActivitiesInstructor(i.getSsNumber()));
+			map.put(i.getSsNumber(), i);
+		}
+		return map;
+	}
 	
 	
 	

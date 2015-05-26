@@ -91,7 +91,35 @@ public class AdminFunctionalityController {
 		
 	}
 
+	@RequestMapping(value="/instructorManagement/onlyActive")
+	public String instructorsPageActive(Model model, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "restricted";
+		
+		
+		
+		model.addAttribute("instructorList", service.getAllInstructorsActive());
+		
+		return "admin/instructorManagement/onlyActive";
+	}
+	
+	@RequestMapping(value="/instructorManagement/onlyInactive")
+	public String instructorsPageInactive(Model model, HttpSession session){
+		//Check if the user is allowed to enter this page
+		SessionValidator user = new SessionValidator(session);
+		if(!user.isLogged()) return "redirect:/login.html";;
+		if(!user.hasPermissions(0)) return "restricted";
+		
+		
+		
+		model.addAttribute("instructorList", service.getAllInstructorsInacctive());
+		
+		return "admin/instructorManagement/onlyInactive";
+	}
 
+	
 	private void sortInstructors(String sortMode, LinkedList<Instructor> instructorList) {
 		if(sortMode != null) switch(sortMode){
 			case "ASCname":

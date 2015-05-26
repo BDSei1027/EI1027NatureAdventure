@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<!-- TABLA -->
-		<h3>List of instructors</h3>
 		<table id="instructorsTable"  
 		  data-toggle="table" 
 	      data-classes="table table-no-bordered"
