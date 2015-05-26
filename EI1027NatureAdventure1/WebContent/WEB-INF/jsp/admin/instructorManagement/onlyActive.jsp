@@ -11,8 +11,8 @@
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">All</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyActive.html">Only active</a>
+				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">All</a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyActive.html">Only active</a>
 				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyInactive.html">Only inactive</a></li>
 				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/add.html">New instructor</a></li>
 			</ul>
