@@ -1,3 +1,4 @@
+<%@page contentType="text/html; charset=iso-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 
@@ -7,6 +8,7 @@
 	<p>Congratulation, you decided to sign up in our system.</p>
 	<p>The privileage of been registered are:</p>
 	<ul>
+		<li>Faster bookings</li>
 		<li>Save your bookings.</li>
 		<li>Subscribe to our newsletter.</li>
 	</ul>
@@ -15,41 +17,41 @@
 			<h3 class="panel-title">Sign up form</h3>
 		</div>
 		<div class="panel-body">
-			<form:form method="post" modelAttribute="ClientRegister" role="form">
+			<form:form method="post" modelAttribute="register" action="${pageContext.request.contextPath}/register.html" role="form">
 				<div class="row form-group">
-					<form:label path="name" for="nam" class=" col-lg-1 control-label ">Name: </form:label>
+					<form:label path="name" for="nam" class="col-lg-1 control-label">Name: </form:label>
 					<div class="col-lg-11">				
 						<form:input path="name" type="text" class="form-control" id="nam" />
+						<form:errors path="name" class="text-danger" />
 					</div>
-					<form:errors path="name" class="text-danger" />
 				</div>
 				<div class="row form-group">
 					<form:label path="lastName" for="lname" class="col-lg-1 control-label">Last name: </form:label>
 					<div class="col-lg-11">
 						<form:input path="lastName" type="text" class="form-control" id="lname" />
-					</div>
 					<form:errors path="lastName" class="text-danger" />
+					</div>
 				</div>
 				<div class="row form-group">
 					<form:label path="email" for="email" class="col-lg-1 control-label">Email: </form:label>
 					<div class="col-lg-11">
 						<form:input path="email" type="email" class="form-control" id="email" />
+						<form:errors path="email" class="text-danger" />
 					</div>
-					<form:errors path="email" class="text-danger" />
 				</div>
 				<div class="row form-group">
 					<form:label path="id" for="id" class="col-lg-1 control-label">ID number: </form:label>
 					<div class="col-lg-11">
 						<form:input path="id" type="text" class="form-control" id="id" />
+						<form:errors path="id" class="text-danger" />
 					</div>
-					<form:errors path="id" class="text-danger" />
 				</div>
 				<div class="row form-group">
 					<form:label path="password" for="pass" class="col-lg-1 control-label">Password: </form:label>
 					<div class="col-lg-11">
 						<form:input path="password" type="password" class="form-control" id="pass" />
+						<form:errors path="password" class="text-danger" />
 					</div>
-					<form:errors path="password" class="text-danger" />
 				</div>
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -66,7 +68,8 @@
 				<div class="text-center">
 					<div class="checkbox">
 						<form:label path="tocs">
-							<form:input path="tocs" type="checkbox"/> Do you accept the TOCS?
+							<form:checkbox path="tocs"/> Do you accept the TOCS?
+							<br><form:errors path="tocs" class="text-danger"></form:errors>
 						</form:label>
 					</div>
 				</div>
@@ -75,6 +78,7 @@
 					<form:option value="EN">English</form:option>
 					<form:option value="ES">Spanish</form:option>
 				</form:select>
+				<br><br>
 				<button type="submit" class="btn btn-primary">Submit</button>
 				<button type="reset" class="btn btn-danger">Clear</button>
 			</form:form>

@@ -25,13 +25,20 @@ public class ClientRegisterValidator implements Validator{
 				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
 					errors.rejectValue("email", "emailAdrress","Debes introducir un email valido");
 		}
+		if(client.getId().trim().length()!=9){
+			errors.rejectValue("id", "digitos","La longitud debe ser de 9 carácteres");
+		}
 		if(!client.isTocs()){
 			errors.rejectValue("tocs", "tocsContent","Debes aceptar las condiciones para poder registrarte");
 		}
 		if(client.getLanguage().trim().equals("")){
 			errors.rejectValue("language", "languageChoice","Debes escoger lenguaje preferido");
 		}
-		
+		if(client.getPassword().trim().length() == 0) {
+			errors.rejectValue("password", "digitos","La contraseña esta vacía");
+		} else if(client.getPassword().trim().length()< 8) {
+			errors.rejectValue("password", "digitos","La longitud debe ser de almenos 8 carácteres");
+		}
 	}
 
 }
