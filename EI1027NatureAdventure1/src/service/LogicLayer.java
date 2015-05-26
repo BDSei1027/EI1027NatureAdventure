@@ -425,7 +425,7 @@ public class LogicLayer {
 		else return null; // Bad Login
 	}
 	
-	/** Add a user in the database
+	/** Add a user in the database, this self encrypt the password
 	 * @param user
 	 */
 	public void addUser(User user){
@@ -444,13 +444,22 @@ public class LogicLayer {
 		
 	}
 	
-	/** Update a user in the databse
+	/** Update an user in the database, does not update the password or type, for this <b>updateUserWithPasswordType</b>
 	 * @param user
 	 */
 	public void updateUser(User user){
-		if (this.getUser(String.valueOf(user.getUser()))==null) return;
+		if (user.getUser() == null) return;
+		daoUser.updateElementWithoutPassword(user);
+	}
+	
+	/**
+	 * Update an user in the database, updates the password and the type. <b><i>The password must be plain text with encrypt</i></b>
+	 * @param user
+	 */
+	public void updateUserWithPasswordType(User user) {
+		if (user.getUser() == null) return;
+		user.setPassword(encryptor.encryptPassword(user.getPassword()));
 		daoUser.updateElement(user);
-		
 	}
 	
 	/** Retrieve the desired user form the database. The identifier is required

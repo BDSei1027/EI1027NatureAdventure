@@ -37,6 +37,7 @@ public class daoUser implements DaoInterface {
 			try {
 				user.setUser(rs.getString("id"));
 				user.setPassword(rs.getString("password"));
+				user.setName(rs.getString("name"));
 				user.setType(rs.getInt("type"));
 				user.setLanguage(rs.getString("language"));
 			} catch (Exception e) {
@@ -47,13 +48,23 @@ public class daoUser implements DaoInterface {
 		
 	}
 	
+	/**
+	 * Method to add an User into the DB
+	 * @see database.DaoInterface#addElement(java.lang.Object)
+	 * @param element class User
+	 */
 	@Override
 	public void addElement(Object element) {
 		User u = (User) element;
-		String sql = "INSERT INTO login(id,password,type,language) VALUES(?, ?, ?, ?);";
-		dataSource.update(sql, u.getUser(), u.getPassword(), u.getType(), u.getLanguage());
+		String sql = "INSERT INTO login(id, password, name, type, language) VALUES(?, ?, ?, ?, ?);";
+		dataSource.update(sql, u.getUser(), u.getPassword(), u.getName(), u.getType(), u.getLanguage());
 	}
 
+	/**
+	 * Method to remove an User from the DB
+	 * @see database.DaoInterface#deleteElement(java.lang.Object)
+	 * @param element String with the id or class User
+	 */
 	@Override
 	public void deleteElement(Object element) {
 		String user = "";
@@ -68,14 +79,25 @@ public class daoUser implements DaoInterface {
 
 	}
 
+	/**
+	 * Method to update an User in the DB, with password and type, better use <b>updateElementWithoutPassword</b>
+	 * @see database.DaoInterface#updateElement(java.lang.Object)
+	 * @param element Class User
+	 */
 	@Override
 	public void updateElement(Object element) {
 		User u = (User) element;
-		String sql = "UPDATE login SET password = ?, type = ?, language = ? WHERE id = ?;";
-		dataSource.update(sql, u.getPassword(), u.getType(), u.getLanguage(), u.getUser());
+		String sql = "UPDATE login SET password = ?, name = ?, type = ?, language = ? WHERE id = ?;";
+		dataSource.update(sql, u.getPassword(), u.getName(), u.getType(), u.getLanguage(), u.getUser());
 
 	}
 
+	/**
+	 * Method to obtain an User from the DB
+	 * @see database.DaoInterface#getElement(java.lang.Object)
+	 * @param identifier String with the id
+	 * @return an User
+	 */
 	@Override
 	public Object getElement(Object identifier) {
 		String user = (String) identifier;
@@ -85,6 +107,11 @@ public class daoUser implements DaoInterface {
 		else return list.get(0);
 	}
 
+	/**
+	 * Method to obtain all the users in the DB
+	 * @see database.DaoInterface#getElements()
+	 * @return Map<Integer, User>, key: id, value: User
+	 */
 	@Override
 	public Object getElements() {
 		Map<String, User> map = new HashMap<String, User>();
@@ -92,6 +119,16 @@ public class daoUser implements DaoInterface {
 		List<User> list = dataSource.query(sql, new UserMapper());
 		for (User u : list) map.put(u.getUser(), u);
 		return map;
+	}
+	
+	/**
+	 * Method to update an User, this does not change the password or type. It is more safe than updateElement(Obj element)
+	 * @param element An User class
+	 */
+	public void updateElementWithoutPassword(Object element) {
+		User u = (User) element;
+		String sql = "UPDATE login SET name = ?, language = ? WHERE id = ?";
+		dataSource.update(sql, u.getName(), u.getLanguage(), u.getUser());
 	}
 
 }

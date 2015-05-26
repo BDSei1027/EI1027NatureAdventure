@@ -184,6 +184,7 @@ public class AdminFunctionalityController {
 		User newUser = new User();
 		newUser.setUser(instructor.getIdNumber());
 		newUser.setPassword(instructor.getTelephone());
+		newUser.setName(instructor.getName());
 		newUser.setLanguage("EN");
 		newUser.setType(1);
 		return newUser;

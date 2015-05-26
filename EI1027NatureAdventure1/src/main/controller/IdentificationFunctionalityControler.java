@@ -139,6 +139,7 @@ public class IdentificationFunctionalityControler {
 		User newUser = new User();
 		newUser.setUser(cl.getId());
 		newUser.setPassword(cl.getPassword());
+		newUser.setName(cl.getName());
 		newUser.setLanguage(cl.getLanguage());
 		newUser.setType(2);
 		return newUser;

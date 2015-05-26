@@ -7,6 +7,7 @@ public class User {
 	
 	private String user;
 	private String password;
+	private String name;
 	private int type = -1;
 	private String language;
 
@@ -38,6 +39,14 @@ public class User {
 		this.password = password;
 	}
 
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public int getType() {
 		return type;
 	}

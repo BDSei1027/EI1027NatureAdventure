@@ -29,7 +29,7 @@
            <li><a href="${pageContext.request.contextPath}/account.html">Account</a></li>
          </ul>
       </li>
-      <li><p class="navbar-text" id="navtext">Welcome Mr. <c:out value="${user.user}" /><br>
+      <li><p class="navbar-text" id="navtext">Welcome Mr. <c:out value="${user.name}" /><br>
         <a href="${pageContext.request.contextPath}/logout.html" class="navbar-link pull-right">Log out 
       	<span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></p>
       </li>
