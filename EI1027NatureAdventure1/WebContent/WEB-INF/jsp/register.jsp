@@ -73,12 +73,14 @@
 						</form:label>
 					</div>
 				</div>
+				<div id="selectlanguage" style="margin-bottom 15px;">
 				Select your language: 
 				<form:select path="language">
 					<form:option value="EN">English</form:option>
 					<form:option value="ES">Spanish</form:option>
 				</form:select>
-				<br><br>
+				</div>
+				
 				<button type="submit" class="btn btn-primary">Submit</button>
 				<button type="reset" class="btn btn-danger">Clear</button>
 			</form:form>

@@ -220,7 +220,7 @@ public class AdminFunctionalityController {
 	public String instructorsModifyPage(@PathVariable String idInstructor, Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
-		if(!user.isLogged()) return "redirect:login.html";;
+		if(!user.isLogged()) return "redirect:/login.html";;
 		if(!user.hasPermissions(0)) return "restricted";
 		
 		Instructor instructor = service.getInstructor(idInstructor);
@@ -248,32 +248,38 @@ public class AdminFunctionalityController {
 		return "redirect:/admin/instructorManagement.html";
 	}
 
-	@RequestMapping(value="/instructorManagement/modify/addActivity")
-	public String instructorsAddActivity(Model model, HttpSession session){
+	@RequestMapping(value="/instructorManagement/addActivity/{idInstructor}", method=RequestMethod.GET)
+	public String instructorsAddActivity(@PathVariable String idInstructor, Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
 		if(!user.hasPermissions(0)) return "restricted";
 		
-		model.addAttribute("idActivity", new Integer(0));
-		model.addAttribute("idMonitor", new String());
+		Instructor instructor = service.getInstructor(idInstructor);
+		Collection<Activity> colActivities = service.getAllActivities(instructor);
+		Collection<Activity> possibleActivities = service.getNoInstruidasActivities(instructor);
 		
-		return "/admin/instructorManagement/modify/addActivity";
+		model.addAttribute("instructor", instructor);
+		model.addAttribute("activitiesInstructor", colActivities);
+		model.addAttribute("possibleActivities", possibleActivities);
+
+		return "/admin/instructorManagement/addActivity";
 	}
 	
-	@RequestMapping(value="/instructorManagement/modify/addActivity", method=RequestMethod.POST)
-	public String instructorsAddActivity(@ModelAttribute("idMonitor") String idMonitor, @ModelAttribute("idActivity") Integer idActivity, BindingResult bindingResult, HttpSession session){
+	//TODO Arreglar este metodo
+	@RequestMapping(value="/instructorManagement/addActivity/{idInstructor}&{idActivity}", method=RequestMethod.GET)
+	public String instructorsAddActivity(@PathVariable String idInstructor, @PathVariable Integer idActivity, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
 		if(!user.hasPermissions(0)) return "restricted";
-
-		service.addInstructed(idMonitor, idActivity);
-		
-		return "redirect:/admin/instructorManagement/modify/addActivity";
+		System.out.println("pre");
+		service.addInstructed(idInstructor, idActivity);
+		System.out.println("añadido");
+		return "redirect:/admin/instructorManagement/addActivity" + idInstructor + ".html";
 	}
 
-	@RequestMapping(value="/instructorManagement/modify/removeActivity/{idMonitor}&{idActivity}", method=RequestMethod.GET)
+	@RequestMapping(value="/instructorManagement/removeActivity/{idMonitor}&{idActivity}", method=RequestMethod.GET)
 	public String instructorsRemoveActivity(@PathVariable String idMonitor, @PathVariable Integer idActivity, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);

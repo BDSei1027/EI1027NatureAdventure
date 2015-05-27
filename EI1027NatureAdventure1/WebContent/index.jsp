@@ -35,7 +35,7 @@
 	
 	<u>Interest Links:</u>
 	<ul>
-		<li><a href="test.html">LINK</a></li>
+		<li><a href="login.html">LINK</a></li>
 	</ul>
 </jsp:body>
 </t:template>

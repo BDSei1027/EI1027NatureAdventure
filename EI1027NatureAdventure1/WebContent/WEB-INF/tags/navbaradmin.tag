@@ -26,9 +26,11 @@
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
-           <li><a href="${pageContext.request.contextPath}/#">Activity management</a></li>
+           <li><a href="${pageContext.request.contextPath}/admin/activityManagement.html">Activity management</a></li>
            <li><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">Instructor management</a></li>
-           <li><a href="#">Booking management</a></li>
+           <li><a href="${pageContext.request.contextPath}/admin/bookingManagement.html"">Booking management</a></li>
+           <li><a href="${pageContext.request.contextPath}/admin/clientManagement.html"">Client management</a></li>
+           <li><a href="${pageContext.request.contextPath}/admin/userManagement.html"">Users management</a></li>
            <li class="divider"></li>
            <li><a href="${pageContext.request.contextPath}/account.html">Account</a></li>
          </ul>

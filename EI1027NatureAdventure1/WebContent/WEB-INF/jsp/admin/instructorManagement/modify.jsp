@@ -49,10 +49,10 @@
 			<button type="reset" class="btn btn-danger">Clear</button>
 			<c:choose>
 	        	<c:when test="${instructor.isActive()}">
-	        		<a href="../disable/${instructor.ssNumber}.html"><button class="btn btn-warning">Set inactive</button></a>	
+	        		<a href="${pageContext.request.contextPath}/admin/instructorManagement/disable/${instructor.ssNumber}.html"><button class="btn btn-warning">Set inactive</button></a>	
 	        	</c:when>
 	        	<c:otherwise>
-	        		<a href="../enable/${instructor.ssNumber}.html"><button class="btn btn-success">Set active</button></a>
+	        		<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${instructor.ssNumber}.html"><button class="btn btn-success">Set active</button></a>
 	        	</c:otherwise>
 	        </c:choose>
 		</form:form>
@@ -64,7 +64,7 @@
 			<div class="row">
 				<p>Clicking on the following button you can add an activity for this instructor.<br>
 		
-				<a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/addActivity"><button class="btn btn-primary">Add activity</button></a>
+				<a href="${pageContext.request.contextPath}/admin/instructorManagement/addActivity/${instructor.ssNumber}.html"><button class="btn btn-primary">Add activity</button></a>
 			</div>
 		
 		<h4>This instructor can teach</h4>
@@ -84,7 +84,7 @@
 					<div class="modal fade" id="deleteActModal" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header" id="delecteActivityModalHead">
+								<div class="modal-header modal-header-warning" id="delecteActivityModalHead">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"><span class="glyphicon glyphicon-alert"></span> Delete activity <c:out value="${act.name}" /></h4>
 								</div>
@@ -106,7 +106,7 @@
 									</div>
 								</div>	
 								<div class="modal-footer" id="deleteActivityModalFooter">
-									<a href="removeActivity/${instructor.ssNumber}&${act.idAct}.html"><button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button></a>
+									<a href="${pageContext.request.contextPath}/admin/instructorManagement/removeActivity/${instructor.ssNumber}&${act.idAct}.html"><button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button></a>
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 								</div>
 							</div>

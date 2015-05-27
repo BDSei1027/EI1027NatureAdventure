@@ -2,6 +2,7 @@ package database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -245,7 +246,32 @@ public class daoInstructor implements DaoInterface {
 		}
 		return map;
 	}
-	
-	
+
+	public List<Activity> getAllActivitiesFromNoInstructor(String ssnum) {
+		String subsql = "SELECT idact FROM instruidas WHERE ssnumber = ?";
+		String sql = "SELECT act.* FROM activity AS act WHERE idact NOT IN (" + subsql + ");";
+		List<Activity> list = dataSource.query(sql, new Object[] {ssnum}, new RowMapper<Activity>() {
+			@Override
+			public Activity mapRow(ResultSet rs, int intRow) throws SQLException {
+				Activity activity = new Activity();
+				try {
+					activity.setIdAct(rs.getInt("idact"));
+					activity.setName(rs.getString("name"));
+					activity.setLevel(rs.getInt("leveldif"));
+					activity.setSchedule(rs.getString("schedule"));
+					activity.setPrice(rs.getFloat("price"));
+					activity.setPlace(rs.getString("place"));
+					activity.setMinimumGroup(rs.getInt("mingroup"));
+					activity.setMaximumGroup(rs.getInt("maxgroup"));
+					activity.setIsActive(rs.getBoolean("isactive"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return activity;			
+			}
+		});
+		return list;
+	}
+
 	
 }

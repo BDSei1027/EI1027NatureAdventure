@@ -208,6 +208,15 @@ public class LogicLayer {
 	}
 	
 	/**
+	 * Get all the activities, that the instructor does not teach
+	 * @param instructor Class Instructor
+	 * @return Collection<Activity>
+	 */
+	public Collection<Activity> getNoInstruidasActivities(Instructor instructor) {
+		return daoInstructor.getAllActivitiesFromNoInstructor(instructor.getSsNumber());
+	}
+
+	/**
 	 * Method to add an activity to the instructor for teach it
 	 * @param idMonitor ssnumber of the instructor
 	 * @param idActivity idact of the activity

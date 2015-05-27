@@ -12,7 +12,7 @@
 	<div class="modal fade" id="LoginModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header" id="LoginModalHead">
+				<div class="modal-header modal-header-success" id="LoginModalHead">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
 				</div>
