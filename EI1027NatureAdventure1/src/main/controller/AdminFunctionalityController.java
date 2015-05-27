@@ -311,7 +311,7 @@ public class AdminFunctionalityController {
 	
 	
 //ACTIVITIES MANAGEMENT PAGE ---------------------------------------------------------------------------------------
-	@RequestMapping(value="/activitiesManagement/")
+	@RequestMapping(value="/activitiesManagement")
 	public String activityManagementPage(@ModelAttribute("sortMode") String sort, Model model, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
@@ -324,7 +324,7 @@ public class AdminFunctionalityController {
 		
 		model.addAttribute("activityList", activityList);
 		
-		return "/activitiesManagement";
+		return "/admin/activitiesManagement";
 	}
 
 
