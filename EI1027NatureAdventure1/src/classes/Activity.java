@@ -165,4 +165,8 @@ public class Activity {
     public void setInstructors(List<String> array) {
     	this.qualifiedInstructors = array;
     }
+    
+    public int getNIntructors() {
+    	return this.qualifiedInstructors.size();
+    }
 }

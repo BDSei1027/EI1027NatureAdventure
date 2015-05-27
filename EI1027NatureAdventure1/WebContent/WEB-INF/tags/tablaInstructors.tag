@@ -15,9 +15,10 @@
 		            <th data-field="ssn" data-sortable="true">ssNumber</th>
 		            <th data-field="idn" data-sortable="true">idNumber</th>
 		            <th data-field="email" data-sortable="true">Email</th>
-		            <th data-field="tlf" data-sortable="true">Telephone</th>
+		            <!-- <th data-field="tlf" data-sortable="true">Telephone</th> -->
 		            <th data-field="expire" data-sortable="true">Expire date</th>
 		            <th data-field="active" data-sortable="true">is Active?</th>
+		             <th data-field="instructors" data-sortable="true">Instructors</th> 
 		            <th></th>
 		            <th></th>
 		        </tr>
@@ -30,7 +31,7 @@
 		        	<td><c:out value="${instructor.ssNumber}" /></td>
 		        	<td><c:out value="${instructor.idNumber}" /></td>
 		        	<td><c:out value="${instructor.email}" /></td>
-		        	<td><c:out value="${instructor.telephone}" /></td>
+		        	<!-- <td><c:out value="${instructor.telephone}" /></td> -->
 		        	<td><c:out value="${instructor.expireDate}" /></td>
 		        	<td><c:choose>
 		        			<c:when test="${instructor.isActive()}">
@@ -39,7 +40,8 @@
 		        			<c:otherwise>
 		        				No
 		        			</c:otherwise>
-		        		</c:choose></td>
+		        		</c:choose></td> 
+		        	<td><c:out value="${instructor.getNActivities()}" /></td>
 		        	<td><a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/${instructor.ssNumber}.html"><span class="label label-info">Edit</span></a></td>
 		        	<td>
 		        		<c:choose>

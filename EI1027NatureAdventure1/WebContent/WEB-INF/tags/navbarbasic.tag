@@ -36,7 +36,7 @@
 				</div>	
 				<div class="modal-footer" id="LoginModalFooter">
 					<button class="btn btn-danger pull-left"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-					<p>Not a member? <a href="#">Sign Up</a></p>
+					<p>Not a member? <a href="${pageContext.request.contextPath}/register.html">Sign Up</a></p>
           			<p>Forgot <a href="#">Password?</a></p>
 				</div>
 			</div>

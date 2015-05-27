@@ -15,7 +15,6 @@ import validators.ClientRegisterValidator;
 import validators.UserValidator;
 import classes.Client;
 import classes.ClientRegister;
-import classes.Instructor;
 import classes.User;
 
 

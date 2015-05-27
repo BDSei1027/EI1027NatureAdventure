@@ -130,4 +130,8 @@ public class Instructor {
 	public void setActivities(List<Integer> list) {
 		this.activities = list;
 	}
+	
+	public int getNActivities() {
+		return this.activities.size();
+	}
 }
