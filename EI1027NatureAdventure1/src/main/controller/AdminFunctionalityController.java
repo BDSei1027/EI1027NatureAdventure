@@ -3,6 +3,7 @@ package main.controller;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import comparators.sortActivityActive;
-import comparators.sortActivityDate;
-import comparators.sortActivityId;
-import comparators.sortActivityName;
-import comparators.sortInstructorActive;
-import comparators.sortInstructorName;
-import comparators.sortInstructorSurname;
 import service.LogicLayer;
 import validators.ActivityValidator;
 import validators.InstructorValidator;
@@ -28,6 +22,14 @@ import validators.SessionValidator;
 import classes.Activity;
 import classes.Instructor;
 import classes.User;
+
+import comparators.sortActivityActive;
+import comparators.sortActivityDate;
+import comparators.sortActivityId;
+import comparators.sortActivityName;
+import comparators.sortInstructorActive;
+import comparators.sortInstructorName;
+import comparators.sortInstructorSurname;
 
 
 @Controller
@@ -262,20 +264,22 @@ public class AdminFunctionalityController {
 		model.addAttribute("instructor", instructor);
 		model.addAttribute("activitiesInstructor", colActivities);
 		model.addAttribute("possibleActivities", possibleActivities);
+		
+		Integer mint = new Integer(0);
+		model.addAttribute("nuevaAct", mint);
 
 		return "/admin/instructorManagement/addActivity";
 	}
 	
-	//TODO Arreglar este metodo
-	@RequestMapping(value="/instructorManagement/addActivity/{idInstructor}&{idActivity}", method=RequestMethod.GET)
-	public String instructorsAddActivity(@PathVariable String idInstructor, @PathVariable Integer idActivity, BindingResult bindingResult, HttpSession session){
+	@RequestMapping(value="/instructorManagement/addActivity/{idInstructor}", method=RequestMethod.POST)
+	public String instructorsAddActivity(@PathVariable String idInstructor, @ModelAttribute("nuevaAct") Integer myint, BindingResult bindingResult, HttpSession session){
 		//Check if the user is allowed to enter this page
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) return "redirect:/login.html";;
 		if(!user.hasPermissions(0)) return "restricted";
-		System.out.println("pre");
-		service.addInstructed(idInstructor, idActivity);
-		System.out.println("añadido");
+		
+		service.addInstructed(idInstructor, myint);
+		
 		return "redirect:/admin/instructorManagement/addActivity" + idInstructor + ".html";
 	}
 

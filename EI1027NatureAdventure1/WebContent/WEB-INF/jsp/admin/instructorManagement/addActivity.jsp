@@ -70,11 +70,10 @@
         					<td><c:out value="${actPos.level}" /></td>
         					<td><c:out value="${actPos.schedule}" /></td>
         					<td>
-        						<form:form method="post" modelAttribute="msg" role="form">
-        							<input type="hidden" name="inte" value="${actPos.idAct}" />
-        							<button type="submit" class="btn btn-success">Add</button>
-        						</form:form>
-        						
+        						<form:form id="addform" method="post" action="../addActivity/${instructor.ssNumber}.html">
+								  <input type="hidden" name="nuevaAct" value="${actPos.idAct}" /> 
+								  <a onclick="document.getElementById('addform').submit();">click here</a>
+								</form:form>
         					</td>
         				</tr>
         			</c:forEach>
