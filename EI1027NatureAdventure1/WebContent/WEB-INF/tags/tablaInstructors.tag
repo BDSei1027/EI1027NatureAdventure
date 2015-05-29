@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!--<c:set scope="page" var="add" value="203203203203" /> -->
 	<!-- TABLA -->
 <table id="instructorsTable"  
   data-toggle="table" 
      data-classes="table table-no-bordered"
      data-query-params="queryParams"
-     data-pagination="true">
+     data-pagination="true"
+     data-search="true">
 	<thead>
         <tr>
             <th data-field="name" data-sortable="true">Name</th>
@@ -25,7 +27,7 @@
        </thead>
        <tbody>
         <c:forEach var="instructor" items="${instructorList}" >
-        <tr> 
+        <tr <c:if test="${not empty add and (add eq instructor.ssNumber)}">class="success"</c:if>> 
         	<td><c:out value="${instructor.name}" /></td>
         	<td><c:out value="${instructor.lastName}" /></td>
         	<td><c:out value="${instructor.ssNumber}" /></td>
@@ -62,7 +64,7 @@
 	        type: 'owner',
 	        sort: 'updated',
 	        direction: 'desc',
-	        per_page: 100,
+	        per_page: 10,
 	        page: 1
 	    };
 	}

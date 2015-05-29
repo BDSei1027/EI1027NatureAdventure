@@ -81,7 +81,7 @@
 		 	<tbody>
 		 		<c:forEach items="${activities}" var="act">
 		 		<!-- Aviso MODAL -->
-					<div class="modal fade" id="deleteActModal" role="dialog">
+					<div class="modal fade" id="deleteActModal" tabindex='-1' role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header modal-header-warning" id="delecteActivityModalHead">

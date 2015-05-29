@@ -2,30 +2,25 @@ package service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.jasypt.util.password.PasswordEncryptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import classes.Activity;
-import classes.AvaliableForBooking;
 import classes.Booking;
 import classes.Client;
 import classes.Instructor;
 import classes.Status;
 import classes.User;
-import database.DaoInterface;
 import database.daoActivity;
+import database.daoAvaliableBook;
 import database.daoBooking;
 import database.daoClient;
 import database.daoInstructor;
 import database.daoStatus;
 import database.daoUser;
-import database.daoAvaliableBook;
 
 //Implementación palera 
 //TODO trabajar en memoria
@@ -34,6 +29,7 @@ import database.daoAvaliableBook;
 //TODO boton subir ++
 
 //TODO getAllActivities(Instructor)
+@SuppressWarnings(value = {"unchecked"})
 @Service
 public class LogicLayer {
 	//DAOS
@@ -176,7 +172,6 @@ public class LogicLayer {
 		return collection;
 	}
 
-	
 	/**
 	 * change the active property of the instructor in the database
 	 * @param The instructor 
@@ -186,6 +181,9 @@ public class LogicLayer {
 		daoInstructor.updateElement(instructor);	
 	}
 		
+	public Integer getBookingsToDo(String ssnum) {
+		return daoInstructor.getNumberBookings(ssnum);
+	}
 	
 	/*
 	 * Instruidas subzone
