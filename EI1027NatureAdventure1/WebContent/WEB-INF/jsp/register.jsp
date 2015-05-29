@@ -19,37 +19,37 @@
 		<div class="panel-body">
 			<form:form method="post" modelAttribute="register" action="${pageContext.request.contextPath}/register.html" role="form">
 				<div class="row form-group">
-					<form:label path="name" for="nam" class="col-lg-1 control-label">Name: </form:label>
-					<div class="col-lg-11">				
-						<form:input path="name" type="text" class="form-control" id="nam" />
+					<form:label path="name" for="nam" class="col-lg-2 control-label">Name: </form:label>
+					<div class="col-lg-10">				
+						<form:input path="name" type="text" class="form-control width-50" id="nam" placeholder="Your name" />
 						<form:errors path="name" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="lastName" for="lname" class="col-lg-1 control-label">Last name: </form:label>
-					<div class="col-lg-11">
-						<form:input path="lastName" type="text" class="form-control" id="lname" />
+					<form:label path="lastName" for="lname" class="col-lg-2 control-label">Last name: </form:label>
+					<div class="col-lg-10">
+						<form:input path="lastName" type="text" class="form-control width-50" id="lname" placeholder="Your last name"/>
 					<form:errors path="lastName" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="email" for="email" class="col-lg-1 control-label">Email: </form:label>
-					<div class="col-lg-11">
-						<form:input path="email" type="email" class="form-control" id="email" />
+					<form:label path="email" for="email" class="col-lg-2 control-label">E-mail: </form:label>
+					<div class="col-lg-10">
+						<form:input path="email" type="email" class="form-control width-50" id="email" placeholder="Your email"/>
 						<form:errors path="email" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="id" for="id" class="col-lg-1 control-label">ID number: </form:label>
-					<div class="col-lg-11">
-						<form:input path="id" type="text" class="form-control" id="id" />
+					<form:label path="id" for="id" class="col-lg-2 control-label">ID number: </form:label>
+					<div class="col-lg-10">
+						<form:input path="id" type="text" class="form-control width-50" id="id" placeholder="Your identification number"/>
 						<form:errors path="id" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="password" for="pass" class="col-lg-1 control-label">Password: </form:label>
-					<div class="col-lg-11">
-						<form:input path="password" type="password" class="form-control" id="pass" />
+					<form:label path="password" for="pass" class="col-lg-2 control-label">Password: </form:label>
+					<div class="col-lg-10">
+						<form:input path="password" type="password" class="form-control width-50" id="pass" placeholder="Your password"/>
 						<form:errors path="password" class="text-danger" />
 					</div>
 				</div>
