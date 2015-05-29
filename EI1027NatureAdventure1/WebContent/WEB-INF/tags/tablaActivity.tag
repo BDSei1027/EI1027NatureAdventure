@@ -7,7 +7,8 @@
 		  data-toggle="table" 
 	      data-classes="table table-no-bordered"
 	      data-query-params="queryParams"
-	      data-pagination="true">
+	      data-pagination="true"
+	      data-search="true">
 			<thead>
 		        <tr>
 		            <th data-field="id" data-sortable="true">ID</th>
@@ -58,7 +59,7 @@
 	        type: 'owner',
 	        sort: 'updated',
 	        direction: 'desc',
-	        per_page: 100,
+	        per_page: 10,
 	        page: 1
 	    };
 	}

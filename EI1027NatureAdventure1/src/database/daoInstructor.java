@@ -2,7 +2,7 @@ package database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import classes.Activity;
 import classes.Instructor;
-//TODO getAllActivitiesFromInstructor(ssnum)
+
 @Repository
 public class daoInstructor implements DaoInterface {
 
@@ -271,6 +271,11 @@ public class daoInstructor implements DaoInterface {
 			}
 		});
 		return list;
+	}
+	
+	public Integer getNumberBookings(String ssnum) {
+		String sql = "SELECT COUNT(*) FROM status as s JOIN booking as b USING (ssnumber) WHERE s.ssnumber = ? AND CURRENT_DATE < dateactivity;";
+		return dataSource.queryForObject(sql, new Object[] {ssnum}, Integer.class);
 	}
 
 	

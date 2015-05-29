@@ -9,7 +9,7 @@
 <fmt:setBundle basename="src.languages.text" />
 
   	  	<!-- Login MODAL -->
-	<div class="modal fade" id="LoginModal" role="dialog">
+	<div class="modal fade" id="LoginModal" tabindex='-1' role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header modal-header-success" id="LoginModalHead">
