@@ -1,6 +1,5 @@
 <%@page contentType="text/html; charset=iso-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 
 
@@ -19,7 +18,7 @@
 			<div class="panel-body">
 				<p>With the buttons in the table you can</p>
 				<p>  <span class="label label-info">Details</span> shows you the full information of the booking and the client.</p>
-				<p class="text-center">You have <span class="badge"><c:out value="${numbookings}" /> bookings</span> assigned</p>
+				<p class="lead text-center">You have <span class="badge"><c:out value="${numbookings}" /> bookings</span> assigned</p>
 			</div>
 		</div>
 		

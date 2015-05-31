@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@page contentType="text/html; charset=iso-8859-1"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <t:template>
@@ -30,7 +29,7 @@
 			</div>
 		</div>
 	</div>
-	<h3>List of the instructors</h3>
+	<h3>List of the activities</h3>
 	<t:tablaActivity />
 
 </jsp:body>
