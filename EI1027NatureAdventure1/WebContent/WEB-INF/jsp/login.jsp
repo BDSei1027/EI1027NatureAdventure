@@ -19,7 +19,7 @@
 					<form:errors path="password" />
 				</div>
 				<button type="submit" class="btn btn-default"> Submit</button>
-				<a href="${pageContext.request.contextPath}/index.jsp"><button class="btn btn-default" type="button">Cancela</button></a>
+				<a href="${pageContext.request.contextPath}/index.jsp"><button class="btn btn-default" type="button">Cancel</button></a>
 			</form:form>
 		</div>
 	</div>

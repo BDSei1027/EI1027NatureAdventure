@@ -12,7 +12,7 @@
 			<h3 class="panel-title">Client  <c:out value="${client.clientId}" /></h3>
 		</div>
 		<div class="panel-body">
-			<form:form method="post" action="" modelAttribute="client" id="formClient">
+			<form:form method="post" action="${pageContext.request.contextPath}/admin/clientManagement/details/${client.clientId}.html" modelAttribute="client" id="formClient">
 				<div class="form-group">
 					<form:label path="clientId" for="cid" class="control-label">ID Number</form:label>
 					<form:input path="clientId" id="cid" type="text" class="form-control" />
