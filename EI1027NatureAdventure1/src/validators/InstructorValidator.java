@@ -36,6 +36,9 @@ public class InstructorValidator implements Validator {
 			errors.rejectValue("email", "emailAdrress","Debes introducir un email valido");
 		}
 		
+		if(!instructor.getIdNumber().matches( "")){
+			
+		}
 	}
 
 }
