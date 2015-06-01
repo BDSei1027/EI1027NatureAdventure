@@ -20,15 +20,15 @@ public class InstructorValidator implements Validator {
 		Instructor instructor = (Instructor) obj;
 		
 		if(instructor.getSsNumber().trim().length() <= 9){
-			errors.rejectValue("ssNumber","longitud","La longitud debe ser mayor que 9 caracteres"); 
+			errors.rejectValue("ssNumber","longitud","La longitud debe ser mayor que 9 carácteres"); 
 		}
 		
 		if(instructor.getName().trim().equals("")){
-			errors.rejectValue("name", "nameContent","Este campo no puede estar vacio");
+			errors.rejectValue("name", "nameContent","Este campo no puede estar vacío");
 		}
 		
 		if(instructor.getLastName().trim().equals("")){
-			errors.rejectValue("lastName", "lastNameContent","Este campo no puede estar vacio");
+			errors.rejectValue("lastName", "lastNameContent","Este campo no puede estar vacío");
 		}
 		
 		if(!instructor.getEmail().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
