@@ -75,8 +75,13 @@ public class RecoverPasswordSystem {
 		
 		// Si la fecha del add es menor a un dia y el reto es el mismo la validacion es ok return true
 		if (now.getTime() < (row.getTimestamp() + aDay)) {
-			if (auth.compareTo(row.getChallenge()) == 0) return true;
-		}
+			if (auth.compareTo(row.getChallenge()) == 0) {
+				// Encontrado y es valido quita la entrada y devuelve true
+				db.remove(user);
+				return true;
+			}
+		} else if (now.getTime() > (row.getTimestamp() + aDay)) db.remove(user);
+		// La fecha de un dia ya ha pasado y elimina la entrada
 		return false;
 	}
 }
