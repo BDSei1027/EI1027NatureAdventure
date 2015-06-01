@@ -40,7 +40,7 @@
 			    	<div class="collapse" id="collapseAct">
 				    	<div class="booking-body row">
 				        	<div class="col-lg-4">
-				        		<div class="booking-activity"><c:out value="${booking.name}" /></div>
+				        		<div class="booking-activity"><c:out value="${booking.name}" /> <small><c:out value="${booking.level}" /></small></div>
 				        		<div class="booking-id">Identifier: <c:out value="${booking.id}" /></div>
 				        	</div>
 				        	<div class="col-lg-6">

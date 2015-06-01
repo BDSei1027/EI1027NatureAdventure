@@ -127,6 +127,15 @@ form login {
 	padding-left: 10px;
 }
 
+.booking-activity > small {
+	font-weight: normal;
+	font-size: 70%;
+	font-style: oblique;
+	color: gray;
+	text-transform: capitalize;
+	padding-left: 6px;
+}
+
 .booking-date > h5 {
 	font-weight: bold;
 }
