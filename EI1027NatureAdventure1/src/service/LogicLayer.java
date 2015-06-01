@@ -48,6 +48,9 @@ public class LogicLayer {
 	// Encriptacion
 	private PasswordEncryptor encryptor = new BasicPasswordEncryptor(); 
 	
+	// Recuperacion de passwords
+	private RecoverPasswordSystem recoverPass = new RecoverPasswordSystem();
+	
 	/**
 	 * Inicializa las IDs para que se puedan autoincrementar.
 	 */
