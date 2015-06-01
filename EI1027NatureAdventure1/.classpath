@@ -19,6 +19,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="Libs/valnif.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/valnif.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
