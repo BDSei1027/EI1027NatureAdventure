@@ -27,6 +27,9 @@ public class BookingActivityValidator implements Validator{
 		if(myActivity.getGroupSize()<=0){
 			errors.rejectValue("groupSize","valorNegativo","Este campo no puede ser menor o igual a cero");
 		}
+		if(myActivity.getLevel().equals("")){
+			errors.rejectValue("groupSize","valorNegativo","Este campo no puede ser menor o igual a cero");
+		}
 	}
 
 }
