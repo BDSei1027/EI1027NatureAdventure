@@ -28,8 +28,7 @@ import database.daoUser;
 //TODO subir cada X tiempo
 //TODO boton subir ++
 
-//TODO getAllActivities(Instructor)
-@SuppressWarnings(value = {"unchecked"})
+@SuppressWarnings(value = {"unchecked", "unused"})
 @Service
 public class LogicLayer {
 	//DAOS
@@ -71,6 +70,10 @@ public class LogicLayer {
 	 * ALPHA VERSION
 	 */
 	
+	public void init() {
+		inicializarIds();
+		System.out.println("Se han inicializado las ID de activities y bookings");
+	}
 	
 	/*
 	 * INSTRUCTOR ZONE

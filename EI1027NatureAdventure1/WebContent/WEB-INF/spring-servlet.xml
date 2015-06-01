@@ -70,7 +70,7 @@
 	</bean>
 	
 	 <!-- Service -->
-	<bean id="service" class="service.LogicLayer">
+	<bean id="service" class="service.LogicLayer" init-method="init">
 		<property name="daoActivity" ref="activityDAO" />
 		<property name="daoBooking" ref="bookingDAO" />
 		<property name="daoClient" ref="clientDAO" />
