@@ -42,7 +42,9 @@
 	<bean id="status" class="classes.Status" />
 	<bean id="user" class="classes.User" />
 	<bean id="avaliableforbooking" class="classes.AvaliableForBooking" />
-	<bean id="clientRegister" class="classes.ClientRegister" />
+	<bean id="clientregister" class="classes.ClientRegister" />
+	<bean id="email" class="classes.Email" />
+	<bean id="doublepassword" class="classes.DoublePassword" />
 	
 	<!-- Repositories -->
 	

@@ -46,6 +46,8 @@ form login {
 	width: 50%;
 }
 
+
+/* Pagina de ver actividades del cliente*/
 .mybadge {
 	display: inline-block;
 	min-width: 10px;
@@ -213,4 +215,13 @@ form login {
 	font-weight: 400;
 	color: grey;
 	text-transform: none;
+}
+
+/* Pagina de ABOUT */
+.team {
+	padding: 15px 10px;
+}
+
+.miembro-text {
+	padding-left: 15px;
 }
