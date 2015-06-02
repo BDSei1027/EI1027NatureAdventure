@@ -23,11 +23,27 @@ footer p {
 
 /* Barra de lengujes */
 #languages {
+	border-color: #080808;
 	border-bottom-left-radius: 100px 50px;
 	padding-top: 3px;
 	padding-bottom: 5px;
 	background-color: #222;
-	border-color: #080808;
+	background-image: linear-gradient(to bottom, #3C3C3C 0px, #222 100%);
+	background-repeat: repeat-x;
+}
+
+/* BreadCrumbs */
+.breadcrumbs {
+	/*background-color: #222;
+	background-image: linear-gradient(to top, #3C3C3C 0px, #222 100%);
+	background-repeat: repeat-x; */
+	/*color: #9D9D9D; */
+	width: 40%;
+	padding: 4px 5px 4px 10px;
+	/*border-color: #101010;
+	border-radius: 3px;
+	border-bottom-right-radius: 100px; */
+	margin-left: 1%;
 }
 
 /* Login page */
@@ -224,4 +240,30 @@ form login {
 
 .miembro-text {
 	padding-left: 15px;
+}
+
+/* Pagina de details para Bookings */
+.tab-pane {
+	border-left: 1px solid #DDD;
+	border-right: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	border-radius: 0px 0px 4px 4px;
+}
+
+.panel-header-success {
+	background-image: linear-gradient(to bottom, #5CB85C 0px, #419641 100%);
+	background-repeat: repeat-x;
+	color: #333;
+}
+
+.panel-header-warning {
+	background-image: linear-gradient(to bottom, #F0AD4E 0px, #EB9316 100%);
+	background-repeat: repeat-x;
+	color: #333;
+}
+
+.panel-header-danger {
+	background-image: linear-gradient(to bottom, #D9534F 0px, #C12E2A 100%);
+	background-repeat: repeat-x;
+	color: #333;
 }
