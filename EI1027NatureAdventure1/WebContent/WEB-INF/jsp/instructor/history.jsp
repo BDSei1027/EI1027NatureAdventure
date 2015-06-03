@@ -7,7 +7,7 @@
 <jsp:body>
 <!-- Quizas me excedi con la funcionalidad lo podemos hacer mas basico al principio -->
 	<div class="intructorList">
-		<h2>Bookings history</h2>
+		<h4>Bookings history</h4>
 		
 		<div id="help&action" class="row">
 			<div id="menu" class="col-lg-2">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<h3>List of the done bookings</h3>
+		<h6 class="subtitle">List of the done bookings</h6>
 		<t:tablaBookingsInstructor />
 	</div>
 </jsp:body>

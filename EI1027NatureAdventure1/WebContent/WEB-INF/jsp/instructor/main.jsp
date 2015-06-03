@@ -5,9 +5,7 @@
 
 <t:template>
 <jsp:body>
-<!-- Quizas me excedi con la funcionalidad lo podemos hacer mas basico al principio -->
-	<div class="intructorList">
-		<h2>Welcome <c:out value="${instructor.name}" /></h2>
+		<h4>Welcome <c:out value="${instructor.name}" /></h4>
 		<p>Welcome instructor, this is your section, where you can see the bookings that
 		the admin assign you.</p>
 		
@@ -21,8 +19,7 @@
 				<p class="lead text-center">You have <span class="badge"><c:out value="${numbookings}" /> bookings</span> assigned</p>
 			</div>
 		</div>
-		
+		<h6 class="subtitle">List of the bookings to do</h6>
 		<t:tablaBookingsInstructor />
-	</div>
 </jsp:body>
 </t:template>

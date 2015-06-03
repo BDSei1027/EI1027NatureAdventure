@@ -12,11 +12,11 @@
 	        <strong>Error!</strong> A problem has been occurred while submitting your data.
 	    </div>
 	</c:if>
-	<h2>Recovering your password</h2>
+	<h4>Recovering your password</h4>
     <!-- Panel -->
 	<div class="panel panel-warning" style="width:570px; margin:auto;">
 		<div class="panel-heading">
-			<h3 class="panel-title">Recovery Password Form</h3>
+			<h6 class="panel-title">Recovery Password Form</h6>
 		</div>
 		<div class="panel-body">
 			<p>We saw you have problems remembering your password. Introduce your email in the following field
@@ -34,7 +34,7 @@
 			</form:form>
 		</div>
 		<div class="panel-footer">
-			<p style="font-size: 12px;">The email will be valid for the next 24 hours. After this time the link will be disabled.</p>
+			<p style="font-size: 12px;">The email will be valid for the next <strong>24 hours</strong>. After this time the link will be disabled.</p>
 			<p style="font-size: 12px;">If you do not recive the email, check in your spam folder and the junk box.</p>
 		</div>
 	</div>

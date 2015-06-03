@@ -12,7 +12,7 @@
 
 <t:template>
 <jsp:body>
-    <h2>About us</h2>
+    <h4>About us</h4>
     <div style="padding-left: 5%;">
 		<p>We are NatureAdventure.</p>
 		<p>What is NatureAdventure? NatureAdventure is a business that manage adventure activities with instructors.
@@ -20,8 +20,8 @@
 		instructor for your activity, and be ready for the adrenaline</p>
 		<p>This information system is a project for an assignament of the subject <em>EI1027, Disseny i implementació de
 		sistemes de la informació</em> and <em>EI 1023, Fonaments de l'enginyeria del programari</em>.</p>
-		<p>The source of all this project is in Github. Our team is <a href="${github}"><strong>@BDSei1027</strong></a> and the
-		repository is <a href="${githubrepo}"><strong>EI1027NatureAdventure</strong></a>.</p>
+		<p>The source of all this project is in Github. Our team is <a class="high" href="${github}"><strong>@BDSei1027</strong></a> and the
+		repository is <a class="high" href="${githubrepo}"><strong>EI1027NatureAdventure</strong></a>.</p>
 		<h3>The team is composed by</h3>
 		<div class="team">
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -41,7 +41,7 @@
 								<img src="cuiner.jpg" class="media-object" alt="64x64" style="width:120px; height: 120px;">
 								</div>
 									<div class="media-body">
-										<h4 class="media-heading">David Serrano Hernández</h4>
+										<h5 class="media-heading">David Serrano Hernández</h5>
 										<div class="miembro-text">
 											<p><strong>Email:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong>GitHub:</strong> <a href="${dsh}">@serrano94</a></p>
@@ -69,7 +69,7 @@
 								<img src="cuiner.jpg" class="media-object" alt="64x64" style="width:120px; height: 120px;">
 								</div>
 									<div class="media-body">
-										<h4 class="media-heading">Catalín Denís Damían</h4>
+										<h5 class="media-heading">Catalín Denís Damían</h5>
 										<div class="miembro-text">
 											<p><strong>E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong>GitHub:</strong> <a href="${cdd}">@cddl</a></p>
@@ -97,7 +97,7 @@
 								<img src="cuiner.jpg" class="media-object" alt="64x64" style="width:120px; height: 120px;">
 								</div>
 									<div class="media-body">
-										<h4 class="media-heading">Borja Blasco García</h4>
+										<h5 class="media-heading">Borja Blasco García</h5>
 										<div class="miembro-text">
 											<p><strong>E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong>GitHub:</strong> <a href="${rdp}">@ratadp</a></p>

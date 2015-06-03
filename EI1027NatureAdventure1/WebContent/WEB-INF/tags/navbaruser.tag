@@ -21,9 +21,10 @@
     <ul class="nav navbar-nav navbar-left">
         <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
         <li><a href="${pageContext.request.contextPath}/activities">Activities</a></li>
-				<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
+		<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li><p class="navbar-text" id="navtext">Welcome <strong><c:out value="${user.name}" /></strong></p></li>
       <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
            <li><a href="${pageContext.request.contextPath}/customer/main.html">Active bookings</a></li>
@@ -32,10 +33,7 @@
            <li><a href="${pageContext.request.contextPath}/account.html">Account</a></li>
          </ul>
       </li>
-      <li><p class="navbar-text" id="navtext">Welcome Mr. <c:out value="${user.name}" /><br>
-        <a href="${pageContext.request.contextPath}/logout.html" class="navbar-link pull-right">Log out 
-      	<span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></p>
-      </li>
+      <li class="active"><a href="${pageContext.request.contextPath}/logout.html" class="navbar-link pull-right"><span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 8px;"></span>Log out</a>
     </ul>
   </div>
 </nav>

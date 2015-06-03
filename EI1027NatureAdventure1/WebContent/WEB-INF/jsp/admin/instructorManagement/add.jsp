@@ -3,8 +3,8 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <t:template>
 <jsp:body>
-<h2>Instructor management</h2>
-<h3>Add Instructor</h3>
+<h4>Instructor management</h4>
+<h6 class="subtitle">Add Instructor</h6>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="panel-title">Form</div>
@@ -50,13 +50,24 @@
 			<div class="row form-group">
 				<form:label path="telephone" for="tlf" class="col-lg-2 control-label"> Telephone: </form:label>
 				<div class="col-lg-10">
+				<div class="input-group">
 					<form:input path="telephone" type="tel" class="form-control" id="tlf" />
+					<div class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></div>
+					</div>
 					<form:errors path="telephone" class="text-danger" />
 				</div>
 			</div>
 			
-			<button type="submit" class="btn btn-primary">Submit</button>
-			<button type="reset" class="btn btn-danger">Clear</button>
+			<p class="text-info">The <strong>username</strong> will be the <strong>SS number</strong> and the <strong>password</strong> will be 
+			  the <strong>telephone</strong>.</p>
+			<p>When you finish the form and submit it, the system will send an email to the instructor with the 
+			<strong>username</strong> and the <strong>password</strong>.</p>
+			<div class="text-center">
+				<div class="btn-group">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="reset" class="btn btn-danger">Clear</button>
+				</div>
+			</div>
 		</form:form>
 		</div>
  	</div>

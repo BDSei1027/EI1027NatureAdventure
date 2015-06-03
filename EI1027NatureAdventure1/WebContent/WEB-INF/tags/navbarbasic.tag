@@ -56,7 +56,7 @@
     <ul class="nav navbar-nav navbar-left">
         <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
         <li><a href="${pageContext.request.contextPath}/activities">Activities</a></li>
-				<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
+		<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#loginModal" data-toggle="modal" data-target="#LoginModal">Sign in</a></li>

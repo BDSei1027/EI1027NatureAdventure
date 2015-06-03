@@ -6,8 +6,7 @@
 <t:template>
 <jsp:body>
 
-	<!-- Estan los campos de Form:form preparados no se porque falla -->
-	<h2>Booking management</h2>
+	<h4>Booking management</h4>
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">
 			<ul class="nav nav-pills nav-stacked">
@@ -31,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-	<h3>List of the bookings</h3>
+	<h6 class="subtitle">List of the bookings</h6>
 	<t:tablaBooking />
 
 </jsp:body>

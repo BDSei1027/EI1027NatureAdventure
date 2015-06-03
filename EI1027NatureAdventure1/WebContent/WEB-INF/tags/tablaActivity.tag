@@ -46,9 +46,10 @@
 		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/disable/${activity.idAct}.html"><span class="label label-warning">Inactivate</span></a>	
 		        			</c:when>
 		        			<c:otherwise>
-		        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${activity.idAct}.html"><span class="label label-success">Activate</span></a>
+		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/enable/${activity.idAct}.html"><span class="label label-success">Activate</span></a>
 		        			</c:otherwise>
 		        		</c:choose>
+		        	</td>
 		        </tr>
 		        </c:forEach>
 	 	</table>

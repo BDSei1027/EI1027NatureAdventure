@@ -4,7 +4,7 @@
 
 <t:template>
 	<jsp:body>
-	<h2>Sign up</h2>
+	<h4>Sign up</h4>
 	<p>Congratulation, you decided to sign up in our system.</p>
 	<p>The privileage of been registered are:</p>
 	<ul>
@@ -21,35 +21,38 @@
 				<div class="row form-group">
 					<form:label path="name" for="nam" class="col-lg-2 control-label">Name: </form:label>
 					<div class="col-lg-10">				
-						<form:input path="name" type="text" class="form-control width-50" id="nam" placeholder="Your name" />
+						<form:input path="name" type="text" class="form-control width-50" id="nam" placeholder="Enter your name" />
 						<form:errors path="name" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
 					<form:label path="lastName" for="lname" class="col-lg-2 control-label">Last name: </form:label>
 					<div class="col-lg-10">
-						<form:input path="lastName" type="text" class="form-control width-50" id="lname" placeholder="Your last name"/>
+						<form:input path="lastName" type="text" class="form-control width-50" id="lname" placeholder="Enter your last name"/>
 					<form:errors path="lastName" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
 					<form:label path="email" for="email" class="col-lg-2 control-label">E-mail: </form:label>
 					<div class="col-lg-10">
-						<form:input path="email" type="email" class="form-control width-50" id="email" placeholder="Your email"/>
+						<div class="input-group">
+						<form:input path="email" type="email" class="form-control width-50" id="email" placeholder="Enter your email"/>
+						<div class="input-group-addon"><span class="fui-mail"></span></div>
+						</div>
 						<form:errors path="email" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
 					<form:label path="id" for="id" class="col-lg-2 control-label">ID number: </form:label>
 					<div class="col-lg-10">
-						<form:input path="id" type="text" class="form-control width-50" id="id" placeholder="Your identification number"/>
+						<form:input path="id" type="text" class="form-control width-50" id="id" placeholder="Enter your identification number"/>
 						<form:errors path="id" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
 					<form:label path="password" for="pass" class="col-lg-2 control-label">Password: </form:label>
 					<div class="col-lg-10">
-						<form:input path="password" type="password" class="form-control width-50" id="pass" placeholder="Your password"/>
+						<form:input path="password" type="password" class="form-control width-50" id="pass" placeholder="Enter your password"/>
 						<form:errors path="password" class="text-danger" />
 					</div>
 				</div>
@@ -66,23 +69,24 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<div class="checkbox">
-						<form:label path="tocs">
-							<form:checkbox path="tocs"/> Do you accept the TOCS?
+						<form:label path="tocs" class="checkbox" for="toc">
+							<form:checkbox id="toc" path="tocs" data-toggle="checkbox"/> Do you accept the TOCS?
 							<br><form:errors path="tocs" class="text-danger"></form:errors>
 						</form:label>
-					</div>
 				</div>
 				<div id="selectlanguage" style="margin-bottom 15px;">
 				Select your language: 
-				<form:select path="language">
+				<form:select path="language" data-toggle="select" class="form-control select select-primary mrs mbm">
 					<form:option value="EN">English</form:option>
 					<form:option value="ES">Spanish</form:option>
 				</form:select>
 				</div>
-				
-				<button type="submit" class="btn btn-primary">Submit</button>
-				<button type="reset" class="btn btn-danger">Clear</button>
+				<div class="text-center" style="margin-top: 20px;">
+					<div class="btn-group">
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="reset" class="btn btn-danger">Clear</button>
+					</div>
+				</div>
 			</form:form>
 		</div>
 	</div>

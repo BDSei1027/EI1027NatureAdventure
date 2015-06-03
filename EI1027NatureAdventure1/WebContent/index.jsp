@@ -2,35 +2,20 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <t:template>
 <jsp:body>
-<!--  Breadcrumbs y logeado -->
 
-	<div class="row">
-		<!-- breadcrumb -->
-		<div class="col-lg-6">
-			<ol class="breadcrumbs">
-				<li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-			</ol>
-		</div>
-		
-	</div>
-
-	<div class="row">
-	<div class="col-lg-6">
-	<!-- BreadCrumbs -->
-	<ol class="breadcrumb">
-		<li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-		<li>Hola</li>
-	</ol>
-	</div>
-	<div class="col-lg-6 text-right">
-	<p> Logeado como X </p>
-	</div>
-	</div>
-	
-	<h2>Example</h2>
+	<h4>Usuarios y contrasenyas</h4>
+	<ul>
+		<li><strong>admin</strong> 123456</li>
+		<li><STRONG>73401117</STRONG> 666666666 <em>Instructor</em></li>
+		<li><strong>33366633A</strong> 12345678 <em>Cliente</em></li>
+	</ul>
+	<h3>Example</h3>
+	<p><c:out value="${pageContext.request.requestURI}" /></p>
 	<p>This is the example page to go to the links</p>
 	
 	<u>Interest Links:</u>

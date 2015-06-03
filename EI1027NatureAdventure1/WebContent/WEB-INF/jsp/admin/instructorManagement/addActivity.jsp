@@ -4,9 +4,8 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:template>
 	<jsp:body>
-	<h2>Instructor management</h2>
-	<hr>
-	<h3>Add activity to the instructor <strong>${instructor.name} ${instructor.lastName}</strong> (${instructor.idNumber})</h3>
+	<h4>Instructor management</h4>
+	<h6 class="subtile">Add activity to the instructor <strong>${instructor.name} ${instructor.lastName}</strong> (<em>${instructor.idNumber}</em>)</h6>
 	
 	<div class="panel panel-info">
 		<div class="panel-heading">
@@ -20,7 +19,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-6">
-			<h4>Activities that actually teach</h4>
+			<h6 class="h7">Activities that actually teach</h6>
 			<table id="instruidasTable"  
   			data-toggle="table" 
      		data-classes="table table-no-bordered"
@@ -32,6 +31,7 @@
 			            <th data-field="name" data-sortable="true">Name</th>
 			            <th data-field="level" data-sortable="level">level</th>
 			            <th data-field="schedule" data-sortable="true">Schedule</th>
+			            <th></th>
 	    			</tr>
        			</thead>
         		<tbody>
@@ -41,13 +41,57 @@
         					<td><c:out value="${act.name}" /></td>
         					<td><c:out value="${act.level}" /></td>
         					<td><c:out value="${act.schedule}" /></td>
+        					<td>
+        						<a href="#deleteModal" data-toggle="modal" data-target="#deleteActModal${act.idAct}">
+        							<span class="label label-danger" style="font-size: 15px;">Delete</span>
+        						</a>
+        					</td>
         				</tr>
+        				
+        				<!-- MODAL -->
+        				<div class="modal fade" id="deleteActModal${act.idAct}" tabindex='-1' role="dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header modal-header-warning" id="delecteActivityModalHead">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title"><span class="fui-cross" style="padding-right: 10px;"></span> Delete activity <c:out value="${act.name}" /></h4>
+									</div>
+									<div class="modal-body" id="deleteActivityModalBody">
+										<div class="row">
+											<p style="padding-left: 15px">Are you sure you want delete the following activity from this instructor?</p>
+										</div>
+										<div class="row">
+											<div class="col-lg-6" style="padding-left: 25px;">
+												<p style="border-bottom: 1px solid #E5E5E5"><strong>Instructor</strong></p>
+												<p><c:out value="${instructor.name}" /> <c:out value="${instructor.lastName}" /></p>
+												<p><strong>SSN</strong> <c:out value="${instructor.ssNumber}" /></p>
+											</div>
+											<div class="col-lg-6 text-right" style=" padding-right: 25px;">
+												<p style="border-bottom: 1px solid #E5E5E5"><strong>Activity</strong></p>
+												<p><c:out value="${act.name}" /></p>
+												<p><strong>ID</strong> <c:out value="${act.idAct}" /></p>
+											</div>
+										</div>
+									</div>	
+									<div class="modal-footer" id="deleteActivityModalFooter">
+										<div style="font-size: 14px; float:left"><strong>Caution!</strong> This action is not reversible.</div>
+										<div class="pull-right">
+											<a href="${pageContext.request.contextPath}/admin/instructorManagement/removeActivity/${instructor.ssNumber}&${act.idAct}.html">
+												<button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button>
+											</a>
+											<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+        				<!-- /MODAL -->
         			</c:forEach>
         		</tbody>
         	</table>
 		</div> <!-- Col -->
 		<div class="col-lg-6">
-			<h4>Possible activities</h4>
+			<h6 class="h7">Possible activities</h6>
 			<table id="possiblesTable"  
   			data-toggle="table" 
      		data-classes="table table-no-bordered"
@@ -70,10 +114,12 @@
         					<td><c:out value="${actPos.level}" /></td>
         					<td><c:out value="${actPos.schedule}" /></td>
         					<td>
-        						<form:form id="addform" method="post" action="../addActivity/${instructor.ssNumber}.html">
-								  <input type="hidden" name="nuevaAct" value="${actPos.idAct}" /> 
-								  <a onclick="document.getElementById('addform').submit();">click here</a>
-								</form:form>
+        						<form id="addform" method="post" action="../addActivity/${instructor.ssNumber}.html">
+								  <input type="hidden" name="newAct" value="${actPos.idAct}" /> 
+								  <a onclick="document.getElementById('addform').submit();">
+								  	<span class="label label-success" style="font-size: 15px; cursor: pointer;">Add</span>
+								  	</a>
+								</form>
         					</td>
         				</tr>
         			</c:forEach>

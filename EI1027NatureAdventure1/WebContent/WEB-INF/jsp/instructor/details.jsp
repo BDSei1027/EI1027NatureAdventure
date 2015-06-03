@@ -6,7 +6,7 @@
 <!-- HAY Q REVISARLA -->
 <t:template>
 	<jsp:body>
-	<h2>Booking's details</h2>
+	<h4>Booking's details</h4>
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="panel panel-default">

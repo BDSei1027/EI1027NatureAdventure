@@ -6,7 +6,7 @@
 <t:template>
 <jsp:body>
 	<div class="clientMain">
-		<h2>Welcome <c:out value="${client.clientName}" /></h2>
+		<h4>Welcome <c:out value="${client.clientName}" /></h4>
 		<p>Welcome our dear customer, <strong><c:out value="${client.clientName}" /></strong>, this is your main page.</p>
 		
 		<div id="actionsHelp" class="row">
@@ -33,7 +33,7 @@
 		<c:forEach var="booking" items="${pastBookings}">
 			    <div class="booking">
 			    	<div class="booking-title">
-			    		<h3 class="pull-left"><c:out value="${booking.name}" /><small><c:out value="${booking.date}" /></small></h3>
+			    		<h5 class="pull-left"><c:out value="${booking.name}" /><small><c:out value="${booking.date}" /></small></h5>
 			    		<a href="#collapseAct<c:out values='${booking.id}' />" class="pull-right" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><span class="caret"></span></a>
 			    		<div style="clear:both;"></div>
 			    	</div>
@@ -45,13 +45,13 @@
 				        	</div>
 				        	<div class="col-lg-6">
 				          		<div class="booking-date">
-				            		<h5>Date: <small><c:out value="${booking.date}" /></small></h5>
+				            		<h6>Date: <small><c:out value="${booking.date}" /></small></h6>
 				          		</div>
 				          		<div class="booking-group">
-				            		<h5>Group Size: <small><c:out value="${booking.groupSize}" /></small></h5>
+				            		<h6>Group Size: <small><c:out value="${booking.groupSize}" /></small></h6>
 				          		</div>
 				          		<div class="booking-place">
-				           	 		<h5>Place: <small><c:out value="${booking.place}" /></small></h5>
+				           	 		<h6>Place: <small><c:out value="${booking.place}" /></small></h6>
 				          		</div>
 				        	</div>
 				        	<div class="col-lg-2">

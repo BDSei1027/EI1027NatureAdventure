@@ -4,24 +4,25 @@
 
 <t:template>
 <jsp:body>
-	<div class="container login" id="login">
-		<div class="login">
-			<h3>Sign in</h3>
-			<form:form role="form" method="post" modelAttribute="user">
-				<div class="form-group">
-					<form:label path="user" for="user" class="control-label">Identificator: </form:label>
-					<form:input path="user" type="text" class="form-control" id="user" placeholder="Your ID" />
-					<form:errors path="user" />
-				</div>
-				<div class="form-group">
-					<form:label path="password" for="pass" class="control-label">Password: </form:label>
-					<form:input path="password" type="password" class="form-control" id="pass" placeholder="Password" />
-					<form:errors path="password" />
-				</div>
-				<button type="submit" class="btn btn-default"> Submit</button>
-				<a href="${pageContext.request.contextPath}/index.jsp"><button class="btn btn-default" type="button">Cancel</button></a>
-			</form:form>
-		</div>
-	</div>
+
+
+<div class="loginCustom">
+		<form:form method="post" role="form" modelAttribute="user" class="login-form">
+		<h4>Sign in!</h4>
+			<div class="form-group">
+    			<form:input path="user" id="login-name" class="form-control login-field" type="text" placeholder="Enter your name" />
+    			<form:label path="user" class="login-field-icon fui-user" for="login-name"></form:label>
+    			<form:errors path="user" class="text-danger" />
+    		</div>
+    		<div class="form-group">
+		    	<form:input path="password" id="login-pass" class="form-control login-field" type="password" placeholder="Password" />
+		    	<form:label path="password" class="login-field-icon fui-lock" for="login-pass"></form:label>
+		    	<form:errors path="password" class="text-danger" />
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in!</button>
+            <a class="login-link" href="#">Lost your password?</a>
+            <div class="logoLogin">NatureAdventure</div>
+        </form:form>
+</div>	
 </jsp:body>
 </t:template>

@@ -7,7 +7,7 @@
 <jsp:body>
 
 	<!-- Estan los campos de Form:form preparados no se porque falla -->
-	<h2>Instructor management</h2>
+	<h4>Instructor management</h4>
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">
 			<ul class="nav nav-pills nav-stacked">
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-	<h3>List of the active instructors</h3>
+	<h6 class="subtitle">List of the active instructors</h6>
 	<t:tablaInstructors />
 
 </jsp:body>

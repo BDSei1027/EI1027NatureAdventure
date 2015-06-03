@@ -4,7 +4,7 @@
 
 <t:template>
 <jsp:body>
-	<h2>Client management</h2>
+	<h4>Client management</h4>
 	<div id="action&help" class="row">
 		<!-- <div id="action" class="col-lg-2">
 			<ul class="nav nav-pills nav-stacked">
@@ -22,14 +22,12 @@
 				<div class="panel-body">
 					<p>The following table lists all the clients, which are in the data base.</p>
 					<p>To see details of the client, click on <span class="label label-info">Details</span>.</p>
-					<p>If you need to contact with the client, go to <span class="label label-info">Details</span> and then click on Contact.</p>
-					<!-- <p>If you need contact with a client, click on <span class="label label-success">Contact</span> to send an email</p> -->
-					<!-- <p>In menu of the left, you can choose how do you want the data and add more instructors</p> -->
+					<p>If you need to contact with the client, go to <span class="label label-info">Details</span> and then click on <strong class="high">Contact</strong>.</p>
 				</div>
 			</div>
 		<!-- </div> -->
 	</div>
-	<h3>List of the clients</h3>
+	<h6 class="subtitle">List of the clients</h6>
 	<t:tablaClients />
 </jsp:body>
 </t:template>

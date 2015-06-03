@@ -158,7 +158,7 @@
 												</div>
 									       		<div class="modal-footer" id="assignModalFooter">
 									         		<div class="pull-right">
-									           			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/assignInstructor?idb=${booking.innerIdBooking}&inst=${instructor.ssNumber}.html"><button class="btn btn-success">Assign</button></a>
+									           			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/assignInstructor?idb=${booking.innerIdBooking}&instr=${instructor.ssNumber}.html"><button class="btn btn-success">Assign</button></a>
 									           			<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
 									         		</div>
 									       		</div>
@@ -438,7 +438,7 @@
 	  				</div>
 	          		<div class="modal-footer" id="changePendingModalFooter">
 	            		<div class="pull-right">
-	              			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/accept2Decline?idb=${booking.innerIdBooking}"><button class="btn btn-danger">Accept</button></a>
+	              			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/accept2Decline?idb=${booking.innerIdBooking}.html"><button class="btn btn-danger">Accept</button></a>
 	              			<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
 	            		</div>
 	          		</div>

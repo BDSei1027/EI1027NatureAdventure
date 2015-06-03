@@ -4,7 +4,7 @@
 
 <t:template>
 <jsp:body>
-	<h2>Client management</h2>
+	<h4>Client management</h4>
 	<div id="help" class="row">
 		<div class="panel panel-info">
 			<div class="panel-heading">
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 	</div>
-	<h3>List of the users</h3>
+	<h6 class="subtitle">List of the users</h6>
 	<t:tablaUser />
 </jsp:body>
 </t:template>

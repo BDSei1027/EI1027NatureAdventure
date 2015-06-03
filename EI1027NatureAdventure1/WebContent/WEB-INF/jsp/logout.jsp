@@ -4,16 +4,14 @@
 
 <t:template>
 <jsp:body>
-	<div class="container" id="bye">
-	<h3>Thank you for your visit, <c:out value="${customer}" /></h3>
+	<h4>Thank you for your visit,</h4>
 	
 	<p>We are so glad for your use of our system and the trust you have with us to planify your adventures.</p>
 	<p>Come back when you want, we will be waiting you for new adventures together.</p>
-	<br />
+	<br>
 	<p>If you have some complaning about us or want to give us your opinion, please visit <a href="#">Opinions</a>
 	and leave your opinion to improve your experience or contact with us <a href="#">here</a>.</p>
 	
-	<h4 style="padding-left: 60%">NatureAdventure</h4>
-	</div>
+	<h5 class="text-right">NatureAdventure</h5>
 </jsp:body>
 </t:template>

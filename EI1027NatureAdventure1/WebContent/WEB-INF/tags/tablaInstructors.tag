@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!--<c:set scope="page" var="add" value="203203203203" /> -->
+<!--<c:set scope="page" var="alert" value="203203203203" /> -->
 	<!-- TABLA -->
 <table id="instructorsTable"  
   data-toggle="table" 
@@ -27,7 +27,7 @@
        </thead>
        <tbody>
         <c:forEach var="instructor" items="${instructorList}" >
-        <tr <c:if test="${not empty add and (add eq instructor.ssNumber)}">class="success"</c:if>> 
+        <tr <c:if test="${not empty alert and (alert eq instructor.ssNumber)}">class="success"</c:if>> 
         	<td><c:out value="${instructor.name}" /></td>
         	<td><c:out value="${instructor.lastName}" /></td>
         	<td><c:out value="${instructor.ssNumber}" /></td>

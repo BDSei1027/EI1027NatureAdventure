@@ -5,48 +5,53 @@
 
 <t:template>
 <jsp:body>
-	<h2>Client management</h2>
-	<hr>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Client  <c:out value="${client.clientId}" /></h3>
-		</div>
-		<div class="panel-body">
-			<form:form method="post" action="${pageContext.request.contextPath}/admin/clientManagement/details/${client.clientId}.html" modelAttribute="client" id="formClient">
-				<div class="form-group">
-					<form:label path="clientId" for="cid" class="control-label">ID Number</form:label>
+	<h4>Client management</h4>
+	<h6 class="subtitle">Client  <c:out value="${client.clientId}" /></h6>
+	<div style="width: 80%;">
+		<form:form method="post" action="${pageContext.request.contextPath}/admin/clientManagement/details/${client.clientId}.html" modelAttribute="client" id="formClient">
+			<div class="form-group row">
+				<form:label path="clientId" for="cid" class="col-lg-2 control-label">ID Number</form:label>
+				<div class="col-lg-10">
 					<form:input path="clientId" id="cid" type="text" class="form-control" />
 					<form:errors path="clientId" />
 				</div>
-				<div class="form-group">
-					<form:label path="clientName" for="cname" class="control-label">Name</form:label>
+			</div>
+			<div class="form-group row">
+				<form:label path="clientName" for="cname" class="col-lg-2 control-label">Name</form:label>
+				<div class="col-lg-10">
 					<form:input path="clientName" id="cname" type="text" class="form-control" />
 					<form:errors paths="clientName" />
 				</div>
-				<div class="form-group">
-					<form:label path="clientLastName" for="clast" class="control-label">Last name</form:label>
+			</div>
+			<div class="form-group row">
+				<form:label path="clientLastName" for="clast" class="col-lg-2 control-label">Last name</form:label>
+				<div class="col-lg-10">
 					<form:input path="clientLastName" id="clast" type="text" class="form-control" />
 					<form:errors path="clientLastName" />
 				</div>
-				<div class="form-group">
-					<form:label path="clientEmail" for="cemail" class="control-label">Email</form:label>
+			</div>
+			<div class="form-group row">
+				<form:label path="clientEmail" for="cemail" class="col-lg-2 control-label">Email</form:label>
+				<div class="col-lg-10">
 					<form:input path="clientEmail" id="cemail" type="email" class="form-control" />
 					<form:errors path="clientEmail" />
 				</div>
-				
-				<div class="block-center">
+			</div>
+			
+			<div class="text-center">
+				<div class="btn-group">
 					<button type="submit" class="btn btn-primary">Submit</button>
 					<button type="reset" class="btn btn-danger">Clear</button>
 					<a href="#emailModal" data-toggle="modal" data-target="#emailModal"><button type="button" class="btn btn-success">Contact</button></a>
 				</div>
-			</form:form>
-		</div>
+			</div>
+		</form:form>
 	</div>
         <!-- Modal -->
 			<div class="modal fade" id="emailModal" tabindex='-1' role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<div class="modal-header modal-header-success" id="emailModalHead">
+						<div class="modal-header modal-header-info" id="emailModalHead">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title"><span class="glyphicon glyphicon-envelope"></span> Email to <c:out value="${client.clientEmail}" /></h4>
 						</div>

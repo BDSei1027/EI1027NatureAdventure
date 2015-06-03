@@ -13,15 +13,15 @@
 		        <strong>Error!</strong> The passwords are not the same. Correct it please.
 		    </div>
 		</c:if>
-		<h2>Recovering your password</h2>
+		<h4>Recovering your password</h4>
 		<div class="padding" style="padding-left:10 px">
 			<p>We are glad to see that you recived the email to reset your password.</p>
 			<p>Please, type your new password in the next form and confirm it, typing another time the password.</p>
 		
 			<form:form  method="post" modelAttribute="doublepassword" action="">
 				<div class="row recoverauth">
-					<h4>Reset your password</h4>
-					<p>Your token is: <strong><c:out value="${token}" /></strong></p>
+					<h6>Reset your password</h6>
+					<p>Your token is: <strong class="high"><c:out value="${token}" /></strong></p>
 				<div class="form-group">
 					<form:label path="password" class="control-label" for="p1">Enter your new password </form:label>
 					<form:input path="password" class="form-control" id="p1" type="password" />
@@ -36,7 +36,7 @@
 				</div>
 			</form:form>
 			<p class="text-right">The next time remember your password. Thank you.</p>
-			<h4 class="text-right" style="padding-right:2%;">NatureAdventure</h4>
+			<h5 class="text-right" style="margin-top: 20px;">NatureAdventure</h5>
 		</div>
 	</jsp:body>
 </t:template>

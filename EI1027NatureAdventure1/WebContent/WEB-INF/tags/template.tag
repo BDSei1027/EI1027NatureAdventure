@@ -13,11 +13,9 @@
 
 <!-- Bootstrap -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/flat-ui.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/custommodal.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap-table.css" rel="stylesheet">
-
 
 
 <!-- <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -25,6 +23,7 @@
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/flat-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.0/bootstrap-table.min.js"></script>
 </head>
 
@@ -33,9 +32,9 @@
 	<div class="col-xs-5 col-sm-4 col-md-3 col-lg-3 pull-right" style="padding-right: 0px">	
 		<div id="languages" class="text-right">
 			<div class="container-fluid">
-				<div class="col-xs-5"><a href="">English</a></div>
+				<div class="col-xs-5"><a href="" id="langA">English</a></div>
 				<div class="col-xs-2"> | </div>
-				<div class="col-xs-5"><a href="">Spanish</a></div>
+				<div class="col-xs-5"><a href="" id="langA">Spanish</a></div>
 			</div>
 		</div>
 	</div>
@@ -49,7 +48,7 @@
 				<a href="#"><img src="" alt="" width="" height=""></a>
 			</div>
 		</div>
-		<h1>Nature Adventure</h1>
+		<h2>Nature Adventure</h2>
 	</div>
 	<!-- Fin titulo -->
     
