@@ -43,7 +43,7 @@ public class InstructorManagement extends AbstractController {
 	public String instructorsPageInactive(Model model){
 		model.addAttribute("instructorList", service.getAllInstructorsInacctive());
 		
-		return "admin/instructorManagement";
+		return "admin/instructorManagement/onlyInactive";
 	}
 	
 	@RequestMapping(value="/add")

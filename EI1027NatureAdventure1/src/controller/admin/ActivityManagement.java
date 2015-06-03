@@ -33,7 +33,7 @@ public class ActivityManagement extends AbstractController{
 	public String activityManagementAdd(Model model){
 		model.addAttribute("activity", new Activity());
 		
-		return "/activityManagement/add";
+		return "/admin/activityManagement/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
