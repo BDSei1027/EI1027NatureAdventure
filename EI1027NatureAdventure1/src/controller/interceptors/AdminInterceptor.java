@@ -21,6 +21,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter  {
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) {
 			response.sendRedirect(request.getContextPath()+"/login.html");
+			session.setAttribute("nextPage", request.getRequestURL());
 			return false;
 		}
 		
