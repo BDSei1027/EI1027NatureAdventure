@@ -40,6 +40,28 @@
 	        <mvc:mapping path="/admin/**"/>
 	        <bean class="controller.interceptors.AdminInterceptor" />
 	    </mvc:interceptor>
+	    
+	    <mvc:interceptor>
+	        <mvc:mapping path="/login.html"/>
+	        <bean class="controller.interceptors.IdentificationInterceptor" />
+	    </mvc:interceptor>
+	    
+	    <mvc:interceptor>
+	        <mvc:mapping path="/costumer.html"/>
+	        <mvc:mapping path="/costumer/**"/>
+	        <bean class="controller.interceptors.ClientInterceptor" />
+	    </mvc:interceptor>
+	    
+	    <mvc:interceptor>
+	        <mvc:mapping path="/instructor.html"/>
+	        <mvc:mapping path="/instructor/**"/>
+	        <bean class="controller.interceptors.InstructorInterceptor" />
+	    </mvc:interceptor>
+	    
+	    <mvc:interceptor>
+	        <mvc:mapping path="/account.html"/>
+	        <bean class="controller.interceptors.AccountInterceptor" />
+	    </mvc:interceptor>
 	</mvc:interceptors>	
 
 	

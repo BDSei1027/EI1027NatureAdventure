@@ -18,6 +18,7 @@ import service.LogicLayer;
 
 
 @Controller
+@RequestMapping(value="/account")
 public class MainAccount {
 	
 	private LogicLayer service;
@@ -39,11 +40,9 @@ public class MainAccount {
 	 * @param session User session
 	 * @return The page with the user data
 	 */
-	@RequestMapping(value="/account")
+	@RequestMapping
 	public String userPage(Model model, HttpSession session){
-		//Check if the user is logged
 		User user = (User) session.getAttribute("user");
-		if(user == null) return "redirect:login.jsp";
 		
 		//Get the client data from the user
 		Client client = service.getClient(user);
@@ -55,7 +54,7 @@ public class MainAccount {
 		
 	}
 	
-	@RequestMapping(value="/account", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public String updateUser(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult){
 		
 		
@@ -68,7 +67,7 @@ public class MainAccount {
 		
 		//Update client data
 		service.updateClient(client);
-		return "redirect:account";
+		return "redirect:/account.html";
 	}
 
 }
