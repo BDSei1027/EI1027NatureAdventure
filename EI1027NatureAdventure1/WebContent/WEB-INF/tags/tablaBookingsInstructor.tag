@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 				<!-- Solo tiene que haber bookins para hacer no las pasadas -->
-				<c:forEach items="${item}" var="bookings">
+				<c:forEach items="${bookingList}" var="bookings">
 					<tr>
 						<td><c:out value="${bookings.idBooking}" /></td>
 						<td><c:out value="${bookings.dateActivity}" /></td>

@@ -44,7 +44,7 @@
 		        	<td><a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><span class="label label-info">Edit</span></a></td>
 		        	<td>
 		        		<c:choose>
-		        			<c:when test="${instructor.isActive()}">
+		        			<c:when test="${activity.isActive()}">
 		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/disable/${activity.idAct}.html"><span class="label label-warning">Inactivate</span></a>	
 		        			</c:when>
 		        			<c:otherwise>

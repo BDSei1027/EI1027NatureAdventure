@@ -23,7 +23,7 @@
         </tr>
        </thead>
        <tbody>
-        <c:forEach var="cli" items="${cliList}" >
+        <c:forEach var="cli" items="${clientList}" >
         <tr <c:if test="${not empty add and (add eq cli.clientId)}">class="success"</c:if>> 
         	<td><c:out value="${cli.clientId}" /></td>
         	<td><c:out value="${cli.clientName}" /></td>

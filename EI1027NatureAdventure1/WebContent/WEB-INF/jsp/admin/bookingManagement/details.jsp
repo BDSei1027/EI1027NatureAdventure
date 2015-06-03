@@ -96,7 +96,7 @@
 	              		<h4 class="panel-title">Status</h4>
 	            	</div>
 			          </a> <!-- Arreglar CSS -->
-			          <div id="collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading">
+			          <div id="collapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading">
 			            <div class="panel-body">
 			              <div class="form-group row">
 			                <label for="dateR" class="col-lg-2">Date  of revision</label>
