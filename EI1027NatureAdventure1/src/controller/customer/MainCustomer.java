@@ -21,6 +21,6 @@ public class MainCustomer extends AbstractController {
 		Client client = service.getClient((User) session.getAttribute("user"));
 		
 		model.addAttribute("bookings", service.getActiveBookings(client));
-		return "admin";
+		return "customer";
 	}
 }
