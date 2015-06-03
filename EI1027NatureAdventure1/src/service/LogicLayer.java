@@ -1,5 +1,6 @@
 package service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -240,7 +241,6 @@ public class LogicLayer {
 		dao.deleteInstructorFromActivity(idMonitor, idActivity);
 	}
 	
-	
 	/*
 	 * ACTIVITY ZONE
 	 */
@@ -398,7 +398,7 @@ public class LogicLayer {
 	 * @param status
 	 */
 	public void deleteStatus(Status status){
-		if(this.getStatus(String.valueOf(status.getIDbooking()))==null) return;
+		if(this.getStatus(status.getIDbooking())==null) return;
 		daoStatus.deleteElement(status);
 	}
 	
@@ -406,7 +406,7 @@ public class LogicLayer {
 	 * @param status
 	 */
 	public void updateStatus(Status status){
-		if (this.getStatus(String.valueOf(status.getIDbooking()))==null) return;
+		if (this.getStatus(status.getIDbooking())==null) return;
 		daoStatus.updateElement(status);
 	}
 	
@@ -414,7 +414,7 @@ public class LogicLayer {
 	 * @param idBooking
 	 * @return The status
 	 */
-	public Status getStatus(String idBooking){
+	public Status getStatus(int idBooking){
 		Status myStatus = (Status) daoStatus.getElement(idBooking);
 		return myStatus;
 		
@@ -426,7 +426,7 @@ public class LogicLayer {
 	 * @return The status
 	 */
 	public Status getStatus(Booking booking){
-		return this.getStatus(String.valueOf(booking.getInnerIdBooking()));
+		return this.getStatus(booking.getInnerIdBooking());
 	}
 	
 	/** Retrieve all the status from the database
@@ -438,6 +438,30 @@ public class LogicLayer {
 		return allStatusClasses;
 	}
 	
+	public void assignInstructorToBooking(String ssNumber, int idBooking){
+		Status myStatus = this.getStatus(idBooking);
+		if(myStatus==null) return;
+		myStatus.setSsNumber(ssNumber);
+		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // añado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setStatus("accepted");
+		this.updateStatus(myStatus);
+	}
+	
+	public void declineBooking(int idBooking){
+		Status myStatus = this.getStatus(idBooking);
+		if(myStatus==null) return;
+		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // añado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setStatus("declined");
+		this.updateStatus(myStatus);
+	}
+	
+	public void bookingToPending(int idBooking){
+		Status myStatus = this.getStatus(idBooking);
+		if(myStatus==null) return;
+		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // añado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setStatus("pending");
+		this.updateStatus(myStatus);
+	}
 	
 	/*
 	 * USER ZONE
