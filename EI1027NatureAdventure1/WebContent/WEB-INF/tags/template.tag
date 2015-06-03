@@ -12,19 +12,28 @@
 <title>NatureAdventure</title>
 
 <!-- Bootstrap -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap-table.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/flat-ui.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap-table.css" rel="stylesheet">
+
 
 
 <!-- <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> -->
-  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/flat-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.0/bootstrap-table.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/flat-ui.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/application.js"></script>
+<script src="${pageContext.request.contextPath}/js/prettify.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/radiocheck.js"></script>
+
+
+
 </head>
 
 <body class="container">
@@ -71,9 +80,17 @@
     <div class="container-fluid">
         <jsp:doBody />
     </div>
-    
     <!-- Pie de pagina -->
 	<t:footer />
 	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('select[name="inverse-dropdown"], select[name="inverse-dropdown-optgroup"], select[name="inverse-dropdown-disabled"]').select2({dropdownCssClass: 'select-inverse-dropdown'});
+
+        $('select[name="searchfield"]').select2({dropdownCssClass: 'show-select-search'});
+        $('select[name="inverse-dropdown-searchfield"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
+        $(':checkbox').radiocheck();
+      });
+    </script>
 </body>
 </html>

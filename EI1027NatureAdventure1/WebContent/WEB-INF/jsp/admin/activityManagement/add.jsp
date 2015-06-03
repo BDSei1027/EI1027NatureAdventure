@@ -31,11 +31,21 @@
 				</div>
 			</div>
 			<div class="row form-group">
+				<form:label path="schedule" for="sch" class="col-lg-2 control-label">Place </form:label>
+				<div class="col-lg-10">
+					<form:select path="schedule" class="form-control select select-primary mrs mbm" data-toggle="select">
+						<form:option value="morning">Morning</form:option>
+						<form:option value="evening">Evening</form:option>
+						<form:option value="night">Night</form:option>
+					</form:select>
+				</div>
+			</div>
+			<div class="row form-group">
 				<form:label path="price" for="price" class="col-lg-2 control-label">Price </form:label>
 				<div class="col-lg-10">
 					<div class="input-group">
       					<div class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></div>
-							<form:input path="price" type="number" class="form-control" id="price" placeholder="Enter the price" />
+							<form:input path="price" type="text" class="form-control" id="price" placeholder="Enter the price" />
 						</div>
 					<form:errors path="price" class="text-danger" />
 				</div>
@@ -50,7 +60,7 @@
 			<div class="row form-group">
 				<form:label path="minimumGroup" for="min" class="col-lg-2 control-label">Minimum group </form:label>
 				<div class="col-lg-10">
-					<form:input path="minimumGroup" type="text" class="form-control" id="min" placeholder="Enter the minimum group"/>
+					<form:input path="minimumGroup" type="number" class="form-control" id="min" placeholder="Enter the minimum group"/>
 					<form:errors path="minimumGroup" class="text-danger" />
 				</div>
 			</div>

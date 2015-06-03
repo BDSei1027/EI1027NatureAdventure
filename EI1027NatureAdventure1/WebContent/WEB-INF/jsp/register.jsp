@@ -21,14 +21,14 @@
 				<div class="row form-group">
 					<form:label path="name" for="nam" class="col-lg-2 control-label">Name: </form:label>
 					<div class="col-lg-10">				
-						<form:input path="name" type="text" class="form-control width-50" id="nam" placeholder="Enter your name" />
+						<form:input path="name" type="text" class="form-control" id="nam" placeholder="Enter your name" />
 						<form:errors path="name" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
 					<form:label path="lastName" for="lname" class="col-lg-2 control-label">Last name: </form:label>
 					<div class="col-lg-10">
-						<form:input path="lastName" type="text" class="form-control width-50" id="lname" placeholder="Enter your last name"/>
+						<form:input path="lastName" type="text" class="form-control" id="lname" placeholder="Enter your last name"/>
 					<form:errors path="lastName" class="text-danger" />
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 					<form:label path="email" for="email" class="col-lg-2 control-label">E-mail: </form:label>
 					<div class="col-lg-10">
 						<div class="input-group">
-						<form:input path="email" type="email" class="form-control width-50" id="email" placeholder="Enter your email"/>
+						<form:input path="email" type="email" class="form-control" id="email" placeholder="Enter your email"/>
 						<div class="input-group-addon"><span class="fui-mail"></span></div>
 						</div>
 						<form:errors path="email" class="text-danger" />
@@ -45,14 +45,14 @@
 				<div class="row form-group">
 					<form:label path="id" for="id" class="col-lg-2 control-label">ID number: </form:label>
 					<div class="col-lg-10">
-						<form:input path="id" type="text" class="form-control width-50" id="id" placeholder="Enter your identification number"/>
+						<form:input path="id" type="text" class="form-control" id="id" placeholder="Enter your identification number"/>
 						<form:errors path="id" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
 					<form:label path="password" for="pass" class="col-lg-2 control-label">Password: </form:label>
 					<div class="col-lg-10">
-						<form:input path="password" type="password" class="form-control width-50" id="pass" placeholder="Enter your password"/>
+						<form:input path="password" type="password" class="form-control" id="pass" placeholder="Enter your password"/>
 						<form:errors path="password" class="text-danger" />
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 						<p>Suspendisse sit amet ligula id sapien rutrum luctus in eu ex. Donec vel purus a nisi convallis tempor eu ut leo. Sed ut ipsum euismod, bibendum nibh in, tincidunt odio. Aliquam volutpat dictum nisi a lacinia. Cras hendrerit consequat consectetur. Donec eget dui at velit aliquet interdum. Pellentesque porta massa dolor, blandit rhoncus lectus consectetur eu. In at tristique ex, et consectetur eros. Morbi enim est, condimentum aliquet sapien id, euismod imperdiet nisi. Cras sit amet justo gravida orci commodo cursus. Donec nec consequat dui. Aenean mattis mauris ante, vel ullamcorper lorem eleifend quis. Integer nec risus velit. </p>				
 					</div>
 				</div>
-				<div class="text-center">
+				<div style="padding-left:40%;">
 						<form:label path="tocs" class="checkbox" for="toc">
 							<form:checkbox id="toc" path="tocs" data-toggle="checkbox"/> Do you accept the TOCS?
 							<br><form:errors path="tocs" class="text-danger"></form:errors>
@@ -76,9 +76,11 @@
 				</div>
 				<div id="selectlanguage" style="margin-bottom 15px;">
 				Select your language: 
-				<form:select path="language" data-toggle="select" class="form-control select select-primary mrs mbm">
-					<form:option value="EN">English</form:option>
-					<form:option value="ES">Spanish</form:option>
+				<form:select path="language" data-toggle="select" class="form-control select select-primary select-lg">
+					<optgroup>
+						<form:option value="EN">English</form:option>
+						<form:option value="ES">Spanish</form:option>
+					</optgroup>
 				</form:select>
 				</div>
 				<div class="text-center" style="margin-top: 20px;">

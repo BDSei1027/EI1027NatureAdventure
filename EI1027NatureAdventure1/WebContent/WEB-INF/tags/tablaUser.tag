@@ -27,10 +27,10 @@
         	<td><c:out value="${user.name}" /></td>
         	<td><c:out value="${user.type}" /></td>
         	<td><c:out value="${user.language}" /></td>
-        	<td><a href="#deleteUser" data-toggle="modal" data-target="#deleteUserModal"><span class="label label-danger">Delete</span></a></td>
+        	<td><a href="#deleteUser" data-toggle="modal" data-target="#deleteUserModal${user.user}"><span class="label label-danger">Delete</span></a></td>
         </tr>
-				<div class="modal fade" id="deleteUserModal" tabindex='-1' role="dialog">
-		  			<div class="modal-dialog modal-sm">
+				<div class="modal fade" id="deleteUserModal${user.user}" tabindex='-1' role="dialog">
+		  			<div class="modal-dialog">
 		  				<c:choose>
 	        				<c:when test="${user.type gt 0 }">
 				  				<div class="modal-content">
