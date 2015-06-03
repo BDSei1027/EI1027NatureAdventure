@@ -69,7 +69,7 @@ public class ActivityManagement extends AbstractController{
 	}
 	
 	@RequestMapping(value="/onlyActive")
-	public String activityPageActive(Model model){
+	public String activityPageActive(Model model){ 
 		model.addAttribute("activityList", service.getAllActivitiesActive());
 		
 		return "admin/activityManagement/onlyActive";
