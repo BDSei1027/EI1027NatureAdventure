@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		
-		<c:forEach var="booking" items="pastBookings">
+		<c:forEach var="booking" items="${pastBookings}">
 			    <div class="booking">
 			    	<div class="booking-title">
 			    		<h3 class="pull-left"><c:out value="${booking.name}" /><small><c:out value="${booking.date}" /></small></h3>

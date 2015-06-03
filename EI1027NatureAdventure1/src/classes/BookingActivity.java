@@ -8,13 +8,14 @@ import org.springframework.stereotype.Component;
 public class BookingActivity {
 
 	/*
-	 * Clase de envoltura para mostrar datos en el cliente con los datos de
-	 * actividad y su reserva
+	 * Clase de envoltura para mostrar datos en el cliente e instructores 
+	 * con los datos de la actividad y la reserva
 	 */
 	
-	private int id;
-	private String name;
-	private Date date;
+	private int idBooking;
+	private String nameActivity;
+	private Date dateActivity;
+	private String schedule;
 	private String level;
 	private int groupSize;
 	private String place;
@@ -26,28 +27,36 @@ public class BookingActivity {
 		super();
 	}
 
-	public int getId() {
-		return id;
+	public int getIdBooking() {
+		return idBooking;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdBooking(int id) {
+		this.idBooking = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNameActivity() {
+		return nameActivity;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNameActivity(String name) {
+		this.nameActivity = name;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateActivity() {
+		return dateActivity;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateActivity(Date date) {
+		this.dateActivity = date;
+	}
+	
+	public String getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
 	}
 
 	public Date getDateRevision() {
@@ -105,6 +114,21 @@ public class BookingActivity {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	public void setStatus(String status) {
+		status = status.toLowerCase();
+		switch (status) {
+		case "accepted":
+			this.status = 1;
+			break;
+		case "declined":
+			this.status = 2;
+			break;
+		default:
+			this.status = 0;
+			break;
+		}
 	}
 }
 

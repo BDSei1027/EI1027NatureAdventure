@@ -30,22 +30,22 @@
 			</div>
 		</div>
 		
-		<c:forEach var="booking" items="activeBookings">
+		<c:forEach var="booking" items="${activeBookings}">
 			    <div class="booking">
 			    	<div class="booking-title">
-			    		<h3 class="pull-left"><c:out value="${booking.name}" /><small><c:out value="${booking.date}" /></small></h3>
+			    		<h3 class="pull-left"><c:out value="${booking.nameActivity}" /><small><c:out value="${booking.dateActivity}" /></small></h3>
 			    		<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><span class="caret pull-right"></span></a>
 			    		<div style="clear:both;"></div>
 			    	</div>
 			    	<div class="collapse" id="collapseAct">
 				    	<div class="booking-body row">
 				        	<div class="col-lg-4">
-				        		<div class="booking-activity"><c:out value="${booking.name}" /> <small><c:out value="${booking.level}" /></small></div>
-				        		<div class="booking-id">Identifier: <c:out value="${booking.id}" /></div>
+				        		<div class="booking-activity"><c:out value="${booking.nameActivity}" /> <small><c:out value="${booking.level}" /></small></div>
+				        		<div class="booking-id">Identifier: <c:out value="${booking.idBooking}" /></div>
 				        	</div>
 				        	<div class="col-lg-6">
 				          		<div class="booking-date">
-				            		<h5>Date: <small><c:out value="${booking.date}" /></small></h5>
+				            		<h5>Date: <small><c:out value="${booking.dateActivity}" /></small></h5>
 				          		</div>
 				          		<div class="booking-group">
 				            		<h5>Group Size: <small><c:out value="${booking.groupSize}" /></small></h5>
