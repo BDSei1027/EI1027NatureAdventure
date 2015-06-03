@@ -6,7 +6,7 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	
-	<display-name>NAME DISPLAY</display-name>
+	<display-name>NatureAdventure</display-name>
 	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
