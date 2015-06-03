@@ -19,6 +19,8 @@
 		            <th data-field="min" data-sortable="true">Min G</th>
 		            <th data-field="max" data-sortable="true">Max G</th>
 		            <th data-field="active" data-sortable="true">Is active</th>
+		            <th></th>
+		            <th></th>
 		        </tr>
 	        </thead>
 	        <tbody>

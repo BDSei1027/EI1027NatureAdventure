@@ -89,7 +89,7 @@
 
           <div class="panel panel-default">
             <c:choose>
-            	<c:when test="${empty status}">
+            	<c:when test="${empty status or status.status eq 'pending'}">
             		<c:set scope="page" var="modals" value="1" />
             		<a data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="true" aria-controls="collapse">
 	            	<div class="panel-heading panel-header-warning" role="tab" id="heading">
@@ -267,7 +267,7 @@
           <div class="form-group row">
             <label for="cliname" class="col-lg-2">Name</label>
             <div id="cliname" class="col-lg-10">
-              <div class="form-control"><c:out value="${client.clienName}" /></div>
+              <div class="form-control"><c:out value="${client.clientName}" /></div>
             </div>
           </div>
           <div class="form-group row">
@@ -363,7 +363,7 @@
 					</div>
 		       		<div class="modal-footer" id="declineModalFooter">
 		         		<div class="pull-right">
-		           			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/decline?idb=${booking.innerIdBooking}.html"><button class="btn btn-danger">Decline</button></a>
+		           			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/decline/${booking.innerIdBooking}.html"><button class="btn btn-danger">Decline</button></a>
 		           			<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
 		         		</div>
 		       		</div>
@@ -389,7 +389,7 @@
 	  				</div>
 	          		<div class="modal-footer" id="changePendingModalFooter">
 	            		<div class="pull-right">
-	              			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/toPending?idb=${booking.innerIdBooking}.html"><button class="btn btn-danger">Accept</button></a>
+	              			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/toPending/${booking.innerIdBooking}.html"><button class="btn btn-danger">Accept</button></a>
 	              			<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
 	            		</div>
 	          		</div>

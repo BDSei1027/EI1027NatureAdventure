@@ -21,17 +21,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${item}" var="bookings">
+		<c:forEach items="${bookingList}" var="bookings">
 			<tr>
 				<td><c:out value="${bookings.innerIdBooking}" /></td>
 				<td>
 					<c:choose>
-					<c:when test="${not empty bookings.idBooking}"><c:out value="${bookings.idBooking}" /></c:when>
+					<c:when test="${bookings.idBooking ne 0}"><c:out value="${bookings.idBooking}" /></c:when>
 					<c:otherwise>...</c:otherwise>
 					</c:choose>
 				</td>
 				<td><c:out value="${bookings.idAct}" /></td>
-				<td><c:out value="${bookings.clientId}" /><td>
+				<td><c:out value="${bookings.clientId}" /></td>
 				<td><c:out value="${bookings.groupSize}" /></td>
 				<td><c:out value="${bookings.dateCreation}" /></td>
 				<td>
@@ -41,7 +41,7 @@
 						<c:when test="${bookings.status eq 2}"><span class="label label-danger">Declined</span></c:when>
 					</c:choose>
 				</td>
-				<td><a href="${pageContext.request.contextPath}/bookingManagement/details/${bookings.innerIdBooking}.html"><span class="label label-info">Details</span></a></td>
+				<td><a href="${pageContext.request.contextPath}/admin/bookingManagement/details/${bookings.innerIdBooking}.html"><span class="label label-info">Details</span></a></td>
 			</tr>
 		</c:forEach>
 	</tbody>

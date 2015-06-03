@@ -97,7 +97,7 @@
 	</bean>
 	<bean id="bookingDAO" class="database.daoBooking">
 		<property name="dataSource" ref="jdbc" />
-		<property name="daoStatus" ref="daoStatus" />
+		<property name="daoStatus" ref="statusDAO" />
 	</bean>
 	<bean id="clientDAO" class="database.daoClient">
 		<property name="dataSource" ref="jdbc" />
