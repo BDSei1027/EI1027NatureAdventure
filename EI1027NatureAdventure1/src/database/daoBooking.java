@@ -149,6 +149,29 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
+	public Object getActiveBookings(String idClient){
+		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE >= 0 AND b.clientId= ?;";
+		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
+		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
+		for (Booking book: list) {
+			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
+			map.put(book.getInnerIdBooking(), book);
+		}
+		return map;
+	}
+	
+	public Object getPastBookings(String idClient){
+		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE < 0 AND b.clientId= ?;";
+		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
+		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
+		for (Booking book: list) {
+			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
+			map.put(book.getInnerIdBooking(), book);
+		}
+		return map;
+	}
+	
+	
 	/**
 	 * Method to obtain the maximum inner Identifier of the booking
 	 * @return Integer with the maximum ID
