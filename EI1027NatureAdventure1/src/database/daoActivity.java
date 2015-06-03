@@ -178,6 +178,33 @@ public class daoActivity implements DaoInterface {
 		return list;
 	}
 	
+	/** Method to obtain all the activities that are inactive
+	 * @return Map<Integer, Activity> Each pair content the idAct as the key and the activity itself as a value
+	 */
+	public Map<Integer, Activity> getElementsInactive() {
+		String sql = "SELECT * FROM activity WHERE isactive = false;";
+		Map<Integer, Activity> map = new HashMap<Integer, Activity>();
+		List<Activity> list = dataSource.query(sql, new ActivityMapper());
+		for(Activity i:list){
+			map.put(i.getIdAct(), i);
+		}
+		return map;
+	}
+	
+	/** Method to obtain all the activities that are active
+	 * @return Map<Integer, Activity> Each pair content the idAct as the key and the activity itself as a value
+	 */
+	public Map<Integer, Activity> getElementsActive() {
+		String sql = "SELECT * FROM activity WHERE isactive = true;";
+		Map<Integer, Activity> map = new HashMap<Integer, Activity>();
+		List<Activity> list = dataSource.query(sql, new ActivityMapper());
+		for(Activity i:list){
+			map.put(i.getIdAct(), i);
+		}
+		return map;
+	}
+	
+	
 	/**
 	 * Method to get the instructors that can supervise this activity
 	 * @param idAct Integer with the idact

@@ -312,6 +312,25 @@ public class LogicLayer {
 		
 	}
 	
+	/** Get all the activities that are active in the database
+	 * @return A collection of Activity with all active activities
+	 */
+	public Object getAllActivitiesActive() {
+		Map<Integer, Activity> map = (Map<Integer, Activity>) daoActivity.getElementsActive();
+		Collection<Activity> collection = map.values();
+		return collection;
+	}
+	
+	
+	/** Get all the activities that are active in the database
+	 * @return A collection of Activity with all inactive activities
+	 */
+	public Object getAllActivitiesInactive() {
+		Map<Integer, Activity> map = (Map<Integer, Activity>) daoActivity.getElementsInactive();
+		Collection<Activity> collection = map.values();
+		return collection;
+	}
+
 	
 	/*
 	 * BOOKING ZONE
