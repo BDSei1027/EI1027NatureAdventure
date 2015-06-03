@@ -559,6 +559,16 @@ public class LogicLayer {
 		
 	}
 	
+	public User createUserFrom(Instructor instructor) {
+		User newUser = new User();
+		newUser.setUser(instructor.getIdNumber());
+		newUser.setPassword(instructor.getTelephone());
+		newUser.setName(instructor.getName());
+		newUser.setLanguage("EN");
+		newUser.setType(1);
+		return newUser;
+	}
+	
 	/*
 	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
 	 */
@@ -615,9 +625,5 @@ public class LogicLayer {
 	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
 		this.daoAvaliable = daoAvaliable;
 	}
-
-
-
-
 
 }

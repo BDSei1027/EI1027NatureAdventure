@@ -17,5 +17,7 @@ public abstract class AbstractController {
 	public void setService(LogicLayer service){
 		this.service = service;
 	}
+	
+	
 
 }
