@@ -16,10 +16,10 @@ public class StatusValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Status status = (Status) obj;
 		if(status.getSsNumber().trim().length() <= 9){
-			errors.rejectValue("ssNumber","longitud","La longitud debe ser mayor que 9 caracteres"); 
+			errors.rejectValue("ssNumber","longitud","The length must be greater than 9 characters");// La longitud debe ser mayor que 9 caracteres
 		}
 		if(status.getStatus().equals("")){
-			errors.rejectValue("status","status","Este campo no puede estar vacío");
+			errors.rejectValue("status","status","This field cannot be null");//Este campo no puede estar vacío
 		}
 	}
 

@@ -1,4 +1,4 @@
-package main.controller;
+package controller.account;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +18,7 @@ import service.LogicLayer;
 
 
 @Controller
-public class AccountFunctionalityController {
+public class MainAccount {
 	
 	private LogicLayer service;
 
@@ -30,6 +30,7 @@ public class AccountFunctionalityController {
 	public void setService(LogicLayer service){
 		this.service = service;
 	}
+	
 	
 	
 	/**

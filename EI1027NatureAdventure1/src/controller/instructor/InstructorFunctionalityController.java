@@ -1,4 +1,4 @@
-package main.controller;
+package controller.instructor;
 
 import java.util.Collection;
 import java.util.List;

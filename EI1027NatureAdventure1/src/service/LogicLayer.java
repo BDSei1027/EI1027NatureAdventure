@@ -255,7 +255,6 @@ public class LogicLayer {
 		dao.deleteInstructorFromActivity(idMonitor, idActivity);
 	}
 	
-	
 	/*
 	 * ACTIVITY ZONE
 	 */
@@ -327,6 +326,25 @@ public class LogicLayer {
 		
 	}
 	
+	/** Get all the activities that are active in the database
+	 * @return A collection of Activity with all active activities
+	 */
+	public Object getAllActivitiesActive() {
+		Map<Integer, Activity> map = (Map<Integer, Activity>) daoActivity.getElementsActive();
+		Collection<Activity> collection = map.values();
+		return collection;
+	}
+	
+	
+	/** Get all the activities that are active in the database
+	 * @return A collection of Activity with all inactive activities
+	 */
+	public Object getAllActivitiesInactive() {
+		Map<Integer, Activity> map = (Map<Integer, Activity>) daoActivity.getElementsInactive();
+		Collection<Activity> collection = map.values();
+		return collection;
+	}
+
 	
 	/*
 	 * BOOKING ZONE
@@ -344,7 +362,7 @@ public class LogicLayer {
 	/** Delete the booking in the database. The innerBooking is required.
 	 * @param id
 	 */
-	public void deleteBooking(String id){
+	public void deleteBooking(int id){
 		Booking myBooking = this.getBooking(id);
 		if(myBooking==null) return;
 		daoBooking.deleteElement(myBooking);
@@ -354,16 +372,16 @@ public class LogicLayer {
 	 * @param booking
 	 */
 	public void deleteBooking(Booking booking){
-		if(this.getBooking(String.valueOf(booking.getInnerIdBooking()))==null) return;
-		this.deleteBooking(String.valueOf(booking.getInnerIdBooking()));
+		this.deleteBooking(booking.getInnerIdBooking());
 		
 	}
+	
 	
 	/** Retrieves the desired booking
 	 * @param id
 	 * @return The booking
 	 */
-	public Booking getBooking(String id) {
+	public Booking getBooking(int id) {
 		Booking myBooking = (Booking) daoBooking.getElement(id);
 		return myBooking;
 	}
@@ -448,6 +466,30 @@ public class LogicLayer {
 		return allStatusClasses;
 	}
 	
+	public void assignInstructorToBooking(String ssNumber, int idBooking){
+		Status myStatus = this.getStatus(idBooking);
+		if(myStatus==null) return;
+		myStatus.setSsNumber(ssNumber);
+		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // a�ado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setStatus("accepted");
+		this.updateStatus(myStatus);
+	}
+	
+	public void declineBooking(int idBooking){
+		Status myStatus = this.getStatus(idBooking);
+		if(myStatus==null) return;
+		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // a�ado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setStatus("declined");
+		this.updateStatus(myStatus);
+	}
+	
+	public void bookingToPending(int idBooking){
+		Status myStatus = this.getStatus(idBooking);
+		if(myStatus==null) return;
+		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // a�ado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setStatus("pending");
+		this.updateStatus(myStatus);
+	}
 	
 	/*
 	 * USER ZONE
@@ -589,6 +631,16 @@ public class LogicLayer {
 		
 	}
 	
+	public User createUserFrom(Instructor instructor) {
+		User newUser = new User();
+		newUser.setUser(instructor.getIdNumber());
+		newUser.setPassword(instructor.getTelephone());
+		newUser.setName(instructor.getName());
+		newUser.setLanguage("EN");
+		newUser.setType(1);
+		return newUser;
+	}
+	
 	/*
 	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
 	 */
@@ -645,9 +697,5 @@ public class LogicLayer {
 	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
 		this.daoAvaliable = daoAvaliable;
 	}
-
-
-
-
 
 }

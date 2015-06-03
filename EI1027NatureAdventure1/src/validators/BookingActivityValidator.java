@@ -16,19 +16,19 @@ public class BookingActivityValidator implements Validator{
 	public void validate(Object obj, Errors errors) {
 		BookingActivity myActivity = (BookingActivity) obj;
 		if(myActivity.getId()<0){
-			errors.rejectValue("id","valorNegativo","Hay un problema con el id");
+			errors.rejectValue("id","valorNegativo","There is a problem with the id");//Hay un problema con el id
 		}
 		if(myActivity.getName().equals("")){
-			errors.rejectValue("name","nombreNulo","Este campo no puede ser nulo");
+			errors.rejectValue("name","nombreNulo","This field cannot be null");//Este campo no puede ser nulo
 		}
 		if(myActivity.getPlace().equals("")){
-			errors.rejectValue("place","lugarNulo","Este campo no puede ser nulo");
+			errors.rejectValue("place","lugarNulo","This field cannot be null");//Este campo no puede ser nulo
 		}
 		if(myActivity.getGroupSize()<=0){
-			errors.rejectValue("groupSize","valorNegativo","Este campo no puede ser menor o igual a cero");
+			errors.rejectValue("groupSize","valorNegativo","This field cannot be lower or equal than 0");//Este campo no puede ser menor o igual a cero
 		}
 		if(myActivity.getLevel().equals("")){
-			errors.rejectValue("groupSize","valorNegativo","Este campo no puede ser menor o igual a cero");
+			errors.rejectValue("groupSize","valorNegativo","This field cannot be lower or equal than 0");//Este campo no puede ser menor o igual a cero
 		}
 	}
 

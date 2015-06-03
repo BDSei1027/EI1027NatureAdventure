@@ -17,8 +17,8 @@ public class UserValidator implements Validator {
 		User user = (User) obj;
 		
 		if (user.getUser().trim().equals("")){
-			errors.rejectValue("nombre", "obligatorio",
-                    "Es necesario introducir un valor");
+			errors.rejectValue("name", "obligatorio",
+                    "A value must be introduced");//Es necesario introducir un valor
 
 		}
 		

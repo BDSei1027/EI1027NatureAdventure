@@ -17,18 +17,18 @@
 					<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
 				</div>
 				<div class="modal-body" id="LoginModalBody">
-					<form role="form" action="${pageContext.request.contextPath}/login.html" method="post" modelAttribute="user">
+					<form role="form" action="${pageContext.request.contextPath}/login.html" method="post">
 						<div class="form-group">
 							<label for="user" class="control-label"><span class="glyphicon glyphicon-user"></span> Username </label>
-							<input type="text" class="form-control" id="user" placeholder="Username" />
+							<input type="text" name="user" class="form-control" id="user" placeholder="Username" />
 						</div>
 						<div class="form-group">
 							<label for="pass" class="control-label">Password: </label>
-							<input type="password" class="form-control" id="pass" placeholder="Password" />
+							<input type="password" name="password" class="form-control" id="pass" placeholder="Password" />
 						</div>
 						<div class="checkbox">
 							<label for="remem">
-								<input type="checkbox" id="remem" /> Remember me:
+								<input type="checkbox" name="remem" id="remem" /> Remember me:
 							</label>
 						</div>
 						<button type="submit" class="btn btn-success" id="LoginButton"><span class="glyphicon glyphicon-off"></span> Sign in</button>

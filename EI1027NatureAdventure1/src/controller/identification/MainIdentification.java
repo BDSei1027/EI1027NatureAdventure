@@ -1,5 +1,6 @@
-package main.controller;
+package controller.identification;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import classes.User;
 
 
 @Controller
-public class IdentificationFunctionalityControler {
+public class MainIdentification {
 	
 	private LogicLayer service;
 
@@ -47,13 +48,19 @@ public class IdentificationFunctionalityControler {
 	
 	/**
 	 * Method used to process the login form data
+	 * @param request ServlerRequest used to gather the post data if the model was not used
 	 * @param user User data gathered by the form
 	 * @param bindingResult Result of processing the form
 	 * @param session Http session used to store the user information
 	 * @return Page that requested the login or the main page
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String processLogin(@ModelAttribute("user") User user, BindingResult bindingResult, HttpSession session){
+	public String processLogin(HttpServletRequest request, @ModelAttribute("user") User user, BindingResult bindingResult, HttpSession session){
+		if(user.getUser() == null){
+			user.setUser(request.getParameter("user"));
+			user.setPassword(request.getParameter("password"));
+		}
+		
 		//Correct field format validator
 		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, bindingResult);
