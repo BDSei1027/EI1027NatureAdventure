@@ -1,12 +1,9 @@
 package controller.admin;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,13 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import validators.InstructorValidator;
-import validators.SessionValidator;
 import classes.Activity;
 import classes.Instructor;
 import classes.User;
-import comparators.sortInstructorActive;
-import comparators.sortInstructorName;
-import comparators.sortInstructorSurname;
 import controller.basics.AbstractController;
 
 
@@ -52,30 +45,6 @@ public class InstructorManagement extends AbstractController {
 		
 		return "admin/instructorManagement";
 	}
-
-	
-//	private void sortInstructors(String sortMode, LinkedList<Instructor> instructorList) {
-//		if(sortMode != null) switch(sortMode){
-//			case "ASCname":
-//				Collections.sort(instructorList, new sortInstructorName('a'));
-//				break;
-//			case "ASCsurname":
-//				Collections.sort(instructorList, new sortInstructorSurname('a'));
-//				break;
-//			case "ASCactive":
-//				Collections.sort(instructorList, new sortInstructorActive('a'));
-//				break;
-//			case "DESCname":
-//				Collections.sort(instructorList, new sortInstructorName('d'));
-//				break;
-//			case "DESCsurname":
-//				Collections.sort(instructorList, new sortInstructorSurname('d'));
-//				break;
-//			case "DESCactive":
-//				Collections.sort(instructorList, new sortInstructorActive('d'));
-//				break;
-//		}
-//	}
 	
 	@RequestMapping(value="/add")
 	public String instructorsAddPage(Model model){
@@ -92,7 +61,6 @@ public class InstructorManagement extends AbstractController {
 		
 		if(bindingResult.hasErrors()) return "admin/instructorManagement/add";
 		
-		//Add the instructor
 		service.addInstructor(instructor);
 		
 		// Create the user associated with the instructor using its telephone as password.

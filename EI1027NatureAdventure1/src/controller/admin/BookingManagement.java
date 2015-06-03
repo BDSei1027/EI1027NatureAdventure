@@ -16,7 +16,7 @@ public class BookingManagement extends AbstractController {
 	public String bookingMainPage(Model model){
 		model.addAttribute("bookingList", service.getAllBookings());
 		
-		return "admin/bookingManagement/";
+		return "admin/bookingManagement";
 	}	
 	
 }
