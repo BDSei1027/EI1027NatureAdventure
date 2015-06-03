@@ -470,7 +470,7 @@ public class LogicLayer {
 		Status myStatus = this.getStatus(idBooking);
 		if(myStatus==null) return;
 		myStatus.setSsNumber(ssNumber);
-		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // a�ado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setDateRevision(new Date());
 		myStatus.setStatus("accepted");
 		this.updateStatus(myStatus);
 	}
@@ -478,7 +478,7 @@ public class LogicLayer {
 	public void declineBooking(int idBooking){
 		Status myStatus = this.getStatus(idBooking);
 		if(myStatus==null) return;
-		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // a�ado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setDateRevision(new Date());
 		myStatus.setStatus("declined");
 		this.updateStatus(myStatus);
 	}
@@ -486,7 +486,7 @@ public class LogicLayer {
 	public void bookingToPending(int idBooking){
 		Status myStatus = this.getStatus(idBooking);
 		if(myStatus==null) return;
-		myStatus.setDateRevision( new Date(new java.util.Date().getTime())); // a�ado en formato sql.date la fecha actual apoyandome en la spropiedades del contructor de util.date
+		myStatus.setDateRevision(new Date());
 		myStatus.setStatus("pending");
 		this.updateStatus(myStatus);
 	}

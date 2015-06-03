@@ -48,7 +48,7 @@ public class BookingManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="details/decline/{idBooking}")
-	public String declineBooking(@PathVariable int idBooking, @PathVariable String idInstr){
+	public String declineBooking(@PathVariable int idBooking){
 		service.declineBooking(idBooking);
 		
 		return "redirect:/admin/bookingManagement.html";

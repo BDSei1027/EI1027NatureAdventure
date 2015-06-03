@@ -29,8 +29,8 @@ public class daoBooking implements DaoInterface {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
-	public void setDaoStatus(DaoInterface daoStatus) {
-		this.daoStatus = (daoStatus) daoStatus;
+	public void setDaoStatus(daoStatus daoStatus) {
+		this.daoStatus = daoStatus;
 	}
 	
 	/*
@@ -126,7 +126,10 @@ public class daoBooking implements DaoInterface {
 		String sql = "SELECT * FROM booking WHERE inneridbooking = ?;";
 		List<Booking> list = dataSource.query(sql, new BookingMapper(), id);
 		if (list.size() == 0 || list.size() < 1) return null;
-		else return list.get(0);
+		else {
+			list.get(0).setStatus(daoStatus.getStatus(id));
+			return list.get(0);
+		}
 	}
 
 	/**
@@ -139,7 +142,10 @@ public class daoBooking implements DaoInterface {
 		String sql = "SELECT * FROM booking;";
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
 		List<Booking> list = dataSource.query(sql, new BookingMapper());
-		for (Booking book: list) map.put(book.getInnerIdBooking(), book);
+		for (Booking book: list) {
+			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
+			map.put(book.getInnerIdBooking(), book);
+		}
 		return map;
 	}
 	

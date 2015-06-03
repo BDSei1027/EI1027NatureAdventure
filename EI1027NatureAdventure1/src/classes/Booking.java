@@ -222,7 +222,12 @@ public class Booking {
 	}
 	
 	public void setStatus(String status) {
+		if (status == null) {
+			this.status = 0;
+			return;
+		}
 		status = status.toLowerCase();
+		
 		switch (status) {
 		case "accepted":
 			this.status = 1;

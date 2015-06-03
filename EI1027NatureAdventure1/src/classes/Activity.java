@@ -166,7 +166,7 @@ public class Activity {
     	this.qualifiedInstructors = array;
     }
     
-    public int getNIntructors() {
+    public int getNInstructors() {
     	return this.qualifiedInstructors.size();
     }
 }

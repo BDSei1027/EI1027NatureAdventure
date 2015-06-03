@@ -23,8 +23,8 @@ public class daoStatus implements DaoInterface {
 		super();
 	}
 	
-	public void setDataSource(DataSource datasource) {
-		this.dataSource = new JdbcTemplate(datasource);
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = new JdbcTemplate(dataSource);
 	}
 	
 	/*
@@ -110,6 +110,20 @@ public class daoStatus implements DaoInterface {
 		Map<Integer, Status> map = new HashMap<Integer, Status>();
 		for(Status st: list) map.put(st.getIDbooking(), st);
 		return map;
+	}
+	
+	public String getStatus(int id) {
+		String sql = "SELECT status FROM Status WHERE inneridbooking = ?;";
+		List<String> list = dataSource.query(sql, new RowMapper<String>() {
+			@Override
+			public String mapRow(ResultSet arg0, int arg1) throws SQLException {
+				return arg0.getString(1);
+			}
+		}, id);
+		if (list.size() == 0 || list.size() < 1) return null;
+		else {
+			return list.get(0);
+		}
 	}
 
 }
