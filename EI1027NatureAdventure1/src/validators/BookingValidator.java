@@ -17,15 +17,15 @@ public class BookingValidator implements Validator {
 		Booking booking = (Booking) obj;
 		
 		if(booking.getGroupSize()<=0){
-			errors.rejectValue("groupSize", "Invalid value", "El grupo debe ser mayor que 0");	
+			errors.rejectValue("groupSize", "Invalid value", "The group size must be greater than 0"); //El grupo debe ser mayor que 0	
 		}
 		
 		if(booking.getDateActivity()==null){
-			errors.rejectValue("dateActivity", "Invalid date", "Este campo debe tener algun valor");
+			errors.rejectValue("dateActivity", "Invalid date", "This field must have some value");//Este campo debe tener algun valor
 		}
 		
 		if(booking.getPrice()<=0){
-			errors.rejectValue("price", "negative value", "El precio debe ser mayor que 0");
+			errors.rejectValue("price", "negative value", "The price must be greater than 0");//El precio debe ser mayor que 0
 		}
 	}
 

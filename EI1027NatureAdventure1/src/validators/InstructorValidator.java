@@ -20,24 +20,24 @@ public class InstructorValidator implements Validator {
 		Instructor instructor = (Instructor) obj;
 		
 		if(instructor.getSsNumber().trim().length() <= 9){
-			errors.rejectValue("ssNumber","longitud","La longitud debe ser mayor que 9 carácteres"); 
+			errors.rejectValue("ssNumber","longitud","The length must be greater than 9 characters");//La longitud debe ser mayor que 9 carácteres 
 		}
 		
 		if(instructor.getName().trim().equals("")){
-			errors.rejectValue("name", "nameContent","Este campo no puede estar vacío");
+			errors.rejectValue("name", "nameContent","This field cannot be null");//Este campo no puede estar vacío
 		}
 		
 		if(instructor.getLastName().trim().equals("")){
-			errors.rejectValue("lastName", "lastNameContent","Este campo no puede estar vacío");
+			errors.rejectValue("lastName", "lastNameContent","This field cannot be null");//Este campo no puede estar vacío
 		}
 		
 		if(!instructor.getEmail().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
-			errors.rejectValue("email", "emailAdrress","Debes introducir un email valido");
+			errors.rejectValue("email", "emailAdrress","A valid email address must be introduced");//Debes introducir un email valido
 		}
 		Validador validadorAgenciaTributaria = new Validador();
 		if(validadorAgenciaTributaria.checkNif(instructor.getIdNumber().toUpperCase())<0){
-			errors.rejectValue("idNumber", "digitos","El idNumber no es correcto");
+			errors.rejectValue("idNumber", "digitos","The id Number is not correct");//El número id no es correcto
 		}
 	}
 
