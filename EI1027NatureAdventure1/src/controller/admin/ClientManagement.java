@@ -17,7 +17,7 @@ public class ClientManagement extends AbstractController {
 	 */
 	@RequestMapping
 	public String clientsPage(Model model){
-		model.addAttribute("clientList", service.getAllClients());
+		model.addAttribute("item", service.getAllClients());
 		return "admin/clientManagement";
 	}
 	

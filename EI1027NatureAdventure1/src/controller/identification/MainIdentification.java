@@ -79,11 +79,14 @@ public class MainIdentification {
 		session.setAttribute("user", user);
 		
 		//Get the page that called the login
-		String nextPage = (String) session.getAttribute("nextPage");
+		StringBuffer nextPage = (StringBuffer) session.getAttribute("nextPage");
 		
 		
 		//Return the page that called the login or go to the main page
-		if(nextPage != null) return "redirect:"+nextPage;
+		if(nextPage != null){
+			session.removeAttribute("nextPage");
+			return "redirect:"+nextPage;
+		}
 		return "redirect:/index.jsp";
 		
 	}
