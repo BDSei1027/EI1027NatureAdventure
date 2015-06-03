@@ -22,7 +22,6 @@ import validators.SessionValidator;
 import classes.Activity;
 import classes.Instructor;
 import classes.User;
-
 import comparators.sortActivityActive;
 import comparators.sortActivityDate;
 import comparators.sortActivityId;
@@ -30,24 +29,13 @@ import comparators.sortActivityName;
 import comparators.sortInstructorActive;
 import comparators.sortInstructorName;
 import comparators.sortInstructorSurname;
+import controller.basics.AbstractController;
 
 
 @Controller
 @RequestMapping("/admin/activityManagement")
-public class ActivityManagement {
-	
-	private LogicLayer service;
+public class ActivityManagement extends AbstractController{
 
-
-	/**
-	 * Method that allows automatic independence injection
-	 * @param service Service to inject
-	 */
-	@Autowired
-	public void setService(LogicLayer service){
-		this.service = service;
-	}
-	
 	
 	@RequestMapping
 	public String activityManagementPage(Model model, HttpSession session){

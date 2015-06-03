@@ -21,28 +21,15 @@ import validators.SessionValidator;
 import classes.Activity;
 import classes.Instructor;
 import classes.User;
-
 import comparators.sortInstructorActive;
 import comparators.sortInstructorName;
 import comparators.sortInstructorSurname;
+import controller.basics.AbstractController;
 
 
 @Controller
 @RequestMapping("/admin/instructorManagement")
-public class InstructorManagement {
-	
-	private LogicLayer service;
-
-
-	/**
-	 * Method that allows automatic independence injection
-	 * @param service Service to inject
-	 */
-	@Autowired
-	public void setService(LogicLayer service){
-		this.service = service;
-	}
-	
+public class InstructorManagement extends AbstractController {
 
 	@RequestMapping
 	public String instructorsPage(@ModelAttribute("sort") String sort, Model model, HttpSession session){

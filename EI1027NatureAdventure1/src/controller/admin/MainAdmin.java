@@ -5,26 +5,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import controller.basics.AbstractController;
 import service.LogicLayer;
 import validators.SessionValidator;
 
 
 @Controller
 @RequestMapping("/admin")
-public class MainAdmin {
-	
-	private LogicLayer service;
-
-
-	/**
-	 * Method that allows automatic independence injection
-	 * @param service Service to inject
-	 */
-	@Autowired
-	public void setService(LogicLayer service){
-		this.service = service;
-	}
-	
+public class MainAdmin extends AbstractController {	
 	
 	/**
 	 * Method that returns the admin main page
@@ -39,7 +28,5 @@ public class MainAdmin {
 		if(!user.hasPermissions(0)) return "redirect:/restricted.html";
 		
 		return "admin";
-		
 	}
-	
 }
