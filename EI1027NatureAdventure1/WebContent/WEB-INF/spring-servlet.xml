@@ -20,8 +20,13 @@
     </bean>
 	
 	<!-- Spring's Components -->
+	<context:component-scan base-package="controller/admin" />
+	<context:component-scan base-package="controller/account" />
+	<context:component-scan base-package="controller/instructor" />
+	<context:component-scan base-package="controller/identification" />
+	
+	
 	<context:component-scan base-package="database" />
-	<context:component-scan base-package="main/controller/" />
 	<context:component-scan base-package="classes" />	
 	<context:component-scan base-package="service" />
 		
