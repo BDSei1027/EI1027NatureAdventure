@@ -15,10 +15,10 @@ public class BookingActivityValidator implements Validator{
 	@Override
 	public void validate(Object obj, Errors errors) {
 		BookingActivity myActivity = (BookingActivity) obj;
-		if(myActivity.getId()<0){
+		if(myActivity.getIdBooking()<0){
 			errors.rejectValue("id","valorNegativo","There is a problem with the id");//Hay un problema con el id
 		}
-		if(myActivity.getName().equals("")){
+		if(myActivity.getNameActivity().equals("")){
 			errors.rejectValue("name","nombreNulo","This field cannot be null");//Este campo no puede ser nulo
 		}
 		if(myActivity.getPlace().equals("")){
