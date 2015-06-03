@@ -20,7 +20,7 @@ public class MainCustomer extends AbstractController {
 	public String costumerPage(Model model, HttpSession session){
 		Client client = service.getClient((User) session.getAttribute("user"));
 		
-//		model.addAttribute("bookings", service.getActiveBookings(client));
+		model.addAttribute("bookings", service.getActiveBookings(client));
 		return "customer/main";
 	}
 	
@@ -28,7 +28,7 @@ public class MainCustomer extends AbstractController {
 	public String costumerRecords(Model model, HttpSession session){
 		Client client = service.getClient((User) session.getAttribute("user"));
 		
-//		model.addAttribute("bookings", service.getPastBookings(client));
+		model.addAttribute("bookings", service.getPastBookings(client));
 		return "customer/history";
 	}
 }
