@@ -1,12 +1,7 @@
 package controller.admin;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,20 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import service.LogicLayer;
 import validators.ActivityValidator;
-import validators.InstructorValidator;
-import validators.SessionValidator;
 import classes.Activity;
-import classes.Instructor;
-import classes.User;
-import comparators.sortActivityActive;
-import comparators.sortActivityDate;
-import comparators.sortActivityId;
-import comparators.sortActivityName;
-import comparators.sortInstructorActive;
-import comparators.sortInstructorName;
-import comparators.sortInstructorSurname;
 import controller.basics.AbstractController;
 
 
@@ -94,7 +77,7 @@ public class ActivityManagement extends AbstractController{
 	
 	@RequestMapping(value="/onlyInactive")
 	public String activityPageInactive(Model model){
-		model.addAttribute("activityList", service.getAllActivitiesActive());
+		model.addAttribute("activityList", service.getAllActivitiesInactive());
 		
 		return "admin/activityManagement/onlyInactive";
 	}
