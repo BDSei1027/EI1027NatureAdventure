@@ -4,9 +4,6 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
-import exceptions.InvalidGroupSizeException;
-import exceptions.InvalidPriceException;
-
 
 @Component
 public class Booking {
@@ -147,8 +144,7 @@ public class Booking {
 	}
 	
 	
-	public void setGroupSize(int groupSize) throws InvalidGroupSizeException {
-		if(groupSize < 0 ) throw new InvalidGroupSizeException(groupSize);
+	public void setGroupSize(int groupSize){
 		this.groupSize = groupSize;
 	}
 	
@@ -178,8 +174,7 @@ public class Booking {
 	}
 	
 	
-	public void setPrice(float price) throws InvalidPriceException {
-		if(price < 0.0) throw new InvalidPriceException(price);
+	public void setPrice(float price){
 		this.price = price;
 	}
 	

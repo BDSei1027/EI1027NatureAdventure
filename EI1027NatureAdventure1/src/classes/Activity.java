@@ -4,10 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import exceptions.InvalidGroupSizeException;
-import exceptions.InvalidLevelException;
-import exceptions.InvalidPriceException;
-
 @Component
 public class Activity {
     private int idAct;
@@ -25,7 +21,7 @@ public class Activity {
         super();
     }
 
-    public Activity(Activity actividad) throws InvalidLevelException, InvalidPriceException, InvalidGroupSizeException {
+    public Activity(Activity actividad){
         super();
         setIdAct(actividad.getIdAct());
         setName(actividad.getName());
@@ -94,10 +90,8 @@ public class Activity {
         return level;
     }
 
-    public void setLevel(int level) throws InvalidLevelException {
-        if ( level > 3 || level < 0)
-            throw new InvalidLevelException(level);
-        this.level = level;
+    public void setLevel(int level){
+    	this.level = level;
     }
 
     public String getSchedule() {
@@ -112,9 +106,7 @@ public class Activity {
         return price;
     }
 
-    public void setPrice(float price) throws InvalidPriceException {
-        if (price < 0.0)
-        	throw new InvalidPriceException(price);   
+    public void setPrice(float price){
         this.price = price;
     }
 
@@ -130,13 +122,7 @@ public class Activity {
         return minimumGroup;
     }
 
-    public void setMinimumGroup(int minimumGroup) throws InvalidGroupSizeException {
-        if ( minimumGroup < 0 )
-            throw new InvalidGroupSizeException(minimumGroup);
-        if (maximumGroup != 0) {
-        	if (minimumGroup > this.maximumGroup)
-        		throw new InvalidGroupSizeException(minimumGroup);
-        }
+    public void setMinimumGroup(int minimumGroup){
         this.minimumGroup = minimumGroup;
     }
 
@@ -144,10 +130,8 @@ public class Activity {
         return maximumGroup;
     }
 
-    public void setMaximumGroup(int maximumGroup) throws InvalidGroupSizeException{
-   		if (maximumGroup < 1 || maximumGroup < this.minimumGroup) 
-   			throw new InvalidGroupSizeException(maximumGroup);
-   		else this.maximumGroup = maximumGroup;
+    public void setMaximumGroup(int maximumGroup){
+    	this.maximumGroup = maximumGroup;
     }
     
     public void setIsActive(boolean state) {

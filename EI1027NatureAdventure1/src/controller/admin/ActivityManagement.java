@@ -39,11 +39,11 @@ public class ActivityManagement extends AbstractController{
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String activityManagementAdd(@ModelAttribute("activity") Activity activity, BindingResult bindingResult){		
 		new ActivityValidator().validate(activity, bindingResult);
-		if(bindingResult.hasErrors()) return "/activityManagement/add";
+		if(bindingResult.hasErrors()) return "/admin/activityManagement/add";
 		
 		service.addActivity(activity);
 		
-		return "redirect:/activityManagement/add";
+		return "redirect:/activityManagement.html";
 	}
 	
 	@RequestMapping(value="/disable/{actId}")
