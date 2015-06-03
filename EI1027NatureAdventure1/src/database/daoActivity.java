@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Activity;
-import exceptions.InvalidLevelException;
 //TODO ¿Un metodo para dar de baja una actividad? (cambiar isActive a false), lo mismo para activar (se podria hacer que fuesen una misma)
 @Repository
 public class daoActivity implements DaoInterface {
@@ -65,7 +64,7 @@ public class daoActivity implements DaoInterface {
 		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive) " +
                             "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, activity.getIdAct(), activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
-				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup());
+				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive());
 		
 		// Get the instructors who can teach it
 		final List<String> listIns = activity.getInstructors();
@@ -157,9 +156,7 @@ public class daoActivity implements DaoInterface {
 	 * @param level Integer, the level of the activities
 	 * @return List<Activity> Only contains the activities with this level
 	 */
-	public List<Activity> getElementsWithLevel(int level) throws InvalidLevelException {
-		if (level < 0 || level > 3) throw new InvalidLevelException(level);
-		
+	public List<Activity> getElementsWithLevel(int level){		
 		String sql = "SELECT * FROM activity WHERE leveldif = ?;";
 		List<Activity> list = dataSource.query(sql, new ActivityMapper());
 		for (Activity act : list) act.setInstructors(getInstructorActivity(act.getIdAct()));
