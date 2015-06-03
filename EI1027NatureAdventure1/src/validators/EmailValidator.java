@@ -16,7 +16,7 @@ public class EmailValidator implements Validator{
 	public void validate(Object obj, Errors errors) {
 		Email email = (Email) obj;
 		if(email.getTo().equals("")){
-			errors.rejectValue("to","destinatarioNulo","Este campo no puede ser nulo");
+			errors.rejectValue("to","destinatarioNulo","This field cannot be null");//Este campo no puede ser nulo
 		}
 	}
 
