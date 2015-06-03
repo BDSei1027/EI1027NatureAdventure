@@ -21,7 +21,7 @@ public class UserManagement extends AbstractController {
 	
 	@RequestMapping(value="delete/{userName}")
 	public String removeUser(@PathVariable String userName, Model model){
-		service.removeUser(userName);
+		service.deleteUser(userName);
 		return "redirect:/admin/userManagement";
 	}
 }

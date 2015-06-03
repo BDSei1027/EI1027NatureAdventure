@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import validators.SessionValidator;
  
 
-public class ClientInterceptor extends HandlerInterceptorAdapter  {
+public class CustomerInterceptor extends HandlerInterceptorAdapter  {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession(); 
@@ -21,6 +21,7 @@ public class ClientInterceptor extends HandlerInterceptorAdapter  {
 		SessionValidator user = new SessionValidator(session);
 		if(!user.isLogged()) {
 			response.sendRedirect(request.getContextPath()+"/login.html");
+			session.setAttribute("nextPage", request.getRequestURL());
 			return false;
 		}
 		

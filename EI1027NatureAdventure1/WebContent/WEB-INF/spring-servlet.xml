@@ -27,6 +27,7 @@
 	<context:component-scan base-package="controller/account" />
 	<context:component-scan base-package="controller/instructor" />
 	<context:component-scan base-package="controller/identification" />
+	<context:component-scan base-package="controller/customer" />
 	
 	
 	<context:component-scan base-package="database" />
@@ -47,9 +48,9 @@
 	    </mvc:interceptor>
 	    
 	    <mvc:interceptor>
-	        <mvc:mapping path="/costumer.html"/>
-	        <mvc:mapping path="/costumer/**"/>
-	        <bean class="controller.interceptors.ClientInterceptor" />
+	        <mvc:mapping path="/customer.html"/>
+	        <mvc:mapping path="/custoumer/**"/>
+	        <bean class="controller.interceptors.CustomerInterceptor" />
 	    </mvc:interceptor>
 	    
 	    <mvc:interceptor>

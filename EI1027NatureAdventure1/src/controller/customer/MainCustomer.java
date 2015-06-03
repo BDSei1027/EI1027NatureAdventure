@@ -17,10 +17,18 @@ import controller.basics.AbstractController;
 public class MainCustomer extends AbstractController {	
 	
 	@RequestMapping
-	public String adminPage(Model model, HttpSession session){
+	public String costumerPage(Model model, HttpSession session){
 		Client client = service.getClient((User) session.getAttribute("user"));
 		
-		model.addAttribute("bookings", service.getActiveBookings(client));
-		return "customer";
+//		model.addAttribute("bookings", service.getActiveBookings(client));
+		return "customer/main";
+	}
+	
+	@RequestMapping(value="/history")
+	public String costumerRecords(Model model, HttpSession session){
+		Client client = service.getClient((User) session.getAttribute("user"));
+		
+//		model.addAttribute("bookings", service.getPastBookings(client));
+		return "customer/history";
 	}
 }

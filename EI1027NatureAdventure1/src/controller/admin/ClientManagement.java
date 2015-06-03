@@ -2,6 +2,7 @@ package controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import controller.basics.AbstractController;
@@ -11,14 +12,17 @@ import controller.basics.AbstractController;
 @RequestMapping("/admin/clientManagement")
 public class ClientManagement extends AbstractController {	
 	
-	/**
-	 * Method that returns the admin main page
-	 * @return The admin main page
-	 */
+	
 	@RequestMapping
 	public String clientsPage(Model model){
-		model.addAttribute("item", service.getAllClients());
+		model.addAttribute("clientList", service.getAllClients());
 		return "admin/clientManagement";
+	}
+	
+	@RequestMapping(value="/details/{idClient}")
+	public String clientDetailPage(@PathVariable String idClient, Model model){
+		model.addAttribute("client", service.getClient(idClient));
+		return "admin/clientManagement/details";
 	}
 	
 }
