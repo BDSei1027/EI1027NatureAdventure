@@ -348,7 +348,7 @@ public class LogicLayer {
 	/** Delete the booking in the database. The innerBooking is required.
 	 * @param id
 	 */
-	public void deleteBooking(String id){
+	public void deleteBooking(int id){
 		Booking myBooking = this.getBooking(id);
 		if(myBooking==null) return;
 		daoBooking.deleteElement(myBooking);
@@ -358,16 +358,17 @@ public class LogicLayer {
 	 * @param booking
 	 */
 	public void deleteBooking(Booking booking){
-		if(this.getBooking(String.valueOf(booking.getInnerIdBooking()))==null) return;
-		this.deleteBooking(String.valueOf(booking.getInnerIdBooking()));
+		if(this.getBooking(booking.getInnerIdBooking())==null) return;
+		this.deleteBooking(booking.getInnerIdBooking());
 		
 	}
+	
 	
 	/** Retrieves the desired booking
 	 * @param id
 	 * @return The booking
 	 */
-	public Booking getBooking(String id) {
+	public Booking getBooking(int id) {
 		Booking myBooking = (Booking) daoBooking.getElement(id);
 		return myBooking;
 	}
