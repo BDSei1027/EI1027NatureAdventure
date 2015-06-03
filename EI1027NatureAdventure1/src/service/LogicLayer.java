@@ -396,6 +396,21 @@ public class LogicLayer {
 		return allBookingsClasses;
 	}
 	
+	
+	public Collection<Booking> getActiveBookings(Client client){
+		String idClient = client.getClientId();
+		Map<String,Booking> allBookings = (Map<String,Booking>) daoBooking.getActiveBookings(idClient);
+		Collection<Booking> allBookingsClasses= allBookings.values();
+		return allBookingsClasses;
+	}
+	
+	public Collection<Booking> getPastBookings(Client client){
+		String idClient = client.getClientId();
+		Map<String,Booking> allBookings = (Map<String,Booking>) daoBooking.getPastBookings(idClient);
+		Collection<Booking> allBookingsClasses= allBookings.values();
+		return allBookingsClasses;
+	}
+	
 	/*
 	 * STATUS ZONE
 	 */
