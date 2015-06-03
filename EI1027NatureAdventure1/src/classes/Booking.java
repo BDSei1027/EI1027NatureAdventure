@@ -24,6 +24,7 @@ public class Booking {
 	private String information;
 	private int idAct;
 	private String clientId;
+	private int status;
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
@@ -46,6 +47,7 @@ public class Booking {
 		information = reserva.information;
 		idAct = reserva.idAct;
 		clientId = reserva.clientId;
+		status = reserva.status;
 		
 	}
 
@@ -106,6 +108,9 @@ public class Booking {
 			return false;
 		}
 		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price)) {
+			return false;
+		}
+		if (status != other.status) {
 			return false;
 		}
 		return true;
@@ -208,10 +213,27 @@ public class Booking {
 		this.clientId = clientId;
 	}
 
-
-
+	public int getStatus() {
+		return status;
+	}
 	
-
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
+	public void setStatus(String status) {
+		status = status.toLowerCase();
+		switch (status) {
+		case "accepted":
+			this.status = 1;
+			break;
+		case "declined":
+			this.status = 2;
+			break;
+		default:
+			this.status = 0;
+			break;
+		}
+	}
 	
 }
