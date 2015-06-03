@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 import org.jasypt.util.password.BasicPasswordEncryptor;
@@ -187,8 +188,22 @@ public class LogicLayer {
 		daoInstructor.updateElement(instructor);	
 	}
 		
+	/**
+	 * Method to obtain the number of bookings the instructor have to teach
+	 * @param ssnum Instructor's ssnumber
+	 * @return Number of bookings to do
+	 */
 	public Integer getBookingsToDo(String ssnum) {
 		return daoInstructor.getNumberBookings(ssnum);
+	}
+	
+	/**
+	 * Method to obtain the number of bookings the instructor have to teach
+	 * @param ssnum Instructor to query
+	 * @return Number of bookings to do
+	 */
+	public Integer getBookingsToDo(Instructor instructor) {
+		return this.getBookingsToDo(instructor.getSsNumber());
 	}
 	
 	/*
@@ -378,15 +393,13 @@ public class LogicLayer {
 	 * @param status
 	 */
 	public void deleteStatus(Status status){
-		if(this.getStatus(String.valueOf(status.getIDbooking()))==null) return;
-		daoStatus.deleteElement(status);
+		daoStatus.deleteElement(status.getIDbooking());
 	}
 	
 	/**update a status in the database
 	 * @param status
 	 */
 	public void updateStatus(Status status){
-		if (this.getStatus(String.valueOf(status.getIDbooking()))==null) return;
 		daoStatus.updateElement(status);
 	}
 	
@@ -394,19 +407,36 @@ public class LogicLayer {
 	 * @param idBooking
 	 * @return The status
 	 */
-	public Status getStatus(String idBooking){
+	public Status getStatus(int idBooking){
 		Status myStatus = (Status) daoStatus.getElement(idBooking);
 		return myStatus;
 		
 	}
 	
+	/**
+	 * Change the status of the status to pending
+	 * @param status
+	 */
+	public void changeToPending(Status status) {
+		/* status.setDateRevision(null);
+		status.setSsNumber(null);
+		status.setStatus(null);
+		daoStatus.updateElement(status); */
+		daoStatus.deleteElement(status.getIDbooking());
+	}
 	
+	public void changeToDeclined(Status status) {
+		status.setDateRevision(new Date());
+		status.setSsNumber(null);
+		status.setStatus("declined");
+		daoStatus.updateElement(status);
+	}
 	/** Retrieves a status.
 	 * @param booking
 	 * @return The status
 	 */
 	public Status getStatus(Booking booking){
-		return this.getStatus(String.valueOf(booking.getInnerIdBooking()));
+		return this.getStatus(booking.getInnerIdBooking());
 	}
 	
 	/** Retrieve all the status from the database
