@@ -33,7 +33,7 @@ public class BookingManagement extends AbstractController {
 		model.addAttribute("booking", booking);
 		model.addAttribute("status", service.getStatus(booking));
 		model.addAttribute("dateToday", new Date());
-		model.addAttribute("instructorsAvailable", service.get);
+//		model.addAttribute("instructorsAvailable", service.get);
 		model.addAttribute("client", service.getClient(booking.getClientId()));
 		model.addAttribute("activity", service.getActivity(booking.getIdAct()));
 		
@@ -44,21 +44,21 @@ public class BookingManagement extends AbstractController {
 	public String assignInstructor(@PathVariable int idBooking, @PathVariable String idInstr){		
 		service.assignInstructorToBooking(idInstr,idBooking);
 		
-		return "redirect:/";
+		return "redirect:/admin/bookingManagement.html";
 	}
 	
 	@RequestMapping(value="details/decline/{idBooking}")
 	public String declineBooking(@PathVariable int idBooking, @PathVariable String idInstr){
 		service.declineBooking(idBooking);
 		
-		return "redirect:/";
+		return "redirect:/admin/bookingManagement.html";
 	}
 	
 	@RequestMapping(value="/details/toPending/{idBooking}")
 	public String bookingToPending(@PathVariable int idBooking){
 		service.bookingToPending(idBooking);
 		
-		return "redirect:/";
+		return "redirect:/admin/bookingManagement.html";
 	}
 	
 }

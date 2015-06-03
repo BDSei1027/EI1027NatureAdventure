@@ -16,8 +16,8 @@ public class Activity {
     private String schedule;
     private float price;
     private String place;
-    private Integer minimumGroup;
-    private Integer maximumGroup;
+    private int minimumGroup;
+    private int maximumGroup;
     private boolean isActive;
     private List<String> qualifiedInstructors;
 
@@ -133,7 +133,7 @@ public class Activity {
     public void setMinimumGroup(int minimumGroup) throws InvalidGroupSizeException {
         if ( minimumGroup < 0 )
             throw new InvalidGroupSizeException(minimumGroup);
-        if (maximumGroup != null) {
+        if (maximumGroup != 0) {
         	if (minimumGroup > this.maximumGroup)
         		throw new InvalidGroupSizeException(minimumGroup);
         }

@@ -2,7 +2,6 @@ package controller.account;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,28 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import controller.basics.AbstractController;
 import classes.Client;
 import classes.User;
 import validators.ClientValidator;
-import validators.UserValidator;
-import service.LogicLayer;
 
 
 @Controller
 @RequestMapping(value="/account")
-public class MainAccount {
-	
-	private LogicLayer service;
-
-
-	/**
-	 * Method that allows automatic independence injection
-	 * @param service Service to inject
-	 */
-	public void setService(LogicLayer service){
-		this.service = service;
-	}
-	
+public class MainAccount extends AbstractController{
 	
 	
 	/**
