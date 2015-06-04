@@ -408,7 +408,14 @@ public class LogicLayer {
 	 * Get all the bookings from the database
 	 * @return A collection of Booking  with all bookings
 	 */
-	public Collection<BookingActivity> getAllBookings(){
+	public Collection<Booking> getAllBookings() {
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getElements();
+		Collection<Booking> allBookingsClasses= allBookings.values();
+		return allBookingsClasses;
+	}
+	
+	
+	public Collection<BookingActivity> getAllBookingsActivity(){
 		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getElementsBookingActivity();
 		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
