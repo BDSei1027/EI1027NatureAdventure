@@ -123,6 +123,9 @@
 	<bean id="avaliablebookDAO" class="database.daoAvaliableBook">
 		<property name="dataSource" ref="jdbc" />
 	</bean>
+	<bean id="tokenDAO" class="database.daoSessionToken">
+		<property name="dataSource" ref="jdbc" />
+	</bean>
 	
 	 <!-- Service -->
 	<bean id="service" class="service.LogicLayer" init-method="init">
