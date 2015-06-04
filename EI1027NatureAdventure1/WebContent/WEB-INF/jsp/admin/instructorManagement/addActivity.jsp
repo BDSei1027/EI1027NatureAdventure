@@ -77,7 +77,7 @@
 										<div style="font-size: 14px; float:left"><strong>Caution!</strong> This action is not reversible.</div>
 										<div class="pull-right">
 											<a href="${pageContext.request.contextPath}/admin/instructorManagement/removeActivity/${instructor.ssNumber}&${act.idAct}.html">
-												<button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button>
+												<button type="button" class="btn btn-danger"  id="deleteActBtnModal">Delete</button>
 											</a>
 											<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
 										</div>
@@ -114,9 +114,9 @@
         					<td><c:out value="${actPos.level}" /></td>
         					<td><c:out value="${actPos.schedule}" /></td>
         					<td>
-        						<form id="addform" method="post" action="../addActivity/${instructor.ssNumber}.html">
+        						<form id="addform${actPos.idAct}" method="post" action="../addActivity/${instructor.ssNumber}.html">
 								  <input type="hidden" name="newAct" value="${actPos.idAct}" /> 
-								  <a onclick="document.getElementById('addform').submit();">
+								  <a onclick="document.getElementById('addform${actPos.idAct}').submit();">
 								  	<span class="label label-success" style="font-size: 15px; cursor: pointer;">Add</span>
 								  	</a>
 								</form>

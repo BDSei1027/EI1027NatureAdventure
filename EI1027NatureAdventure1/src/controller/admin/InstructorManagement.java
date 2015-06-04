@@ -94,21 +94,21 @@ public class InstructorManagement extends AbstractController {
 		model.addAttribute("instructor", instructor);
 		model.addAttribute("activities", colActivities);
 		
-		return "/admin/instructorManagement/modify";
+		return "admin/instructorManagement/modify";
 	}
 	
 	@RequestMapping(value="/modify/{idInstructor}", method=RequestMethod.POST)
 	public String instructorsModifyPage(@PathVariable String idInstructor, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
 		//Check errors
 		new InstructorValidator().validate(instructor, bindingResult);
-		if(bindingResult.hasErrors()) return "/admin/instructorManagement/modify/"+idInstructor;
+		if(bindingResult.hasErrors()) return "admin/instructorManagement/modify";
 
 		service.updateInstructor(instructor);
 		
 		return "redirect:/admin/instructorManagement.html";
 	}
 
-	@RequestMapping(value="/addActivity/{idInstructor}", method=RequestMethod.GET)
+	@RequestMapping(value="/addActivity/{idInstructor}")
 	public String instructorsAddActivity(@PathVariable String idInstructor, Model model){
 		Instructor instructor = service.getInstructor(idInstructor);
 		Collection<Activity> colActivities = service.getAllActivities(instructor);
@@ -125,17 +125,17 @@ public class InstructorManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/addActivity/{idInstructor}", method=RequestMethod.POST)
-	public String instructorsAddActivity(@PathVariable String idInstructor, HttpServletRequest request, BindingResult bindingResult){
+	public String instructorsAddActivity(@PathVariable String idInstructor, HttpServletRequest request){
 		service.addInstructed(idInstructor, Integer.parseInt(request.getParameter("newAct")));
 		
-		return "redirect:/admin/instructorManagement/addActivity" + idInstructor + ".html";
+		return "redirect:/admin/instructorManagement/addActivity/" + idInstructor + ".html";
 	}
 
-	@RequestMapping(value="/removeActivity/{idMonitor}&{idActivity}", method=RequestMethod.GET)
-	public String instructorsRemoveActivity(@PathVariable String idMonitor, @PathVariable Integer idActivity){
-		service.removeInstructed(idMonitor, idActivity);
+	@RequestMapping(value="/removeActivity/{idInstructor}&{idActivity}")
+	public String instructorsRemoveActivity(@PathVariable String idInstructor, @PathVariable Integer idActivity){
+		service.removeInstructed(idInstructor, idActivity);
 		
-		return "redirect:/admin/instructorManagement/modify/"+idMonitor+".html";
+		return "redirect:/admin/instructorManagement/addActivity/" + idInstructor + ".html";
 	}
 
 }

@@ -43,7 +43,7 @@ public class InstructorFunctionalityController extends AbstractController{
 		
 		//Attach the list to the model
 		model.addAttribute("instructorActivities", instructorActivities);
-		return "instructor";
+		return "instructor/main";
 		
 	}
 	
@@ -58,11 +58,11 @@ public class InstructorFunctionalityController extends AbstractController{
 		return "instructor/details";
 	}
 	
-	@RequestMapping(value="main/history")
+	@RequestMapping(value="/history")
 	public String pastBookings(Model model, HttpSession session){
 		Instructor instructor = service.getInstructor((User) session.getAttribute("user"));
 		
 		model.addAttribute("bookings", service.getPastBookings(instructor));
-		return "main/history";
+		return "instructor/history";
 	}
 }
