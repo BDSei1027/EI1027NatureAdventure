@@ -43,15 +43,8 @@ public class LogicLayer {
 	private daoStatus daoStatus;
 	private daoUser daoUser;
 	private daoAvaliableBook daoAvaliable;
-	private daoSessionToken daoSessionTokens;
+	private daoSessionToken daoToken;
 	
-	public daoSessionToken getDaoSessionTokens() {
-		return daoSessionTokens;
-	}
-
-	public void setDaoSessionTokens(daoSessionToken daoSessionTokens) {
-		this.daoSessionTokens = daoSessionTokens;
-	}
 
 	//ID autoincrementales
 	private int innerBookingID;
@@ -770,7 +763,7 @@ public class LogicLayer {
 	}
 	
 	public void setDaoToken(daoSessionToken daoToken){
-		this.daoSessionTokens = daoToken;
+		this.daoToken = daoToken;
 	}
 
 	
