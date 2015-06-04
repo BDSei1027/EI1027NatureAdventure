@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import classes.Activity;
 import classes.Booking;
+import classes.BookingActivity;
 import classes.Client;
 import classes.Instructor;
 import classes.Status;
@@ -163,7 +164,7 @@ public class LogicLayer {
 	 * Get all the instructors, which are active
 	 * @return A collection of active Instructors 
 	 */
-	public Object getAllInstructorsActive() {
+	public Collection<Instructor> getAllInstructorsActive() {
 		Map<String, Instructor> map = (Map<String, Instructor>) daoInstructor.getElementsActive();
 		Collection<Instructor> collection = map.values();
 		return collection;
@@ -173,7 +174,7 @@ public class LogicLayer {
 	 * Get all the instructors, which are inactive
 	 * @return A collection of inactive Instructors 
 	 */
-	public Object getAllInstructorsInacctive() {
+	public Collection<Instructor> getAllInstructorsInacctive() {
 		Map<String, Instructor> map = (Map<String, Instructor>) daoInstructor.getElementsInactive();
 		Collection<Instructor> collection = map.values();
 		return collection;
@@ -407,38 +408,38 @@ public class LogicLayer {
 	 * Get all the bookings from the database
 	 * @return A collection of Booking  with all bookings
 	 */
-	public Collection<Booking> getAllBookings(){
-		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getElements();
-		Collection<Booking> allBookingsClasses= allBookings.values();
+	public Collection<BookingActivity> getAllBookings(){
+		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getElementsBookingActivity();
+		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
 	
-	public Collection<Booking> getActiveBookings(Client client){
+	public Collection<BookingActivity> getActiveBookings(Client client){
 		String idClient = client.getClientId();
-		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getActiveBookingsWithClient(idClient);
-		Collection<Booking> allBookingsClasses= allBookings.values();
+		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getActiveBookingsWithClient(idClient);
+		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
-	public Collection<Booking> getPastBookings(Client client){
+	public Collection<BookingActivity> getPastBookings(Client client){
 		String idClient = client.getClientId();
-		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getPastBookingsWithClient(idClient);
-		Collection<Booking> allBookingsClasses= allBookings.values();
+		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getPastBookingsWithClient(idClient);
+		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
-	public Collection<Booking> getActiveBooking(Instructor instructor){
+	public Collection<BookingActivity> getActiveBooking(Instructor instructor){
 		String ssNumber = instructor.getSsNumber();
-		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getActiveBookingsWithInstructor(ssNumber);
-		Collection<Booking> allBookingsClasses= allBookings.values();
+		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getActiveBookingsWithInstructor(ssNumber);
+		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
-	public Collection<Booking> getPastBooking(Instructor instructor){
+	public Collection<BookingActivity> getPastBooking(Instructor instructor){
 		String ssNumber = instructor.getSsNumber();
-		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getPastBookingsWithInstructor(ssNumber);
-		Collection<Booking> allBookingsClasses= allBookings.values();
+		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getPastBookingsWithInstructor(ssNumber);
+		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
