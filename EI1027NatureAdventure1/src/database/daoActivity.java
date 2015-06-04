@@ -101,8 +101,7 @@ public class daoActivity implements DaoInterface {
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +
             "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? " +
                             "WHERE idact = ?;";
-		dataSource.update(sql, activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(), 
-				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getIdAct());
+		dataSource.update(sql, activity.getIdAct());
 	}
 
 	/**

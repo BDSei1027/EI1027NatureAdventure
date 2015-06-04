@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import classes.Activity;
 import classes.Booking;
-import classes.BookingActivity;
 import classes.Client;
 import classes.Instructor;
 import classes.Status;
@@ -187,11 +186,6 @@ public class LogicLayer {
 	public void setInstructorAvailable(Instructor instructor){
 		instructor.setActive(true);
 		daoInstructor.updateElement(instructor);	
-	}
-	
-	public Collection<BookingActivity> getBookingActivities(Instructor instructor) {
-		Map<Integer, BookingActivity>map = daoBooking.getBookingActivities(instructor.getSsNumber());
-		return map.values();
 	}
 		
 	/**
@@ -693,8 +687,6 @@ public class LogicLayer {
 		return newUser;
 	}
 	
-	
-	
 	/*
 	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
 	 */
@@ -751,7 +743,5 @@ public class LogicLayer {
 	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
 		this.daoAvaliable = daoAvaliable;
 	}
-
-
 
 }
