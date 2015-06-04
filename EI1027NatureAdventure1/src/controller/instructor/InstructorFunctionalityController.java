@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import controller.basics.AbstractController;
 import classes.Activity;
 import classes.Booking;
+import classes.BookingActivity;
 import classes.Instructor;
 import classes.User;
 import validators.UserValidator;
@@ -39,10 +40,12 @@ public class InstructorFunctionalityController extends AbstractController{
 
 		//Get the activities of the instructor
 		Instructor instructor = service.getInstructor((User) session.getAttribute("user"));
-		Collection<Activity> instructorActivities = service.getAllActivities(instructor);
+
 		
 		//Attach the list to the model
-		model.addAttribute("instructorActivities", instructorActivities);
+		model.addAttribute("name", instructor.getName());
+		model.addAttribute("bookingList", service.getActiveBooking(instructor));
+		model.addAttribute("numbookings", service.getBookingsToDo(instructor));
 		return "instructor/main";
 		
 	}
@@ -62,6 +65,7 @@ public class InstructorFunctionalityController extends AbstractController{
 	public String pastBookings(Model model, HttpSession session){
 		Instructor instructor = service.getInstructor((User) session.getAttribute("user"));
 		
+		model.addAttribute("name", instructor.getName());
 		model.addAttribute("bookings", service.getPastBooking(instructor));
 		return "instructor/history";
 	}

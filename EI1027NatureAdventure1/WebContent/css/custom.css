@@ -19,6 +19,10 @@ table {
 	color: #f39c12;
 }
 
+strong {
+	color: #1ABC9C;
+}
+
 .modal-header {
 	color:white !important;
 	text-align: center;

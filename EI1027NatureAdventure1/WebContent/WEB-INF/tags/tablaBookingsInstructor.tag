@@ -28,8 +28,8 @@
 						<td><c:out value="${bookings.idBooking}" /></td>
 						<td><c:out value="${bookings.dateActivity}" /></td>
 						<td><c:out value="${bookings.schedule}" /></td>
-						<td><c:out value="${bookings.place}" /><td>
-						<td><c:out value="${bookings.nameAactivity}" /></td>
+						<td><c:out value="${bookings.place}" /></td>
+						<td><c:out value="${bookings.nameActivity}" /></td>
 						<td><c:out value="${bookings.level}" /></td>
 						<td><c:out value="${bookings.groupSize}" /></td>
 						<td><a href="${pageContext.request.contextPath}/instructor/details?${booking.idBooking}.html"><span class="label label-info">Details</span></a></td>

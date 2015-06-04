@@ -21,9 +21,9 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-        <li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-        <li><a href="${pageContext.request.contextPath}/activities">Activities</a></li>
-		<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
+        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/activities.html">Activities</a></li>
+		<li><a href="${pageContext.request.contextPath}/help.html">Help</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text" id="navtext">Welcome <strong><c:out value="${user.name}" /></strong></p></li>
