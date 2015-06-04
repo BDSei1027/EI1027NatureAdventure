@@ -98,6 +98,7 @@
 	<bean id="clientregister" class="classes.ClientRegister" />
 	<bean id="email" class="classes.Email" />
 	<bean id="doublepassword" class="classes.DoublePassword" />
+	<bean id="token" class="classes.Token" />
 	
 	<!-- Repositories -->
 	
