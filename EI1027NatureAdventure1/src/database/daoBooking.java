@@ -65,10 +65,10 @@ public class daoBooking implements DaoInterface {
 			BookingActivity booking = new BookingActivity();
 			try {
 				booking.setIdBooking(rs.getInt("idbooking"));
-				booking.setNameActivity(rs.getString("nameactivity"));
+				booking.setNameActivity(rs.getString("name"));
 				booking.setDateActivity(rs.getDate("dateactivity"));
 				booking.setSchedule(rs.getString("schedule"));
-				booking.setLevel(rs.getInt("level"));
+				booking.setLevel(rs.getInt("leveldif"));
 				booking.setGroupSize(rs.getInt("groupsize"));
 				booking.setPlace(rs.getString("place"));
 				booking.setDateRevision(rs.getDate("daterevision"));

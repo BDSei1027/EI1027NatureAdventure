@@ -1,27 +1,19 @@
 package controller.instructor;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import controller.basics.AbstractController;
-import classes.Activity;
 import classes.Booking;
 import classes.BookingActivity;
 import classes.Instructor;
 import classes.User;
-import validators.UserValidator;
-import service.LogicLayer;
+import controller.basics.AbstractController;
 
 
 @Controller
@@ -41,11 +33,11 @@ public class InstructorFunctionalityController extends AbstractController{
 		//Get the activities of the instructor
 		Instructor instructor = service.getInstructor((User) session.getAttribute("user"));
 
-		
+		Collection<BookingActivity> collection = service.getActiveBooking(instructor);
 		//Attach the list to the model
 		model.addAttribute("name", instructor.getName());
-		model.addAttribute("bookingList", service.getActiveBooking(instructor));
-		model.addAttribute("numbookings", service.getBookingsToDo(instructor));
+		model.addAttribute("bookingList", collection);
+		model.addAttribute("numbookings", collection.size());
 		return "instructor/main";
 		
 	}
