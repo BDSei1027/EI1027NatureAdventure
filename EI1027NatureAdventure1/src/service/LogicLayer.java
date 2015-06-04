@@ -732,6 +732,28 @@ public class LogicLayer {
 //	}
 	
 	
+	/*
+	 * TOKEN ZONE
+	 */
+	
+	public void setToken(String userName, String tokenString) {
+		Token token = new Token(userName, tokenString);
+		try {
+			daoToken.addElement(token);
+		} catch (Exception e) {
+			daoToken.updateElement(token);
+		}
+
+	}
+	
+	public boolean validateToken(String userName, String tokenString) {
+		Token token = new Token(userName, tokenString);
+		if (daoToken.getElement(token) == null)
+			return false;
+		return true;
+	}
+	
+	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
 	
 	public void setDaoActivity(daoActivity daoActivity) {
