@@ -23,7 +23,6 @@ import database.daoBooking;
 import database.daoClient;
 import database.daoInstructor;
 import database.daoSessionToken;
-import database.daoSessionTokens;
 import database.daoStatus;
 import database.daoUser;
 
