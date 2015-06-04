@@ -289,7 +289,7 @@ public class LogicLayer {
 	
 	
 	/**
-	 * Set acive an activity from the database. The ssNumber is required
+	 * Set acive an activity from the database.
 	 * @param idActivity of the activity
 	 */
 	public void activateActivity(int code){
@@ -304,24 +304,6 @@ public class LogicLayer {
 	 */
 	public void activateActivity(Activity activity){
 		this.inactiveActivity(activity.getIdAct());	
-	}
-	
-	/**
-	 * Set active an activity from the database.
-	 * @param The activity
-	 */
-	public void activateActivity(int code) {
-		Activity myActivity = this.getActivity(code);
-		myActivity.setIsActive(true);
-		this.updateActivity(myActivity);
-	}
-	
-	/**
-	 * Set active an activity from the database.
-	 * @param The activity
-	 */
-	public void activateActivity(Activity activity) {
-		this.activateActivity(activity.getIdAct());
 	}
 	
 	/**
