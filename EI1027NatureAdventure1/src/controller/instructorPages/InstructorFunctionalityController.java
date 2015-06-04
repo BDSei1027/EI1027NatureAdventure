@@ -1,4 +1,4 @@
-package controller.instructor;
+package controller.instructorPages;
 
 import java.util.Collection;
 

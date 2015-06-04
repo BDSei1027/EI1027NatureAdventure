@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.adminPages;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package controller.customer;
+package controller.customerPages;
 
 import java.util.Collection;
 

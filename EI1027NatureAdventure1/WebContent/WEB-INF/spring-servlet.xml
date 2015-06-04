@@ -68,6 +68,11 @@
 	        <mvc:mapping path="/account.html"/>
 	        <bean class="controller.interceptors.AccountInterceptor" />
 	    </mvc:interceptor>
+	    
+	    <mvc:interceptor>
+	        <mvc:mapping path="/**"/>
+	        <bean class="controller.interceptors.MainInterceptor" />
+	    </mvc:interceptor>
 	</mvc:interceptors>	
 
 	

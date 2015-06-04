@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.adminPages;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

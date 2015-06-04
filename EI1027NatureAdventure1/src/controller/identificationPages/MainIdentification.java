@@ -1,6 +1,11 @@
-package controller.identification;
+package controller.identificationPages;
 
+import java.util.UUID;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +61,9 @@ public class MainIdentification {
 	 * @return Page that requested the login or the main page
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String processLogin(@ModelAttribute("user") User user, BindingResult bindingResult, HttpSession session){
-
+	public String processLogin(@ModelAttribute("user") User user, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		if(request.getParameter("remem")!=null) user.setRememberMe(true);
+		boolean remember = user.isRememberMe();
 		
 		//Correct field format validator
 		UserValidator userValidator = new UserValidator();
@@ -75,6 +81,12 @@ public class MainIdentification {
 		
 		//Maintain the user data in the session
 		session.setAttribute("user", user);
+		if(remember){
+			String userName = user.getUser();
+			String token = UUID.randomUUID().toString();
+			
+//			service.setToken(userName, token);
+		}
 		
 		
 		//Get the page that called the login
@@ -107,7 +119,7 @@ public class MainIdentification {
 	 */
 	@RequestMapping(value="/restricted")
 	public String restricted(Model model){
-		model.addAttribute("email",new Email());
+		model.addAttribute("mail",new Email());
 		return "restricted";		
 	}
 

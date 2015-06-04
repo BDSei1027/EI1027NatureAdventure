@@ -1,4 +1,4 @@
-package controller.account;
+package controller.accountPages;
 
 import javax.servlet.http.HttpSession;
 
