@@ -399,28 +399,28 @@ public class LogicLayer {
 	
 	public Collection<Booking> getActiveBookings(Client client){
 		String idClient = client.getClientId();
-		Map<String,Booking> allBookings = (Map<String,Booking>) daoBooking.getActiveBookingsWithClient(idClient);
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getActiveBookingsWithClient(idClient);
 		Collection<Booking> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
 	public Collection<Booking> getPastBookings(Client client){
 		String idClient = client.getClientId();
-		Map<String,Booking> allBookings = (Map<String,Booking>) daoBooking.getPastBookingsWithClient(idClient);
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getPastBookingsWithClient(idClient);
 		Collection<Booking> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
 	public Collection<Booking> getActiveBooking(Instructor instructor){
 		String ssNumber = instructor.getSsNumber();
-		Map<String,Booking> allBookings = (Map<String,Booking>) daoBooking.getActiveBookingsWithInstructor(ssNumber);
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getActiveBookingsWithInstructor(ssNumber);
 		Collection<Booking> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
 	public Collection<Booking> getPastBooking(Instructor instructor){
 		String ssNumber = instructor.getSsNumber();
-		Map<String,Booking> allBookings = (Map<String,Booking>) daoBooking.getPastBookingsWithInstructor(ssNumber);
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getPastBookingsWithInstructor(ssNumber);
 		Collection<Booking> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
