@@ -137,6 +137,7 @@
 		<property name="daoStatus" ref="statusDAO" />
 		<property name="daoUser" ref="userDAO" />
 		<property name="daoAvaliable" ref="avaliablebookDAO" />
+		<property name="daoToken" ref="tokenDAO" />
 	</bean>
 	
 
