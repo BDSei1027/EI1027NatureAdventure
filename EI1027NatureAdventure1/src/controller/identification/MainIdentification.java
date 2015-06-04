@@ -16,6 +16,7 @@ import validators.ClientRegisterValidator;
 import validators.UserValidator;
 import classes.Client;
 import classes.ClientRegister;
+import classes.Email;
 import classes.User;
 
 
@@ -55,13 +56,8 @@ public class MainIdentification {
 	 * @return Page that requested the login or the main page
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String processLogin(HttpServletRequest request, @ModelAttribute("user") User user, BindingResult bindingResult, HttpSession session){
-		if(user.getUser() == null){
-			user.setUser(request.getParameter("user"));
-			user.setPassword(request.getParameter("password"));
-			user.setRememberMe(request.getParameter("remem")==null?false:true);
-		}
-		boolean remember = user.isRememberMe();
+	public String processLogin(@ModelAttribute("user") User user, BindingResult bindingResult, HttpSession session){
+
 		
 		//Correct field format validator
 		UserValidator userValidator = new UserValidator();
@@ -79,7 +75,6 @@ public class MainIdentification {
 		
 		//Maintain the user data in the session
 		session.setAttribute("user", user);
-		System.out.println(remember);
 		
 		
 		//Get the page that called the login
@@ -111,7 +106,8 @@ public class MainIdentification {
 	 * @return
 	 */
 	@RequestMapping(value="/restricted")
-	public String restricted(){
+	public String restricted(Model model){
+		model.addAttribute("email",new Email());
 		return "restricted";		
 	}
 
