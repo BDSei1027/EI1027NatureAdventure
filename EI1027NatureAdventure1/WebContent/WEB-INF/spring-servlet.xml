@@ -127,6 +127,7 @@
 		<property name="dataSource" ref="jdbc" />
 	</bean>
 	
+	
 	 <!-- Service -->
 	<bean id="service" class="service.LogicLayer" init-method="init">
 		<property name="daoActivity" ref="activityDAO" />
