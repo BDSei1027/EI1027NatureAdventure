@@ -57,6 +57,7 @@ public class ActivityManagement extends AbstractController{
 	public String activityManagementEnable(@PathVariable int actId){
 		service.activateActivity(actId);
 		
+		
 		return "redirect:/activityManagement.html";
 	}
 	
