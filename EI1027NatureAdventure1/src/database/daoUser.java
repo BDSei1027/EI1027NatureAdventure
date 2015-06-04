@@ -55,6 +55,7 @@ public class daoUser implements DaoInterface {
 	 */
 	@Override
 	public void addElement(Object element) {
+		if(!User.class.equals(element)) return;
 		User u = (User) element;
 		String sql = "INSERT INTO login(id, password, name, type, language) VALUES(?, ?, ?, ?, ?);";
 		dataSource.update(sql, u.getUser(), u.getPassword(), u.getName(), u.getType(), u.getLanguage());
@@ -86,6 +87,7 @@ public class daoUser implements DaoInterface {
 	 */
 	@Override
 	public void updateElement(Object element) {
+		if(!User.class.equals(element)) return;
 		User u = (User) element;
 		String sql = "UPDATE login SET password = ?, name = ?, type = ?, language = ? WHERE id = ?;";
 		dataSource.update(sql, u.getPassword(), u.getName(), u.getType(), u.getLanguage(), u.getUser());

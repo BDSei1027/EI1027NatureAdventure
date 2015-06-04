@@ -50,6 +50,7 @@ public class daoAvaliableBook implements DaoInterface {
 	
 	@Override
 	public void addElement(Object element) {
+		if(!AvaliableForBooking.class.equals(element)) return;
 		AvaliableForBooking a = (AvaliableForBooking) element;
 		String sql = "INSERT INTO avaliableforbook (idact, ssnumber, date, schedule, avaliableplaces) "
 				+ "VALUES(?, ?, ?, ?, ?);";
@@ -65,6 +66,7 @@ public class daoAvaliableBook implements DaoInterface {
 
 	@Override
 	public void updateElement(Object element) {
+		if(!AvaliableForBooking.class.equals(element)) return;
 		AvaliableForBooking a = (AvaliableForBooking) element;
 		String sql = "UPDATE avaliableforbook SET avaliableplaces = ? WHERE ssnumber = ?, date = ?, schedule = ?;";
 		dataSource.update(sql, a.getAvaliablePlaces(), a.getSsNumber(), a.getDate(), a.getSchedule());

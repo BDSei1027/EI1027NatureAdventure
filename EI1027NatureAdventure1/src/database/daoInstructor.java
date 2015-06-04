@@ -54,10 +54,10 @@ public class daoInstructor implements DaoInterface {
 	 * Method to add an Instructor into the DB
 	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Instructor, class Instructor
-	 * TODO Comprobar que lo que le pasamos es un Instructor
 	 */
 	@Override
 	public void addElement(Object element) {
+		if(!Instructor.class.equals(element)) return;
 		Instructor instr = (Instructor) element;
 		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive, expireDate) "
 							+ "values(?, ?, ?, ?, ?, ?, ?, ?);";
@@ -84,10 +84,10 @@ public class daoInstructor implements DaoInterface {
 	 * Method to update an Instructor in the DB
 	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Instructor, class Instructor
-	 * TODO Comprobar que es de la clase instructor
 	 */
 	@Override
 	public void updateElement(Object element) {
+		if(!Instructor.class.equals(element)) return;
 		Instructor instr = (Instructor) element;
 		String sql = "UPDATE instructor " + "SET "
 					+ "idNumber = ?," + "name = ?," + "lastname = ?,"
