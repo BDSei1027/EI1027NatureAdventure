@@ -28,11 +28,12 @@
     </bean>
 	
 	<!-- Spring's Components -->
-	<context:component-scan base-package="controller/admin" />
-	<context:component-scan base-package="controller/account" />
-	<context:component-scan base-package="controller/instructor" />
-	<context:component-scan base-package="controller/identification" />
-	<context:component-scan base-package="controller/customer" />
+	<context:component-scan base-package="controller/adminPages" />
+	<context:component-scan base-package="controller/accountPages" />
+	<context:component-scan base-package="controller/instructorPages" />
+	<context:component-scan base-package="controller/identificationPages" />
+	<context:component-scan base-package="controller/customerPages" />
+	<context:component-scan base-package="controller/basicPages" />
 	
 	
 	<context:component-scan base-package="database" />

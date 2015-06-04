@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -84,6 +85,9 @@ public class MainIdentification {
 		if(remember){
 			String userName = user.getUser();
 			String token = UUID.randomUUID().toString();
+			
+			response.addCookie(new Cookie("user", userName));
+			response.addCookie(new Cookie("token", token));
 			
 //			service.setToken(userName, token);
 		}
