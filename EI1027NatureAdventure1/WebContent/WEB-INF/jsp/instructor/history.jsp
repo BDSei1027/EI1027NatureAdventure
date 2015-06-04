@@ -8,7 +8,7 @@
 <!-- Quizas me excedi con la funcionalidad lo podemos hacer mas basico al principio -->
 	<div class="intructorList">
 		<h4>Bookings history</h4>
-		
+		<p>Your past bookings, <strong><c:out value="${name}" /></strong></p>
 		<div id="help&action" class="row">
 			<div id="menu" class="col-lg-2">
 				<ul class="nav nav-pills nav-stacked">

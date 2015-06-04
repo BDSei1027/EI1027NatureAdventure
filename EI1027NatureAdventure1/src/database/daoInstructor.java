@@ -273,7 +273,7 @@ public class daoInstructor implements DaoInterface {
 	}
 	
 	public Integer getNumberBookings(String ssnum) {
-		String sql = "SELECT COUNT(*) FROM status as s JOIN booking as b USING (ssnumber) WHERE s.ssnumber = ? AND CURRENT_DATE < dateactivity;";
+		String sql = "SELECT COUNT(*) FROM status as st JOIN booking as b USING(inneridbooking) WHERE st.ssnumber = ? AND CURRENT_DATE < dateactivity;";
 		return dataSource.queryForObject(sql, new Object[] {ssnum}, Integer.class);
 	}
 
