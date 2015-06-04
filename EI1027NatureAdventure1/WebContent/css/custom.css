@@ -19,6 +19,10 @@ table {
 	color: #f39c12;
 }
 
+strong {
+	color: #1ABC9C;
+}
+
 .modal-header {
 	color:white !important;
 	text-align: center;
@@ -59,6 +63,10 @@ table {
 /* Navbar */
 .navbar-text > strong {
 	color: #1abc9c;
+}
+
+.nav-pills > li.active > a {
+	background-color: #1abc9c;
 }
 
 /* Pie de pagina */

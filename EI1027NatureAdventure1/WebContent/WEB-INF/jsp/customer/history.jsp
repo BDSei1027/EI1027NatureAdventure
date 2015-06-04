@@ -23,8 +23,8 @@
 						<div class="panel-title">Help!</div>
 					</div>
 					<div class="panel-body">
-						<p>This page shows you, your past activities to do.</p>
-						<p>You can see them below. click on <span class="caret"></span> to expand the information.</p>
+						<p>This page shows you, the activities you did.</p>
+						<p>You can see them below. click on the <strong class="high">arrow</strong> to see all the information.</p>
 					</div>
 				</div>
 			</div>
@@ -34,10 +34,10 @@
 			    <div class="booking">
 			    	<div class="booking-title">
 			    		<h5 class="pull-left"><c:out value="${booking.name}" /><small><c:out value="${booking.date}" /></small></h5>
-			    		<a href="#collapseAct<c:out values='${booking.id}' />" class="pull-right" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><span class="caret"></span></a>
+			    		<a href="#collapseAct<c:out value='${booking.id}' />" class="pull-right" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><span class="caret"></span></a>
 			    		<div style="clear:both;"></div>
 			    	</div>
-			    	<div class="collapse" id="collapseAct<c:out values='${booking.id}' />">
+			    	<div class="collapse" id="collapseAct<c:out value='${booking.id}' />">
 				    	<div class="booking-body row">
 				        	<div class="col-lg-4">
 				        		<div class="booking-activity"><c:out value="${booking.name}" /></div>

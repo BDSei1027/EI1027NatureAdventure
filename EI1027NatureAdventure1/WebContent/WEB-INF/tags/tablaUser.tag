@@ -25,7 +25,13 @@
         <tr>
         	<td><c:out value="${user.user}" /></td>
         	<td><c:out value="${user.name}" /></td>
-        	<td><c:out value="${user.type}" /></td>
+        	<td>
+        		<c:choose>
+        			<c:when test="${user.type eq 0}"><strong class="high">Administrator</strong></c:when>
+        			<c:when test="${user.type eq 1}"><strong class="highGreen">Instructor</strong></c:when>
+        			<c:otherwise>Customer</c:otherwise>
+        		</c:choose>
+        	</td>
         	<td><c:out value="${user.language}" /></td>
         	<td><a href="#deleteUser" data-toggle="modal" data-target="#deleteUserModal${user.user}"><span class="label label-danger">Delete</span></a></td>
         </tr>
@@ -50,7 +56,7 @@
 				  						</div>
 				  					</div>
 				  					<div class="modal-footer" id="deleteUserModalFooter">
-				  						<a href="${pageContext.request.contextPath}/admin/userManagement/remove/${user.user}.html"><button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button></a>
+				  						<a href="${pageContext.request.contextPath}/admin/userManagement/remove/${user.user}.html"><button type="button" class="btn btn-danger" id="deleteActBtnModal">Delete</button></a>
 				  						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				  					</div>
 				  				</div>
@@ -68,7 +74,7 @@
 				  						</div>
 				  					</div>
 				  					<div class="modal-footer" id="deleteUserModalFooter">
-				  						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				  						<button type="button" class="btn btn-default" data-dismiss="modal">Accept</button>
 				  					</div>
 				  				</div>
 	  						</c:otherwise>

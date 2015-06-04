@@ -42,7 +42,7 @@
 				<div class="btn-group">
 					<button type="submit" class="btn btn-primary">Submit</button>
 					<button type="reset" class="btn btn-danger">Clear</button>
-					<a href="#emailModal" data-toggle="modal" data-target="#emailModal"><button type="button" class="btn btn-success">Contact</button></a>
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#emailModal">Contact</button>
 				</div>
 			</div>
 		</form:form>
