@@ -49,15 +49,13 @@ public class MainInterceptor extends HandlerInterceptorAdapter  {
     				
     				String newToken = UUID.randomUUID().toString();
     				
-    				response.addCookie(new Cookie("user", userName));
+    				response.addCookie(new Cookie("user", name));
     				response.addCookie(new Cookie("token", token));
+    				
+    				service.setToken(name, token);
     			}
-    			
     		}
-    		
-    		
-    		
-    		
+	
     	}
          
         return true;

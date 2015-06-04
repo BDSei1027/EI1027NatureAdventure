@@ -89,7 +89,7 @@ public class MainIdentification {
 			response.addCookie(new Cookie("user", userName));
 			response.addCookie(new Cookie("token", token));
 			
-//			service.setToken(userName, token);
+			service.setToken(userName, token);
 		}
 		
 		
