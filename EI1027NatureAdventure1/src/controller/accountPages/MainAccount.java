@@ -15,7 +15,7 @@ import classes.User;
 import validators.ClientValidator;
 
 
-@Controller
+@Controller 
 @RequestMapping(value="/account")
 public class MainAccount extends AbstractController{
 	

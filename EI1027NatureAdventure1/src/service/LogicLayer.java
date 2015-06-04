@@ -43,8 +43,9 @@ public class LogicLayer {
 	private daoStatus daoStatus;
 	private daoUser daoUser;
 	private daoAvaliableBook daoAvaliable;
-	private daoSessionToken daoSessionTokens;
+	private daoSessionToken daoToken;
 	
+
 	//ID autoincrementales
 	private int innerBookingID;
 	private int activeBookingID;
@@ -703,21 +704,6 @@ public class LogicLayer {
 		return newUser;
 	}
 	
-	public void setToken(String userName, String tokenString) {
-		Token token = new Token(userName,tokenString);
-		try{
-			daoSessionTokens.addElement(token);
-		} catch (Exception e){
-			daoSessionTokens.updateElement(token);
-		}
-		
-	}
-	
-	public boolean validateToken(String userName, String tokenString) {
-		Token token = new Token(userName,tokenString);
-		if(daoSessionTokens.getElement(token)==null) return false;
-		return true;
-	}
 	
 	/*
 	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
@@ -744,6 +730,28 @@ public class LogicLayer {
 //	public AvaliableForBooking getAvaliableForBooking(){
 //		
 //	}
+	
+	
+	/*
+	 * TOKEN ZONE
+	 */
+	
+	public void setToken(String userName, String tokenString) {
+		Token token = new Token(userName, tokenString);
+		try {
+			daoToken.addElement(token);
+		} catch (Exception e) {
+			daoToken.updateElement(token);
+		}
+
+	}
+	
+	public boolean validateToken(String userName, String tokenString) {
+		Token token = new Token(userName, tokenString);
+		if (daoToken.getElement(token) == null)
+			return false;
+		return true;
+	}
 	
 	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
@@ -775,6 +783,12 @@ public class LogicLayer {
 	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
 		this.daoAvaliable = daoAvaliable;
 	}
+	
+	public void setDaoToken(daoSessionToken daoToken){
+		this.daoToken = daoToken;
+	}
+
+	
 
 
 

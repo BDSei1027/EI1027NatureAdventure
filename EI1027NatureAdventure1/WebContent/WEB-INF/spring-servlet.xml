@@ -98,6 +98,7 @@
 	<bean id="clientregister" class="classes.ClientRegister" />
 	<bean id="email" class="classes.Email" />
 	<bean id="doublepassword" class="classes.DoublePassword" />
+	<bean id="token" class="classes.Token" />
 	
 	<!-- Repositories -->
 	
@@ -123,6 +124,10 @@
 	<bean id="avaliablebookDAO" class="database.daoAvaliableBook">
 		<property name="dataSource" ref="jdbc" />
 	</bean>
+	<bean id="tokenDAO" class="database.daoSessionToken">
+		<property name="dataSource" ref="jdbc" />
+	</bean>
+	
 	
 	 <!-- Service -->
 	<bean id="service" class="service.LogicLayer" init-method="init">
@@ -133,6 +138,7 @@
 		<property name="daoStatus" ref="statusDAO" />
 		<property name="daoUser" ref="userDAO" />
 		<property name="daoAvaliable" ref="avaliablebookDAO" />
+		<property name="daoToken" ref="tokenDAO" />
 	</bean>
 	
 

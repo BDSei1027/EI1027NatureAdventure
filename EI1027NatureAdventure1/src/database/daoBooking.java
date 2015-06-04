@@ -84,10 +84,10 @@ public class daoBooking implements DaoInterface {
 	 * Method to add a Booking into the DB
 	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Booking, class Booking
-	 * TODO Comprobar que lo que le pasamos es un Bookin
 	 */
 	@Override
 	public void addElement(Object element) {
+		if(!Booking.class.equals(element)) return;
 		Booking book = (Booking) element;
 		String sql = "INSERT INTO Booking(inneridbooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, idBooking) "
 							+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -119,10 +119,10 @@ public class daoBooking implements DaoInterface {
 	 * Method to update a Booking in the DB
 	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Booking, class Booking
-	 * TODO Comprobar que es de la clase Booking
 	 */
 	@Override
 	public void updateElement(Object element) {
+		if(!Booking.class.equals(element)) return;
 		Booking book = (Booking) element;
 		String sql = "UPDATE Booking " + "SET "
 				+ "innerIdBooking = ?," 

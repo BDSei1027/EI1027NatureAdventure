@@ -45,10 +45,10 @@ public class daoClient implements DaoInterface {
 	 * Method to add an Client into the DB
 	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Client, class Client
-	 * TODO Comprobar que lo que le pasamos es un Client
 	 */
 	@Override
 	public void addElement(Object element) {
+		if(!Client.class.equals(element)) return;
 		Client cl = (Client) element;
 		String sql = "INSERT INTO Client(clientId, clientName, clientLastName, clientEmail) "
 							+ "values(?, ?, ?, ?);";
@@ -71,10 +71,10 @@ public class daoClient implements DaoInterface {
 	 * Method to update an Client in the DB
 	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Client, class Client
-	 * TODO Comprobar que es de la clase Client
 	 */
 	@Override
 	public void updateElement(Object element) {
+		if(!Client.class.equals(element)) return;
 		Client cl = (Client) element;
 		String sql = "UPDATE Client " + "SET "
 					+ "clientId = ?," 

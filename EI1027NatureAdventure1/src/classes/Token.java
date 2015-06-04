@@ -10,6 +10,10 @@ public class Token {
 		this.token = tokenString;
 	}
 
+	public Token() {
+		super();
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

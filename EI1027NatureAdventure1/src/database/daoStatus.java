@@ -45,10 +45,10 @@ public class daoStatus implements DaoInterface {
 	 * Method to add an Status into the DB
 	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Status, class Status
-	 * TODO Comprobar que lo que le pasamos es un Status
 	 */
 	@Override
 	public void addElement(Object element) {
+		if(!Status.class.equals(element)) return;
 		Status st = (Status) element;
 		String sql = "INSERT INTO Status(inneridbooking, dateRevision, status, ssnumber)"
 				+ " VALUES(?, ?, ?, ?);";
@@ -71,10 +71,10 @@ public class daoStatus implements DaoInterface {
 	 * Method to update an Status in the DB
 	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Status, class Status
-	 * TODO Comprobar que es de la clase Status
 	 */
 	@Override
 	public void updateElement(Object element) {
+		if(!Status.class.equals(element)) return;
 		Status st = (Status) element;
 		String sql = "UPDATE Status SET inneridbooking = ?, "
 				+ "dateRevision = ?, "

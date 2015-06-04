@@ -54,11 +54,10 @@ public class daoActivity implements DaoInterface {
 	 * Method to add an Activity into the DB
 	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Activity, class Activity
-	 * TODO Comprobar que lo que le pasamos es una actividad
 	 */
 	@Override
 	public void addElement(Object element) {
-		//TODO Mirar i hay que comprobarlo q sea Activity
+		if(!Activity.class.equals(element)) return;
 		// Cast Object to Activity
 		Activity activity = (Activity) element;
 		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive) " +
@@ -92,10 +91,10 @@ public class daoActivity implements DaoInterface {
 	 * Method to update an Activity in the DB
 	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Activity, class Instructor
-	 * TODO Comprobar que es de la clase Activity
 	 */
 	@Override
 	public void updateElement(Object element) {
+		if(!Activity.class.equals(element)) return;
 		// Cast Objecto to Activity
 		Activity activity = (Activity) element;
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +
