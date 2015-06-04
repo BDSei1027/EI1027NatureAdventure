@@ -67,8 +67,9 @@ public class daoActivity implements DaoInterface {
 				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive());
 		
 		// Get the instructors who can teach it
-		final List<String> listIns = activity.getInstructors();
-		addInstructors(activity.getIdAct(), listIns);
+
+		List<String> listIns = activity.getInstructors();
+		if (listIns.size() > 0) addInstructors(activity.getIdAct(), listIns);
 	}
 
 	/**
@@ -101,7 +102,8 @@ public class daoActivity implements DaoInterface {
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +
             "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? " +
                             "WHERE idact = ?;";
-		dataSource.update(sql, activity.getIdAct());
+		dataSource.update(sql, activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
+				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getIdAct());
 	}
 
 	/**

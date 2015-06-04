@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ public class Activity {
 
     public Activity() {
         super();
+        this.qualifiedInstructors = new ArrayList<String>();
     }
 
     public Activity(Activity actividad){

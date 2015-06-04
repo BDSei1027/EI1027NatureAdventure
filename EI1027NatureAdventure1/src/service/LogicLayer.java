@@ -288,6 +288,24 @@ public class LogicLayer {
 	}
 	
 	/**
+	 * Set active an activity from the database.
+	 * @param The activity
+	 */
+	public void activateActivity(int code) {
+		Activity myActivity = this.getActivity(code);
+		myActivity.setIsActive(true);
+		this.updateActivity(myActivity);
+	}
+	
+	/**
+	 * Set active an activity from the database.
+	 * @param The activity
+	 */
+	public void activateActivity(Activity activity) {
+		this.activateActivity(activity.getIdAct());
+	}
+	
+	/**
 	 * Update an activity from the database. This operation is only allowed when the activity was registered before in the database
 	 * @param The activity
 	 */
