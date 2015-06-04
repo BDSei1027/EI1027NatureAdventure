@@ -22,6 +22,11 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 	
+	<bean id="messageSource"
+    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename" value="WEB-INF/messages"/>
+    </bean>
+	
 	<!-- Spring's Components -->
 	<context:component-scan base-package="controller/admin" />
 	<context:component-scan base-package="controller/account" />
