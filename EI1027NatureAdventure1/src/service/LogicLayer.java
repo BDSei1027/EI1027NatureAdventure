@@ -45,6 +45,14 @@ public class LogicLayer {
 	private daoAvaliableBook daoAvaliable;
 	private daoSessionToken daoSessionTokens;
 	
+	public daoSessionToken getDaoSessionTokens() {
+		return daoSessionTokens;
+	}
+
+	public void setDaoSessionTokens(daoSessionToken daoSessionTokens) {
+		this.daoSessionTokens = daoSessionTokens;
+	}
+
 	//ID autoincrementales
 	private int innerBookingID;
 	private int activeBookingID;
@@ -703,21 +711,6 @@ public class LogicLayer {
 		return newUser;
 	}
 	
-	public void setToken(String userName, String tokenString) {
-		Token token = new Token(userName,tokenString);
-		try{
-			daoSessionTokens.addElement(token);
-		} catch (Exception e){
-			daoSessionTokens.updateElement(token);
-		}
-		
-	}
-	
-	public boolean validateToken(String userName, String tokenString) {
-		Token token = new Token(userName,tokenString);
-		if(daoSessionTokens.getElement(token)==null) return false;
-		return true;
-	}
 	
 	/*
 	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
@@ -775,6 +768,12 @@ public class LogicLayer {
 	public void setDaoAvaliable(daoAvaliableBook daoAvaliable) {
 		this.daoAvaliable = daoAvaliable;
 	}
+	
+	public void setDaoToken(daoSessionToken daoToken){
+		this.daoSessionTokens = daoToken;
+	}
+
+	
 
 
 
