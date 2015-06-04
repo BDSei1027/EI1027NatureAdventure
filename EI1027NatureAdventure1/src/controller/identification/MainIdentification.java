@@ -59,7 +59,9 @@ public class MainIdentification {
 		if(user.getUser() == null){
 			user.setUser(request.getParameter("user"));
 			user.setPassword(request.getParameter("password"));
+			user.setRememberMe(request.getParameter("remem")==null?false:true);
 		}
+		boolean remember = user.isRememberMe();
 		
 		//Correct field format validator
 		UserValidator userValidator = new UserValidator();
@@ -77,6 +79,8 @@ public class MainIdentification {
 		
 		//Maintain the user data in the session
 		session.setAttribute("user", user);
+		System.out.println(remember);
+		
 		
 		//Get the page that called the login
 		StringBuffer nextPage = (StringBuffer) session.getAttribute("nextPage");

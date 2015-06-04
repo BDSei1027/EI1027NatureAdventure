@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import classes.Client;
-import classes.Instructor;
 import classes.User;
 import controller.basics.AbstractController;
 

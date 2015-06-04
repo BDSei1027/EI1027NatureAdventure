@@ -39,18 +39,18 @@ public class ActivityManagement extends AbstractController{
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String activityManagementAdd(@ModelAttribute("activity") Activity activity, BindingResult bindingResult){		
 		new ActivityValidator().validate(activity, bindingResult);
-		if(bindingResult.hasErrors()) return "/admin/activityManagement/add";
+		if(bindingResult.hasErrors()) return "admin/activityManagement/add";
 		
 		service.addActivity(activity);
 		
-		return "redirect:/activityManagement.html";
+		return "redirect:/adminactivityManagement.html";
 	}
 	
 	@RequestMapping(value="/disable/{actId}")
 	public String activityManagementDisable(@PathVariable int actId){
 		service.inactiveActivity(actId);
 		
-		return "redirect:/activityManagement.html";
+		return "redirect:/admin/activityManagement.html";
 	}
 	
 	@RequestMapping(value="/enable/{actId}")
@@ -58,7 +58,7 @@ public class ActivityManagement extends AbstractController{
 		service.activateActivity(actId);
 		
 		
-		return "redirect:/activityManagement.html";
+		return "redirect:/admin/activityManagement.html";
 	}
 	
 	@RequestMapping(value="/modify/{actId}")
@@ -71,9 +71,11 @@ public class ActivityManagement extends AbstractController{
 	@RequestMapping(value="/modify/{actId}", method=RequestMethod.POST)
 	public String activityManagementModify(@PathVariable int actId, @ModelAttribute("activity") Activity activity, BindingResult bindingResult){		
 		new ActivityValidator().validate(activity, bindingResult);
-		if(bindingResult.hasErrors()) return "/actiivityManagement/modify/"+actId;
+		if(bindingResult.hasErrors()) return "admin/activityManagement/modify";
 		
-		return "redirect:/activityManagement";
+		service.updateActivity(activity);
+		
+		return "redirect:/admin/activityManagement.html";
 	}
 	
 	@RequestMapping(value="/onlyActive")

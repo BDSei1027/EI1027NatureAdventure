@@ -4,7 +4,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import classes.Activity;
-import classes.Instructor;
 
 public class ActivityValidator implements Validator{
 
