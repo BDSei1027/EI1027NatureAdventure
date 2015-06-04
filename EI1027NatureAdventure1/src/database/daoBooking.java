@@ -198,6 +198,38 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}*/
 	
+	/**
+	 * Method to retrieve the necesary information for make the BookingActivties
+	 * @return Map<Integer,BookingActivity>
+	 */
+	public Map<Integer, BookingActivity> getElementsBookingActivityInstructor(String ssn) {
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact)"
+				+ "WHERE st.ssnumber = ?;";
+		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
+		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper(), ssn);
+		for (BookingActivity book: list) {
+			map.put(book.getIdBooking(), book);
+		}
+		return map;
+	}
+	
+	/**
+	 * Method to retrieve the necesary information for make the BookingActivties
+	 * @return Map<Integer,BookingActivity>
+	 */
+	public Map<Integer, BookingActivity> getElementsBookingActivityClient(String id) {
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact)"
+				+ "WHERE book.clientid = ?;";
+		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
+		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper(), id);
+		for (BookingActivity book: list) {
+			map.put(book.getIdBooking(), book);
+		}
+		return map;
+	}
+	
 	public Map<Integer, BookingActivity> getActiveBookingsWithInstructor(String ssNumber){
 		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact)"
@@ -264,20 +296,6 @@ public class daoBooking implements DaoInterface {
 		return dataSource.queryForObject(sql, Integer.class);
 	}
 
-	/**
-	 * Method to retrieve the necesary information for make the BookingActivties
-	 * @return Map<Integer,BookingActivity>
-	 */
-	public Map<Integer, BookingActivity> getElementsBookingActivity() {
-		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
-				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact);";
-		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
-		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper());
-		for (BookingActivity book: list) {
-			map.put(book.getIdBooking(), book);
-		}
-		return map;
 
-	}
 
 }

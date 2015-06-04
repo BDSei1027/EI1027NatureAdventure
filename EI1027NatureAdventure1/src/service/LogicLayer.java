@@ -415,12 +415,17 @@ public class LogicLayer {
 	}
 	
 	
-	public Collection<BookingActivity> getAllBookingsActivity(){
-		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getElementsBookingActivity();
+	public Collection<BookingActivity> getAllBookingsActivityInstructor(Instructor instructor){
+		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getElementsBookingActivityInstructor(instructor.getSsNumber());
 		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
+	public Collection<BookingActivity> getAllBookingsActivityClient(Client cl){
+		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getElementsBookingActivityClient(cl.getClientId());
+		Collection<BookingActivity> allBookingsClasses= allBookings.values();
+		return allBookingsClasses;
+	}
 	
 	public Collection<BookingActivity> getActiveBookings(Client client){
 		String idClient = client.getClientId();
