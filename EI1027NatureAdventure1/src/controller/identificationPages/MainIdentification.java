@@ -112,8 +112,14 @@ public class MainIdentification {
 	 * @return Bye page
 	 */
 	@RequestMapping(value="/logout")
-	public String logout(HttpSession session){
+	public String logout(HttpSession session, HttpServletRequest request){
 		session.invalidate();
+		
+		for(Cookie cookie:request.getCookies()){
+			if(cookie.getName()=="user") cookie.setMaxAge(0);
+			else if(cookie.getName()=="token") cookie.setMaxAge(0);
+		}
+		
 		return "logout";		
 	}
 	

@@ -31,11 +31,12 @@ public class MainInterceptor extends HandlerInterceptorAdapter  {
     		String token = null;
     		
     		for(Cookie cookie:request.getCookies()){
-    			if (cookie.getName()=="user"){
+    			System.out.println(cookie.getValue());
+    			if (cookie.getName().equals("user")){
     				name = cookie.getValue();
     				cookie.setMaxAge(0);
     			}
-    			else if (cookie.getName()=="token"){
+    			else if (cookie.getName().equals("token")){
     				token = cookie.getValue();
     				cookie.setMaxAge(0);
     			}
@@ -52,7 +53,7 @@ public class MainInterceptor extends HandlerInterceptorAdapter  {
     				response.addCookie(new Cookie("user", name));
     				response.addCookie(new Cookie("token", token));
     				
-    				service.setToken(name, token);
+    				service.setToken(name, newToken);
     			}
     		}
 	
