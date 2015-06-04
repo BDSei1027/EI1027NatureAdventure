@@ -6,8 +6,8 @@
 <t:template>
 <jsp:body>
 	<div class="clientMain">
-		<h4>Welcome <c:out value="${client.clientName}" /></h4>
-		<p>Welcome our dear customer, <strong><c:out value="${client.clientName}" /></strong>, this is your main page.</p>
+		<h4>Welcome <c:out value="${name}" /></h4>
+		<p class="subtitle">Welcome our dear customer, <strong><c:out value="${name}" /></strong>, this is your main page.</p>
 		
 		<div id="actionsHelp" class="row">
 			<div id="action" class="col-lg-2">
@@ -30,20 +30,20 @@
 			</div>
 		</div>
 		
-		<c:forEach var="booking" items="${activeBookings}">
+		<c:forEach var="booking" items="${bookings}">
 			    <div class="booking">
 			    	<div class="booking-title">
 			    		<h5 class="pull-left"><c:out value="${booking.nameActivity}" /><small><c:out value="${booking.dateActivity}" /></small></h5>
-			    		<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><span class="caret pull-right"></span></a>
+			    		<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse" class="pull-right"><span class="caret"></span></a>
 			    		<div style="clear:both;"></div>
 			    	</div>
 			    	<div class="collapse" id="collapseAct">
 				    	<div class="booking-body row">
-				        	<div class="col-lg-4">
-				        		<div class="booking-activity"><c:out value="${booking.nameActivity}" /> <small><c:out value="${booking.level}" /></small></div>
+				        	<div class="col-lg-5">
+				        		<div class="booking-activity"><h4 style="margin-bottom: 0px;"><c:out value="${booking.nameActivity}" /> <small><c:out value="${booking.level}" /></small></h4></div>
 				        		<div class="booking-id">Identifier: <c:out value="${booking.idBooking}" /></div>
 				        	</div>
-				        	<div class="col-lg-6">
+				        	<div class="col-lg-3">
 				          		<div class="booking-date">
 				            		<h6>Date: <small><c:out value="${booking.dateActivity}" /></small></h6>
 				          		</div>
@@ -54,7 +54,7 @@
 				           	 		<h6>Place: <small><c:out value="${booking.place}" /></small></h6>
 				          		</div>
 				        	</div>
-				        	<div class="col-lg-2">
+				        	<div class="col-lg-4">
 				          		<div class="booking-status">
 				          			<c:choose>
 				          				<c:when test="${booking.status eq 0}">
@@ -62,11 +62,11 @@
 				            			</c:when>
 				          				<c:when test="${booking.status eq 1}">
 						            		<div class="accepted">accepted</div>
-						            		<div class="date"><c:out value="${booking.dateRevision}" /></div>
+						            		<div class="date">Date of revision <c:out value="${booking.dateRevision}" /></div>
 				            			</c:when>
 				            			<c:when test="${booking.status eq 2}">
 						            		<div class="declined">declined</div>
-						            		<div class="date"><c:out value="${booking.dateRevision}" /></div>
+						            		<div class="date">Date of revision <c:out value="${booking.dateRevision}" /></div>
 				            			</c:when>
 				            		</c:choose>
 				          		</div>
