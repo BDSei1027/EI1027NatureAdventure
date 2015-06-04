@@ -26,14 +26,14 @@ public class ActivityManagement extends AbstractController{
 		
 		model.addAttribute("activityList", activityList);
 		
-		return "/admin/activityManagement";
+		return "admin/activityManagement";
 	}
 	
 	@RequestMapping(value="/add")
 	public String activityManagementAdd(Model model){
 		model.addAttribute("activity", new Activity());
 		
-		return "/admin/activityManagement/add";
+		return "admin/activityManagement/add";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
@@ -50,14 +50,21 @@ public class ActivityManagement extends AbstractController{
 	public String activityManagementDisable(@PathVariable int actId){
 		service.inactiveActivity(actId);
 		
-		return "redirect:/activityManagement/add";
+		return "redirect:/activityManagement.html";
+	}
+	
+	@RequestMapping(value="/enable/{actId}")
+	public String activityManagementEnable(@PathVariable int actId){
+		service.activateActivity(actId);
+		
+		return "redirect:/activityManagement.html";
 	}
 	
 	@RequestMapping(value="/modify/{actId}")
 	public String activityManagementModify(@PathVariable int actId, Model model){		
 		model.addAttribute("activity", service.getActivity(actId));
 		
-		return "activityManagement/modify/"+actId;
+		return "admin/activityManagement/modify";
 	}
 	
 	@RequestMapping(value="/modify/{actId}", method=RequestMethod.POST)
