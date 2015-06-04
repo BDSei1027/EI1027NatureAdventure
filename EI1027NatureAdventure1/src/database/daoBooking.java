@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Booking;
+import classes.BookingActivity;
 import classes.Status;
 
 @Repository
@@ -40,7 +41,7 @@ public class daoBooking implements DaoInterface {
 		public Booking mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Booking booking = new Booking();
 			try {
-				booking.setInnerIdBooking(rs.getInt("inneridbooking"));
+				booking.setInnerIdBooking(rs.getInt("idbooking"));
 				booking.setGroupSize(rs.getInt("groupSize"));
 				booking.setDateActivity(rs.getDate("dateactivity"));
 				booking.setDateCreation(rs.getDate("datecreation"));
@@ -49,6 +50,29 @@ public class daoBooking implements DaoInterface {
 				booking.setIdAct(rs.getInt("idact"));
 				booking.setInformation(rs.getString("information"));
 				booking.setIdBooking(rs.getInt("idbooking"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return booking;
+		}
+	}
+	
+	/*
+	 * RowMapper for the class BookingActivity
+	 */
+	private final static class BookingActivityMapper implements RowMapper<BookingActivity> {
+		public BookingActivity mapRow(ResultSet rs, int rowNum) throws SQLException {
+			BookingActivity booking = new BookingActivity();
+			try {
+				booking.setIdBooking(rs.getInt("idbooking"));
+				booking.setNameActivity(rs.getString("nameactivity"));
+				booking.setDateActivity(rs.getDate("dateactivity"));
+				booking.setSchedule(rs.getString("schedule"));
+				booking.setLevel(rs.getInt("level"));
+				booking.setGroupSize(rs.getInt("groupsize"));
+				booking.setPlace(rs.getString("place"));
+				booking.setDateRevision(rs.getDate("daterevision"));
+				booking.setStatus(rs.getString("status"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -149,7 +173,8 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
-	public Object getActiveBookings(String idClient){
+	/*	No se usa?
+	 * public Object getActiveBookings(String idClient){
 		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE >= '0 days' AND b.clientId= ?;";
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
 		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
@@ -158,9 +183,11 @@ public class daoBooking implements DaoInterface {
 			map.put(book.getInnerIdBooking(), book);
 		}
 		return map;
-	}
+	}*/
 	
-	public Object getPastBookings(String idClient){
+	/* No se usa ?
+	 * public Object getPastBookings(String idClient){
+	 
 		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE < '0 days' AND b.clientId= ?;";
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
 		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
@@ -169,48 +196,52 @@ public class daoBooking implements DaoInterface {
 			map.put(book.getInnerIdBooking(), book);
 		}
 		return map;
-	}
+	}*/
 	
-	public Map<Integer, Booking> getActiveBookingsWithInstructor(String ssNumber){
-		String sql = "SELECT b.* FROM booking AS b JOIN Status AS s USING(innerIdBooking) WHERE b.dateActivity - CURRENT_DATE >= '0 days' AND s.ssNumber= ?;";
-		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
-		List<Booking> list = dataSource.query(sql, new BookingMapper(),ssNumber);
-		for (Booking book: list) {
-			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
-			map.put(book.getInnerIdBooking(), book);
+	public Map<Integer, BookingActivity> getActiveBookingsWithInstructor(String ssNumber){
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact)"
+				+ "WHERE st.ssnumber = ? AND b.dateactivity - CURRENT_DATE >= '0 days';";
+		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
+		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper(), ssNumber);
+		for (BookingActivity book: list) {
+			map.put(book.getIdBooking(), book);
 		}
 		return map;
 	}
 	
-	public Map<Integer, Booking> getPastBookingsWithInstructor(String ssNumber){
-		String sql = "SELECT b.* FROM booking AS b JOIN Status AS s USING(innerIdBooking) WHERE b.dateActivity - CURRENT_DATE < '0 days' AND s.ssNumber= ?;";
-		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
-		List<Booking> list = dataSource.query(sql, new BookingMapper(),ssNumber);
-		for (Booking book: list) {
-			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
-			map.put(book.getInnerIdBooking(), book);
+	public Map<Integer, BookingActivity> getPastBookingsWithInstructor(String ssNumber){
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact)"
+				+ "WHERE st.ssnumber = ? AND b.dateactivity - CURRENT_DATE < '0 days';";
+		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
+		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper(), ssNumber);
+		for (BookingActivity book: list) {
+			map.put(book.getIdBooking(), book);
 		}
 		return map;
 	}
 	
-	public Map<Integer, Booking> getActiveBookingsWithClient(String idClient) {
-		String sql = "SELECT b.* FROM booking AS b JOIN Status AS s USING(innerIdBooking) WHERE b.dateActivity - CURRENT_DATE >= '0 days' AND b.clientId= ?;";
-		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
-		List<Booking> list = dataSource.query(sql, new BookingMapper(), idClient);
-		for (Booking book: list) {
-			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
-			map.put(book.getInnerIdBooking(), book);
+	public Map<Integer, BookingActivity> getActiveBookingsWithClient(String idClient) {
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact)"
+				+ "WHERE book.clientid = ? AND b.dateactivity - CURRENT_DATE >= '0 days';";
+		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
+		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper(), idClient);
+		for (BookingActivity book: list) {
+			map.put(book.getIdBooking(), book);
 		}
 		return map;
 	}
 
-	public Map<Integer, Booking> getPastBookingsWithClient(String idClient) {
-		String sql = "SELECT b.* FROM booking AS b JOIN Status AS s USING(innerIdBooking) WHERE b.dateActivity - CURRENT_DATE < '0 days' AND b.clientId= ?;";
-		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
-		List<Booking> list = dataSource.query(sql, new BookingMapper(), idClient);
-		for (Booking book: list) {
-			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
-			map.put(book.getInnerIdBooking(), book);
+	public Map<Integer, BookingActivity> getPastBookingsWithClient(String idClient) {
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact)"
+				+ "WHERE book.clientid = ? AND b.dateactivity - CURRENT_DATE < '0 days';";
+		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
+		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper(), idClient);
+		for (BookingActivity book: list) {
+			map.put(book.getIdBooking(), book);
 		}
 		return map;
 	}
@@ -231,6 +262,22 @@ public class daoBooking implements DaoInterface {
 	public Integer getMaxActiveID() {
 		String sql = "SELECT MAX(idbooking) FROM booking;";
 		return dataSource.queryForObject(sql, Integer.class);
+	}
+
+	/**
+	 * Method to retrieve the necesary information for make the BookingActivties
+	 * @return Map<Integer,BookingActivity>
+	 */
+	public Map<Integer, BookingActivity> getElementsBookingActivity() {
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+				+ "FROM booking AS book JOIN status AS st USING(book.inneridbooking) JOIN activity AS act USING(book.idact);";
+		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
+		List<BookingActivity> list = dataSource.query(sql, new BookingActivityMapper());
+		for (BookingActivity book: list) {
+			map.put(book.getIdBooking(), book);
+		}
+		return map;
+
 	}
 
 }

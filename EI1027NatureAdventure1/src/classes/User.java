@@ -10,6 +10,7 @@ public class User {
 	private String name;
 	private int type = -1;
 	private String language;
+	private boolean rememberMe;
 
 	public User() {
 		super();
@@ -63,6 +64,14 @@ public class User {
 		this.language = lng;
 	}
 	
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
+
 	public void clearPassword() {
 		this.password = null;
 	}

@@ -45,6 +45,13 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<form:label path="place" for="place" class="control-label col-lg-2">Place</form:label>
+			<div class="col-lg-10">
+				<form:input path="place" id="place" type="text" class="form-control" />
+				<form:errors path="place" id="placeerr" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
 			<form:label path="minimumGroup" for="min" class="control-label col-lg-2">Minimum Group</form:label>
 			<div class="col-lg-10">
 				<form:input path="minimumGroup" id="min" class="form-control" />

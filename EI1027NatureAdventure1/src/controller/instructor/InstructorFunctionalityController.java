@@ -62,7 +62,7 @@ public class InstructorFunctionalityController extends AbstractController{
 	public String pastBookings(Model model, HttpSession session){
 		Instructor instructor = service.getInstructor((User) session.getAttribute("user"));
 		
-		model.addAttribute("bookings", service.getPastBookings(instructor));
+		model.addAttribute("bookings", service.getPastBooking(instructor));
 		return "instructor/history";
 	}
 }

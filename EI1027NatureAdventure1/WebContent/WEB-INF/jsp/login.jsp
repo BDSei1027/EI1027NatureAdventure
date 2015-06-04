@@ -19,6 +19,12 @@
 		    	<form:label path="password" class="login-field-icon fui-lock" for="login-pass"></form:label>
 		    	<form:errors path="password" class="text-danger" />
 			</div>
+			<div class="form-group">
+				<form:label path="rememberMe" class="checkbox" for="rem">
+								<form:checkbox id="rem" path="rememberMe" data-toggle="checkbox"/> Remember me
+								<br><form:errors path="rememberMe" class="text-danger"></form:errors>
+				</form:label>
+			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in!</button>
             <a class="login-link" href="#">Lost your password?</a>
             <div class="logoLogin">NatureAdventure</div>
