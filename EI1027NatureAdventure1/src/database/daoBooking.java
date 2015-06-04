@@ -150,7 +150,7 @@ public class daoBooking implements DaoInterface {
 	}
 	
 	public Object getActiveBookings(String idClient){
-		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE >= 0 AND b.clientId= ?;";
+		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE >= '0 days' AND b.clientId= ?;";
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
 		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
 		for (Booking book: list) {
@@ -161,7 +161,7 @@ public class daoBooking implements DaoInterface {
 	}
 	
 	public Object getPastBookings(String idClient){
-		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE < 0 AND b.clientId= ?;";
+		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE < '0 days' AND b.clientId= ?;";
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
 		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
 		for (Booking book: list) {

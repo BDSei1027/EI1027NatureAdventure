@@ -19,21 +19,21 @@
 		<div class="panel-body">
 			<form:form method="post" modelAttribute="register" action="${pageContext.request.contextPath}/register.html" role="form">
 				<div class="row form-group">
-					<form:label path="name" for="nam" class="col-lg-2 control-label">Name: </form:label>
+					<form:label path="name" for="nam" class="col-lg-2 control-label">Name </form:label>
 					<div class="col-lg-10">				
 						<form:input path="name" type="text" class="form-control" id="nam" placeholder="Enter your name" />
 						<form:errors path="name" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="lastName" for="lname" class="col-lg-2 control-label">Last name: </form:label>
+					<form:label path="lastName" for="lname" class="col-lg-2 control-label">Last name </form:label>
 					<div class="col-lg-10">
 						<form:input path="lastName" type="text" class="form-control" id="lname" placeholder="Enter your last name"/>
 					<form:errors path="lastName" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="email" for="email" class="col-lg-2 control-label">E-mail: </form:label>
+					<form:label path="email" for="email" class="col-lg-2 control-label">E-mail </form:label>
 					<div class="col-lg-10">
 						<div class="input-group">
 						<form:input path="email" type="email" class="form-control" id="email" placeholder="Enter your email"/>
@@ -43,17 +43,28 @@
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="id" for="id" class="col-lg-2 control-label">ID number: </form:label>
+					<form:label path="id" for="id" class="col-lg-2 control-label">ID number </form:label>
 					<div class="col-lg-10">
 						<form:input path="id" type="text" class="form-control" id="id" placeholder="Enter your identification number"/>
 						<form:errors path="id" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="password" for="pass" class="col-lg-2 control-label">Password: </form:label>
+					<form:label path="password" for="pass" class="col-lg-2 control-label">Password </form:label>
 					<div class="col-lg-10">
 						<form:input path="password" type="password" class="form-control" id="pass" placeholder="Enter your password"/>
 						<form:errors path="password" class="text-danger" />
+					</div>
+				</div>
+				<div id="selectlanguage" class="row" style="margin-bottom: 15px;">
+					<div class="col-lg-2 labelReg">Choose language</div>
+					<div class="col-lg-10">
+						<form:select path="language" data-toggle="select" class="form-control select select-primary mrs mbm">
+							<optgroup>
+								<form:option value="EN">English</form:option>
+								<form:option value="ES">Spanish</form:option>
+							</optgroup>
+						</form:select>
 					</div>
 				</div>
 				<div class="panel panel-info">
@@ -74,15 +85,8 @@
 							<br><form:errors path="tocs" class="text-danger"></form:errors>
 						</form:label>
 				</div>
-				<div id="selectlanguage" style="margin-bottom 15px;">
-				Select your language: 
-				<form:select path="language" data-toggle="select" class="form-control select select-primary select-lg">
-					<optgroup>
-						<form:option value="EN">English</form:option>
-						<form:option value="ES">Spanish</form:option>
-					</optgroup>
-				</form:select>
-				</div>
+				
+				
 				<div class="text-center" style="margin-top: 20px;">
 					<div class="btn-group">
 						<button type="submit" class="btn btn-primary">Submit</button>

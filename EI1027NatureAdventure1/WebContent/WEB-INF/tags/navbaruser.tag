@@ -27,7 +27,7 @@
       <li><p class="navbar-text" id="navtext">Welcome <strong><c:out value="${user.name}" /></strong></p></li>
       <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
-           <li><a href="${pageContext.request.contextPath}/customer/main.html">Active bookings</a></li>
+           <li><a href="${pageContext.request.contextPath}/customer.html">Active bookings</a></li>
            <li><a href="${pageContext.request.contextPath}/customer/history.html">History</a></li>
            <li class="divider"></li>
            <li><a href="${pageContext.request.contextPath}/account.html">Account</a></li>
