@@ -30,6 +30,9 @@ public class BookingActivityValidator implements Validator{
 		if(myActivity.getLevel().equals("")){
 			errors.rejectValue("groupSize","valorNegativo","This field cannot be lower or equal than 0");//Este campo no puede ser menor o igual a cero
 		}
+		if(myActivity.getPrice()<=0){
+			errors.rejectValue("price", "negative value", "The price must be greater than 0"); //El precio debe ser mayor que 0
+		}
 	}
 
 }
