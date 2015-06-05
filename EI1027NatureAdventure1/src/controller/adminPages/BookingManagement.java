@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import classes.Booking;
 import classes.Status;
@@ -28,7 +27,6 @@ public class BookingManagement extends AbstractController {
 	@RequestMapping(value="/details/{idBooking}")
 	public String bookingDetailsPage(@PathVariable int idBooking, Model model){
 		Booking booking  = service.getBooking(idBooking);
-		Status status = service.getStatus(booking);
 		
 		model.addAttribute("booking", booking);
 		model.addAttribute("status", service.getStatus(booking));

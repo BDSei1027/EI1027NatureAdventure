@@ -92,6 +92,7 @@ public class daoStatus implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		int id = (int) identifier;
+		System.out.println("dao");
 		String sql = "SELECT * FROM Status WHERE inneridbooking = ?;";
 		List<Status> list = dataSource.query(sql, new StatusMapper(), id);
 		if (list.size() == 0 || list.size() < 1) return null;

@@ -5,9 +5,8 @@
 <t:template>
 	<jsp:body>
 		
-    <h2>Booking management</h2>
-	<hr>
-	<h3>Details of booking <strong>${booking.innerIdBooking}</strong></h3>
+    <h4>Booking management</h4>
+	<h6 class="subtitle">Details of booking <strong>${booking.innerIdBooking}</strong></h6>
   <div role="tabpanel">
 
   <!-- Nav tabs -->
@@ -21,9 +20,9 @@
   <div class="tab-content">
     <div role="tabpanel"  class="tab-pane active" id="bookinginfo">
       <div class="container-fluid">
-        <h4>Information about the booking</h4>
+        <h5>Information about the booking</h5>
         <hr>
-        <form:form method="post" action="#" modelAttribute="booking">
+        <form method="post" role="form">
           <div class="row form-group">
             <label for="innerid" class="col-lg-2">InnerID Booking</label>
             <div class="col-lg-10">
@@ -82,10 +81,10 @@
             </div>
           </div>
           <div class="form-group">
-            <form:label for="infor" path="information">Extra information</form:label>
-            <form:textarea class="form-control" rows="3" path="information" placeholder="Extra information" />
+            <label class="control-label">Extra information</label>
+            <textarea class="form-control" rows="3" placeholder="Extra information" disabled>${booking.information}</textarea>
           </div>
-        </form:form>
+        </form>
 
           <div class="panel panel-default">
             <c:choose>
@@ -290,7 +289,7 @@
     </div> <!-- tab -->
     <div role="tabpane3" class="tab-pane" id="activityinfo">
       <div class="container-fluid">
-        <h4>Information about the activity of the booking</h4>
+        <h5>Information about the activity of the booking</h5>
         <hr>
         <form method="post" role="form">
           <div class="form-group row">

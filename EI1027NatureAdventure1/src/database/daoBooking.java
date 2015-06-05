@@ -41,7 +41,7 @@ public class daoBooking implements DaoInterface {
 		public Booking mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Booking booking = new Booking();
 			try {
-				booking.setInnerIdBooking(rs.getInt("idbooking"));
+				booking.setInnerIdBooking(rs.getInt("inneridbooking"));
 				booking.setGroupSize(rs.getInt("groupSize"));
 				booking.setDateActivity(rs.getDate("dateactivity"));
 				booking.setDateCreation(rs.getDate("datecreation"));
@@ -81,7 +81,7 @@ public class daoBooking implements DaoInterface {
 	}
 	
 	/**
-	 * Method to add a Booking into the DB
+	 * Method to add a Booking into the DB, also add the status in its table
 	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Booking, class Booking
 	 */
@@ -147,7 +147,9 @@ public class daoBooking implements DaoInterface {
 	@Override
 	public Object getElement(Object identifier) {
 		int id = (int) identifier;
-		String sql = "SELECT * FROM booking WHERE inneridbooking = ?;";
+		String sql = "SELECT inneridbooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, idBooking"
+				+ " FROM booking "
+				+ "WHERE inneridbooking = ?;";
 		List<Booking> list = dataSource.query(sql, new BookingMapper(), id);
 		if (list.size() == 0 || list.size() < 1) return null;
 		else {
@@ -172,32 +174,7 @@ public class daoBooking implements DaoInterface {
 		}
 		return map;
 	}
-	
-	/*	No se usa?
-	 * public Object getActiveBookings(String idClient){
-		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE >= '0 days' AND b.clientId= ?;";
-		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
-		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
-		for (Booking book: list) {
-			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
-			map.put(book.getInnerIdBooking(), book);
-		}
-		return map;
-	}*/
-	
-	/* No se usa ?
-	 * public Object getPastBookings(String idClient){
-	 
-		String sql = "SELECT * FROM booking AS b WHERE b.dateActivity - CURRENT_DATE < '0 days' AND b.clientId= ?;";
-		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
-		List<Booking> list = dataSource.query(sql, new BookingMapper(),idClient);
-		for (Booking book: list) {
-			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
-			map.put(book.getInnerIdBooking(), book);
-		}
-		return map;
-	}*/
-	
+
 	/**
 	 * Method to retrieve the necesary information for make the BookingActivties
 	 * @return Map<Integer,BookingActivity>

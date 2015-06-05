@@ -153,7 +153,8 @@ footer p {
 /* Pagina de ver actividades del cliente*/
 .mybadge {
 	display: inline-block;
-	min-width: 10px;
+	margin-left: 8px;
+	min-width: 15px;
 	padding: 3px 7px;
 	font-size: 12px;
 	font-weight: 700;
@@ -163,19 +164,36 @@ footer p {
 	vertical-align: baseline;
 	border-radius: 10px;
 	background-color: #FFF;
-	color: #2ecc71;
+	color: #34495e;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+	background-color: #ecf0f1;
 }
 
 .nav-pills > li.activeBooking > a {
-	background-color: #2ecc71;
+	background-color: #34495e;
 	color: #FFF;
 }
 
+.nav-pills > li.active > a {
+	background-color: #34495e;
+	
+}
+
+.nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+	background-color: #1abc9c;
+}
+
+
+
 .booking {
-	border: 1px solid #6ace7e;
+	border-left: 1px solid #2c3e50;
+	border-right: 1px solid #2c3e50;
+	border-bottom: 1px solid #2c3e50;
 	border-radius: 4px;
 	background-color: #fff;
-	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+	margin-top: 10px;
 }
 
 .booking-title {
@@ -183,21 +201,21 @@ footer p {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-size: 16px;
-	background-color: #82ff9b;
-	border-bottom: 1px solid #6ace7e;
-	border-radius: 2px;
+	background-color: #34495e;
+	border-bottom: 1px solid #2c3e50;
+	border-radius: 4px 4px 0px 0px;
 }
 
-.booking-title > h3 {
-	font-size: 20px;
+.booking-title > h5 {
 	margin: 0px;
-	color: #219a3a;
+	color: #FFF;
 }
 
-.booking-title > h3 > small {
+.booking-title > h5 > small {
 	padding-left: 10px;
-	font-size: 55%;
-	font-family: "Times New Roman", Times, serif;
+	font-size: 65%;
+	font-style: italic;
+	color: #bdc3c7;
 }
 
 .booking-title > a {
@@ -207,7 +225,6 @@ footer p {
 	border-radius: 3px;
 	border: 1px solid #6ace7e;
 	background-color: #A2F9B3;
-	color: inherit;
 }
 
 .booking-body {
@@ -220,93 +237,93 @@ footer p {
 .booking-id {
 	font-size: 15px;
 	font-style: italic;
-	color: grey;
+	color: #95a5a6;
 	padding-left: 18px;
 	font-family: "Times New Roman", Times, serif;
 }
 
-.booking-activity {
-	font-size: 24px;
+.booking-activity > h4 {
 	font-weight: 600;
-	padding-top: 15px;
+	padding-top: 10px;
 	padding-left: 10px;
+	margin-bottom: 0px;
 }
 
-.booking-activity > small {
+.booking-activity > h4 > small {
 	font-weight: normal;
 	font-size: 70%;
 	font-style: oblique;
-	color: gray;
+	color: #95a5a6;
 	text-transform: capitalize;
 	padding-left: 6px;
 }
 
-.booking-date > h5 {
+.booking-date > h6 {
+	font-size: 90%;
 	font-weight: bold;
 }
 
-.booking-date > h5 > small {
-	color: inherit;
+.booking-date > h6 > small {
 	font-size: 100%;
 	padding-left: 65px;
+	color: #95a5a6;
 }
 
 .booking-group {
 	font-weight: bold;
 }
 
-.booking-group > h5 {
+.booking-group > h6 {
+	font-size: 90%;
 	font-weight: bold;
 }
 
-.booking-group > h5 > small {
-	color: inherit;
+.booking-group > h6 > small {
 	font-size: 100%;
 	padding-left: 19px;
+	color: #95a5a6;
 }
 
 .booking-place {
 	font-weight: bold;
 }
 
-.booking-place > h5 {
+.booking-place > h6 {
+	font-size: 90%;
 	font-weight: bold;
 }
 
-.booking-place > h5 > small {
-	color: inherit;
+.booking-place > h6 > small {
 	font-size: 100%;
 	padding-left: 58px;
+	color: #95a5a6;
 }
 
 .booking-status {
-	margin-top: 15px;
-	margin-right: 30px;
+	margin-right: 8%;
 	padding: 5px;
-	font-size: 16px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	border-radius: 4px;
-	box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.10);
+
 }
 
 .booking-status > .accepted {
-	color: limegreen;
+	color: #1abc9c;
 	text-align: center;
-	text-transform: uppercase;
-	font-weight: bolder;
+	text-transform: capitalize;
+	font-weight: bold;
+	font-size: 200%;
 }
 
 .booking-status > .declined {
-	color: red;
+	color: #e67e22;
 	text-align: center;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-weight: bolder;
 }
 
-.booking-status > .accepted {
-	color: grey;
+.booking-status > .pending {
+	color: #fff;
 	text-align: center;
-	text-transform: uppercase;
+	text-transform: capitalize;
 	font-weight: bolder;
 }
 
@@ -316,7 +333,7 @@ footer p {
 	font-style: italic;
 	font-family: "Times New Roman", Times, serif;
 	font-weight: 400;
-	color: grey;
+	color: #95a5a6;
 	text-transform: none;
 }
 
