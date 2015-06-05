@@ -37,7 +37,7 @@ public class MainInterceptor extends HandlerInterceptorAdapter  {
     		Cookie nameCookie = null;
     		Cookie tokenCookie = null;
     		
-    		for(Cookie cookie:request.getCookies()){
+    		if(request.getCookies()!=null) for(Cookie cookie:request.getCookies()){
     			if (cookie.getName().equals("user")){
     				nameCookie = cookie;
     			}
