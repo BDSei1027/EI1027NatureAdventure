@@ -32,11 +32,13 @@
 		
 		<c:forEach var="booking" items="${bookings}">
 			    <div class="booking">
+			    	<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">
 			    	<div class="booking-title">
 			    		<h5 class="pull-left"><c:out value="${booking.nameActivity}" /><small><c:out value="${booking.dateActivity}" /></small></h5>
-			    		<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse" class="pull-right"><span class="caret"></span></a>
+			    		<span class="fui-triangle-down pull-right" ></span>
 			    		<div style="clear:both;"></div>
 			    	</div>
+			    	</a>
 			    	<div class="collapse" id="collapseAct">
 				    	<div class="booking-body row">
 				        	<div class="col-lg-5">
@@ -52,6 +54,9 @@
 				          		</div>
 				          		<div class="booking-place">
 				           	 		<h6>Place: <small><c:out value="${booking.place}" /></small></h6>
+				          		</div>
+				          		<div class="booking-place">
+				           	 		<h6>Price: <small><c:out value="${booking.price}" /> &euro;</small></h6>
 				          		</div>
 				        	</div>
 				        	<div class="col-lg-4">

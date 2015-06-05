@@ -29,7 +29,7 @@
         	<td><c:out value="${cli.clientName}" /></td>
         	<td><c:out value="${cli.clientLastName}" /></td>
         	<td><c:out value="${cli.clientEmail}" /></td>
-        	<td>0 por ahora</td>
+        	<td><c:out value="${cli.numberBooking}" /></td>
         	<td><a href="${pageContext.request.contextPath}/admin/clientManagement/details/${cli.clientId}.html"><span class="label label-info">Details</span></a></td>
         </tr>
         </c:forEach>

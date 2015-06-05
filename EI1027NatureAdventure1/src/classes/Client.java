@@ -12,6 +12,7 @@ public class Client {
 	private String clientName;
 	private String clientLastName;
 	private String clientEmail;
+	private int numberBooking;
 	
 //------------------------------------------------------------------------------------------------------------------------------------------------
 //Constructores
@@ -25,6 +26,7 @@ public class Client {
 		clientName = cliente.clientName;
 		clientLastName = cliente.clientLastName;
 		clientEmail = cliente.clientEmail;
+		numberBooking = cliente.numberBooking;
 	}
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,6 +101,14 @@ public class Client {
 	public boolean isEmpty() {
 		if (clientId == null && clientName == null && clientLastName == null && clientEmail == null ) return true;
 		return false;
+	}
+
+	public int getNumberBooking() {
+		return numberBooking;
+	}
+
+	public void setNumberBooking(int numberBooking) {
+		this.numberBooking = numberBooking;
 	}
 
 	

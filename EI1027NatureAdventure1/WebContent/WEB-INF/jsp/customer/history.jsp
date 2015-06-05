@@ -14,7 +14,7 @@
 				<ul class="nav nav-pills nav-stacked">
 					<li><a href="${pageContext.request.contextPath}/customer/main.html">Main</a></li>
 					<li class="active"><a href="${pageContext.request.contextPath}/customer/history.html">History</a>
-					<li class="active"><span class="badge"><c:out value="${numbookings}" /> bookings</span></li>
+					<li class="activeBooking"><a>Bookings <span class="mybadge"><c:out value="${numbookings}" /></span></a></li>
 				</ul>
 			</div>
 			<div id="help" class="col-lg-10">
@@ -32,20 +32,22 @@
 		
 		<c:forEach var="booking" items="${pastBookings}">
 			    <div class="booking">
+			    	<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">
 			    	<div class="booking-title">
-			    		<h5 class="pull-left"><c:out value="${booking.name}" /><small><c:out value="${booking.date}" /></small></h5>
-			    		<a href="#collapseAct<c:out values='${booking.id}' />" class="pull-right" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><span class="caret"></span></a>
+			    		<h5 class="pull-left"><c:out value="${booking.nameActivity}" /><small><c:out value="${booking.dateActivity}" /></small></h5>
+			    		<span class="fui-triangle-down pull-right" ></span>
 			    		<div style="clear:both;"></div>
 			    	</div>
-			    	<div class="collapse" id="collapseAct<c:out values='${booking.id}' />">
+			    	</a>
+			    	<div class="collapse" id="collapseAct">
 				    	<div class="booking-body row">
-				        	<div class="col-lg-4">
-				        		<div class="booking-activity"><c:out value="${booking.name}" /></div>
-				        		<div class="booking-id">Identifier: <c:out value="${booking.id}" /></div>
+				        	<div class="col-lg-5">
+				        		<div class="booking-activity"><h4 style="margin-bottom: 0px;"><c:out value="${booking.nameActivity}" /> <small><c:out value="${booking.level}" /></small></h4></div>
+				        		<div class="booking-id">Identifier: <c:out value="${booking.idBooking}" /></div>
 				        	</div>
-				        	<div class="col-lg-6">
+				        	<div class="col-lg-3">
 				          		<div class="booking-date">
-				            		<h6>Date: <small><c:out value="${booking.date}" /></small></h6>
+				            		<h6>Date: <small><c:out value="${booking.dateActivity}" /></small></h6>
 				          		</div>
 				          		<div class="booking-group">
 				            		<h6>Group Size: <small><c:out value="${booking.groupSize}" /></small></h6>
@@ -53,8 +55,11 @@
 				          		<div class="booking-place">
 				           	 		<h6>Place: <small><c:out value="${booking.place}" /></small></h6>
 				          		</div>
+				          		<div class="booking-place">
+				           	 		<h6>Price: <small><c:out value="${booking.price}" /> &euro;</small></h6>
+				          		</div>
 				        	</div>
-				        	<div class="col-lg-2">
+				        	<div class="col-lg-4">
 				          		<div class="booking-status">
 				          			<c:choose>
 				          				<c:when test="${booking.status eq 0}">
@@ -62,11 +67,11 @@
 				            			</c:when>
 				          				<c:when test="${booking.status eq 1}">
 						            		<div class="accepted">accepted</div>
-						            		<div class="date"><c:out value="${booking.dateRevision}" /></div>
+						            		<div class="date">Date of revision <c:out value="${booking.dateRevision}" /></div>
 				            			</c:when>
 				            			<c:when test="${booking.status eq 2}">
 						            		<div class="declined">declined</div>
-						            		<div class="date"><c:out value="${booking.dateRevision}" /></div>
+						            		<div class="date">Date of revision <c:out value="${booking.dateRevision}" /></div>
 				            			</c:when>
 				            		</c:choose>
 				          		</div>

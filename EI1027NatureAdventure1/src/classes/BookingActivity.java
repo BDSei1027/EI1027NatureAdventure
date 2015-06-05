@@ -18,6 +18,7 @@ public class BookingActivity {
 	private String schedule;
 	private String level;
 	private int groupSize;
+	private float price;
 	private String place;
 	private Date dateRevision;
 	private int status;
@@ -73,6 +74,14 @@ public class BookingActivity {
 
 	public void setGroupSize(int groupSize) {
 		this.groupSize = groupSize;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
 	public String getPlace() {

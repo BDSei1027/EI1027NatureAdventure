@@ -110,8 +110,21 @@ public class daoClient implements DaoInterface {
 		String sql = "SELECT * FROM Client;";
 		List<Client> list = dataSource.query(sql, new ClientMapper());
 		Map<String, Client> map = new HashMap<String, Client>();
-		for(Client cl: list) map.put(cl.getClientId(), cl);
+		for(Client cl: list) {
+			cl.setNumberBooking(getNumberBookings(cl.getClientId()));
+			map.put(cl.getClientId(), cl);
+		}
 		return map;
+	}
+	
+	/**
+	 * Method to obtain the number of bookings that this client made.
+	 * @param id Client's identifier
+	 * @return The number of bookings made by this client
+	 */
+	public int getNumberBookings(String id) {
+		String sql = "SELECT COUNT(*) FROM booking WHERE clientId = ?;";
+		return dataSource.queryForObject(sql, Integer.class, id);
 	}
 
 }

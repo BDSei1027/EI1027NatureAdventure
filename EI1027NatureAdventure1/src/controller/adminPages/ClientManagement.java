@@ -44,7 +44,6 @@ public class ClientManagement extends AbstractController {
 			new ClientValidator().validate(client, bindingResult);
 			if (bindingResult.hasErrors()) return "admin/clientManagement/details";
 			service.updateClient(client);
-			System.out.println("updated");
 			return "redirect:/admin/clientManagement.html";
 		}
 		

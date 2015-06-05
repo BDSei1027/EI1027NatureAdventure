@@ -34,7 +34,11 @@ public class MainCustomer extends AbstractController {
 	public String costumerRecords(Model model, HttpSession session){
 		Client client = service.getClient((User) session.getAttribute("user"));
 		
-		model.addAttribute("bookings", service.getPastBookings(client));
+		Collection<BookingActivity> collection = service.getActiveBookings(client);
+		
+		model.addAttribute("name", client.getClientName());
+		model.addAttribute("numbookings", collection.size());
+		model.addAttribute("bookings", collection);
 		return "customer/history";
 	}
 }

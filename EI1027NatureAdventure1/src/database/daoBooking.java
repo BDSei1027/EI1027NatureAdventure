@@ -70,6 +70,7 @@ public class daoBooking implements DaoInterface {
 				booking.setSchedule(rs.getString("schedule"));
 				booking.setLevel(rs.getInt("leveldif"));
 				booking.setGroupSize(rs.getInt("groupsize"));
+				booking.setPrice(rs.getFloat("price"));
 				booking.setPlace(rs.getString("place"));
 				booking.setDateRevision(rs.getDate("daterevision"));
 				booking.setStatus(rs.getString("status"));
@@ -180,7 +181,7 @@ public class daoBooking implements DaoInterface {
 	 * @return Map<Integer,BookingActivity>
 	 */
 	public Map<Integer, BookingActivity> getElementsBookingActivityInstructor(String ssn) {
-		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
 				+ "WHERE st.ssnumber = ?;";
 		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
@@ -196,7 +197,7 @@ public class daoBooking implements DaoInterface {
 	 * @return Map<Integer,BookingActivity>
 	 */
 	public Map<Integer, BookingActivity> getElementsBookingActivityClient(String id) {
-		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
 				+ "WHERE book.clientid = ?;";
 		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
@@ -208,7 +209,7 @@ public class daoBooking implements DaoInterface {
 	}
 	
 	public Map<Integer, BookingActivity> getActiveBookingsWithInstructor(String ssNumber){
-		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
 				+ "WHERE st.ssnumber = ? AND book.dateactivity - CURRENT_DATE >= '0 days';";
 		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
@@ -220,7 +221,7 @@ public class daoBooking implements DaoInterface {
 	}
 	
 	public Map<Integer, BookingActivity> getPastBookingsWithInstructor(String ssNumber){
-		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
 				+ "WHERE st.ssnumber = ? AND book.dateactivity - CURRENT_DATE < '0 days';";
 		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
@@ -232,7 +233,7 @@ public class daoBooking implements DaoInterface {
 	}
 	
 	public Map<Integer, BookingActivity> getActiveBookingsWithClient(String idClient) {
-		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
 				+ "WHERE book.clientid = ? AND book.dateactivity - CURRENT_DATE >= '0 days';";
 		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
@@ -244,7 +245,7 @@ public class daoBooking implements DaoInterface {
 	}
 
 	public Map<Integer, BookingActivity> getPastBookingsWithClient(String idClient) {
-		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.groupsize, act.place, st.daterevision, st.status "
+		String sql = "SELECT book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
 				+ "WHERE book.clientid = ? AND book.dateactivity - CURRENT_DATE < '0 days';";
 		Map<Integer, BookingActivity> map = new HashMap<Integer, BookingActivity>();
