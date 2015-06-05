@@ -48,7 +48,7 @@ public class daoStatus implements DaoInterface {
 	 */
 	@Override
 	public void addElement(Object element) {
-		if(!Status.class.equals(element)) return;
+		if(!(element instanceof Status)) return;
 		Status st = (Status) element;
 		String sql = "INSERT INTO Status(inneridbooking, dateRevision, status, ssnumber)"
 				+ " VALUES(?, ?, ?, ?);";
@@ -74,7 +74,7 @@ public class daoStatus implements DaoInterface {
 	 */
 	@Override
 	public void updateElement(Object element) {
-		if(!Status.class.equals(element)) return;
+		if(!(element instanceof Status)) return;
 		Status st = (Status) element;
 		String sql = "UPDATE Status SET inneridbooking = ?, "
 				+ "dateRevision = ?, "

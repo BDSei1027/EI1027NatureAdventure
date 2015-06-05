@@ -57,7 +57,7 @@ public class daoInstructor implements DaoInterface {
 	 */
 	@Override
 	public void addElement(Object element) {
-		if(!Instructor.class.equals(element)) return;
+		if(!(element instanceof Instructor)) return;
 		Instructor instr = (Instructor) element;
 		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive, expireDate) "
 							+ "values(?, ?, ?, ?, ?, ?, ?, ?);";
@@ -87,7 +87,7 @@ public class daoInstructor implements DaoInterface {
 	 */
 	@Override
 	public void updateElement(Object element) {
-		if(!Instructor.class.equals(element)) return;
+		if(!(element instanceof Instructor)) return;
 		Instructor instr = (Instructor) element;
 		String sql = "UPDATE instructor " + "SET "
 					+ "idNumber = ?," + "name = ?," + "lastname = ?,"

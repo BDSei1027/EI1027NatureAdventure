@@ -57,7 +57,7 @@ public class daoActivity implements DaoInterface {
 	 */
 	@Override
 	public void addElement(Object element) {
-		if(!Activity.class.equals(element)) return;
+		if(!(element instanceof Activity)) return;
 		// Cast Object to Activity
 		Activity activity = (Activity) element;
 		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive) " +
@@ -94,7 +94,7 @@ public class daoActivity implements DaoInterface {
 	 */
 	@Override
 	public void updateElement(Object element) {
-		if(!Activity.class.equals(element)) return;
+		if(!(element instanceof Activity)) return;
 		// Cast Objecto to Activity
 		Activity activity = (Activity) element;
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +

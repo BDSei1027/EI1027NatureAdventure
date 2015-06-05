@@ -48,7 +48,7 @@ public class daoClient implements DaoInterface {
 	 */
 	@Override
 	public void addElement(Object element) {
-		if(!Client.class.equals(element)) return;
+		if(!(element instanceof Client)) return;
 		Client cl = (Client) element;
 		String sql = "INSERT INTO Client(clientId, clientName, clientLastName, clientEmail) "
 							+ "values(?, ?, ?, ?);";
@@ -74,7 +74,7 @@ public class daoClient implements DaoInterface {
 	 */
 	@Override
 	public void updateElement(Object element) {
-		if(!Client.class.equals(element)) return;
+		if(!(element instanceof Client)) return;
 		Client cl = (Client) element;
 		String sql = "UPDATE Client " + "SET "
 					+ "clientId = ?," 

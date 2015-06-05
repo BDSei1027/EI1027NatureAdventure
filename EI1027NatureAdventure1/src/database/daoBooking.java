@@ -87,7 +87,7 @@ public class daoBooking implements DaoInterface {
 	 */
 	@Override
 	public void addElement(Object element) {
-		if(!Booking.class.equals(element)) return;
+		if(!(element instanceof Booking)) return;
 		Booking book = (Booking) element;
 		String sql = "INSERT INTO Booking(inneridbooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, idBooking) "
 							+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -122,7 +122,7 @@ public class daoBooking implements DaoInterface {
 	 */
 	@Override
 	public void updateElement(Object element) {
-		if(!Booking.class.equals(element)) return;
+		if(!(element instanceof Booking)) return;
 		Booking book = (Booking) element;
 		String sql = "UPDATE Booking " + "SET "
 				+ "innerIdBooking = ?," 
