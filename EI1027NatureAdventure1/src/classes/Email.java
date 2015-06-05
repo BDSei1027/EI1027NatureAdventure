@@ -50,4 +50,9 @@ public class Email {
 		this.dateMessage = dateMessage;
 	}
 	
+	public boolean isEmpty() {
+		if (to == null && message == null && dateMessage == null) return true;
+		return false;
+	}
+	
 }

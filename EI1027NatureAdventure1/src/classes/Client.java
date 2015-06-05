@@ -96,6 +96,11 @@ public class Client {
 		this.clientEmail = clientEmail;
 	}
 
+	public boolean isEmpty() {
+		if (clientId == null && clientName == null && clientLastName == null && clientEmail == null ) return true;
+		return false;
+	}
+
 	
 	
 	
