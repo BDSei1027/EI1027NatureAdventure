@@ -5,11 +5,6 @@ public class Token {
 	private String user;
 	private String token;
 
-	public Token(String userName, String tokenString) {
-		this.user = userName;
-		this.token = tokenString;
-	}
-
 	public Token() {
 		super();
 	}

@@ -47,7 +47,7 @@ public class daoSessionToken implements DaoInterface {
 	 */
 	@Override
 	public void addElement(Object element) {
-		if (!Token.class.equals(element))
+		if (!Token.class.equals(element.getClass()))
 			return;
 		Token tk = (Token) element;
 		String sql = "INSERT INTO sessionTokens(username, token)"
@@ -79,7 +79,7 @@ public class daoSessionToken implements DaoInterface {
 	 */
 	@Override
 	public void updateElement(Object element) {
-		if (!Token.class.equals(element))
+		if (!Token.class.equals(element.getClass()))
 			return;
 		Token tk = (Token) element;
 		String sql = "UPDATE sessionTokens SET username = ?, " + "token = ?;";

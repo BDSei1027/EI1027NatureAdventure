@@ -19,6 +19,13 @@ import validators.SessionValidator;
  
 
 public class MainInterceptor extends HandlerInterceptorAdapter  {
+	
+	private LogicLayer service;
+
+	public void setService(LogicLayer service){
+		this.service = service;
+	}
+	
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	HttpSession session = request.getSession();
@@ -27,33 +34,30 @@ public class MainInterceptor extends HandlerInterceptorAdapter  {
     	
     	if(!sessionValidator.isLogged()){
     		
-    		String name = null;
-    		String token = null;
+    		Cookie nameCookie = null;
+    		Cookie tokenCookie = null;
     		
     		for(Cookie cookie:request.getCookies()){
-    			System.out.println(cookie.getValue());
     			if (cookie.getName().equals("user")){
-    				name = cookie.getValue();
-    				cookie.setMaxAge(0);
+    				nameCookie = cookie;
     			}
     			else if (cookie.getName().equals("token")){
-    				token = cookie.getValue();
-    				cookie.setMaxAge(0);
+    				tokenCookie = cookie;
     			}
     		}
     		
-    		if(name != null){
-    			LogicLayer service = new LogicLayer();
-    			
-    			if(service.validateToken(name,token)){
-    				session.setAttribute("user", service.getUser(name));
+    		if(nameCookie != null){
+    			if(service.validateToken(nameCookie.getValue(),tokenCookie.getValue())){
+    				session.setAttribute("user", service.getUser(nameCookie.getValue()));
     				
     				String newToken = UUID.randomUUID().toString();
     				
-    				response.addCookie(new Cookie("user", name));
-    				response.addCookie(new Cookie("token", token));
+    				tokenCookie.setValue(newToken);
+    				tokenCookie.setPath("/");
     				
-    				service.setToken(name, newToken);
+    				response.addCookie(tokenCookie);
+    				    				
+    				service.setToken(nameCookie.getValue(), newToken);
     			}
     		}
 	
