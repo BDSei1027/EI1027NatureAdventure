@@ -82,8 +82,8 @@ public class daoSessionToken implements DaoInterface {
 		if (!Token.class.equals(element.getClass()))
 			return;
 		Token tk = (Token) element;
-		String sql = "UPDATE sessionTokens SET username = ?, " + "token = ?;";
-		dataSource.update(sql, tk.getUser(), tk.getToken());
+		String sql = "UPDATE sessionTokens SET token = ? WHERE username = ?;";
+		dataSource.update(sql, tk.getToken(), tk.getUser());
 
 	}
 
