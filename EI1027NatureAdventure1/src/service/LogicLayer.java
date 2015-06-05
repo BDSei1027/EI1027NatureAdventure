@@ -737,7 +737,7 @@ public class LogicLayer {
 	 */
 	
 	public void setToken(String userName, String tokenString) {
-		Token token = new Token(userName, tokenString);
+		Token token = new Token(); token.setUser(userName); token.setToken(tokenString);
 		try {
 			daoToken.addElement(token);
 		} catch (Exception e) {
@@ -747,10 +747,16 @@ public class LogicLayer {
 	}
 	
 	public boolean validateToken(String userName, String tokenString) {
-		Token token = new Token(userName, tokenString);
-		if (daoToken.getElement(token) == null)
-			return false;
-		return true;
+		Token token = (Token) daoToken.getElement(userName);
+		
+		if (token == null) return false;
+		if (token.getToken().equals(tokenString)) return true;
+		return false;
+	}
+	
+	public void deleteToken(String tokenUser) {
+		System.out.println(tokenUser);
+		daoToken.deleteElement(tokenUser);
 	}
 	
 	
@@ -787,11 +793,6 @@ public class LogicLayer {
 	public void setDaoToken(daoSessionToken daoToken){
 		this.daoToken = daoToken;
 	}
-
-	
-
-
-
 
 
 }

@@ -86,10 +86,15 @@ public class MainIdentification {
 			String userName = user.getUser();
 			String token = UUID.randomUUID().toString();
 			
-			response.addCookie(new Cookie("user", userName));
-			response.addCookie(new Cookie("token", token));
+			Cookie userCookie = new Cookie("user", userName);
+			userCookie.setPath("/");
+			Cookie tokenCookie = new Cookie("token", token);
+			tokenCookie.setPath("/");
 			
-			service.setToken(userName, token);
+			response.addCookie(userCookie);
+			response.addCookie(tokenCookie);
+			
+			service.setToken(userName, token); 
 		}
 		
 		
@@ -113,13 +118,17 @@ public class MainIdentification {
 	 */
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session, HttpServletRequest request){
-		session.invalidate();
+		
 		
 		for(Cookie cookie:request.getCookies()){
-			if(cookie.getName()=="user") cookie.setMaxAge(0);
-			else if(cookie.getName()=="token") cookie.setMaxAge(0);
+			if(cookie.getName().equals("user")){
+				service.deleteToken(cookie.getValue());
+				cookie.setMaxAge(0);
+			}
+			else if(cookie.getName().equals("token")) cookie.setMaxAge(0);
 		}
 		
+		session.invalidate();
 		return "logout";		
 	}
 	

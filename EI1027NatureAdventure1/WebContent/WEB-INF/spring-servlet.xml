@@ -42,6 +42,13 @@
 		
 	<!--Interceptors-->
 	<mvc:interceptors>
+		<mvc:interceptor>
+	        <mvc:mapping path="/**"/>
+	        <bean class="controller.interceptors.MainInterceptor" >
+	        <property name="service" ref="service"/>
+	        </bean>
+	    </mvc:interceptor>
+	    
 	    <mvc:interceptor>
 	        <mvc:mapping path="/admin.html"/>
 	        <mvc:mapping path="/admin/**"/>
@@ -70,10 +77,7 @@
 	        <bean class="controller.interceptors.AccountInterceptor" />
 	    </mvc:interceptor>
 	    
-	    <mvc:interceptor>
-	        <mvc:mapping path="/**"/>
-	        <bean class="controller.interceptors.MainInterceptor" />
-	    </mvc:interceptor>
+
 	</mvc:interceptors>	
 
 	
@@ -140,6 +144,7 @@
 		<property name="daoAvaliable" ref="avaliablebookDAO" />
 		<property name="daoToken" ref="tokenDAO" />
 	</bean>
+	
 	
 
 </beans>
