@@ -46,25 +46,29 @@ public class MainAccount extends AbstractController{
 	}
 	
 	@RequestMapping(value="/updateClient", method=RequestMethod.POST)
-	public String updateClientPage(@ModelAttribute("client") Client client, BindingResult bindingResult){
+	public String updateClientPage(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult){
 		new ClientValidator().validate(client, bindingResult);
 		if(bindingResult.hasErrors()) return "account";
 		service.updateClient(client);
 		
-		return "redirect:/account.html";
+		model.addAttribute("error", 0);
+		
+		return "account";
 	}
 	
 	@RequestMapping(value="/updateInstructor", method=RequestMethod.POST)
-	public String updateInstructorPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
+	public String updateInstructorPage(Model model, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
 		new InstructorValidator().validate(instructor, bindingResult);
 		if(bindingResult.hasErrors()) return "account";
 		service.updateInstructor(instructor);
 		
-		return "redirect:/account.html";
+		model.addAttribute("error", 0);
+		
+		return "account";
 	}
 	
 	@RequestMapping(value="/updateAuth", method=RequestMethod.POST)
-	public String updateAuthPage(@ModelAttribute("doublepassword") DoublePassword doublePasswd, BindingResult bindingResult, HttpServletRequest request){
+	public String updateAuthPage(Model model, @ModelAttribute("doublepassword") DoublePassword doublePasswd, BindingResult bindingResult, HttpServletRequest request){
 		//TODO UserValidator
 		new DoublePasswordValidator().validate(doublePasswd, bindingResult);
 		if(bindingResult.hasErrors()) return "account";
@@ -73,8 +77,9 @@ public class MainAccount extends AbstractController{
 		user.setPassword(doublePasswd.getPassword());
 		service.updateUser(user);
 		
+		model.addAttribute("error", 0);
 		
-		return "redirect:/account.html";
+		return "account";
 	}
 	
 	
