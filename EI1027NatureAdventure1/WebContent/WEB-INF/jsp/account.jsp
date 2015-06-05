@@ -44,7 +44,7 @@
 					<c:choose>
 						<c:when test="${user.type eq 1}">
 							<p>Here it shows the information we have about you in the database.</p>
-							<form:form modelAttribute="instructor" action="${pageContext.request.contextPath}/account/updateInstructor" method="post" role="form">
+							<form:form modelAttribute="instructor" action="${pageContext.request.contextPath}/account/updateInstructor.html" method="post" role="form">
 								<div class="form-group row">
 									<form:label path="idNumber" for="iid" class="control-label col-lg-3">ID </form:label>
 									<div class="col-lg-9">
@@ -93,7 +93,7 @@
 						</c:when>
 						<c:when test="${user.type eq 2}">
 							<p>Here it shows the information we have about you in the database.</p>
-							<form:form modelAttribute="client" method="post" action="${pageContext.request.contextPath}/account/updateClient" role="form">
+							<form:form modelAttribute="client" method="post" action="${pageContext.request.contextPath}/account/updateClient.html" role="form">
 								<div class="form-group row">
 									<form:label path="clientId" for="cid" class="control-label col-lg-3">ID </form:label>
 									<div class="col-lg-9">
@@ -138,7 +138,7 @@
 							<div class="form-control">${user.user}</div>
 						</div>
 					</div>
-					<form:form modelAttribute="doublepassword" method="post" action="${pageContext.request.contextPath}/account/updateAuth" role="form">
+					<form:form modelAttribute="doublepassword" method="post" action="${pageContext.request.contextPath}/account/updateAuth.html" role="form">
 						<div class="form-group row">
 							<form:label path="password" for="p1" class="col-lg-2 control-label">Password </form:label>
 							<div class="col-lg-10">
