@@ -27,7 +27,6 @@ public class BookingManagement extends AbstractController {
 	@RequestMapping(value="/details/{idBooking}")
 	public String bookingDetailsPage(@PathVariable int idBooking, Model model){
 		Booking booking  = service.getBooking(idBooking);
-		Status status = service.getStatus(booking);
 		
 		model.addAttribute("booking", booking);
 		model.addAttribute("status", service.getStatus(booking));

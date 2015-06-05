@@ -50,7 +50,7 @@ public class Booking {
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
-//Getters y setters
+//Comparacion
 
 		@Override
 	public boolean equals(Object obj) {
@@ -113,10 +113,13 @@ public class Booking {
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Booking: " + innerIdBooking + "[" + idBooking + "] " + idAct + ", " + status;
+	}
 	
 //------------------------------------------------------------------------------------------------------------------------------------------------
-//Comparacion
+//Getters y setters
 	
 	
 	public int getInnerIdBooking() {
