@@ -134,4 +134,9 @@ public class Instructor {
 	public int getNActivities() {
 		return this.activities.size();
 	}
+
+	public boolean isEmpty() {
+		if (ssNumber == null && idNumber == null && name == null && lastName == null && email == null && telephone == null && expireDate == null) return true;
+		return false;
+	}
 }

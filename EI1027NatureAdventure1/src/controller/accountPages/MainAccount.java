@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import controller.basics.AbstractController;
 import classes.Client;
+import classes.DoublePassword;
+import classes.Instructor;
 import classes.User;
 import validators.ClientValidator;
+import validators.DoublePasswordValidator;
+import validators.InstructorValidator;
 
 
 @Controller 
@@ -30,30 +34,61 @@ public class MainAccount extends AbstractController{
 	public String userPage(Model model, HttpSession session){
 		User user = (User) session.getAttribute("user");
 		
-		//Get the client data from the user
-		Client client = service.getClient(user);
-		
-		//Inject the client data
-		model.addAttribute("client", client);
+		if (user.getType() == 0) {
+			return "redirect:/admin";
+		} else if (user.getType() == 1) {
+			Instructor instr = service.getInstructor(user);
+			model.addAttribute("instructor", instr);
+		} else {
+			Client client = service.getClient(user);
+			model.addAttribute("client", client);
+		}
 
+		model.addAttribute("doublepassword", new DoublePassword());
 		return "account";
 		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String updateUser(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult){
+	public String updateUser(Model model, HttpSession session, @ModelAttribute("client") Client client, @ModelAttribute("doublepassword") DoublePassword doublepassword, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
 		
+		System.out.println(service);
+		if (!client.isEmpty()) {
+
+			new ClientValidator().validate(client, bindingResult);		
+			if(bindingResult.hasErrors()) {
+				model.addAttribute("error", 1);
+				return "account";
+			}
+			service.updateClient(client);
+			model.addAttribute("client", client);
+		}
 		
-		//Correct field format validator
-		ClientValidator clientValidator = new ClientValidator();
-		clientValidator.validate(client, bindingResult);		
+		if (!instructor.isEmpty()) {
+			System.out.println("instr");
+			new InstructorValidator().validate(client, bindingResult);
+			if (bindingResult.hasErrors()) {
+				model.addAttribute("error", 2);
+				return "account";
+			}
+			service.updateInstructor(instructor);
+			model.addAttribute("instructor", instructor);
+		}
 		
-		//Any filed error returns to the form again
-		if(bindingResult.hasErrors()) return "account";
+		if (!doublepassword.isEmpty()) {
+			System.out.println("pass");
+			new DoublePasswordValidator().validate(doublepassword, bindingResult);
+			if (bindingResult.hasErrors()) {
+				model.addAttribute("error", 3);
+				return "account";
+			}
+			User user = (User) session.getAttribute("user");
+			user.setPassword(doublepassword.getPassword());
+			service.updateUserWithPasswordType(user);
+		}
 		
-		//Update client data
-		service.updateClient(client);
-		return "redirect:/account.html";
+		model.addAttribute("error", 0);
+		return "/account";
 	}
 
 }

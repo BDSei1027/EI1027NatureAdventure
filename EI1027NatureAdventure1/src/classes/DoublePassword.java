@@ -20,15 +20,20 @@ public class DoublePassword {
 		return password;
 	}
 
-	public void setPassword(String pass) {
-		this.password = pass;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getConfirmation() {
 		return confirmation;
 	}
 
-	public void setConfirmation(String pass) {
-		this.confirmation = pass;
+	public void setConfirmation(String confirmation) {
+		this.confirmation = confirmation;
+	}
+
+	public boolean isEmpty() {
+		if (password == null && confirmation == null) return true;
+		return false;
 	}
 }
