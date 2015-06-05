@@ -29,7 +29,7 @@
 		        	<td><c:out value="${activity.idAct}" /></td>
 		        	<td><c:out value="${activity.name}" /></td>
 		        	<td><c:out value="${activity.level}" /></td>
-		        	<td><c:out value="${activity.schedule}" /></td>
+		        	<td style="text-transform: capitalize;"><c:out value="${activity.schedule}" /></td>
 		        	<td><c:out value="${activity.price}" /></td>
 		        	<td><c:out value="${activity.minimumGroup}" /></td>
 		        	<td><c:out value="${activity.maximumGroup}" /></td>

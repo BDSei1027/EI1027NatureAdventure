@@ -115,7 +115,7 @@
 									<div style="font-size: 14px; float:left"><strong>Caution!</strong> This action is not reversible.</div>
 									<div class="pull-right">
 										<a href="${pageContext.request.contextPath}/admin/instructorManagement/removeActivity/${instructor.ssNumber}&${act.idAct}.html">
-											<button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button>
+											<button type="button" class="btn btn-danger" id="deleteActBtnModal">Delete</button>
 										</a>
 										<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
 									</div>

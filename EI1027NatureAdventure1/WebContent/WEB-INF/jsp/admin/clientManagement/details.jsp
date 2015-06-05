@@ -5,6 +5,22 @@
 
 <t:template>
 <jsp:body>
+	<c:if test="${not empty error}">
+		<c:choose>
+			<c:when test="${error eq 0}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <strong>Email sended!</strong>.
+			</div>
+			</c:when>
+			<c:when test="${error eq 1}">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <strong>Error!</strong> You had an error with the <strong class="high">email</strong>. Please check it and correct it.
+			</div>
+			</c:when>
+		</c:choose>
+	</c:if>
 	<h4>Client management</h4>
 	<h6 class="subtitle">Client  <c:out value="${client.clientId}" /></h6>
 	<div style="width: 80%;">
@@ -61,7 +77,7 @@
 									<div class="input-group">
 										<div class="input-group-addon">@</div>
 										<!-- Hay que poner el valor por defecto al controlador -->
-										<form:input path="email" class="form-control" type="email" />
+										<form:input path="to" class="form-control" type="email" placeholder="Enter the email"/>
 									</div>
 								</div>
 								<div class="form-group">

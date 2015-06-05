@@ -43,7 +43,10 @@
 			<div class="row form-group">
 				<form:label path="email" for="email" class="col-lg-2 control-label">Email: </form:label>
 				<div class="col-lg-10">
-					<form:input path="email" type="email" class="form-control" id="email" />
+					<div class="input-group">
+						<form:input path="email" type="email" class="form-control" id="email" />
+						<div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+					</div>
 					<form:errors path="email" class="text-danger" />
 				</div>
 			</div>

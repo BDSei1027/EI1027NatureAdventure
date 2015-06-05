@@ -37,6 +37,7 @@
 						<form:option value="morning">Morning</form:option>
 						<form:option value="evening">Evening</form:option>
 						<form:option value="night">Night</form:option>
+						<form:option value="midnight">Midnight</form:option>
 					</form:select>
 				</div>
 			</div>

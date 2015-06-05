@@ -60,6 +60,11 @@ strong {
 	border-color: #B92C28;
 }
 
+/* alerts*/
+.alert > strong {
+	color: inherit;
+}
+
 /* Navbar */
 .navbar-text > strong {
 	color: #1abc9c;
