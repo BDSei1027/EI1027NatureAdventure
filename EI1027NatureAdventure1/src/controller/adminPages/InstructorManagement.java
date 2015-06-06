@@ -23,14 +23,28 @@ import controller.basics.AbstractController;
 @RequestMapping("/admin/instructorManagement")
 public class InstructorManagement extends AbstractController {
 
+//TODO Parm: "error":integer =  0 add | 1 update | 2 delete
+//TODO Parm: "id"   :String  = instructor id
+	
 	@RequestMapping
 	public String instructorsPage(Model model){
 		LinkedList<Instructor> instructorList = new LinkedList<Instructor>(service.getAllInstructors());		
 		model.addAttribute("instructorList", instructorList);
 		
 		return "admin/instructorManagement";
-		
 	}
+	
+	@RequestMapping(value="/{rezCode}&{idCode}")
+	public String instructorsPage(@PathVariable int rezCode, @PathVariable String idCode, Model model){
+		LinkedList<Instructor> instructorList = new LinkedList<Instructor>(service.getAllInstructors());	
+		
+		model.addAttribute("instructorList", instructorList);
+		model.addAttribute("error", rezCode);
+		model.addAttribute("id", idCode);
+		
+		return "admin/instructorManagement";
+	}
+	
 
 	@RequestMapping(value="/onlyActive")
 	public String instructorsPageActive(Model model){
@@ -67,7 +81,7 @@ public class InstructorManagement extends AbstractController {
 		User newUser = service.createUserFrom(instructor);
 		service.addUser(newUser);
 		
-		return "redirect:/admin/instructorManagement.html";
+		return "forward:/admin/instructorManagement/"+0+"&"+instructor.getSsNumber()+".html";
 	}
 	
 
@@ -75,18 +89,18 @@ public class InstructorManagement extends AbstractController {
 	public String instructorsDisablePage(@PathVariable String idInstructor){
 		service.inactiveInstructor(idInstructor);
 		
-		return "redirect:/admin/instructorManagement.html";
+		return "forward:/admin/instructorManagement/"+1+"&"+idInstructor+".html";
 	}
 	
 	@RequestMapping(value="/enable/{idInstructor}")
 	public String instructorsEnablePage(@PathVariable String idInstructor){
 		service.activeInstructor(idInstructor);
 		
-		return "redirect:/admin/instructorManagement.html";
+		return "forward:/admin/instructorManagement/"+1+"&"+idInstructor+".html";
 	}
 
 
-	@RequestMapping(value="/modify/{idInstructor}", method=RequestMethod.GET)
+	@RequestMapping(value="/modify/{idInstructor}")
 	public String instructorsModifyPage(@PathVariable String idInstructor, Model model){
 		Instructor instructor = service.getInstructor(idInstructor);
 		Collection<Activity> colActivities = service.getAllActivities(instructor); 
@@ -105,7 +119,7 @@ public class InstructorManagement extends AbstractController {
 
 		service.updateInstructor(instructor);
 		
-		return "redirect:/admin/instructorManagement.html";
+		return "forward:/admin/instructorManagement/"+1+"&"+idInstructor+".html";
 	}
 
 	@RequestMapping(value="/addActivity/{idInstructor}")
@@ -135,7 +149,7 @@ public class InstructorManagement extends AbstractController {
 	public String instructorsRemoveActivity(@PathVariable String idInstructor, @PathVariable Integer idActivity){
 		service.removeInstructed(idInstructor, idActivity);
 		
-		return "redirect:/admin/instructorManagement/addActivity/" + idInstructor + ".html";
+		return "forward:/admin/instructorManagement/"+2+"&"+idInstructor+".html";
 	}
 
 }
