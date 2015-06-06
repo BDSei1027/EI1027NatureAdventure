@@ -280,13 +280,13 @@ public class daoInstructor implements DaoInterface {
 	
 	public Map<String, Instructor> getAvaliableInstructorsToAssign(int idAct, int innerIdBooking){
 		String sql = "SELECT i.* " +
-				"FROM instruidas as inidas JOIN instructor AS i USING(ssNumber) " +
-				"WHERE inidas.idAct = ? AND inidas.ssNumber " +
-				"NOT IN (SELECT s.ssNumber " +
-				"FROM Activity AS a JOIN instruidas AS inidas USING(idAct) JOIN status AS s USING(ssNumber) JOIN booking AS b USING(inneridbooking) " +
-				"WHERE a.idAct = ? AND '0 DAYS' < (SELECT B.dateactivity - CURRENT_DATE " +
-				     "FROM Activity AS a JOIN instruidas AS inidas USING(idAct) JOIN status AS s USING(ssNumber) JOIN booking AS b USING(inneridbooking) " +
-				     "WHERE innerIdBooking = ?));";
+					"FROM instruidas as inidas JOIN instructor AS i USING(ssNumber)" +
+					"WHERE inidas.idAct = ? AND inidas.ssNumber " +
+					"NOT IN (SELECT s.ssNumber " +
+					"FROM Activity AS a JOIN instruidas AS inidas USING(idAct) JOIN status AS s USING(ssNumber) JOIN booking AS b USING(inneridbooking)" +
+					"WHERE a.idAct = ? AND b.dateActivity = (SELECT b.dateActivity " +
+					"FROM BOOKING AS b WHERE innerIdBooking = ?));";
+					
 		Map<String, Instructor> map = new HashMap<String, Instructor>();
 		List<Instructor> list = dataSource.query(sql, new InstructorMapper(), idAct, idAct, innerIdBooking);
 		for(Instructor i: list) {
