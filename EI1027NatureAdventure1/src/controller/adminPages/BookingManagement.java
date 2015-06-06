@@ -24,6 +24,15 @@ public class BookingManagement extends AbstractController {
 		return "admin/bookingManagement";
 	}	
 	
+	@RequestMapping(value="/{resCode}&{idBooking}")
+	public String bookingMainPage(@PathVariable int resCode, @PathVariable int idActivity, Model model){
+		model.addAttribute("error", resCode);
+		model.addAttribute("id",idActivity);
+		model.addAttribute("bookingList", service.getAllBookings());
+		
+		return "admin/bookingManagement";
+	}
+	
 	@RequestMapping(value="/details/{idBooking}")
 	public String bookingDetailsPage(@PathVariable int idBooking, Model model){
 		Booking booking  = service.getBooking(idBooking);
@@ -36,27 +45,27 @@ public class BookingManagement extends AbstractController {
 		model.addAttribute("activity", service.getActivity(booking.getIdAct()));
 		
 		return "admin/bookingManagement/details";
-	}	
+	}		
 	
-	@RequestMapping(value="details/assignInstructor/")
-	public String assignInstructor(@PathVariable int idBooking, @PathVariable String idInstr){		
-		service.assignInstructorToBooking(idInstr,idBooking);
+	@RequestMapping(value="details/assignInstructor/{idBooking}&{idInstructor}")
+	public String assignInstructor(@PathVariable int idBooking, @PathVariable String idInstructor){		
+		service.assignInstructorToBooking(idInstructor,idBooking);
 		
-		return "redirect:/admin/bookingManagement.html";
+		return "forward:/admin/bookingManagement/"+0+"&"+idBooking+".html";
 	}
 	
 	@RequestMapping(value="details/decline/{idBooking}")
 	public String declineBooking(@PathVariable int idBooking){
 		service.declineBooking(idBooking);
 		
-		return "redirect:/admin/bookingManagement.html";
+		return "forward:/admin/bookingManagement/"+2+"&"+idBooking+".html";
 	}
 	
 	@RequestMapping(value="/details/toPending/{idBooking}")
 	public String bookingToPending(@PathVariable int idBooking){
 		service.bookingToPending(idBooking);
 		
-		return "redirect:/admin/bookingManagement.html";
+		return "forward:/admin/bookingManagement/"+1+"&"+idBooking+".html";
 	}
 	
 }

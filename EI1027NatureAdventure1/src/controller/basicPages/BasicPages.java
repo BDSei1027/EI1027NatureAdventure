@@ -13,4 +13,9 @@ public class BasicPages extends AbstractController {
 	public String indexPage(){
 		return "index";
 	}
+	
+	@RequestMapping(value="/activities")
+	public String activitiesPage(){
+		return "activities";
+	}
 }

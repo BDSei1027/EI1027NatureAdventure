@@ -32,7 +32,7 @@ public class Instructor {
 		setEmail(monitor.getEmail());
 		setTelephone(monitor.getTelephone());
 		setActive(monitor.isActive());
-		setExpireDate(monitor.getExpireDate());
+		setExpireDate(monitor.getExpireDate().toString());
 		setActivities(monitor.getActivities());
 	}
 	
@@ -119,8 +119,10 @@ public class Instructor {
 		return expireDate;
 	}
 	
-	public void setExpireDate(Date date) {
-		this.expireDate = date;
+	public void setExpireDate(String date) {
+		try{
+			this.expireDate = new Date(date);
+		} catch (Exception e){}
 	}
 	
 	public List<Integer> getActivities() {

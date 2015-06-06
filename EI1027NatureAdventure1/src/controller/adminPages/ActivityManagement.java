@@ -2,6 +2,8 @@ package controller.adminPages;
 
 import java.util.LinkedList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import validators.ActivityValidator;
 import classes.Activity;
+import classes.User;
 import controller.basics.AbstractController;
 
 
@@ -50,8 +53,8 @@ public class ActivityManagement extends AbstractController{
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String activityManagementAdd(@ModelAttribute("activity") Activity activity, BindingResult bindingResult){		
-		new ActivityValidator().validate(activity, bindingResult);
+	public String activityManagementAdd(@ModelAttribute("activity") Activity activity, BindingResult bindingResult, HttpSession session){		
+		new ActivityValidator(session).validate(activity, bindingResult);
 		if(bindingResult.hasErrors()) return "admin/activityManagement/add";
 		
 		service.addActivity(activity);
@@ -83,8 +86,9 @@ public class ActivityManagement extends AbstractController{
 	}
 	
 	@RequestMapping(value="/modify/{actId}", method=RequestMethod.POST)
-	public String activityManagementModify(@PathVariable int actId, @ModelAttribute("activity") Activity activity, BindingResult bindingResult){		
-		new ActivityValidator().validate(activity, bindingResult);
+	public String activityManagementModify(@PathVariable int actId, @ModelAttribute("activity") Activity activity, BindingResult bindingResult, HttpSession session){	
+		
+		new ActivityValidator(session).validate(activity, bindingResult);
 		if(bindingResult.hasErrors()) return "admin/activityManagement/modify";
 		
 		service.updateActivity(activity);

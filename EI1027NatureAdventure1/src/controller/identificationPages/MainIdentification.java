@@ -2,15 +2,11 @@ package controller.identificationPages;
 
 import java.util.UUID;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,15 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import controller.basics.AbstractController;
-import service.LogicLayer;
 import validators.ClientRegisterValidator;
 import validators.DoublePasswordValidator;
 import validators.UserValidator;
-import classes.Client;
 import classes.ClientRegister;
 import classes.DoublePassword;
 import classes.Email;
-import classes.Instructor;
 import classes.User;
 
 
@@ -61,7 +54,7 @@ public class MainIdentification extends AbstractController{
 		boolean remember = user.isRememberMe();
 		
 		//Correct field format validator
-		UserValidator userValidator = new UserValidator();
+		UserValidator userValidator = new UserValidator(session);
 		userValidator.validate(user, bindingResult);
 		
 		if(bindingResult.hasErrors()) return "login";
@@ -145,7 +138,7 @@ public class MainIdentification extends AbstractController{
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String registerForm(@ModelAttribute("register") ClientRegister clientRegister, BindingResult bindingResult, HttpSession session) {
 		//Correct field format validator
-		new ClientRegisterValidator().validate(clientRegister, bindingResult);
+		new ClientRegisterValidator(session).validate(clientRegister, bindingResult);
 		if (bindingResult.hasErrors()) return "register";
 		
 		User user = service.createUserFrom(clientRegister);
@@ -177,8 +170,8 @@ public class MainIdentification extends AbstractController{
 	}
 	
 	@RequestMapping(value="/passwordRecoveryAuth?{token}", method=RequestMethod.POST)
-	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult){
-		new DoublePasswordValidator().validate(passwd, bindingResult);
+	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult, HttpSession session){
+		new DoublePasswordValidator(session).validate(passwd, bindingResult);
 		if(bindingResult.hasErrors()) return "recoverpasswordauth";
 		
 		if(service.validateToken(passwd.getUser(), token)){
