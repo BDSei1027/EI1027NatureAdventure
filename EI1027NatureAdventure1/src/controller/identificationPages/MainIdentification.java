@@ -156,8 +156,8 @@ public class MainIdentification {
 		
 		if (bindingResult.hasErrors()) return "register";
 		
-		service.addClient(createClientFrom(clientRegister));
-		User user = createUserFrom(clientRegister);
+		service.addClient(service.createClientFrom(clientRegister));
+		User user = service.createUserFrom(clientRegister);
 		service.addUser(user);
 		
 		user.clearPassword();
@@ -166,22 +166,5 @@ public class MainIdentification {
 		return "redirect:/index.jsp";
 	}
 	
-	private Client createClientFrom(ClientRegister cl) {
-		Client client = new Client();
-		client.setClientId(cl.getId());
-		client.setClientName(cl.getName());
-		client.setClientLastName(cl.getLastName());
-		client.setClientEmail(cl.getEmail());
-		return client;
-	}
-	
-	private User createUserFrom(ClientRegister cl) {
-		User newUser = new User();
-		newUser.setUser(cl.getId());
-		newUser.setPassword(cl.getPassword());
-		newUser.setName(cl.getName());
-		newUser.setLanguage(cl.getLanguage());
-		newUser.setType(2);
-		return newUser;
-	}
+
 }

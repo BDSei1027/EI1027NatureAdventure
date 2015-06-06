@@ -13,6 +13,7 @@ import classes.Activity;
 import classes.Booking;
 import classes.BookingActivity;
 import classes.Client;
+import classes.ClientRegister;
 import classes.Instructor;
 import classes.Status;
 import classes.Token;
@@ -705,6 +706,25 @@ public class LogicLayer {
 	}
 	
 	
+	public Client createClientFrom(ClientRegister cl) {
+		Client client = new Client();
+		client.setClientId(cl.getId());
+		client.setClientName(cl.getName());
+		client.setClientLastName(cl.getLastName());
+		client.setClientEmail(cl.getEmail());
+		return client;
+	}
+	
+	public User createUserFrom(ClientRegister cl) {
+		User newUser = new User();
+		newUser.setUser(cl.getId());
+		newUser.setPassword(cl.getPassword());
+		newUser.setName(cl.getName());
+		newUser.setLanguage(cl.getLanguage());
+		newUser.setType(2);
+		return newUser;
+	}
+	
 	/*
 	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
 	 */
@@ -793,6 +813,5 @@ public class LogicLayer {
 	public void setDaoToken(daoSessionToken daoToken){
 		this.daoToken = daoToken;
 	}
-
 
 }
