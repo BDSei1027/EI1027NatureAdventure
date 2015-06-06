@@ -10,37 +10,31 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import controller.basics.AbstractController;
 import service.LogicLayer;
 import validators.ClientRegisterValidator;
+import validators.DoublePasswordValidator;
 import validators.UserValidator;
 import classes.Client;
 import classes.ClientRegister;
+import classes.DoublePassword;
 import classes.Email;
+import classes.Instructor;
 import classes.User;
 
 
 @Controller
-public class MainIdentification {
-	
-	private LogicLayer service;
+public class MainIdentification extends AbstractController{
 
-
-	/**
-	 * Method that allows automatic independence injection
-	 * @param service Service to inject
-	 */
-	@Autowired
-	public void setService(LogicLayer service){
-		this.service = service;
-	}
-	
 	/**
 	 * Method that initializes a new user used by the form
 	 * @param model Page model
@@ -151,19 +145,53 @@ public class MainIdentification {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String registerForm(@ModelAttribute("register") ClientRegister clientRegister, BindingResult bindingResult, HttpSession session) {
 		//Correct field format validator
-		ClientRegisterValidator validator = new ClientRegisterValidator();
-		validator.validate(clientRegister, bindingResult);
-		
+		new ClientRegisterValidator().validate(clientRegister, bindingResult);
 		if (bindingResult.hasErrors()) return "register";
 		
-		service.addClient(service.createClientFrom(clientRegister));
 		User user = service.createUserFrom(clientRegister);
+		service.addClient(service.createClientFrom(clientRegister));
 		service.addUser(user);
 		
-		user.clearPassword();
 		session.setAttribute("user", user);
 		
 		return "redirect:/index.jsp";
+	}
+	
+	@RequestMapping(value="/passwordRecovery")
+	public String recoveryPage(Model model){
+		model.addAttribute("email", new Email());
+		return "recverpassword";
+	}
+	
+	@RequestMapping(value="/passwordRecovery", method=RequestMethod.POST)
+	public String recoveryPage(@ModelAttribute("email") Email email, Model model){
+
+		model.addAttribute("error", 0);
+		return "recverpassword";
+	}
+	
+	@RequestMapping(value="/passwordRecoveryAuth?{token}")
+	public String recoveryAuthPage(@PathVariable String token, Model model){
+		model.addAttribute("doublepassword", new DoublePassword());
+		return "recverpasswordauth";
+	}
+	
+	@RequestMapping(value="/passwordRecoveryAuth?{token}", method=RequestMethod.POST)
+	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult){
+		new DoublePasswordValidator().validate(passwd, bindingResult);
+		if(bindingResult.hasErrors()) return "recoverpasswordauth";
+		
+		if(service.validateToken(passwd.getUser(), token)){
+			User user = service.getUser(passwd.getUser());
+			user.setPassword(passwd.getPassword());
+			service.updateUser(user);
+			
+			model.addAttribute("error", 0);
+			return "recoverpasswordauth";
+		}
+		
+		model.addAttribute("error", 1);
+		return "recverpasswordauth";
 	}
 	
 
