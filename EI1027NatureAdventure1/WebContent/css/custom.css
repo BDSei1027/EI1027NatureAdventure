@@ -23,9 +23,13 @@ strong {
 	color: #1ABC9C;
 }
 
+.noread {
+	background-color: #FFF;
+}
+
 .modalList > dl {
 	margin: auto;
-	width: 50%;
+	width: 100%;
 	overflow: hidden;
 }
 
@@ -41,13 +45,13 @@ strong {
 	width: 50%;
 	color: #1abc9c;
 	font-weight: bold;
-	padding-left: 10%;
+	padding-left: 1%;
 }
 
 .modalList dl > dd {
 	float:right;
 	width: 50%;
-	padding-left: 10%;
+	padding-left: 1%;
 }
 
 .modal-content {

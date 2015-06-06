@@ -50,41 +50,48 @@
         				
         				<!-- MODAL -->
         				<div class="modal fade" id="deleteActModal${act.idAct}" tabindex='-1' role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header modal-header-warning" id="delecteActivityModalHead">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title"><span class="fui-cross" style="padding-right: 10px;"></span> Delete activity <c:out value="${act.name}" /></h4>
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" id="delecteActivityModalHead">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Delete activity <c:out value="${act.name}" /></h4>
+								</div>
+								<div class="modal-body" id="deleteActivityModalBody">
+									<div class="row">
+										<p>Are you sure you want delete the following activity from this instructor?</p>
 									</div>
-									<div class="modal-body" id="deleteActivityModalBody">
-										<div class="row">
-											<p style="padding-left: 15px">Are you sure you want delete the following activity from this instructor?</p>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="modalList">
+												<dl>
+									              <dt>Name</dt><dd><c:out value="${instructor.name}" /> <c:out value="${instructor.lastName}" /></dd>
+									              <dt>SSN</dt><dd><c:out value="${instructor.ssNumber}" /></dd>
+									            </dl>
+								            </div>
 										</div>
-										<div class="row">
-											<div class="col-lg-6" style="padding-left: 25px;">
-												<p style="border-bottom: 1px solid #E5E5E5"><strong>Instructor</strong></p>
-												<p><c:out value="${instructor.name}" /> <c:out value="${instructor.lastName}" /></p>
-												<p><strong>SSN</strong> <c:out value="${instructor.ssNumber}" /></p>
-											</div>
-											<div class="col-lg-6 text-right" style=" padding-right: 25px;">
-												<p style="border-bottom: 1px solid #E5E5E5"><strong>Activity</strong></p>
-												<p><c:out value="${act.name}" /></p>
-												<p><strong>ID</strong> <c:out value="${act.idAct}" /></p>
-											</div>
+										<div class="col-lg-6" style="border-left:1px solid #ECF0F1;">
+											<div class="modalList">
+												<dl>
+									              <dt>Name</dt><dd><c:out value="${act.name}" /></dd>
+									              <dt>ID</dt><dd><c:out value="${act.idAct}" /></dd>
+									            </dl>
+								            </div>
+
 										</div>
-									</div>	
-									<div class="modal-footer" id="deleteActivityModalFooter">
-										<div style="font-size: 14px; float:left"><strong>Caution!</strong> This action is not reversible.</div>
-										<div class="pull-right">
-											<a href="${pageContext.request.contextPath}/admin/instructorManagement/removeActivity/${instructor.ssNumber}&${act.idAct}.html">
-												<button type="button" class="btn btn-danger"  id="deleteActBtnModal">Delete</button>
-											</a>
-											<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-										</div>
+									</div>
+								</div>	
+								<div class="modal-footer" id="deleteActivityModalFooter">
+									<div style="font-size: 14px; float:left"><strong>Caution!</strong> This action is not reversible.</div>
+									<div class="pull-right">
+										<a href="${pageContext.request.contextPath}/admin/instructorManagement/removeActivity/${instructor.ssNumber}&${act.idAct}.html">
+											<button type="button" class="btn btn-danger" id="deleteActBtnModal">Delete</button>
+										</a>
+										<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
         				<!-- /MODAL -->
         			</c:forEach>
         		</tbody>

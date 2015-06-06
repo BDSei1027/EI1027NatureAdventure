@@ -22,7 +22,7 @@
 		</c:choose>
 	</c:if>
 	<h4>Client management</h4>
-	<h6 class="subtitle">Client  <c:out value="${client.clientId}" /></h6>
+	<h6 class="subtitle">Client  <strong><c:out value="${client.clientId}" /></strong></h6>
 	<div style="width: 80%;">
 		<form:form method="post" action="${pageContext.request.contextPath}/admin/clientManagement/details/${client.clientId}.html" modelAttribute="client" id="formClient">
 			<div class="form-group row">
@@ -68,29 +68,33 @@
 			<div class="modal fade" id="emailModal" tabindex='-1' role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">
-						<div class="modal-header modal-header-info" id="emailModalHead">
+						<div class="modal-header" id="emailModalHead">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title"><span class="glyphicon glyphicon-envelope"></span> Email to <c:out value="${client.clientEmail}" /></h4>
+							<h4 class="modal-title"> Email to <c:out value="${client.clientEmail}" /></h4>
 						</div>
+						<form:form id="emailForm" method="post" modelAttribute="email" role="form">
 						<div class="modal-body" id="emailModalBody">
-							<form:form id="emailForm" method="post" modelAttribute="email" role="form">
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-addon">@</div>
-										<!-- Hay que poner el valor por defecto al controlador -->
-										<form:input path="to" class="form-control" type="email" placeholder="Enter the email"/>
-									</div>
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-addon">@</div>
+									<!-- Hay que poner el valor por defecto al controlador -->
+									<form:input path="to" class="form-control" type="email" placeholder="Enter the email"/>
 								</div>
-								<div class="form-group">
-									<form:label path="message" class="control-label" for="msg">Message:</form:label>
-									<form:textarea path="message" class="form-control" rows="3" id="msg" placeholder="Type here your message..."/>
-								</div>
-								<div class="block-right">
+							</div>
+							<div class="form-group">
+								<form:label path="message" class="control-label" for="msg">Message:</form:label>
+								<form:textarea path="message" class="form-control" rows="3" id="msg" placeholder="Type here your message..."/>
+							</div>						
+						</div>
+						<div class="modal-footer">
+							<div class="text-right">
+								<div class="btn-group">
 									<button class="btn btn-success" type="submit">Send</button>
 									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 								</div>
-							</form:form>
+							</div>
 						</div>
+						</form:form>
 					</div>
 				</div>
 			</div>

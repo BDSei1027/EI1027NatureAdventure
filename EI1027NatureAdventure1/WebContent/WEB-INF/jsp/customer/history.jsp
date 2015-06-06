@@ -30,16 +30,24 @@
 			</div>
 		</div>
 		
-		<c:forEach var="booking" items="${pastBookings}">
+		<c:forEach var="booking" items="${bookings}">
 			    <div class="booking">
-			    	<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">
+			    	<a href="#collapseAct${booking.idBooking}" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">
 			    	<div class="booking-title">
 			    		<h5 class="pull-left"><c:out value="${booking.nameActivity}" /><small><c:out value="${booking.dateActivity}" /></small></h5>
-			    		<span class="fui-triangle-down pull-right" ></span>
+			    		<div class="pull-right">
+			    			<c:choose>
+			    				<c:when test="${booking.status eq 0}"><h6 class="title-pending">Pending <span class="fui-triangle-down" ></span></h6></c:when>
+			    				<c:when test="${booking.status eq 1}"><h6 class="title-accepted">Accepted <span class="fui-triangle-down" ></span></h6></c:when>
+			    				<c:when test="${booking.status eq 2}"><h6 class="title-declined">Declined <span class="fui-triangle-down" ></span></h6></c:when>
+			    			</c:choose>
+			    			
+			    			
+			    		</div>
 			    		<div style="clear:both;"></div>
 			    	</div>
 			    	</a>
-			    	<div class="collapse" id="collapseAct">
+			    	<div class="collapse" id="collapseAct${booking.idBooking}">
 				    	<div class="booking-body row">
 				        	<div class="col-lg-5">
 				        		<div class="booking-activity"><h4 style="margin-bottom: 0px;"><c:out value="${booking.nameActivity}" /> <small><c:out value="${booking.level}" /></small></h4></div>

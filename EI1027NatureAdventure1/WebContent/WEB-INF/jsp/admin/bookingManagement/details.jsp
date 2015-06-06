@@ -6,7 +6,7 @@
 	<jsp:body>
 		
     <h4>Booking management</h4>
-	<h6 class="subtitle">Details of booking <strong>${booking.innerIdBooking}</strong></h6>
+	<h6 class="subtitle">Details of booking <strong style="padding-left: 10px;">${booking.innerIdBooking}</strong></h6>
   <div role="tabpanel">
 
   <!-- Nav tabs -->

@@ -21,26 +21,30 @@
 	<div class="modal fade" id="contactModal" tabindex='-1' role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header modal-header-info" id="contactModalHead">
+				<div class="modal-header" id="contactModalHead">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4><span class="fui-chat"></span> Contact</h4>
+					<h4>Contact</h4>
 				</div>
-				<div class="modal-body" id="ContactModalBody">
-					<form:form role="form" action="${pageContext.request.contextPath}/contact.html" method="post" modelAttribute="email">
-						<div class="form-group">
-							<div class="input-group">
-								<form:input path="to" type="text" class="form-control" placeholder="Enter the destination" />
-								<div class="input-group-addon"><span class="fui-mail"></span></div>
+				<form:form role="form" action="${pageContext.request.contextPath}/contact.html" method="post" modelAttribute="email">
+					<div class="modal-body" id="ContactModalBody">
+							<div class="form-group">
+								<div class="input-group">
+									<form:input path="to" type="text" class="form-control" placeholder="Enter the destination" />
+									<div class="input-group-addon"><span class="fui-mail"></span></div>
+								</div>
+								<form:errors path="to" class="text-danger" />
 							</div>
-							<form:errors path="to" class="text-danger" />
+							<div class="form-group">
+								<form:label path="message" for="message" class="control-label">Message</form:label>
+								<form:textarea path="message" id="message" class="form-control" />
+							</div>
+					</div>
+					<div class="modal-footer">
+						<div class="text-right">
+							<button type="submit" class="btn btn-primary" id="LoginButton">Send</button>
 						</div>
-						<div class="form-group">
-							<form:label path="message" for="message" class="control-label">Message</form:label>
-							<form:textarea path="message" id="message" class="form-control" />
-						</div>
-						<button type="submit" class="btn btn-success" id="LoginButton"><span class="fui-mail"></span> Send</button>
-					</form:form>
-				</div>	
+					</div>
+				</form:form>	
 			</div>
 		</div>
 	</div>

@@ -32,7 +32,7 @@
 						<td><c:out value="${bookings.nameActivity}" /></td>
 						<td><c:out value="${bookings.level}" /></td>
 						<td><c:out value="${bookings.groupSize}" /></td>
-						<td><a href="${pageContext.request.contextPath}/instructor/details?${booking.idBooking}.html"><span class="label label-info">Details</span></a></td>
+						<td><a href="${pageContext.request.contextPath}/instructor/details/${bookings.idBooking}.html"><span class="label label-info">Details</span></a></td>
 						<!-- <td><a href="#reportModal" data-toggle="modal" data-target="#reportModal"><span class="label label-warning">Report</span></a></td>-->
 					</tr>
 				</c:forEach>

@@ -49,7 +49,7 @@
 			</div>
 			<div class="form-group">
 				<form:label path="expireDate" for="edate" class="control-label">Expire date: </form:label>
-				<form:input path="expireDate" type="datetime" class="form-control" id="edate" />
+				<form:input path="expireDate" type="text" class="form-control datepicker" readonly="true" id="edate" cssStyle="background-color: #FFF; color:#34495E; border-color: #9B9B9B"/>
 				<form:errors path="expireDate" class="text-danger" />
 			</div>
 			
@@ -116,7 +116,7 @@
 									            </dl>
 								            </div>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-6" style="border-left:1px solid #ECF0F1;">
 											<div class="modalList">
 												<dl>
 									              <dt>Name</dt><dd><c:out value="${act.name}" /></dd>
@@ -150,5 +150,10 @@
 		 	</table>
 	 	</div> <!-- row interno -->
 	</div>
+	<script type="text/javascript">
+	    $('.datepicker').datepicker({
+	    	format: 'dd/mm/yyyy'
+	    })
+	</script>
 </jsp:body>
 </t:template>

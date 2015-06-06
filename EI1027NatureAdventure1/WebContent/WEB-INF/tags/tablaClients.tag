@@ -48,8 +48,8 @@
 							<div class="modalList">
 								<div class="title">Client</div>
 								<dl>
-					              <dt>Name</dt><dd><c:out value="${cli.clientName}" /> <c:out value="${cli.clientLastName}" /></dd>
-					              <dt>ID</dt><dd><c:out value="${cli.clientId}" /></dd>
+					              <dt style="padding-left: 30%;">Name</dt><dd style="padding-left: 10%;"><c:out value="${cli.clientName}" /> <c:out value="${cli.clientLastName}" /></dd>
+					              <dt style="padding-left: 30%;">ID</dt><dd style="padding-left: 10%;"><c:out value="${cli.clientId}" /></dd>
 					            </dl>
 				            </div>
 						</div>
