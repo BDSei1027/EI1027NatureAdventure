@@ -36,12 +36,12 @@
       <div class="col-lg-2" style="width: 22%;">
     	<ul id="menu" class="nav nav-pills nav-stacked">
             <li><h4>Menu</h4></li>
-    				<li class="active"><a href="${pageContext.request.contextPath}/admin/">Activty management</a></li>
-    				<li class="active"><a href="${pageContext.request.contextPath}/admin/">Instructor management</a>
-    				<li class="active"><a href="${pageContext.request.contextPath}/admin/">Booking management</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/admin/">Client management</a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/admin/">User management</a></li>
-            <li class="active danger"><a href="#changeModal" data-toggle="modal" data-target="#changeModal">Change password</a></li>
+    		<li ><a href="${pageContext.request.contextPath}/admin/">Activty management</a></li>
+    		<li ><a href="${pageContext.request.contextPath}/admin/">Instructor management</a>
+    		<li ><a href="${pageContext.request.contextPath}/admin/">Booking management</a></li>
+            <li ><a href="${pageContext.request.contextPath}/admin/">Client management</a></li>
+            <li ><a href="${pageContext.request.contextPath}/admin/">User management</a></li>
+            <li class=" danger"><a href="#changeModal" data-toggle="modal" data-target="#changeModal">Change password</a></li>
     	</ul>
       </div> <!-- col -->
       <div class="col-lg-9">
