@@ -212,6 +212,21 @@ public class LogicLayer {
 		return this.getBookingsToDo(instructor.getSsNumber());
 	}
 	
+	
+	/** Method to obtain the list of instructors avaliable to do the booking that day
+	 * @param idAct
+	 * @return
+	 */
+	public Collection<Instructor> getAvaliableInstructorsToAssign(int innerIdBooking){ //idAct, innerIdBooking
+		Booking myBooking = (Booking) daoBooking.getElement(innerIdBooking);
+		int idAct = myBooking.getIdAct();
+		Map<String,Instructor> allInstructorsAvaliableMap = (Map<String,Instructor>) daoInstructor.getAvaliableInstructorsToAssign(idAct, innerBookingID);
+		Collection<Instructor> allInstructorsAvaliable= allInstructorsAvaliableMap.values();
+		return allInstructorsAvaliable;
+	}
+	
+	
+	
 	/*
 	 * Instruidas subzone
 	 */

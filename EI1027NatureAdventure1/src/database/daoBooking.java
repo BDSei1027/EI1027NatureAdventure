@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import classes.Booking;
 import classes.BookingActivity;
+import classes.Instructor;
 import classes.Status;
 
 @Repository
@@ -111,9 +112,6 @@ public class daoBooking implements DaoInterface {
 		daoStatus.deleteElement(id);
 		String sql = "DELETE FROM booking WHERE inneridbooking = ?;";
 		dataSource.update(sql, id);
-		
-		
-		
 	}
 
 	/**
@@ -273,7 +271,5 @@ public class daoBooking implements DaoInterface {
 		String sql = "SELECT MAX(idbooking) FROM booking;";
 		return dataSource.queryForObject(sql, Integer.class);
 	}
-
-
 
 }
