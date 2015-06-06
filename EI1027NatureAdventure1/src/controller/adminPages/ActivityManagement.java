@@ -64,7 +64,7 @@ public class ActivityManagement extends AbstractController{
 	public String activityManagementDisable(@PathVariable int actId){
 		service.inactiveActivity(actId);
 		
-		return "redirect:/admin/activityManagement.html";
+		return "forward:/admin/activityManagement/"+1+"&"+actId+".html";
 	}
 	
 	@RequestMapping(value="/enable/{actId}")
@@ -79,7 +79,7 @@ public class ActivityManagement extends AbstractController{
 	public String activityManagementModify(@PathVariable int actId, Model model){		
 		model.addAttribute("activity", service.getActivity(actId));
 		
-		return "forward:/admin/activityManagement/"+1+"&"+actId+".html";
+		return "admin/activityManagement/modify";
 	}
 	
 	@RequestMapping(value="/modify/{actId}", method=RequestMethod.POST)
@@ -89,7 +89,7 @@ public class ActivityManagement extends AbstractController{
 		
 		service.updateActivity(activity);
 		
-		return "forward:/admin/activityManagement/"+0+"&"+activity.getIdAct()+".html";
+		return "forward:/admin/activityManagement/"+1+"&"+activity.getIdAct()+".html";
 	}
 	
 	@RequestMapping(value="/onlyActive")
