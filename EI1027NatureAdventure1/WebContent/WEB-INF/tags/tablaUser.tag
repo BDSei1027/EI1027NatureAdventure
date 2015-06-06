@@ -64,7 +64,7 @@
 				  					<div class="modal-body" id="deleteUserModalBody">
 				  					
 				  						<div class="row">
-				  							<h3 style="padding-left: 15px;"> Impossible to remove <strong>admin</strong>.</h3>
+				  							<h3 style="padding-left: 15px;"> Impossible to remove an <strong>admin</strong>.</h3>
 				  						</div>
 				  					</div>
 				  					<div class="modal-footer" id="deleteUserModalFooter">

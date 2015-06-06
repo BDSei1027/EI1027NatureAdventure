@@ -5,7 +5,7 @@
 <t:template>
 	<jsp:body>
 	<h4>Instructor management</h4>
-	<h6 class="subtitle">Modify instructor <strong>${instructor.name} ${instructor.lastName}</strong> (${instructor.idNumber})</h6>
+	<h6 class="subtitle">Modify instructor <strong>${instructor.name} ${instructor.lastName}</strong> <small>${instructor.idNumber}</small></h6>
 	<div class="col-lg-5">
 		<form:form method="post" modelAttribute="instructor" role="form">
 			<div class="form-group">
@@ -20,12 +20,14 @@
 			</div>
 			<div class="form-group">
 				<form:label path="ssNumber" for="ssn" class="control-label">SS number: </form:label>
-				<form:input path="ssNumber" type="text" class="form-control" id="ssn" />
+				<form:hidden path="ssNumber" />
+				<div class="form-control" id="ssn"><c:out value="${instructor.ssNumber}" /></div>
 				<form:errors path="ssNumber" class="text-danger" />
 			</div>
 			<div class="form-group">
 				<form:label path="idNumber" for="idn" class="control-label">ID number: </form:label>
-				<form:input path="idNumber" type="text" class="form-control" id="idn" />
+				<form:hidden path="idNumber" />
+				<div class="form-control" id="ssn"><c:out value="${instructor.idNumber}" /></div>
 				<form:errors path="idNumber" class="text-danger" />
 			</div>
 			<div class="form-group">
