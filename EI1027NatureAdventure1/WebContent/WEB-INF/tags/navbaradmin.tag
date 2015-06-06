@@ -25,7 +25,11 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text" id="navtext">Welcome <strong><c:out value="${user.name}" /></strong></p></li>
-      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
+      <li><a href="${pageContext.request.contextPath}/admin.html" style="padding-right: 5px;">Admin</a></li>
+      <li>
+      	<a href="${pageContext.request.contextPath}/admin.html" id ="dropdown"  data-toggle="dropdown" role="button" aria-expanded="false" style="padding-left: 4px; padding-right: 8px;">
+      		<span class="fui-triangle-down"></span>
+      	</a>
          <ul class="dropdown-menu" role="menu">
            <li><a href="${pageContext.request.contextPath}/admin/activityManagement.html">Activity management</a></li>
            <li><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">Instructor management</a></li>
@@ -36,8 +40,12 @@
            <li><a href="${pageContext.request.contextPath}/account.html">Account</a></li>
          </ul>
       </li>
-      <li class="active"><a href="${pageContext.request.contextPath}/logout.html" class="navbar-link pull-right"><span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 8px;"></span>Log out</a></li>
+      <li class="active"><a href="${pageContext.request.contextPath}/logout.html" class="btn-logout"><span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 8px;"></span>Log out</a></li>
     </ul>
   </div>
 </nav>
+
+<script type="text/javascript">
+$('#dropdown').dropdown()
+</script>
 

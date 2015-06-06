@@ -4,7 +4,7 @@ table {
 }
 
 .subtitle {
-	padding-left: 15px;
+	padding-left: 3%;
 }
 
 .h7 {
@@ -23,21 +23,38 @@ strong {
 	color: #1ABC9C;
 }
 
+.modal-content {
+	box-shadow: -10px 10px 2px rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+}
+
 .modal-header {
-	color:white !important;
-	text-align: center;
-	font-size: 30px;
-	padding-bottom: 20px;
+	color: #384A5C;
+	font-size: 24px;
+	padding-left: 30px;
+	padding-bottom: 0px;
+	margin-top: 5px;
+	border-bottom: 2px solid #ecf0f1;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	background-color: #f5f7f8;
+}
+
+.modal-header > .row > h4 {
+	margin-top: 0px;
+	font-size: 26px;
 }
 
 .modal-body {
-	padding: 30px 50px;
+	padding: 30px 30px;
+	background-color: #f5f7f8;
 }
 
 .modal-footer {
 	text-align: inherit;
 	background-color: #ecf0f1;
-	border-top-color: #bdc3c7;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
 }
 
 .modal-header-warning {
@@ -154,6 +171,22 @@ footer p {
 	margin-bottom: 8px;
 }
 
+/* Pagina admin */
+.stadistics > dl {
+ 	padding-left: 25%;
+	width: 100%;
+	overflow: hidden;
+}
+.stadistics > dl > dt {
+	float:left;
+	width: 50%;
+}
+.stadistics > dl > dd {
+	float:right;
+	width: 50%;
+	color: #1abc9c;
+	font-weight: bold;
+}
 
 /* Pagina de ver actividades del cliente*/
 .mybadge {
@@ -190,7 +223,14 @@ footer p {
 	background-color: #1abc9c;
 }
 
+.nav-pills > li.danger > a:hover, .nav-pills > li.danger > a:focus {
+	background-color: #e74c3c;
+}
 
+.btn-logout {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
 
 .booking {
 	border-left: 1px solid #2c3e50;
