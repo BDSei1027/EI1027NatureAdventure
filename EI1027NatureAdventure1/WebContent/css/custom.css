@@ -176,6 +176,16 @@ footer p {
 	font-size: 12px;
 }
 
+.footer-col-1 {
+	border-right: 1px solid #777;
+	padding-left:3%;
+	padding-top: 1%;
+}
+
+.footer-col-2 {
+	margin-top: 1%;
+}
+
 /* Barra de lengujes */
 #languages {
 	font-size: 13px;
@@ -467,6 +477,24 @@ footer p {
 
 .miembro-text {
 	padding-left: 15px;
+}
+
+.about-banner {
+	color: #FFF;
+	background-color: #34495E;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.about-banner:hover {
+	color: #1ABC9C;
+}
+
+.about-img {
+	width:150px;
+	height: 200px;
+	border-radius: 6px;
+	border: 1px solid #ecf0f1;
 }
 
 /* Pagina de details para Bookings */

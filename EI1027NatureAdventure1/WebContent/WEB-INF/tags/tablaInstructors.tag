@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:if test="${not empty error and (error eq 0)}"><c:set scope="page" var="type" value="success" /></c:if>
+<c:if test="${not empty error and (error eq 1)}"><c:set scope="page" var="type" value="info" /></c:if>
 	<!-- TABLA -->
 <table id="instructorsTable"  
   data-toggle="table" 
@@ -26,7 +28,7 @@
        </thead>
        <tbody>
         <c:forEach var="instructor" items="${instructorList}" >
-        <tr <c:if test="${not empty alert and (alert eq instructor.ssNumber)}">class="success"</c:if>> 
+        <tr <c:if test="${not empty id and (id eq instructor.ssNumber)}">class="${type}"</c:if>> 
         	<td><c:out value="${instructor.name}" /></td>
         	<td><c:out value="${instructor.lastName}" /></td>
         	<td><c:out value="${instructor.ssNumber}" /></td>

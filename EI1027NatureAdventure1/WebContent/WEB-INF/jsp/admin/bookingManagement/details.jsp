@@ -157,7 +157,7 @@
 												</div>
 									       		<div class="modal-footer" id="assignModalFooter">
 									         		<div class="pull-right">
-									           			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/assignInstructor?idb=${booking.innerIdBooking}&instr=${instructor.ssNumber}.html"><button class="btn btn-success">Assign</button></a>
+									           			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/assignInstructor/${booking.innerIdBooking}&${instructor.ssNumber}.html"><button class="btn btn-success">Assign</button></a>
 									           			<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
 									         		</div>
 									       		</div>

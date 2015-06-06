@@ -4,6 +4,13 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <t:template>
 	<jsp:body>
+		<c:if test="${not empty error and (error eq 2)}">
+		<div class="alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Activity <strong><c:out value="${id}" /> deleted</strong> from <strong>instructor</strong>, <c:out value="${instructor.ssNumber}" />.
+			</div>
+		</c:if>
+	
 	<h4>Instructor management</h4>
 	<h6 class="subtitle">Modify instructor <strong>${instructor.name} ${instructor.lastName}</strong> <small>${instructor.idNumber}</small></h6>
 	<div class="col-lg-5">

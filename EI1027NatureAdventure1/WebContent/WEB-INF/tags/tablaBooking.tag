@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:if test="${not empty error and (error eq 0)}"><c:set scope="page" var="type" value="success" /></c:if>
+<c:if test="${not empty error and (error eq 1)}"><c:set scope="page" var="type" value="info" /></c:if>
+<c:if test="${not empty error and (error eq 2)}"><c:set scope="page" var="type" value="warning" /></c:if>
+
 <table id="Bookings"
   data-toggle="table" 
      data-classes="table table-no-bordered"
@@ -22,7 +26,7 @@
 	</thead>
 	<tbody>
 		<c:forEach items="${bookingList}" var="bookings">
-			<tr>
+			<tr class=<c:if test="${not empty id and (id eq activity.idAct)}">"${type}"</c:if>>
 				<td><c:out value="${bookings.innerIdBooking}" /></td>
 				<td>
 					<c:choose>

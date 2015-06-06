@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<!--<c:set scope="page" var="add" value="203203203203" /> -->
+
 	<!-- TABLA -->
 <table id="userTable"  
   data-toggle="table" 

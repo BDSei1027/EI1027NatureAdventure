@@ -4,6 +4,13 @@
 
 <t:template>
 <jsp:body>
+
+	<c:if test="${not empty error and (error eq 2)}">
+		<div class="alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  User <strong><c:out value="${id}" /> removed</strong>.
+			</div>
+	</c:if>
 	<h4>User management</h4>
 	<div id="help" class="row">
 		<div class="panel panel-info">

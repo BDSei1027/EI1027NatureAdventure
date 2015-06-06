@@ -4,6 +4,22 @@
 
 <t:template>
 <jsp:body>
+	<c:if test="${not empty error}">
+		<c:choose>
+			<c:when test="${error eq 0}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Client <strong><c:out value="${id}" /> modified</strong> successfully.
+			</div>
+			</c:when>
+			<c:when test="${error eq 2}">
+			<div class="alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Client <strong><c:out value="${id}" /> deleted</strong>.
+			</div>
+			</c:when>
+		</c:choose>
+	</c:if>
 	<h4>Client management</h4>
 	<div id="action&help" class="row">
 		<!-- <div id="action" class="col-lg-2">

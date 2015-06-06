@@ -5,6 +5,22 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <t:template>
 <jsp:body>
+	<c:if test="${not empty error}">
+		<c:choose>
+			<c:when test="${error eq 0}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Instructor, <strong><c:out value="${id}" />, added</strong> successfully.
+			</div>
+			</c:when>
+			<c:when test="${error eq 1}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Instructor, <strong><c:out value="${id}" />, updated</strong> successfully.
+			</div>
+			</c:when>
+		</c:choose>
+	</c:if>
 
 	<h4>Instructor management</h4>
 	<div id="actionsHelp" class="row">

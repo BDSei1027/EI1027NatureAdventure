@@ -6,6 +6,28 @@
 <t:template>
 <jsp:body>
 
+	<c:if test="${not empty error}">
+		<c:choose>
+			<c:when test="${error eq 0}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Booking <strong><c:out value="${id}" /></strong> has been <strong>accepted</strong>, an email has been sent to the client.
+			</div>
+			</c:when>
+			<c:when test="${error eq 1}">
+			<div class="alert alert-info alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Booking <strong><c:out value="${id}" /></strong> has been changed the status to <strong>pending</strong>.
+			</div>
+			</c:when>
+			<c:when test="${error eq 2}">
+			<div class="alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Booking <strong><c:out value="${id}" /></strong> has been <strong>declined</strong>.
+			</div>
+			</c:when>
+		</c:choose>
+	</c:if>
 	<h4>Booking management</h4>
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">
