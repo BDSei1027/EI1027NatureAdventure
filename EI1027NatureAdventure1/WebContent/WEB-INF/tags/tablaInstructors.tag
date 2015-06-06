@@ -43,7 +43,7 @@
         				No
         			</c:otherwise>
         		</c:choose></td> 
-        	<td><a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/${instructor.ssNumber}.html"><span class="label label-info">Edit</span></a></td>
+        	<td><a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/${instructor.ssNumber}.html"><span class="label label-info">Details</span></a></td>
         	<td>
         		<c:choose>
         			<c:when test="${instructor.isActive()}">

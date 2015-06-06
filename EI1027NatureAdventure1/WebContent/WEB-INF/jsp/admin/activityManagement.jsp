@@ -22,7 +22,7 @@
 				</div>
 				<div class="panel-body">
 					<p>The following table lists all the activities, which are in the data base.</p>
-					<p>To see the instructors which are assigned to the activity, click on <span class="label label-info">Edit</span>. Also
+					<p>To see the instructors which are assigned to the activity, click on <span class="label label-info">Details</span>. Also
 					you can disable or enable the activity cliking on <span class="label label-success">Activate</span> or <span class="label label-warning">Inactivate</span>.</p>
 					<p>In menu of the left, you can choose how do you want the data and add more activities.</p>
 				</div>

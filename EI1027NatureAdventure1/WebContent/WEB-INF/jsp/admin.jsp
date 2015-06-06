@@ -98,7 +98,7 @@
 						</div>
 						<div class="form-group">
 							<label class="checkbox" for="sure">
-								<input class="custom-checkbox" type="checkbox" id="sure" requiered="true"/> Are you sure?
+								<input class="custom-checkbox" type="checkbox" id="sure" required="required"/> Are you sure?
 							</label>
 						</div>
 					</div>

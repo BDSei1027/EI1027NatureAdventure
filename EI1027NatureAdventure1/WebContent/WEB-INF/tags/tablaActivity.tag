@@ -41,7 +41,7 @@
 		        				No
 		        			</c:otherwise>
 		        		</c:choose></td>
-		        	<td><a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><span class="label label-info">Edit</span></a></td>
+		        	<td><a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><span class="label label-info">Details</span></a></td>
 		        	<td>
 		        		<c:choose>
 		        			<c:when test="${activity.isActive()}">

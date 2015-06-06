@@ -32,25 +32,25 @@
         	<td><c:out value="${cli.clientEmail}" /></td>
         	<td><c:out value="${cli.numberBooking}" /></td>
         	<td><a href="${pageContext.request.contextPath}/admin/clientManagement/details/${cli.clientId}.html"><span class="label label-info">Details</span></a></td>
-        	<td><a href="#delectClientModal"  data-toggle="modal" data-target="#deleteClientModal"><span class="label label-danger">Delete</span></a>
+        	<td><a href="#delectClientModal"  data-toggle="modal" data-target="#deleteClientModal${cli.clientId}"><span class="label label-danger">Delete</span></a>
         </tr>
-	        <div class="modal fade" id="deleteClientModal" tabindex='-1' role="dialog">
+	        <div class="modal fade" id="deleteClientModal${cli.clientId}" tabindex='-1' role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header" id="deleteClientModalHead">
 						<div class="row">
 							<button type="button" class="close pull-right" data-dismiss="modal" style="padding-right: 4%; margin-top: 2px;">&times;</button>
-							
-							<h4 class="pull-left">Delete client <small><c:out value="${cli.clientId}" /></small></h4>
+							<h4 class="pull-left">Delete client <strong><c:out value="${cli.clientId}" /></strong></h4>
 						</div>
 					</div>
 						<div class="modal-body" id="changeModalBody">
 							<div style="font-size: 14px;">Are you sure, you want remove the client <strong><c:out value="${client.clientId}"/></strong>?</div>
 							<div class="modalList">
-							<dl>
-				              <dt>Name</dt><dd><c:out value="${cli.clientName}" /> <c:out value="${cli.clientLastName}" /></dd>
-				              <dt>ID</dt><dd><c:out value="${cli.clientId}" /></dd>
-				            </dl>
+								<div class="title">Client</div>
+								<dl>
+					              <dt>Name</dt><dd><c:out value="${cli.clientName}" /> <c:out value="${cli.clientLastName}" /></dd>
+					              <dt>ID</dt><dd><c:out value="${cli.clientId}" /></dd>
+					            </dl>
 				            </div>
 						</div>
 						<div class="modal-footer" id="changeModalFooter">

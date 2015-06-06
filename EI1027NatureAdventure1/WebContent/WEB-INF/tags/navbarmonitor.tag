@@ -34,7 +34,7 @@
            <li class="divider"></li>
            <li><a href="${pageContext.request.contextPath}/account.html">Account</a></li>
          </ul>
-      <li class="active"><a href="${pageContext.request.contextPath}/logout.html" class="navbar-link pull-right"><span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 8px;"></span>Log out</a></li>
+      <li class="active"><a href="${pageContext.request.contextPath}/logout.html" class="btn-logout"><span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 8px;"></span>Log out</a></li>
     </ul>
   </div>
 </nav>

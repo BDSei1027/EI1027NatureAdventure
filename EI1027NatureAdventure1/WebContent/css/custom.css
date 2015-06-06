@@ -29,21 +29,35 @@ strong {
 	overflow: hidden;
 }
 
+.modalList > .title {
+	width: 60%;
+	margin: auto;
+	text-align: center;
+	border-bottom: 1px solid #ecf0f1;
+}
+
 .modalList dl > dt {
 	float:left;
 	width: 50%;
 	color: #1abc9c;
 	font-weight: bold;
+	padding-left: 10%;
 }
 
 .modalList dl > dd {
 	float:right;
 	width: 50%;
+	padding-left: 10%;
 }
 
 .modal-content {
 	box-shadow: -10px 10px 2px rgba(0, 0, 0, 0.25);
 	border-radius: 6px;
+	background-color: #f5f7f8;
+}
+
+.modal-dialog-wide {
+	width: 700px;
 }
 
 .modal-header {
@@ -63,6 +77,12 @@ strong {
 	font-size: 26px;
 }
 
+.modal-header > .row > h4 > strong {
+	color: #1abc9c;
+	font-style: italic;
+	padding-left: 20px;
+}
+
 .modal-body {
 	padding: 15px 30px;
 	background-color: #f5f7f8;
@@ -70,9 +90,19 @@ strong {
 
 .modal-footer {
 	text-align: inherit;
+	font-size: 14px;
 	background-color: #ecf0f1;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
+}
+
+.modal-footer > p {
+	font-size: 14px;
+}
+
+.modal-footer > .pull-left > p {
+	margin-bottom: 0px;
+	font-size: 14px;
 }
 
 .modal-header-warning {
@@ -103,6 +133,33 @@ strong {
 /* Navbar */
 .navbar-text > strong {
 	color: #1abc9c;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+	background-color: #ecf0f1;
+}
+
+.nav-pills > li.activeBooking > a {
+	background-color: #34495e;
+	color: #FFF;
+}
+
+.nav-pills > li.active > a {
+	background-color: #34495e;
+	
+}
+
+.nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+	background-color: #1abc9c;
+}
+
+.nav-pills > li.danger > a:hover, .nav-pills > li.danger > a:focus {
+	background-color: #e74c3c;
+}
+
+.btn-logout {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
 }
 
 /* Pie de pagina */
@@ -223,33 +280,6 @@ footer p {
 	border-radius: 10px;
 	background-color: #FFF;
 	color: #34495e;
-}
-
-.nav > li > a:hover, .nav > li > a:focus {
-	background-color: #ecf0f1;
-}
-
-.nav-pills > li.activeBooking > a {
-	background-color: #34495e;
-	color: #FFF;
-}
-
-.nav-pills > li.active > a {
-	background-color: #34495e;
-	
-}
-
-.nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-	background-color: #1abc9c;
-}
-
-.nav-pills > li.danger > a:hover, .nav-pills > li.danger > a:focus {
-	background-color: #e74c3c;
-}
-
-.btn-logout {
-	border-top-right-radius: 6px;
-	border-bottom-right-radius: 6px;
 }
 
 .booking {
