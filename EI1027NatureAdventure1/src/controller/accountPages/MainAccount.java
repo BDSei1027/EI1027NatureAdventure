@@ -36,9 +36,10 @@ public class MainAccount extends AbstractController{
 	public String acoountPage(Model model, HttpSession session){
 		User user = (User) session.getAttribute("user");
 		
+		
 		if (user.getType() == 0) return "redirect:/admin.html";
 		if (user.getType() == 1) model.addAttribute("instructor", service.getInstructor(user));
-		if (user.getType() == 2) model.addAttribute("instructor", service.getClient(user));
+		if (user.getType() == 2) model.addAttribute("client", service.getClient(user));
 
 		model.addAttribute("doublepassword", new DoublePassword());
 		return "account";
@@ -46,7 +47,8 @@ public class MainAccount extends AbstractController{
 	}
 	
 	@RequestMapping(value="/updateClient", method=RequestMethod.POST)
-	public String updateClientPage(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult){
+	public String updateClientPage(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult, HttpSession session){
+		model.addAttribute("doublepassword", new DoublePassword());
 		new ClientValidator().validate(client, bindingResult);
 		if(bindingResult.hasErrors()) return "account";
 		service.updateClient(client);
@@ -56,8 +58,10 @@ public class MainAccount extends AbstractController{
 		return "account";
 	}
 	
-	@RequestMapping(value="/updateInstructor", method=RequestMethod.POST)
-	public String updateInstructorPage(Model model, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
+	
+	@RequestMapping(value="/updateInstructor",  method=RequestMethod.POST)
+	public String updateInstructorPage(Model model, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+		model.addAttribute("doublepassword", new DoublePassword());
 		new InstructorValidator().validate(instructor, bindingResult);
 		if(bindingResult.hasErrors()) return "account";
 		service.updateInstructor(instructor);
@@ -67,15 +71,24 @@ public class MainAccount extends AbstractController{
 		return "account";
 	}
 	
+	
 	@RequestMapping(value="/updateAuth", method=RequestMethod.POST)
-	public String updateAuthPage(Model model, @ModelAttribute("doublepassword") DoublePassword doublePasswd, BindingResult bindingResult, HttpServletRequest request){
+	public String updateAuthPage(Model model, @ModelAttribute("doublepassword") DoublePassword doublePasswd, BindingResult bindingResult, HttpServletRequest request, HttpSession session){
 		//TODO UserValidator
 		new DoublePasswordValidator().validate(doublePasswd, bindingResult);
+		
+		User user = (User) session.getAttribute("user");
+		
+		
+		if (user.getType() == 0) return "redirect:/admin.html";
+		if (user.getType() == 1) model.addAttribute("instructor", service.getInstructor(user));
+		if (user.getType() == 2) model.addAttribute("client", service.getClient(user));
+		
 		if(bindingResult.hasErrors()) return "account";
 		
-		User user = (User) request.getSession().getAttribute("user");
 		user.setPassword(doublePasswd.getPassword());
-		service.updateUser(user);
+		System.out.println(doublePasswd.getPassword());
+		service.updateUserWithPasswordType(user);
 		
 		model.addAttribute("error", 0);
 		
@@ -83,46 +96,6 @@ public class MainAccount extends AbstractController{
 	}
 	
 	
-//	@RequestMapping(method=RequestMethod.POST)
-//	public String updateUser(Model model, HttpSession session, @ModelAttribute("client") Client client, @ModelAttribute("doublepassword") DoublePassword doublepassword, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
-//		
-//		System.out.println(service);
-//		if (!client.isEmpty()) {
-//
-//			new ClientValidator().validate(client, bindingResult);		
-//			if(bindingResult.hasErrors()) {
-//				model.addAttribute("error", 1);
-//				return "account";
-//			}
-//			service.updateClient(client);
-//			model.addAttribute("client", client);
-//		}
-//		
-//		if (!instructor.isEmpty()) {
-//			System.out.println("instr");
-//			new InstructorValidator().validate(client, bindingResult);
-//			if (bindingResult.hasErrors()) {
-//				model.addAttribute("error", 2);
-//				return "account";
-//			}
-//			service.updateInstructor(instructor);
-//			model.addAttribute("instructor", instructor);
-//		}
-//		
-//		if (!doublepassword.isEmpty()) {
-//			System.out.println("pass");
-//			new DoublePasswordValidator().validate(doublepassword, bindingResult);
-//			if (bindingResult.hasErrors()) {
-//				model.addAttribute("error", 3);
-//				return "account";
-//			}
-//			User user = (User) session.getAttribute("user");
-//			user.setPassword(doublepassword.getPassword());
-//			service.updateUserWithPasswordType(user);
-//		}
-//		
-//		model.addAttribute("error", 0);
-//		return "/account";
-//	}
+
 
 }
