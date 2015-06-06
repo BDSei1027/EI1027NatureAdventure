@@ -220,7 +220,7 @@ public class LogicLayer {
 	public Collection<Instructor> getAvaliableInstructorsToAssign(int innerIdBooking){ //idAct, innerIdBooking
 		Booking myBooking = (Booking) daoBooking.getElement(innerIdBooking);
 		int idAct = myBooking.getIdAct();
-		Map<String,Instructor> allInstructorsAvaliableMap = (Map<String,Instructor>) daoInstructor.getAvaliableInstructorsToAssign(idAct, innerBookingID);
+		Map<String,Instructor> allInstructorsAvaliableMap = (Map<String,Instructor>) daoInstructor.getAvaliableInstructorsToAssign(idAct, innerIdBooking);
 		Collection<Instructor> allInstructorsAvaliable= allInstructorsAvaliableMap.values();
 		return allInstructorsAvaliable;
 	}
