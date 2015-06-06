@@ -15,6 +15,9 @@ public class Activity {
     private int minimumGroup;
     private int maximumGroup;
     private boolean isActive;
+    private String nombre;
+    private String description;
+    private String Descripcion;
     private List<String> qualifiedInstructors;
 
     public Activity() {
@@ -153,4 +156,29 @@ public class Activity {
     public int getNInstructors() {
     	return this.qualifiedInstructors.size();
     }
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescripcion() {
+		return Descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		Descripcion = descripcion;
+	}
+    
 }

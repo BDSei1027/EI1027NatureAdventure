@@ -43,6 +43,9 @@ public class daoActivity implements DaoInterface {
 				activity.setMinimumGroup(rs.getInt("mingroup"));
 				activity.setMaximumGroup(rs.getInt("maxgroup"));
 				activity.setIsActive(rs.getBoolean("isactive"));
+				activity.setNombre(rs.getString("nombre"));
+				activity.setDescription(rs.getString("description"));
+				activity.setDescripcion(rs.getString("descripcion"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -60,10 +63,10 @@ public class daoActivity implements DaoInterface {
 		if(!(element instanceof Activity)) return;
 		// Cast Object to Activity
 		Activity activity = (Activity) element;
-		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive) " +
+		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive, nombre, description, descripcion) " +
                             "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, activity.getIdAct(), activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
-				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive());
+				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getNombre(), activity.getDescription(), activity.getDescripcion());
 		
 //		// Get the instructors who can teach it
 //		List<String> listIns = activity.getInstructors();
@@ -98,10 +101,10 @@ public class daoActivity implements DaoInterface {
 		// Cast Objecto to Activity
 		Activity activity = (Activity) element;
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +
-            "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? " +
+            "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? , nombre = ?, description = ?, descripcion = ?" +
                             "WHERE idact = ?;";
 		dataSource.update(sql, activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(), 
-				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getIdAct());
+				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getIdAct(), activity.getNombre(), activity.getDescription(), activity.getDescripcion());
 	}
 
 	/**
