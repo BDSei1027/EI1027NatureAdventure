@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 import classes.User;
 
 public class UserValidator implements Validator {
-	String language = "EN";
+	String language = "EN"; 
 	
 	public UserValidator(HttpSession session) {
 		super();

@@ -9,7 +9,7 @@ import classes.DoublePassword;
 import classes.User;
 
 public class DoublePasswordValidator  implements Validator {
-	String language = "EN";
+	String language = "EN"; 
 	
 	public DoublePasswordValidator(HttpSession session) {
 		super();

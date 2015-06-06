@@ -9,7 +9,7 @@ import classes.BookingActivity;
 import classes.User;
 
 public class BookingActivityValidator implements Validator{
-	String language = "EN";
+	String language = "EN"; 
 	
 	public BookingActivityValidator(HttpSession session) {
 		super();

@@ -11,7 +11,7 @@ import classes.Instructor;
 import classes.User;
 
 public class InstructorValidator implements Validator {
-	String language = "EN";
+	String language = "EN"; 
 	
 	public InstructorValidator(HttpSession session) {
 		super();

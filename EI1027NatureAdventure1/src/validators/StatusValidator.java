@@ -9,7 +9,7 @@ import classes.Status;
 import classes.User;
 
 public class StatusValidator implements Validator {
-	String language ="EN";
+	String language ="EN"; 
 	
 	public StatusValidator(HttpSession session) {
 		super();

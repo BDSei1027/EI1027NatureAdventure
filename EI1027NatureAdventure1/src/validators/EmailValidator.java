@@ -9,7 +9,7 @@ import classes.Email;
 import classes.User;
 
 public class EmailValidator implements Validator{
-	String language = "EN";
+	String language = "EN"; 
 	
 	public EmailValidator(HttpSession session) {
 		super();

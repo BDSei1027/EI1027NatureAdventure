@@ -9,7 +9,7 @@ import classes.Activity;
 import classes.User;
 
 public class ActivityValidator implements Validator {
-	String language = "EN";
+	String language = "EN"; 
 
 	public ActivityValidator(HttpSession session) {
 		super();

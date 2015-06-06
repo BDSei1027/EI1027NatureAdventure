@@ -9,7 +9,7 @@ import classes.Client;
 import classes.User;
 
 public class ClientValidator implements Validator {
-	String language = "EN";
+	String language = "EN"; 
 	
 	public ClientValidator(HttpSession session) {
 		super();
