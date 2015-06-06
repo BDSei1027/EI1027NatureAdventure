@@ -65,9 +65,9 @@ public class daoActivity implements DaoInterface {
 		dataSource.update(sql, activity.getIdAct(), activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
 				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive());
 		
-		// Get the instructors who can teach it
-		final List<String> listIns = activity.getInstructors();
-		addInstructors(activity.getIdAct(), listIns);
+//		// Get the instructors who can teach it
+//		List<String> listIns = activity.getInstructors();
+//		addInstructors(activity.getIdAct(), listIns);
 	}
 
 	/**

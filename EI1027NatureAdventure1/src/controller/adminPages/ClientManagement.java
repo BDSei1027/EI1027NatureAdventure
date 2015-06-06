@@ -26,6 +26,15 @@ public class ClientManagement extends AbstractController {
 		return "admin/clientManagement";
 	}
 	
+	@RequestMapping(value="/{rezCode}&{idClient}")
+	public String clientsPage(@PathVariable int rezCode, @PathVariable String idClient, Model model){
+		
+		model.addAttribute("error", rezCode);
+		model.addAttribute("id", idClient);
+		model.addAttribute("clientList", service.getAllClients());
+		return "admin/clientManagement";
+	}
+	
 	@RequestMapping(value="/details/{idClient}")
 	public String clientDetailPage(@PathVariable String idClient, Model model){
 		Client client = service.getClient(idClient);
@@ -46,6 +55,8 @@ public class ClientManagement extends AbstractController {
 			service.updateClient(client);
 			return "redirect:/admin/clientManagement.html";
 		}
+		
+		
 		
 		if (!email.isEmpty()) {
 			new EmailValidator().validate(email, bindingResult);

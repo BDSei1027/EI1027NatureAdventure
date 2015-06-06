@@ -81,6 +81,7 @@
 									</div>
 								</div>
 								<div class="form-group row">
+									<form:label path="telephone" for="itlf" class="control-label col-lg-3">Telephone </form:label>
 									<div class="col-lg-9">
 										<form:input path="telephone" id="itlf" class="form-control" type="text" />
 										<form:errors path="telephone" />

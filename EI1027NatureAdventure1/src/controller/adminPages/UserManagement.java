@@ -12,6 +12,8 @@ import controller.basics.AbstractController;
 @RequestMapping("/admin/userManagement")
 public class UserManagement extends AbstractController {	
 	
+//TODO Parm: "error":integer = 2 delete
+//TODO Parm: "id"   :String  = user id
 
 	@RequestMapping
 	public String userPage(Model model){
@@ -19,9 +21,18 @@ public class UserManagement extends AbstractController {
 		return "admin/userManagement";
 	}
 	
+	@RequestMapping("/{rezCode}&{idUser}")
+	public String userPage(@PathVariable int rezCode, @PathVariable String idUser, Model model){
+		
+		model.addAttribute("error", rezCode);
+		model.addAttribute("id",idUser);
+		model.addAttribute("userList", service.getAllUsers());
+		return "admin/userManagement";
+	}
+	
 	@RequestMapping(value="/remove/{userName}")
 	public String removeUser(@PathVariable String userName, Model model){
 		service.deleteUser(userName);
-		return "redirect:/admin/userManagement.html";
+		return "forward:/admin/userManagement/"+2+"&"+userName+".html";
 	}
 }

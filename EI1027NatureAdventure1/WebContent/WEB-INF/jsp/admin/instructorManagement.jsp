@@ -23,7 +23,7 @@
 				</div>
 				<div class="panel-body">
 					<p>The following table lists all the instructor, which are in the data base.</p>
-					<p>To see the activities of the instructor, click on <span class="label label-info">Edit</span></p>
+					<p>To see the activities of the instructor, click on <span class="label label-info">Details</span></p>
 					<p>In menu of the left, you can choose how do you want the data and add more instructors</p>
 				</div>
 			</div>

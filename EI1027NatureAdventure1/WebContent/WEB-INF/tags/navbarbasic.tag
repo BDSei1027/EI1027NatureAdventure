@@ -10,35 +10,48 @@
 
   	  	<!-- Login MODAL -->
 	<div class="modal fade" id="LoginModal" tabindex='-1' role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-wide">
 			<div class="modal-content">
-				<div class="modal-header modal-header-success" id="LoginModalHead">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+				<div class="modal-header" id="LoginModalHead">
+					<div class="row">
+							<button type="button" class="close pull-right" data-dismiss="modal" style="padding-right: 4%; margin-top: 2px;">&times;</button>
+							<h4 class="pull-left">Sign in!</h4>
+						</div>
 				</div>
-				<div class="modal-body" id="LoginModalBody">
-					<form role="form" action="${pageContext.request.contextPath}/login.html" method="post">
-						<div class="form-group">
-							<label for="user" class="control-label"><span class="glyphicon glyphicon-user"></span> Username </label>
-							<input type="text" name="user" class="form-control" id="user" placeholder="Username" />
-						</div>
-						<div class="form-group">
-							<label for="pass" class="control-label">Password: </label>
-							<input type="password" name="password" class="form-control" id="pass" placeholder="Password" />
-						</div>
-						<div class="checkbox">
-							<label for="remem">
-								<input type="checkbox" name="remem" id="remem" value="true"/> Remember me:
+				<form role="form" action="${pageContext.request.contextPath}/login.html" method="post">
+					<div class="modal-body" id="LoginModalBody">
+							<div class="form-group row">
+								<label for="user" class="control-label col-lg-2">Username </label>
+								<div class="col-lg-10">
+									<input type="text" name="user" class="form-control" id="user" placeholder="Username" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="pass" class="control-label col-lg-2">Password </label>
+								<div class="col-lg-10">
+									<input type="password" name="password" class="form-control" id="pass" placeholder="Password" />
+								</div>
+							</div>
+							<div class="form-group">
+							<label class="checkbox" for="remem">
+								<input class="custom-checkbox" type="checkbox" id="remem" name="remem" value="true"/> Remember me:
 							</label>
-						</div>
-						<button type="submit" class="btn btn-success" id="LoginButton"><span class="glyphicon glyphicon-off"></span> Sign in</button>
-					</form>
-				</div>	
-				<div class="modal-footer" id="LoginModalFooter">
-					<button class="btn btn-danger pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-					<p>Not a member? <a href="${pageContext.request.contextPath}/register.html">Sign Up</a></p>
-          			<p>Forgot <a href="#">Password?</a></p>
-				</div>
+							</div>
+					</div>	
+					<div class="modal-footer" id="LoginModalFooter">
+						<div class="pull-left">
+						<p>Not a member? <a href="${pageContext.request.contextPath}/register.html">Sign Up</a></p>
+	          			<p>Forgot <a href="#">Password?</a></p>
+	          			</div>
+	          			<div class="pull-right">
+		          			<div class="btn-group" style="margin-top: 5px;">
+								<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Sign in</button>
+								<button class="btn btn-danger pull-left" data-dismiss="modal"><span class="fui-cross"></span> Cancel</button>
+							</div>
+	          			</div>
+	          			<div style="clear:both;"></div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -60,7 +73,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#loginModal" data-toggle="modal" data-target="#LoginModal">Sign in</a></li>
-      <li class="active"><a href="${pageContext.request.contextPath}/register.html">Sign up!  
+      <li class="active"><a href="${pageContext.request.contextPath}/register.html" class="btn-logout">Sign up!  
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
     </ul>
   </div>

@@ -23,7 +23,7 @@
 					<p>The following table lists all the clients, which are in the data base.</p>
 					<p>To see details of the client, click on <span class="label label-info">Details</span>.</p>
 					<p>If you need to contact with the client, go to <span class="label label-info">Details</span> and then click on <strong class="high">Contact</strong>.</p>
-					<p>You can delete a client with its user with <span class="label label-danger">Delete</span>. <strong>Be care!</strong></p>
+					<p>You can delete a client with its user with <span class="label label-danger">Delete</span>. <strong class="high"> Be care!</strong></p>
 				</div>
 			</div>
 		<!-- </div> -->

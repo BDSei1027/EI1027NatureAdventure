@@ -19,11 +19,24 @@ import controller.basics.AbstractController;
 @RequestMapping("/admin/activityManagement")
 public class ActivityManagement extends AbstractController{
 
+//TODO Parm: "error":integer =  0 add | 1 update
+//TODO Parm: "id"   :integer = [0,*] activity id
+	
 	
 	@RequestMapping
 	public String activityManagementPage(Model model){
 		LinkedList<Activity> activityList = new LinkedList<Activity>(service.getAllActivities());
+		model.addAttribute("activityList", activityList);
 		
+		return "admin/activityManagement";
+	}
+	
+	@RequestMapping(value="/{rezCode}&{idCode}")
+	public String activityManagementPage(@PathVariable int rezCode, @PathVariable int idCode, Model model){
+		LinkedList<Activity> activityList = new LinkedList<Activity>(service.getAllActivities());
+		
+		model.addAttribute("error",rezCode);
+		model.addAttribute("id", idCode);
 		model.addAttribute("activityList", activityList);
 		
 		return "admin/activityManagement";
@@ -43,7 +56,8 @@ public class ActivityManagement extends AbstractController{
 		
 		service.addActivity(activity);
 		
-		return "redirect:/adminactivityManagement.html";
+		
+		return "redirect:/admin/activityManagement/"+0+"&"+activity.getIdAct()+".html";
 	}
 	
 	@RequestMapping(value="/disable/{actId}")
@@ -58,14 +72,14 @@ public class ActivityManagement extends AbstractController{
 		service.activateActivity(actId);
 		
 		
-		return "redirect:/admin/activityManagement.html";
+		return "forward:/admin/activityManagement/"+1+"&"+actId+".html";
 	}
 	
 	@RequestMapping(value="/modify/{actId}")
 	public String activityManagementModify(@PathVariable int actId, Model model){		
 		model.addAttribute("activity", service.getActivity(actId));
 		
-		return "admin/activityManagement/modify";
+		return "forward:/admin/activityManagement/"+1+"&"+actId+".html";
 	}
 	
 	@RequestMapping(value="/modify/{actId}", method=RequestMethod.POST)
@@ -75,7 +89,7 @@ public class ActivityManagement extends AbstractController{
 		
 		service.updateActivity(activity);
 		
-		return "redirect:/admin/activityManagement.html";
+		return "forward:/admin/activityManagement/"+0+"&"+activity.getIdAct()+".html";
 	}
 	
 	@RequestMapping(value="/onlyActive")

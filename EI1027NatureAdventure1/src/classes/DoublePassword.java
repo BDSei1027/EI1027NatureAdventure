@@ -11,6 +11,7 @@ public class DoublePassword {
 	
 	private String password;
 	private String confirmation;
+	private String user;
 	
 	public DoublePassword() {
 		super();
@@ -36,4 +37,14 @@ public class DoublePassword {
 		if (password == null && confirmation == null) return true;
 		return false;
 	}
+
+	public String getUser() {
+		return this.user;
+	}
+	
+	public void setUser(String user) {
+		this.user = user;
+	}
 }
+
+
