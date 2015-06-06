@@ -47,24 +47,28 @@
 							<form:form modelAttribute="instructor" action="${pageContext.request.contextPath}/account/updateInstructor.html" method="post" role="form">
 								<div class="form-group row">
 									<form:label path="idNumber" for="iid" class="control-label col-lg-3">ID </form:label>
+									<form:hidden path="idNumber" />
 									<div class="col-lg-9">
 										<div id="iid" class="form-control"><c:out value="${instructor.idNumber}" /></div>
 									</div>
 								</div>
 								<div class="form-group row">
 									<form:label path="ssNumber" for="issn" class="control-label col-lg-3">SSN </form:label>
+									<form:hidden path="ssNumber" />
 									<div class="col-lg-9">
 										<div id="issn" class="form-control"><c:out value="${instructor.ssNumber}" /></div>
 									</div>
 								</div>
 								<div class="form-group row">
 									<form:label path="name" for="iname" class="control-label col-lg-3">Name </form:label>
+									<form:hidden path="name" />
 									<div class="col-lg-9">
 										<div id="iname" class="form-control"><c:out value="${instructor.name}" /></div>
 									</div>
 								</div>
 								<div class="form-group row">
 									<form:label path="lastName" for="ilname" class="control-label col-lg-3">Last name </form:label>
+									<form:hidden path="lastName" />
 									<div class="col-lg-9">
 										<div id="ilname" class="form-control"><c:out value="${instructor.lastName}" /></div>
 									</div>
@@ -77,7 +81,6 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<form:label path="telephone" for="itlf" class="control-label col-lg-3">Telephone </form:label>
 									<div class="col-lg-9">
 										<form:input path="telephone" id="itlf" class="form-control" type="text" />
 										<form:errors path="telephone" />
@@ -96,18 +99,21 @@
 							<form:form modelAttribute="client" method="post" action="${pageContext.request.contextPath}/account/updateClient.html" role="form">
 								<div class="form-group row">
 									<form:label path="clientId" for="cid" class="control-label col-lg-3">ID </form:label>
+									<form:hidden path="clientId" />
 									<div class="col-lg-9">
 										<div id="cid" class="form-control"><c:out value="${client.clientId}" /></div>
 									</div>
 								</div>
 								<div class="form-group row">
 									<form:label path="clientName" for="cname" class="control-label col-lg-3">Name </form:label>
+									<form:hidden path="clientName" />
 									<div class="col-lg-9">
 										<div id="cname" class="form-control"><c:out value="${client.clientName}" /></div>
 									</div>
 								</div>
 								<div class="form-group row">
 									<form:label path="clientLastName" for="clname" class="control-label col-lg-3">Last name </form:label>
+									<form:hidden path="clientLastName" />
 									<div class="col-lg-9">
 										<div id="clname" class="form-control"><c:out value="${client.clientLastName}" /></div>
 									</div>
