@@ -5,22 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
-<t:template>
-<jsp:body>
-
-	<h4>Usuarios y contrasenyas</h4>
-	<ul>
-		<li><strong>admin</strong> 123456</li>
-		<li><STRONG>73401117</STRONG> 666666666 <em>Instructor</em></li>
-		<li><strong>33366633A</strong> 12345678 <em>Cliente</em></li>
-	</ul>
-	<h3>Example</h3>
-	<p><c:out value="${pageContext.request.requestURI}" /></p>
-	<p>This is the example page to go to the links</p>
-	
-	<u>Interest Links:</u>
-	<ul>
-		<li><a href="login.html">LINK</a></li>
-	</ul>
-</jsp:body>
-</t:template>
+<%
+   // New location to be redirected
+   String site = new String("index.html");
+   response.setStatus(response.SC_MOVED_TEMPORARILY);
+   response.setHeader("Location", site); 
+%>
