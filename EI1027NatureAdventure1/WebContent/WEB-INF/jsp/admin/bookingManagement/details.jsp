@@ -127,7 +127,7 @@
 			                      <th></th>
 			                    </thead>
 			                    <tbody>
-			                    	<c:forEach var="instructor" items="${instructorsAvaliable}">
+			                    	<c:forEach var="instructor" items="${instructorsAvailable}">
 				                      <tr>
 				                        <td><c:out value="${instructor.ssNumber}" /></td>
 				                        <td><c:out value="${instructor.name}" /></td>
