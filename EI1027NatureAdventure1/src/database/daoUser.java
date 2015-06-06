@@ -133,4 +133,8 @@ public class daoUser implements DaoInterface {
 		dataSource.update(sql, u.getName(), u.getLanguage(), u.getUser());
 	}
 
+	public Integer getUserCount(){
+		String sql = "SELECT COUNT(*) FROM login;";
+		return dataSource.queryForObject(sql, Integer.class);
+	}
 }

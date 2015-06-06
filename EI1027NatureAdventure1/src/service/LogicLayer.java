@@ -95,6 +95,7 @@ public class LogicLayer {
 	 */
 	public void addInstructor(Instructor instructor){
 		if (instructor.getActivities() == null) instructor.setActivities(new ArrayList<Integer>());
+		
 		daoInstructor.addElement(instructor);
 		
 	}
@@ -475,6 +476,10 @@ public class LogicLayer {
 		return allBookingsClasses;
 	}
 	
+	public Integer getPendingBookingsCount(){
+		return daoBooking.getPendingBookingsCount();
+	}
+	
 	/*
 	 * STATUS ZONE
 	 */
@@ -739,6 +744,11 @@ public class LogicLayer {
 		newUser.setType(2);
 		return newUser;
 	}
+	
+	public Integer getUserCount(){
+		return daoUser.getUserCount();
+	}
+	
 	
 	/*
 	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE

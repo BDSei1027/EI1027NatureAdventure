@@ -254,6 +254,12 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
+	public Integer getPendingBookingsCount(){
+		String sql = "SELECT COUNT(*) FROM status WHERE status LIKE 'pending';";
+		return dataSource.queryForObject(sql, Integer.class);
+	}
+	
+	
 	/**
 	 * Method to obtain the maximum inner Identifier of the booking
 	 * @return Integer with the maximum ID
