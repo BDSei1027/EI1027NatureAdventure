@@ -800,7 +800,6 @@ public class LogicLayer {
 	}
 	
 	public void deleteToken(String tokenUser) {
-		System.out.println(tokenUser);
 		daoToken.deleteElement(tokenUser);
 	}
 	
