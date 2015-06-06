@@ -1,5 +1,7 @@
 package controller.adminPages;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import validators.ClientValidator;
-import validators.EmailValidator;
 import classes.Client;
 import classes.Email;
 import controller.basics.AbstractController;
@@ -48,28 +49,13 @@ public class ClientManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/details/{idClient}", method=RequestMethod.POST)
-	public String clientDetailPagePost(@PathVariable String idClient, @ModelAttribute("client") Client client, @ModelAttribute("email") Email email, BindingResult bindingResult, Model model) {
-		if (!client.isEmpty()) {
-			new ClientValidator().validate(client, bindingResult);
-			if (bindingResult.hasErrors()) return "admin/clientManagement/details";
-			service.updateClient(client);
-			return "redirect:/admin/clientManagement.html";
-		}
+	public String clientDetailPagePost(@PathVariable String idClient, @ModelAttribute("client") Client client, BindingResult bindingResult, HttpSession session) {
+
+		new ClientValidator(session).validate(client, bindingResult);
+		if (bindingResult.hasErrors()) return "admin/clientManagement/details";
+		service.updateClient(client);
+		return "forward:/admin/clientManagement/"+1+"&"+idClient+".html";
 		
-		
-		
-		if (!email.isEmpty()) {
-			new EmailValidator().validate(email, bindingResult);
-			if (bindingResult.hasErrors()) {
-				model.addAttribute("error", 1);
-				return "admin/clientManagement/details";
-			}
-			//service.sendMail(email);
-			model.addAttribute("error", 0);
-		}
-		
-		model.addAttribute("client", client);
-		return "/admin/clientManagement/details";
 	}
 	
 }

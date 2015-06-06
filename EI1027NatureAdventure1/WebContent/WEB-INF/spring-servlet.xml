@@ -62,7 +62,7 @@
 	    
 	    <mvc:interceptor>
 	        <mvc:mapping path="/customer.html"/>
-	        <mvc:mapping path="/custoumer/**"/>
+	        <mvc:mapping path="/customer/**"/>
 	        <bean class="controller.interceptors.CustomerInterceptor" />
 	    </mvc:interceptor>
 	    

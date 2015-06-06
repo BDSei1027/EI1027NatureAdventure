@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,6 +47,8 @@ public class InstructorManagement extends AbstractController {
 		return "admin/instructorManagement";
 	}
 	
+	
+	
 
 	@RequestMapping(value="/onlyActive")
 	public String instructorsPageActive(Model model){
@@ -68,9 +72,9 @@ public class InstructorManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
+	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
 		//Check the instructor input format
-		InstructorValidator validator = new InstructorValidator();
+		InstructorValidator validator = new InstructorValidator(session);
 		validator.validate(instructor, bindingResult);
 		
 		if(bindingResult.hasErrors()) return "admin/instructorManagement/add";
@@ -111,11 +115,28 @@ public class InstructorManagement extends AbstractController {
 		return "admin/instructorManagement/modify";
 	}
 	
+	@RequestMapping(value="/modify/{idInstructor}/{resCode}&{idCode}")
+	public String instructorsModifyPage(@PathVariable int resCode, @PathVariable String idCode, @PathVariable String idInstructor, Model model){
+		Instructor instructor = service.getInstructor(idInstructor);
+		Collection<Activity> colActivities = service.getAllActivities(instructor); 
+		
+		model.addAttribute("error",resCode);
+		model.addAttribute("id", idCode);
+		model.addAttribute("instructor", instructor);
+		model.addAttribute("activities", colActivities);
+		
+		return "admin/instructorManagement/modify";
+	}
+	
 	@RequestMapping(value="/modify/{idInstructor}", method=RequestMethod.POST)
-	public String instructorsModifyPage(@PathVariable String idInstructor, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
+	public String instructorsModifyPage(Model model, @PathVariable String idInstructor, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
 		//Check errors
-		new InstructorValidator().validate(instructor, bindingResult);
-		if(bindingResult.hasErrors()) return "admin/instructorManagement/modify";
+		new InstructorValidator(session).validate(instructor, bindingResult);
+		
+		if(bindingResult.hasErrors()){
+			model.addAttribute("activities", service.getAllActivities(instructor));
+			return "admin/instructorManagement/modify";
+		}
 
 		service.updateInstructor(instructor);
 		
@@ -149,7 +170,7 @@ public class InstructorManagement extends AbstractController {
 	public String instructorsRemoveActivity(@PathVariable String idInstructor, @PathVariable Integer idActivity){
 		service.removeInstructed(idInstructor, idActivity);
 		
-		return "forward:/admin/instructorManagement/"+2+"&"+idInstructor+".html";
+		return "forward:/admin/instructorManagement/modify/"+idInstructor+"/"+2+"&"+idInstructor+".html";
 	}
 
 }
