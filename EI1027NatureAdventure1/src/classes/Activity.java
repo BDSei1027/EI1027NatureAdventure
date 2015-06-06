@@ -18,6 +18,7 @@ public class Activity {
     private String nombre;
     private String description;
     private String Descripcion;
+    private String image;
     private List<String> qualifiedInstructors;
 
     public Activity() {
@@ -180,5 +181,14 @@ public class Activity {
 	public void setDescripcion(String descripcion) {
 		Descripcion = descripcion;
 	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
     
+	
 }

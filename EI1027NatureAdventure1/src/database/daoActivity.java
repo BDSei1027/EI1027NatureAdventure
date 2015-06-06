@@ -46,6 +46,7 @@ public class daoActivity implements DaoInterface {
 				activity.setNombre(rs.getString("nombre"));
 				activity.setDescription(rs.getString("description"));
 				activity.setDescripcion(rs.getString("descripcion"));
+				activity.setDescripcion(rs.getString("image"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -63,10 +64,10 @@ public class daoActivity implements DaoInterface {
 		if(!(element instanceof Activity)) return;
 		// Cast Object to Activity
 		Activity activity = (Activity) element;
-		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive, nombre, description, descripcion) " +
-                            "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive, nombre, description, descripcion, image) " +
+                            "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, activity.getIdAct(), activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
-				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getNombre(), activity.getDescription(), activity.getDescripcion());
+				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getNombre(), activity.getDescription(), activity.getDescripcion(), activity.getImage());
 		
 //		// Get the instructors who can teach it
 //		List<String> listIns = activity.getInstructors();
@@ -101,10 +102,10 @@ public class daoActivity implements DaoInterface {
 		// Cast Objecto to Activity
 		Activity activity = (Activity) element;
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +
-            "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? , nombre = ?, description = ?, descripcion = ?" +
+            "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? , nombre = ?, description = ?, descripcion = ?, image = ?" +
                             "WHERE idact = ?;";
 		dataSource.update(sql, activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(), 
-				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getIdAct(), activity.getNombre(), activity.getDescription(), activity.getDescripcion());
+				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getIdAct(), activity.getNombre(), activity.getDescription(), activity.getDescripcion(), activity.getImage());
 	}
 
 	/**
