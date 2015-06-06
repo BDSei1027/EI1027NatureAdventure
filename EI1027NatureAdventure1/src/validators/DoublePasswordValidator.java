@@ -9,14 +9,16 @@ import classes.DoublePassword;
 import classes.User;
 
 public class DoublePasswordValidator  implements Validator {
-	String language;
+	String language = "EN";
 	
 	public DoublePasswordValidator(HttpSession session) {
 		super();
 		User user = (User) session.getAttribute("user");
+		if(user!=null){
 		language = user.getLanguage();
 		if(language == null || language.equals("")){
 			language = "EN";
+		}
 		}
 	}
 	@Override

@@ -9,14 +9,16 @@ import classes.Booking;
 import classes.User;
 
 public class BookingValidator implements Validator {
-	String language;
+	String language ="EN";
 	
 	public BookingValidator(HttpSession session) {
 		super();
 		User user = (User) session.getAttribute("user");
-		language = user.getLanguage();
-		if(language == null || language.equals("")){
-			language = "EN";
+		if (user != null) {
+			language = user.getLanguage();
+			if (language == null || language.equals("")) {
+				language = "EN";
+			}
 		}
 	}
 

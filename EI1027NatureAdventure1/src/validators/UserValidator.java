@@ -8,14 +8,16 @@ import org.springframework.validation.Validator;
 import classes.User;
 
 public class UserValidator implements Validator {
-	String language;
+	String language = "EN";
 	
 	public UserValidator(HttpSession session) {
 		super();
 		User user = (User) session.getAttribute("user");
-		language = user.getLanguage();
-		if(language == null || language.equals("")){
-			language = "EN";
+		if (user != null) {
+			language = user.getLanguage();
+			if (language == null || language.equals("")) {
+				language = "EN";
+			}
 		}
 	}
 	@Override

@@ -9,14 +9,16 @@ import classes.Email;
 import classes.User;
 
 public class EmailValidator implements Validator{
-	String language;
+	String language = "EN";
 	
 	public EmailValidator(HttpSession session) {
 		super();
 		User user = (User) session.getAttribute("user");
-		language = user.getLanguage();
-		if(language == null || language.equals("")){
-			language = "EN";
+		if(user!=null){
+			language = user.getLanguage();
+			if (language == null || language.equals("")) {
+				language = "EN";
+			}
 		}
 	}
 	

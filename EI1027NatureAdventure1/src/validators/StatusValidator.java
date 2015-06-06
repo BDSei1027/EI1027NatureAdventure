@@ -9,14 +9,16 @@ import classes.Status;
 import classes.User;
 
 public class StatusValidator implements Validator {
-	String language;
+	String language ="EN";
 	
 	public StatusValidator(HttpSession session) {
 		super();
 		User user = (User) session.getAttribute("user");
-		language = user.getLanguage();
-		if(language == null || language.equals("")){
-			language = "EN";
+		if(user!=null){
+			language = user.getLanguage();
+			if (language == null || language.equals("")) {
+				language = "EN";
+			}
 		}
 	}
 	@Override

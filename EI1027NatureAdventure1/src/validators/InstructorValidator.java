@@ -11,14 +11,16 @@ import classes.Instructor;
 import classes.User;
 
 public class InstructorValidator implements Validator {
-	String language;
+	String language = "EN";
 	
 	public InstructorValidator(HttpSession session) {
 		super();
 		User user = (User) session.getAttribute("user");
+		if(user!=null){
 		language = user.getLanguage();
 		if(language == null || language.equals("")){
 			language = "EN";
+		}
 		}
 	}
 	@Override
