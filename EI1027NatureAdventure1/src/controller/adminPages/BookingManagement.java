@@ -31,7 +31,7 @@ public class BookingManagement extends AbstractController {
 		model.addAttribute("booking", booking);
 		model.addAttribute("status", service.getStatus(booking));
 		model.addAttribute("dateToday", new Date());
-//		model.addAttribute("instructorsAvailable", service.get);
+		model.addAttribute("instructorsAvailable", service.getAvaliableInstructorsToAssign(idBooking));
 		model.addAttribute("client", service.getClient(booking.getClientId()));
 		model.addAttribute("activity", service.getActivity(booking.getIdAct()));
 		
