@@ -29,7 +29,12 @@
 				</div>
 			</div>
 		</div>
-		
+		<c:if test="${empty bookings}">
+			<div class="nobooking" style="margin-top: 15px;">
+				<h5 class="text-center text-muted">No active bookings. Come on make a booking!</h5>
+				<h6 class="text-center text-muted">Go to <a href="${pageContext.request.contextPath}/activities.html" style="font-weight: bold">activities</a></h6>
+			</div>
+		</c:if>
 		<c:forEach var="booking" items="${bookings}">
 			    <div class="booking">
 			    	<a href="#collapseAct" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">

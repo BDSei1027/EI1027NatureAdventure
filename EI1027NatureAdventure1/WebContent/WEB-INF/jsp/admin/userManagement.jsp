@@ -4,7 +4,7 @@
 
 <t:template>
 <jsp:body>
-	<h4>Client management</h4>
+	<h4>User management</h4>
 	<div id="help" class="row">
 		<div class="panel panel-info">
 			<div class="panel-heading">

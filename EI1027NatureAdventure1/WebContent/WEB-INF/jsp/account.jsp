@@ -149,14 +149,14 @@
 							<form:label path="password" for="p1" class="col-lg-2 control-label">Password </form:label>
 							<div class="col-lg-10">
 								<form:input path="password" id="p1" type="password" class="form-control" />
-								<form:errors path="password" />
+								<form:errors path="password" class="text-danger"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<form:label path="confirmation" for="p2" class="col-lg-2 control-label"> Confirmation </form:label>
+							<form:label path="confirmation" for="p2" class="col-lg-2 control-label">Confirmation </form:label>
 							<div class="col-lg-10">
 								<form:input path="confirmation" id="p2" type="password" class="form-control" />
-								<form:errors path="confirmation" />	
+								<form:errors path="confirmation" class="text-danger"/>	
 							</div>
 						</div>
 						<div class="text-center">

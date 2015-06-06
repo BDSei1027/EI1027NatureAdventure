@@ -50,7 +50,7 @@
 				  						</div>
 				  					</div>
 				  					<div class="modal-footer" id="deleteUserModalFooter">
-				  						<a href="${pageContext.request.contextPath}/admin/userManagement/remove/${user.user}.html"><button type="button" class="btn btn-danger" data-dismiss="modal" id="deleteActBtnModal">Delete</button></a>
+				  						<a href="${pageContext.request.contextPath}/admin/userManagement/remove/${user.user}.html"><button type="button" class="btn btn-danger" id="deleteActBtnModal">Delete</button></a>
 				  						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				  					</div>
 				  				</div>
@@ -68,7 +68,7 @@
 				  						</div>
 				  					</div>
 				  					<div class="modal-footer" id="deleteUserModalFooter">
-				  						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				  						<button type="button" class="btn btn-default" data-dismiss="modal">Accept</button>
 				  					</div>
 				  				</div>
 	  						</c:otherwise>
