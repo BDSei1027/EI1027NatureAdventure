@@ -6,13 +6,14 @@
 <t:template>
 	<jsp:body>
 	<h4>Activity management</h4>
-	<h6 class="subtitle">Details of the activity <strong>${activity.name}</strong> (${activity.idAct})</h6>
+	<h6 class="subtitle">Details of the activity <strong>${activity.name}</strong> <small>${activity.idAct}</small></h6>
 	
 	<form:form method="post" modelAttribute="activity" role="form">
 		<div class="form-group">
 			<form:label path="idAct" for="id" class="control-label col-lg-2">Identifier</form:label>
 			<div class="col-lg-10">
-				<form:input path="idAct" id="id" class="form-control" />
+				<form:hidden path="idAct" />
+				<div class="form-control" id="id"><c:out value="${activity.idAct}" /></div>
 				<form:errors path="idAct" id="iderr" class="text-danger" />
 			</div>
 		</div>

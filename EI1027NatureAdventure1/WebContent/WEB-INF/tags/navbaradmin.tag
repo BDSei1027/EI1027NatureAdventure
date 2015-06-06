@@ -25,9 +25,9 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text" id="navtext">Welcome <strong><c:out value="${user.name}" /></strong></p></li>
-      <li><a href="${pageContext.request.contextPath}/admin.html" data-toggle="dropdown" role="button" aria-expanded="false">Admin</a> <span class="fui-triangle-down"></span>
+      <li><a href="${pageContext.request.contextPath}/admin.html" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="fui-triangle-down" style="padding-left: 2px;"></span></a>
          <ul class="dropdown-menu" role="menu">
-           <li><a href="${pageContext.request.contextPath}/account.html">Main</a></li>
+           <li><a href="${pageContext.request.contextPath}/admin.html">Main</a></li>
            <li class="divider"></li>
            <li><a href="${pageContext.request.contextPath}/admin/activityManagement.html">Activity management</a></li>
            <li><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">Instructor management</a></li>

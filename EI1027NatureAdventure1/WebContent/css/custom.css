@@ -23,6 +23,24 @@ strong {
 	color: #1ABC9C;
 }
 
+.modalList > dl {
+	margin: auto;
+	width: 50%;
+	overflow: hidden;
+}
+
+.modalList dl > dt {
+	float:left;
+	width: 50%;
+	color: #1abc9c;
+	font-weight: bold;
+}
+
+.modalList dl > dd {
+	float:right;
+	width: 50%;
+}
+
 .modal-content {
 	box-shadow: -10px 10px 2px rgba(0, 0, 0, 0.25);
 	border-radius: 6px;
@@ -46,7 +64,7 @@ strong {
 }
 
 .modal-body {
-	padding: 30px 30px;
+	padding: 15px 30px;
 	background-color: #f5f7f8;
 }
 
@@ -177,10 +195,12 @@ footer p {
 	width: 100%;
 	overflow: hidden;
 }
+
 .stadistics > dl > dt {
 	float:left;
 	width: 50%;
 }
+
 .stadistics > dl > dd {
 	float:right;
 	width: 50%;

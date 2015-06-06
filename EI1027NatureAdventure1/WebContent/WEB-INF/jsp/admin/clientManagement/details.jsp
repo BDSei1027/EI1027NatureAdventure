@@ -28,7 +28,8 @@
 			<div class="form-group row">
 				<form:label path="clientId" for="cid" class="col-lg-2 control-label">ID Number</form:label>
 				<div class="col-lg-10">
-					<form:input path="clientId" id="cid" type="text" class="form-control" />
+					<form:hidden path="clientId" />
+					<div class="form-control" id="cid"><c:out value="${client.clientId}" /></div>
 					<form:errors path="clientId" />
 				</div>
 			</div>
