@@ -12,7 +12,7 @@
 		<div id="actionsHelp" class="row">
 			<div id="action" class="col-lg-2">
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="${pageContext.request.contextPath}/customer/main.html">Main</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer.html">Main</a></li>
 					<li class="active"><a href="${pageContext.request.contextPath}/customer/history.html">History</a>
 					<li class="activeBooking"><a>Bookings <span class="mybadge"><c:out value="${numbookings}" /></span></a></li>
 				</ul>

@@ -135,17 +135,23 @@ strong {
 	color: #1abc9c;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
-	background-color: #ecf0f1;
-}
-
-.nav-pills > li.activeBooking > a {
+.nav > li > a {
 	background-color: #34495e;
 	color: #FFF;
 }
 
+.nav > li > a:hover, .nav > li > a:focus {
+	background-color: #1abc9c;
+	color: #FFF;
+}
+
+.nav-pills > li.activeBooking > a {
+	background-color: #2ecc71;
+	color: #FFF;
+}
+
 .nav-pills > li.active > a {
-	background-color: #34495e;
+	background-color: #3498db;
 	
 }
 
@@ -323,6 +329,41 @@ footer p {
 	color: #bdc3c7;
 }
 
+.title-pending {
+	font-style: italic;
+	color: #ecf0f1;
+	margin: 0px;
+}
+
+.title-pending  > .fui-triangle-down {
+	color: #FFF;
+	padding-left: 20px;
+}
+
+.title-accepted {
+	font-style: italic;
+	font-weight: bold;
+	color: #1abc9c;
+	margin: 0px;
+}
+
+.title-accepted > .fui-triangle-down {
+	color: #FFF;
+	padding-left: 20px;
+}
+
+.title-declined {
+	font-style: italic;
+	font-weight: bold;
+	color: #e74c3c;
+	margin: 0px;
+}
+
+.title-declined  > .fui-triangle-down {
+	color: #FFF;
+	padding-left: 20px;
+}
+
 .booking-title > a {
 	margin-right: 5px;
 	padding-left: 5px;
@@ -447,17 +488,19 @@ footer p {
 }
 
 .booking-status > .declined {
-	color: #e67e22;
+	color: #e74c3c;
 	text-align: center;
 	text-transform: capitalize;
 	font-weight: bolder;
+	font-size: 200%;
 }
 
 .booking-status > .pending {
-	color: #fff;
+	color: #95a5a6;
 	text-align: center;
 	text-transform: capitalize;
 	font-weight: bolder;
+	font-size: 200%;
 }
 
 .booking-status > .date {
