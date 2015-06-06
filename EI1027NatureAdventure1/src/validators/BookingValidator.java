@@ -1,11 +1,24 @@
 package validators;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import classes.Booking;
+import classes.User;
 
 public class BookingValidator implements Validator {
+	String language;
+	
+	public BookingValidator(HttpSession session) {
+		super();
+		User user = (User) session.getAttribute("user");
+		language = user.getLanguage();
+		if(language == null || language.equals("")){
+			language = "EN";
+		}
+	}
 
 	@Override
 	public boolean supports(Class<?> cls) {
@@ -17,15 +30,30 @@ public class BookingValidator implements Validator {
 		Booking booking = (Booking) obj;
 		
 		if(booking.getGroupSize()<=0){
-			errors.rejectValue("groupSize", "Invalid value", "The group size must be greater than 0"); //El grupo debe ser mayor que 0	
+			if(language.equals("ES")){
+				errors.rejectValue("groupSize", "Invalid value", "El grupo debe ser mayor que 0"); //El grupo debe ser mayor que 0	
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("groupSize", "Invalid value", "The group size must be greater than 0"); //El grupo debe ser mayor que 0	
+			}
+			
 		}
 		
 		if(booking.getDateActivity()==null){
-			errors.rejectValue("dateActivity", "Invalid date", "This field must have some value");//Este campo debe tener algun valor
+			if(language.equals("ES")){
+				errors.rejectValue("dateActivity", "Invalid date", "Este campo debe tener algun valor");//Este campo debe tener algun valor
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("dateActivity", "Invalid date", "This field must have some value");//Este campo debe tener algun valor
+			}
+			
 		}
 		
 		if(booking.getPrice()<=0){
-			errors.rejectValue("price", "negative value", "The price must be greater than 0");//El precio debe ser mayor que 0
+			if(language.equals("ES")){
+				errors.rejectValue("price", "negative value", "El precio debe ser mayor que 0");//El precio debe ser mayor que 0
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("price", "negative value", "The price must be greater than 0");//El precio debe ser mayor que 0
+			}
+			
 		}
 	}
 
