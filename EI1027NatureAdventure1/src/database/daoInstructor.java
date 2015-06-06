@@ -284,7 +284,7 @@ public class daoInstructor implements DaoInterface {
 				"WHERE inidas.idAct = ? AND inidas.ssNumber " +
 				"NOT IN (SELECT s.ssNumber " +
 				"FROM Activity AS a JOIN instruidas AS inidas USING(idAct) JOIN status AS s USING(ssNumber) JOIN booking AS b USING(inneridbooking) " +
-				"WHERE a.idAct = ? AND b.dateactivity - CURRENT_DATE > '0 DAYS' < (SELECT B.dateactivity - CURRENT_DATE " +
+				"WHERE a.idAct = ? AND '0 DAYS' < (SELECT B.dateactivity - CURRENT_DATE " +
 				     "FROM Activity AS a JOIN instruidas AS inidas USING(idAct) JOIN status AS s USING(ssNumber) JOIN booking AS b USING(inneridbooking) " +
 				     "WHERE innerIdBooking = ?));";
 		Map<String, Instructor> map = new HashMap<String, Instructor>();
