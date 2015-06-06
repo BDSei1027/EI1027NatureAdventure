@@ -288,7 +288,7 @@ public class daoInstructor implements DaoInterface {
 				     "FROM Activity AS a JOIN instruidas AS inidas USING(idAct) JOIN status AS s USING(ssNumber) JOIN booking AS b USING(inneridbooking)" +
 				     "WHERE innerBooking = ?));";
 		Map<String, Instructor> map = new HashMap<String, Instructor>();
-		List<Instructor> list = dataSource.query(sql, new InstructorMapper(), idAct, innerIdBooking);
+		List<Instructor> list = dataSource.query(sql, new InstructorMapper(), idAct, idAct, innerIdBooking);
 		for(Instructor i: list) {
 			i.setActivities(getActivitiesInstructor(i.getSsNumber()));
 			map.put(i.getSsNumber(), i);
