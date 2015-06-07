@@ -79,8 +79,9 @@ public class daoStatus implements DaoInterface {
 		String sql = "UPDATE Status SET inneridbooking = ?, "
 				+ "dateRevision = ?, "
 				+ "status = ?, "
-				+ "ssnumber = ?;";
-		dataSource.update(sql, st.getIDbooking(), st.getDateRevision(), st.getStatus(), st.getSsNumber());
+				+ "ssnumber = ? " +
+				"WHERE inneridbooking = ?;";
+		dataSource.update(sql, st.getIDbooking(), st.getDateRevision(), st.getStatus(), st.getSsNumber(), st.getIDbooking());
 	}
 
 	/**
