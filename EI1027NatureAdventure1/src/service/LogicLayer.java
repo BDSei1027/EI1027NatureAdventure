@@ -533,6 +533,26 @@ public class LogicLayer {
 		status.setStatus("declined");
 		daoStatus.updateElement(status);
 	}
+	
+	public Collection<Booking> getPendingBookings(){
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getPendingBookings();
+		Collection<Booking> allBookingsPending= allBookings.values();
+		return allBookingsPending;
+	}
+	
+	public Collection<Booking> getActiveBookings(){
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getActiveBookings();
+		Collection<Booking> allBookingsActive= allBookings.values();
+		return allBookingsActive;
+	}
+	
+	public Collection<Booking> getDeclinedBookings(){
+		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getDeclinedBookings();
+		Collection<Booking> allBookingsDecline= allBookings.values();
+		return allBookingsDecline;
+	}
+	
+	
 	/** Retrieves a status.
 	 * @param booking
 	 * @return The status
