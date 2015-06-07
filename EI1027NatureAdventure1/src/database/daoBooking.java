@@ -277,4 +277,46 @@ public class daoBooking implements DaoInterface {
 		return dataSource.queryForObject(sql, Integer.class);
 	}
 
+	
+	public Object getActiveBookings(){
+		String sql = "SELECT b.* FROM status AS s JOIN booking AS b USING(inneridbooking) WHERE status = 'accepted';";
+		
+		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
+		List<Booking> list = dataSource.query(sql, new BookingMapper());
+		for (Booking book: list) {
+			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
+			map.put(book.getInnerIdBooking(), book);
+		}
+		return map;
+
+	}
+	
+	public Object getPendingBookings(){
+		String sql = "SELECT b.* FROM status AS s JOIN booking AS b USING(inneridbooking) WHERE status = 'pending';";
+		
+		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
+		List<Booking> list = dataSource.query(sql, new BookingMapper());
+		for (Booking book: list) {
+			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
+			map.put(book.getInnerIdBooking(), book);
+		}
+		return map;
+
+	}
+	public Object getDeclinedBookings(){
+		String sql = "SELECT b.* FROM status AS s JOIN booking AS b USING(inneridbooking) WHERE status = 'declined';";
+		
+		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
+		List<Booking> list = dataSource.query(sql, new BookingMapper());
+		for (Booking book: list) {
+			book.setStatus(daoStatus.getStatus(book.getInnerIdBooking()));
+			map.put(book.getInnerIdBooking(), book);
+		}
+		return map;
+
+	}
+	
+	
+	
+	
 }
