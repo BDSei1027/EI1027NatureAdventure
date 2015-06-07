@@ -9,42 +9,42 @@
 <jsp:body>
 	<div class="portada">
 		<h1 id="titulo">NatureAdventure</h1>
-		<h5 class="eslongan">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+		<h5 class="eslongan">Cuando riesgo y diversión se juntan una nueva aventura comienza</h5>
 	</div>
 
 	<div class="cuerpo-index">
 		<h4>The popular offers</h4>
 			<div class="col-lg-6">
 				<div class="offer">
-					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/aa.jpg); background-position: -80px -90px;" data-toggle="collapse" data-target="#offer-text-1" aria-expanded="false" aria-controls="collapse">
-						<p>Skydiving <small>High</small></p>
+					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/adrenalina.jpg); background-position: -80px -90px;" data-toggle="collapse" data-target="#offer-text-1" aria-expanded="false" aria-controls="collapse">
+						<p>Adrenalina</p>
 					</button>
 					<div class="collapse in" id="offer-text-1">
 					<div class="offer-space-top"></div>
 					<div class="offer-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet scelerisque orci, sed venenatis elit. Ut faucibus lacus at dapibus pharetra. Aliquam erat volutpat metus.
+						Emociones fuertes, endorfinas, adrenalina y riesgo te harán volver a repetir con nosotros y nuestras épicas aventuras junto a nuestros monitores.
 					</div>
 					</div>
 				</div>
 				<div class="offer">
-					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/bb.jpg);" data-toggle="collapse" data-target="#offer-text-2" aria-expanded="false" aria-controls="collapse">
-						<p>Canoeing <small>Easy</small></p>
+					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/relax.jpg);" data-toggle="collapse" data-target="#offer-text-2" aria-expanded="false" aria-controls="collapse">
+						<p>Relax</p>
 					</button>
 					<div class="collapse" id="offer-text-2">
 					<div class="offer-space-top"></div>
 					<div class="offer-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet scelerisque orci, sed venenatis elit. Ut faucibus lacus at dapibus pharetra. Aliquam erat volutpat metus.
+						No todo es riesgo y adrenalina, con nosotros también te puedes relajar y disfrutar de actividades para personas de todos los tipos, con emociones fuertes o sin.
 					</div>
 					</div>
 				</div>
 				<div class="offer">
-					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/ff.jpg); background-position: -80px -100px;" data-toggle="collapse" data-target="#offer-text-3" aria-expanded="false" aria-controls="collapse">
-						<p>Safari <small>Easy</small></p>
+					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/aprende.jpg); background-position: -80px -100px;" data-toggle="collapse" data-target="#offer-text-3" aria-expanded="false" aria-controls="collapse">
+						<p>Aprende</p>
 					</button>
 					<div class="collapse in" id="offer-text-3">
 					<div class="offer-space-top"></div>
 					<div class="offer-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet scelerisque orci, sed venenatis elit. Ut faucibus lacus at dapibus pharetra. Aliquam erat volutpat metus.
+						Nunca es tarde para aprender, con nuestras actividades y gracias a nuestros monitores aprenderás de la activadad y como vivir una vida más emocionante.
 					</div>
 					</div>
 				</div>
@@ -53,36 +53,36 @@
 			<div class="col-lg-6">
 			
 				<div class="offer">
-					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/dd.jpg); background-position: -200px -120px;" data-toggle="collapse" data-target="#offer-text-4" aria-expanded="false" aria-controls="collapse">
-						<p>Treking <small>Beginner</small></p>
+					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/belleza.jpg); background-position: -200px -120px;" data-toggle="collapse" data-target="#offer-text-4" aria-expanded="false" aria-controls="collapse">
+						<p>Belleza</p>
 					</button>
 					<div class="collapse" id="offer-text-4">
 					<div class="offer-space-top"></div>
 					<div class="offer-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet scelerisque orci, sed venenatis elit. Ut faucibus lacus at dapibus pharetra. Aliquam erat volutpat metus.
+						Disfruta de los mejores paisajes, por descubrir y descubiertos, sorprendete, vive la belleza de la naturaleza en estado puro.
 					</div>
 					</div>
 				</div>
 				
 				<div class="offer">
-					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/cc.jpg);" data-toggle="collapse" data-target="#offer-text-3" aria-expanded="false" aria-controls="collapse">
-						<p>Bungee-jumping <small>Medium</small></p>
+					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/riesgo.jpg);" data-toggle="collapse" data-target="#offer-text-5" aria-expanded="false" aria-controls="collapse">
+						<p>Riesgo</p>
 					</button>
-					<div class="collapse in" id="offer-text-3">
+					<div class="collapse in" id="offer-text-5">
 					<div class="offer-space-top"></div>
 					<div class="offer-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet scelerisque orci, sed venenatis elit. Ut faucibus lacus at dapibus pharetra. Aliquam erat volutpat metus.
+						Riesgo <em>controlado</em> a raudales en nuestras aventuras, donde nuestras actividades de riesgo te podrán la piel de gallina.
 					</div>
 					</div>
 				</div>
 				<div class="offer">
-					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/ee.jpg);" data-toggle="collapse" data-target="#offer-text-3" aria-expanded="false" aria-controls="collapse">
-						<p>Surf <small>Medium</small></p>
+					<button class="offer-img" style="background-image: url(${pageContext.request.contextPath}/img/diversion.jpg);" data-toggle="collapse" data-target="#offer-text-6" aria-expanded="false" aria-controls="collapse">
+						<p>Diversión</p>
 					</button>
-					<div class="collapse" id="offer-text-3">
+					<div class="collapse" id="offer-text-6">
 					<div class="offer-space-top"></div>
 					<div class="offer-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet scelerisque orci, sed venenatis elit. Ut faucibus lacus at dapibus pharetra. Aliquam erat volutpat metus.
+						La diversión es uno de nuestros fuertes y uno de nuestros objetivos para todas nuestras actividades. Diviertete como cuando eras ñiño con las cosas simples.
 					</div>
 					</div>
 				</div>

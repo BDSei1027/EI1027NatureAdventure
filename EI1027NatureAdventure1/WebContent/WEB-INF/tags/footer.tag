@@ -11,8 +11,6 @@
 	        <p class="text-muted">Another link</p>
 	        <p class="text-muted">Contact with us</p>
 	      </div>
-	
-	      <div class="col-lg-5"></div>
 	      <div class="col-lg-5 footer-col-2">
 	  			<p style="font-size: 20px;" class="text-muted"> Website designed for <strong>NatureAdventure</strong></p>
 	      	<p class="text-muted">EI1027 - Disseny i Implementació de Sistemes d'Informació<br>
