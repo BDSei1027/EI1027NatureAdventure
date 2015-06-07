@@ -1,11 +1,13 @@
 <%@ tag description="This tag contains the basic structure of the website, the header with the menu and the footer" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
+<fmt:setLocale value="${lang}" scope="session"/>
+<fmt:setBundle basename="WEB-INF/language/messages" scope="session" />
 
-<html lang="es">
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,15 +43,7 @@
 
 <body class="container">
 	<!-- Idiomas -->
-	<div class="col-xs-5 col-sm-4 col-md-3 col-lg-3 pull-right" style="padding-right: 0px">	
-		<div id="languages" class="text-right">
-			<div class="container-fluid">
-				<div class="col-xs-5"><a href="" id="langA">English</a></div>
-				<div class="col-xs-2"> | </div>
-				<div class="col-xs-5"><a href="" id="langA">Spanish</a></div>
-			</div>
-		</div>
-	</div>
+	<t:idiomas />
 	<!-- Fin idioma -->
 	
 	<!-- Cabecera -->

@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=iso-8859-1"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
@@ -18,8 +18,8 @@
 		<p>What is NatureAdventure? NatureAdventure is a business that manage adventure activities with instructors.
 		The activities can be done when you want. You only need to make the booking and our staff will assign an
 		instructor for your activity, and be ready for the adrenaline</p>
-		<p>This information system is a project for an assignament of the subject <em>EI1027, Disseny i implementaciÛ de
-		sistemes de la informaciÛ</em> and <em>EI 1023, Fonaments de l'enginyeria del programari</em>.</p>
+		<p>This information system is a project for an assignament of the subject <em>EI1027, Disseny i implementaci√≥ de
+		sistemes de la informaci√≥</em> and <em>EI 1023, Fonaments de l'enginyeria del programari</em>.</p>
 		<p>The sources of this project are in Github. Our team is <a class="high" href="${github}"><strong>@BDSei1027</strong></a> and the
 		repository is <a class="high" href="${githubrepo}"><strong>EI1027NatureAdventure</strong></a>.</p>
 		<h3>The team is composed by</h3>
@@ -29,7 +29,7 @@
           			<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 	            		<div class="about-banner">
 							<div class="panel-heading" role="tab" id="headingOne">
-								<h4 class="panel-title">David Serrano Hern·ndez</h4>
+								<h4 class="panel-title">David Serrano Hern√°ndez</h4>
 							</div>
 	        			</div>
           			</a>
@@ -41,7 +41,7 @@
 										<img src="cuiner.jpg" class="media-object about-img" alt="64x64" >
 									</div>
 									<div class="media-body">
-										<h5 class="media-heading">David Serrano Hern·ndez</h5>
+										<h5 class="media-heading">David Serrano Hern√°ndez</h5>
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">Email:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong style="color: inherit;">GitHub:</strong> <a href="${dsh}">@serrano94</a></p>
@@ -57,7 +57,7 @@
           			<a class="collapsed about-banner" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             			<div class="about-banner">
           					<div class="panel-heading" role="tab" id="headingTwo">
-								<h4 class="panel-title">CatalÌn DenÌs DamÌan</h4>
+								<h4 class="panel-title">Catal√≠n Den√≠s Dam√≠an</h4>
 							</div>
         				</div>
           			</a>
@@ -69,7 +69,7 @@
 										<img src="cuiner.jpg" class="media-object about-img" alt="64x64">
 									</div>
 									<div class="media-body">
-										<h5 class="media-heading">CatalÌn DenÌs DamÌan</h5>
+										<h5 class="media-heading">Catal√≠n Den√≠s Dam√≠an</h5>
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong style="color: inherit;">GitHub:</strong> <a href="${cdd}">@cddl</a></p>
@@ -85,7 +85,7 @@
           			<a class="collapsed about-banner" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             			<div class="about-banner">
           					<div class="panel-heading" role="tab" id="headingThree">
-								<h4 class="panel-title">Borja Blasco GarcÌa</h4>
+								<h4 class="panel-title">Borja Blasco Garc√≠a</h4>
 							</div>
         				</div>
           			</a>
@@ -97,7 +97,7 @@
 										<img src="cuiner.jpg" class="media-object about-img" alt="64x64">
 									</div>
 									<div class="media-body">
-										<h5 class="media-heading">Borja Blasco GarcÌa</h5>
+										<h5 class="media-heading">Borja Blasco Garc√≠a</h5>
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong style="color: inherit;">GitHub:</strong> <a href="${rdp}">@ratadp</a></p>
