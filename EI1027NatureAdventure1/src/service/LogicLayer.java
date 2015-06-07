@@ -585,6 +585,8 @@ public class LogicLayer {
 		Booking bok = this.getBooking(idBooking);
 		bok.setIdBooking(null);
 		daoBooking.updateElement(bok);
+		
+		
 	}
 	
 	/*
