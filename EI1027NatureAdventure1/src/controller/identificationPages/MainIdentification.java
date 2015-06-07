@@ -72,6 +72,7 @@ public class MainIdentification extends AbstractController{
 		
 		//Maintain the user data in the session
 		session.setAttribute("user", user);
+		lang = user.getLanguage();
 		if(remember){
 			String userName = user.getUser();
 			String token = UUID.randomUUID().toString();
@@ -96,7 +97,7 @@ public class MainIdentification extends AbstractController{
 			session.removeAttribute("nextPage");
 			return "redirect:"+nextPage+"?lang="+lang;
 		}
-		return "redirect:/index.jsp"+"?lang="+lang;
+		return "redirect:/index.html"+"?lang="+lang;
 		
 	}
 	
