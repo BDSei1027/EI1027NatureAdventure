@@ -1,25 +1,18 @@
 package validators;
 
-import javax.servlet.http.HttpSession;
-
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import classes.Email;
-import classes.User;
 
 public class EmailValidator implements Validator{
 	String language = "EN"; 
 	
-	public EmailValidator(HttpSession session) {
+	public EmailValidator() {
 		super();
-		User user = (User) session.getAttribute("user");
-		if(user!=null){
-			language = user.getLanguage();
-			if (language == null || language.equals("")) {
-				language = "EN";
-			}
-		}
+		String idioma = LocaleContextHolder.getLocale().getLanguage();
+		language = idioma.toUpperCase();
 	}
 	
 	@Override

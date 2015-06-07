@@ -1,25 +1,18 @@
 package validators;
 
-import javax.servlet.http.HttpSession;
-
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import classes.Status;
-import classes.User;
 
 public class StatusValidator implements Validator {
 	String language ="EN"; 
 	
-	public StatusValidator(HttpSession session) {
+	public StatusValidator() {
 		super();
-		User user = (User) session.getAttribute("user");
-		if(user!=null){
-			language = user.getLanguage();
-			if (language == null || language.equals("")) {
-				language = "EN";
-			}
-		}
+		String idioma = LocaleContextHolder.getLocale().getLanguage();
+		language = idioma.toUpperCase();
 	}
 	@Override
 	public boolean supports(Class<?> cls) {
