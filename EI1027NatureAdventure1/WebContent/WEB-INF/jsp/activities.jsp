@@ -56,7 +56,7 @@
 	    				<c:if test="${lang eq 'ES'}"><p><c:out value="${act.descripcion}" /></p></c:if>
 	    			</div>
 	    		</div> <!-- col -->
-	    		<a href="${pageContext.request.contextPath}/activities/newBooking/${act.idAct}.html"><button class="btn btn-primary btn-lg btn-block activity-btn">Book it!</button></a>
+	    		<button class="btn btn-primary btn-lg btn-block activity-btn" onClick="javascript:location.href = '${pageContext.request.contextPath}/activities/newBooking/${act.idAct}.html';">Book it!</button>
 	  		</div> <!-- body -->
   		</div>
    	</div> <!-- acti -->
