@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,11 +51,12 @@ public class MainIdentification extends AbstractController{
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String processLogin(@ModelAttribute("user") User user, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String lang = LocaleContextHolder.getLocale().getLanguage();
 		if(request.getParameter("remem")!=null) user.setRememberMe(true);
 		boolean remember = user.isRememberMe();
 		
 		//Correct field format validator
-		UserValidator userValidator = new UserValidator(session);
+		UserValidator userValidator = new UserValidator();
 		userValidator.validate(user, bindingResult);
 		
 		if(bindingResult.hasErrors()) return "login";
@@ -63,15 +65,8 @@ public class MainIdentification extends AbstractController{
 		
 		//Password check 
 		if(user==null) {
-			try{
-				for(Cookie ck:request.getCookies()){
-					if(ck.getName().equals("lang") && ck.getValue().equals("ES")) {
-						bindingResult.rejectValue("password", "badpw", "Contraseña incorrecta"); 
-						return "login";
-					}
-				}
-			} catch(Exception e){};
-			bindingResult.rejectValue("password", "badpw", "Incorrect password"); 
+			if(lang.equals("es")) bindingResult.rejectValue("password", "badpw", "Contraseña incorrecta"); 
+			else bindingResult.rejectValue("password", "badpw", "Incorrect password"); 
 			return "login";
 		}
 		
@@ -96,13 +91,12 @@ public class MainIdentification extends AbstractController{
 		//Get the page that called the login
 		StringBuffer nextPage = (StringBuffer) session.getAttribute("nextPage");
 		
-		session.setAttribute("lang", user.getLanguage());
 		//Return the page that called the login or go to the main page
 		if(nextPage != null){
 			session.removeAttribute("nextPage");
-			return "redirect:"+nextPage;
+			return "redirect:"+nextPage+"?lang="+lang;
 		}
-		return "redirect:/index.jsp";
+		return "redirect:/index.jsp"+"?lang="+lang;
 		
 	}
 	
@@ -146,7 +140,7 @@ public class MainIdentification extends AbstractController{
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String registerForm(@ModelAttribute("register") ClientRegister clientRegister, BindingResult bindingResult, HttpSession session) {
 		//Correct field format validator
-		new ClientRegisterValidator(session).validate(clientRegister, bindingResult);
+		new ClientRegisterValidator().validate(clientRegister, bindingResult);
 		if (bindingResult.hasErrors()) return "register";
 		
 		User user = service.createUserFrom(clientRegister);
@@ -178,8 +172,8 @@ public class MainIdentification extends AbstractController{
 	}
 	
 	@RequestMapping(value="/passwordRecoveryAuth?{token}", method=RequestMethod.POST)
-	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult, HttpSession session){
-		new DoublePasswordValidator(session).validate(passwd, bindingResult);
+	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult){
+		new DoublePasswordValidator().validate(passwd, bindingResult);
 		if(bindingResult.hasErrors()) return "recoverpasswordauth";
 		
 		if(service.validateToken(passwd.getUser(), token)){

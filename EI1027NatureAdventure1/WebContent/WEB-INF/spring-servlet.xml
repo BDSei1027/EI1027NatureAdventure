@@ -23,7 +23,7 @@
     </bean>
     
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-        <property name="defaultLocale" value="en" />
+        <property name="defaultLocale" value="EN" />
     </bean>
     
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
@@ -32,7 +32,8 @@
 	
 	<bean id="messageSource"
     class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-    <property name="basename" value="WEB-INF/language/messages"/>
+	    <property name="basename" value="WEB-INF/language/messages"/>
+	    <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 	
 	<!-- Spring's Components -->
@@ -85,6 +86,9 @@
 	        <bean class="controller.interceptors.AccountInterceptor" />
 	    </mvc:interceptor>
 	    
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+      		<property name="paramName" value="lang"/>
+   		</bean>   
 
 	</mvc:interceptors>	
 

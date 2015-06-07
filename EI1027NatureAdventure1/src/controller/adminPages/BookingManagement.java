@@ -84,7 +84,7 @@ public class BookingManagement extends AbstractController {
 	
 	@RequestMapping(value="/accepted")
 	public String acceptedActivitiesPage(Model model){
-		model.addAttribute("bookingList", service.getAcceptedBookings());
+		model.addAttribute("bookingList", service.getActiveBookings());
 		
 		return "admin/bookingManagement/accepted";
 	}

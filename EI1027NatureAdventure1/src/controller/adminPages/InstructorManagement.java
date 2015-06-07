@@ -72,9 +72,9 @@ public class InstructorManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
 		//Check the instructor input format
-		InstructorValidator validator = new InstructorValidator(session);
+		InstructorValidator validator = new InstructorValidator();
 		validator.validate(instructor, bindingResult);
 		
 		if(bindingResult.hasErrors()) return "admin/instructorManagement/add";
@@ -129,9 +129,9 @@ public class InstructorManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/modify/{idInstructor}", method=RequestMethod.POST)
-	public String instructorsModifyPage(Model model, @PathVariable String idInstructor, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+	public String instructorsModifyPage(Model model, @PathVariable String idInstructor, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
 		//Check errors
-		new InstructorValidator(session).validate(instructor, bindingResult);
+		new InstructorValidator().validate(instructor, bindingResult);
 		
 		if(bindingResult.hasErrors()){
 			model.addAttribute("activities", service.getAllActivities(instructor));

@@ -49,9 +49,9 @@ public class ClientManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/details/{idClient}", method=RequestMethod.POST)
-	public String clientDetailPagePost(@PathVariable String idClient, @ModelAttribute("client") Client client, BindingResult bindingResult, HttpSession session) {
+	public String clientDetailPagePost(@PathVariable String idClient, @ModelAttribute("client") Client client, BindingResult bindingResult) {
 
-		new ClientValidator(session).validate(client, bindingResult);
+		new ClientValidator().validate(client, bindingResult);
 		if (bindingResult.hasErrors()) return "admin/clientManagement/details";
 		service.updateClient(client);
 		return "forward:/admin/clientManagement/"+1+"&"+idClient+".html";	

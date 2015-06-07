@@ -47,9 +47,9 @@ public class MainAccount extends AbstractController{
 	}
 	
 	@RequestMapping(value="/updateClient", method=RequestMethod.POST)
-	public String updateClientPage(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult, HttpSession session){
+	public String updateClientPage(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult){
 		model.addAttribute("doublepassword", new DoublePassword());
-		new ClientValidator(session).validate(client, bindingResult);
+		new ClientValidator().validate(client, bindingResult);
 		if(bindingResult.hasErrors()) return "account";
 		service.updateClient(client);
 		
@@ -60,9 +60,9 @@ public class MainAccount extends AbstractController{
 	
 	
 	@RequestMapping(value="/updateInstructor",  method=RequestMethod.POST)
-	public String updateInstructorPage(Model model, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, HttpSession session){
+	public String updateInstructorPage(Model model, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
 		model.addAttribute("doublepassword", new DoublePassword());
-		new InstructorValidator(session).validate(instructor, bindingResult);
+		new InstructorValidator().validate(instructor, bindingResult);
 		if(bindingResult.hasErrors()) return "account";
 		service.updateInstructor(instructor);
 		
@@ -75,7 +75,7 @@ public class MainAccount extends AbstractController{
 	@RequestMapping(value="/updateAuth", method=RequestMethod.POST)
 	public String updateAuthPage(Model model, @ModelAttribute("doublepassword") DoublePassword doublePasswd, BindingResult bindingResult, HttpServletRequest request, HttpSession session){
 		//TODO UserValidator
-		new DoublePasswordValidator(session).validate(doublePasswd, bindingResult);
+		new DoublePasswordValidator().validate(doublePasswd, bindingResult);
 		
 		User user = (User) session.getAttribute("user");
 		

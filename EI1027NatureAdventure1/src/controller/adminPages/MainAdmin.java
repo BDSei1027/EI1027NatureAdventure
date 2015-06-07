@@ -60,7 +60,7 @@ public class MainAdmin extends AbstractController {
 	
 	@RequestMapping(value="/authAdmin", method=RequestMethod.POST)
 	public String adminPage(@ModelAttribute("doublepassword") DoublePassword passwd,BindingResult bindingResult, HttpSession session ){
-		new DoublePasswordValidator(session).validate(passwd, bindingResult);
+		new DoublePasswordValidator().validate(passwd, bindingResult);
 		if(bindingResult.hasErrors()) return "forward:/admin/"+2+".html";
 		
 		User user = (User) session.getAttribute("user");
