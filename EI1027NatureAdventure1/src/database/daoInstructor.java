@@ -281,7 +281,7 @@ public class daoInstructor implements DaoInterface {
 	public Map<String, Instructor> getAvaliableInstructorsToAssign(int idAct, int innerIdBooking){
 		String sql = "SELECT i.* " +
 					"FROM instruidas as inidas JOIN instructor AS i USING(ssNumber)" +
-					"WHERE inidas.idAct = ? AND inidas.ssNumber " +
+					"WHERE inidas.idAct = ? AND  i.isactive = FALSE AND inidas.ssNumber " +
 					"NOT IN (SELECT s.ssNumber " +
 					"FROM Activity AS a JOIN instruidas AS inidas USING(idAct) JOIN status AS s USING(ssNumber) JOIN booking AS b USING(inneridbooking)" +
 					"WHERE a.idAct = ? AND b.dateActivity = (SELECT b.dateActivity " +
@@ -295,6 +295,6 @@ public class daoInstructor implements DaoInterface {
 		}
 		return map;
 	}
-	
+	//activo fecha booking anterior expiracion
 	
 }
