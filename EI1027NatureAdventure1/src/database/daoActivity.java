@@ -105,7 +105,8 @@ public class daoActivity implements DaoInterface {
             "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? , nombre = ?, description = ?, descripcion = ?, image = ?" +
                             "WHERE idact = ?;";
 		dataSource.update(sql, activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(), 
-				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getIdAct(), activity.getNombre(), activity.getDescription(), activity.getDescripcion(), activity.getImage());
+				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), 
+				activity.getNombre(), activity.getDescription(), activity.getDescripcion(), activity.getImage(), activity.getIdAct());
 	}
 
 	/**

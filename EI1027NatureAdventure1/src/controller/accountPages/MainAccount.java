@@ -87,7 +87,6 @@ public class MainAccount extends AbstractController{
 		if(bindingResult.hasErrors()) return "account";
 		
 		user.setPassword(doublePasswd.getPassword());
-		System.out.println(doublePasswd.getPassword());
 		service.updateUserWithPasswordType(user);
 		
 		model.addAttribute("error", 0);

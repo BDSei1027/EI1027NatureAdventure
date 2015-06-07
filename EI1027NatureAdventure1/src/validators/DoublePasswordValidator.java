@@ -16,9 +16,9 @@ public class DoublePasswordValidator  implements Validator {
 		User user = (User) session.getAttribute("user");
 		if(user!=null){
 		language = user.getLanguage();
-		if(language == null || language.equals("")){
-			language = "EN";
-		}
+			if(language == null || language.equals("")){
+				language = "EN";
+			}
 		}
 	}
 	@Override
@@ -33,7 +33,7 @@ public class DoublePasswordValidator  implements Validator {
 		if (!dp.getPassword().equals(dp.getConfirmation())) {
 			if(language.equals("ES")){
 				errors.rejectValue("password", "obligatorio", "Contraseña incorrecta");
-			}else if(language.equals("EN") || language != null){
+			}else{
 				errors.rejectValue("password", "obligatorio", "The password must be the same");
 			}
 		}

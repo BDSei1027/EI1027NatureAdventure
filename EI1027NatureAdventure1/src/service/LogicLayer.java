@@ -298,7 +298,7 @@ public class LogicLayer {
 	public void inactiveActivity(int code){
 		Activity myActivity = this.getActivity(code);
 		myActivity.setIsActive(false);
-		this.updateActivity(myActivity);	
+		this.updateActivity(myActivity);
 	}
 	
 	/**
@@ -557,6 +557,10 @@ public class LogicLayer {
 		myStatus.setDateRevision(new Date());
 		myStatus.setStatus("accepted");
 		this.updateStatus(myStatus);
+		
+		Booking bok = this.getBooking(idBooking);
+		bok.setIdBooking(++activeBookingID);
+		daoBooking.updateElement(bok);
 	}
 	
 	public void declineBooking(int idBooking){
@@ -565,6 +569,10 @@ public class LogicLayer {
 		myStatus.setDateRevision(new Date());
 		myStatus.setStatus("declined");
 		this.updateStatus(myStatus);
+		
+		Booking bok = this.getBooking(idBooking);
+		bok.setIdBooking(++activeBookingID);
+		daoBooking.updateElement(bok);
 	}
 	
 	public void bookingToPending(int idBooking){
@@ -573,6 +581,10 @@ public class LogicLayer {
 		myStatus.setDateRevision(new Date());
 		myStatus.setStatus("pending");
 		this.updateStatus(myStatus);
+		
+		Booking bok = this.getBooking(idBooking);
+		bok.setIdBooking(null);
+		daoBooking.updateElement(bok);
 	}
 	
 	/*

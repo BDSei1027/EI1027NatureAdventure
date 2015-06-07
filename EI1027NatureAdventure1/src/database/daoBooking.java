@@ -124,7 +124,6 @@ public class daoBooking implements DaoInterface {
 		if(!(element instanceof Booking)) return;
 		Booking book = (Booking) element;
 		String sql = "UPDATE Booking " + "SET "
-				+ "innerIdBooking = ?," 
 				+ "groupSize = ?," 
 				+ "dateActivity = ?,"
 				+ "dateCreation = ?," 
@@ -134,7 +133,7 @@ public class daoBooking implements DaoInterface {
 				+ "information = ?," 
 				+ "idBooking = ?" 
 				+ " WHERE innerIdBooking = ?;";
-		dataSource.update(sql, book.getInnerIdBooking(), book.getGroupSize(), book.getDateActivity(), book.getDateCreation(), book.getClientId(), book.getPrice(),book.getIdAct(), book.getInformation(), book.getIdBooking());
+		dataSource.update(sql, book.getGroupSize(), book.getDateActivity(), book.getDateCreation(), book.getClientId(), book.getPrice(),book.getIdAct(), book.getInformation(), book.getIdBooking(), book.getInnerIdBooking());
 	}
 
 	/**

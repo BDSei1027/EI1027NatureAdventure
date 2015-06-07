@@ -144,10 +144,5 @@
 		<property name="daoAvaliable" ref="avaliablebookDAO" />
 		<property name="daoToken" ref="tokenDAO" />
 	</bean>
-	
-	
-	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    	<property name="maxUploadSize" value="100000" />
-    </bean>
 
 </beans>

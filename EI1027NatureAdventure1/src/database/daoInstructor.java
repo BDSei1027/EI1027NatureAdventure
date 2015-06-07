@@ -42,7 +42,7 @@ public class daoInstructor implements DaoInterface {
 				instructor.setEmail(rs.getString("email"));
 				instructor.setTelephone(rs.getString("telephone"));
 				instructor.setActive(rs.getBoolean("isActive"));
-				instructor.setExpireDate(rs.getDate("expireDate").toLocaleString());
+				if(rs.getDate("expireDate")!=null) instructor.setExpireDate(rs.getDate("expireDate").toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
