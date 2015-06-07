@@ -613,3 +613,143 @@ footer p {
  .offer-text > strong {
 	color: inherit;
 }
+
+.activity {
+	border-left: 1px solid #34495e;
+	border-right: 1px solid #34495e;
+	border-bottom: 1px solid #34495e;
+	border-radius: 6px;
+	background-color: #34495E; 
+	margin-bottom: 15px;
+}
+
+.activity-title {
+	padding: 6px 10px;
+	color: #FFF;
+	font-size: 25px;
+	font-weight: bolder;
+	background-color: #34495E;
+	border-bottom: 1px solid #2C3E50;
+	border-radius: 6px 6px 0px 0px;
+}
+
+.activity-title > small {
+	font-weight: normal;
+	font-style: italic;
+	font-size: 80%;
+	color: #bdc3c7;
+}
+
+.activity-body {
+	margin-left: 1px;
+	margin-right: 1px;
+	padding-top: 6px;
+	padding-left: 20px;
+	padding-right: 15px;
+	padding-bottom: 6px;
+	background-color: #FFF;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.activity-info {
+	margin-left: 15px;
+}
+
+
+.activity-name > h4 {
+	font-size: 36px;
+	font-weight: bolder;
+	color: #16a085;
+}
+
+.activity-level > h6 {
+	font-weight: bold;
+}
+
+.activity-level > h6 > small {
+	color: #34495e;
+	font-size: 100%;
+	padding-left: 150px;
+}
+
+.activity-schedule > h6 {
+	font-weight: bold;
+}
+
+.activity-schedule > h6 > small {
+	color: #34495e;
+	font-size: 100%;
+	padding-left: 109px;
+}
+
+.activity-place > h6 {
+	font-weight: bold;
+}
+
+.activity-place > h6 > small {
+	color: #34495e;
+	font-size: 100%;
+	padding-left: 150px;
+}
+
+.activity-group > h6 {
+	font-weight: bold;
+}
+
+.min-g {
+	color: #34495e;
+	font-size: 100%;
+	padding-left: 36px;
+}
+
+.max-g {
+	color: #34495e;
+	font-size: 100%;
+	padding-left: 30px;
+}
+
+.activity-price {
+	margin-top: 5%;
+	text-align: center;
+}
+
+@media screen and (min-width: 1200px) {
+	.activity-price {
+		margin-top: 15%;
+	}
+}
+
+.activity-price > h5 {
+	color: #1abc9c;
+	font-size: 45px;
+}
+
+.activity-price > h5 > small {
+	color: #95a5a6
+}
+
+.activity-description {
+	margin-top: 30px;
+	margin-left: 25px;
+}
+
+@media screen and (min-width: 1200px) {
+	.activity-description {
+		margin-top: 73px;
+		margin-left: 25px;
+	}
+}
+
+.activity-description > p {
+	text-align: justify;
+}
+
+.activity-description > h6 {
+	text-align: center;
+	font-weight: bold;
+}
+
+.activity-btn {
+	margin-top: 20px;
+}
