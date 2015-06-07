@@ -17,7 +17,7 @@ public class Activity {
     private boolean isActive;
     private String nombre;
     private String description;
-    private String Descripcion;
+    private String descripcion;
     private String image;
     private List<String> qualifiedInstructors;
 
@@ -175,11 +175,11 @@ public class Activity {
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	public String getImage() {

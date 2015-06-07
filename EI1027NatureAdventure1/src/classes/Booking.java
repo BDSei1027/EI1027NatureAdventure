@@ -11,7 +11,7 @@ public class Booking {
 	private int innerIdBooking;
 	
 	//CLave alternativa: ID publica (puede ser null)
-	private int idBooking;
+	private Integer idBooking;
 	
 	//Datos de la reserva
 	private int groupSize;
@@ -132,12 +132,12 @@ public class Booking {
 	}
 	
 	
-	public int getIdBooking() {
+	public Integer getIdBooking() {
 		return idBooking;
 	}
 	
 	
-	public void setIdBooking(int idBooking) {
+	public void setIdBooking(Integer idBooking) {
 		this.idBooking = idBooking;
 	}
 	

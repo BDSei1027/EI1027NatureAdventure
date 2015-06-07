@@ -24,7 +24,7 @@ public class BookingManagement extends AbstractController {
 		return "admin/bookingManagement";
 	}	
 	
-	@RequestMapping(value="/{resCode}&{idBooking}")
+	@RequestMapping(value="/{resCode}&{idActivity}")
 	public String bookingMainPage(@PathVariable int resCode, @PathVariable int idActivity, Model model){
 		model.addAttribute("error", resCode);
 		model.addAttribute("id",idActivity);

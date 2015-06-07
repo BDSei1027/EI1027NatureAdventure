@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import validators.ActivityValidator;
 import classes.Activity;
-import classes.User;
 import controller.basics.AbstractController;
 
 

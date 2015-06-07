@@ -46,7 +46,10 @@ public class MainAdmin extends AbstractController {
 	@RequestMapping(value="/{resCode}")
 	public String adminPage(Model model, @PathVariable int resCode){
 		
-		model.addAttribute("dateToday",new Date());
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");     
+		String dateToday = df.format(new Date());
+		
+		model.addAttribute("dateToday",dateToday);
 		model.addAttribute("numbookings", service.getPendingBookingsCount());
 		model.addAttribute("numclients", service.getUserCount());
 		model.addAttribute("doublepassword", new DoublePassword());
@@ -56,7 +59,7 @@ public class MainAdmin extends AbstractController {
 	}
 	
 	@RequestMapping(value="/authAdmin", method=RequestMethod.POST)
-	public String adminPage(@ModelAttribute("doublepassword") DoublePassword passwd, HttpSession session, BindingResult bindingResult){
+	public String adminPage(@ModelAttribute("doublepassword") DoublePassword passwd,BindingResult bindingResult, HttpSession session ){
 		new DoublePasswordValidator(session).validate(passwd, bindingResult);
 		if(bindingResult.hasErrors()) return "forward:/admin/"+2+".html";
 		

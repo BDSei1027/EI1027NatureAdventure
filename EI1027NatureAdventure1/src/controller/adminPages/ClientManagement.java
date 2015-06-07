@@ -54,8 +54,13 @@ public class ClientManagement extends AbstractController {
 		new ClientValidator(session).validate(client, bindingResult);
 		if (bindingResult.hasErrors()) return "admin/clientManagement/details";
 		service.updateClient(client);
-		return "forward:/admin/clientManagement/"+1+"&"+idClient+".html";
-		
+		return "forward:/admin/clientManagement/"+1+"&"+idClient+".html";	
+	}
+	
+	@RequestMapping(value="/deleteClient/{idClient}")
+	public String clientRemoval(@PathVariable String idClient){
+		service.deleteClient(idClient);
+		return "forward:/admin/clientManagement/"+2+"&"+idClient+".html";
 	}
 	
 }

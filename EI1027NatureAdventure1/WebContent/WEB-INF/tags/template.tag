@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 
-
 <fmt:setLocale value="${lang}" />
 <fmt:setBundle basename="WEB-INF/language/messages" />
 
