@@ -42,7 +42,7 @@ public class BasicPages extends AbstractController {
 		if(locale.getLanguage().equalsIgnoreCase("en")) model.addAttribute("actName", act.getName());
 		else model.addAttribute("actName", act.getNombre());
 		
-		return "activities/newBooking";
+		return "booking";
 	}
 	
 	@RequestMapping(value="/about")
