@@ -4,10 +4,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="src.languages.text" />
-
   	  	<!-- Login MODAL -->
 	<div class="modal fade" id="LoginModal" tabindex='-1' role="dialog">
 		<div class="modal-dialog modal-dialog-wide">
@@ -67,13 +63,13 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
-        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-        <li><a href="${pageContext.request.contextPath}/activities.html">Activities</a></li>
-		<li><a href="${pageContext.request.contextPath}/help.html">Help</a></li>
+        <li><a href="${pageContext.request.contextPath}/"><fmt:message key="nav.index"/></a></li>
+        <li><a href="${pageContext.request.contextPath}/activities.html"><fmt:message key="nav.activities" /></a></li>
+		<li><a href="${pageContext.request.contextPath}/help.html"><fmt:message key="nav.help" /></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#loginModal" data-toggle="modal" data-target="#LoginModal">Sign in</a></li>
-      <li class="active"><a href="${pageContext.request.contextPath}/register.html" class="btn-logout">Sign up!  
+      <li><a href="#loginModal" data-toggle="modal" data-target="#LoginModal"><fmt:message key="nav.login" /></a></li>
+      <li class="active"><a href="${pageContext.request.contextPath}/register.html" class="btn-logout"><fmt:message key="nav.register" />  
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> </a></li>
     </ul>
   </div>

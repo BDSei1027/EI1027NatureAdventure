@@ -3,8 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
-<fmt:setLocale value="en"/>
-
 <div class="col-xs-5 col-sm-4 col-md-3 col-lg-3 pull-right" style="padding-right: 0px">	
 	<div id="languages" class="text-right">
 		<div class="container-fluid">
