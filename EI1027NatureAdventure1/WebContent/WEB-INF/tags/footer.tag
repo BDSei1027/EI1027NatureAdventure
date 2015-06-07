@@ -12,7 +12,7 @@
 	        <p class="text-muted">Contact with us</p>
 	      </div>
 	      <div class="col-lg-5 footer-col-2">
-	  			<p style="font-size: 20px;" class="text-muted"> Website designed for <strong>NatureAdventure</strong></p>
+	  			<p style="font-size: 20px;" class="text-muted"><fmt:message key="footer.one" /> <strong>NatureAdventure</strong></p>
 	      	<p class="text-muted">EI1027 - Disseny i Implementació de Sistemes d'Informació<br>
 	        EI1023 - Fonaments de l'enginyeria del programari.</p>
 	        <p style="padding-right: 5%; font-size: 20px;"><a href="#">Universitat Jaume I</a></p>

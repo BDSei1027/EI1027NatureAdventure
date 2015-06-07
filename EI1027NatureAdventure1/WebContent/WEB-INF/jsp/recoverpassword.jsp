@@ -2,6 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:template>
 	<jsp:body>
@@ -9,18 +10,17 @@
 		<!-- Alerta -->
 	    <div class="alert alert-danger">
 	        <a href="#" class="close" data-dismiss="alert">&times;</a>
-	        <strong>Error!</strong> A problem has been occurred while submitting your data.
+	        <fmt:message key="recover.alert" />
 	    </div>
 	</c:if>
-	<h4>Recovering your password</h4>
+	<h4><fmt:message key="recover.title" /></h4>
     <!-- Panel -->
 	<div class="panel panel-warning" style="width:570px; margin:auto;">
 		<div class="panel-heading">
-			<h6 class="panel-title">Recovery Password Form</h6>
+			<h6 class="panel-title"><fmt:message key="recover.panel-title" /></h6>
 		</div>
 		<div class="panel-body">
-			<p>We saw you have problems remembering your password. Introduce your email in the following field
-			and we will send you an email to restore your password.</p>
+			<p><fmt:message key="recover.panel.msg" /></p>
 
 			<form:form method="post" action="#" modelAttribute="email" role="form">
 				<div class="form-group">
@@ -30,12 +30,12 @@
 					</div>
 					<c:set var="errors"><form:errors path="to"/></c:set>
 				</div>
-				<button class="btn btn-warning pull-right" type=submit>Submit</button>
+				<button class="btn btn-warning pull-right" type=submit><fmt:message key="recover.panel.submit" /></button>
 			</form:form>
 		</div>
 		<div class="panel-footer">
-			<p style="font-size: 12px;">The email will be valid for the next <strong>24 hours</strong>. After this time the link will be disabled.</p>
-			<p style="font-size: 12px;">If you do not recive the email, check in your spam folder and the junk box.</p>
+			<p style="font-size: 12px;"><fmt:message key="recover.foot.1" /></p>
+			<p style="font-size: 12px;"><fmt:message key="recover.foot.2" /></p>
 		</div>
 	</div>
 	</jsp:body>

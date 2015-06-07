@@ -1,6 +1,9 @@
 <%@ tag description="Tabla para mostrar instructores"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:message key="" />
 
 <c:if test="${not empty error and (error eq 0)}"><c:set scope="page" var="type" value="success" /></c:if>
 <c:if test="${not empty error and (error eq 1)}"><c:set scope="page" var="type" value="info" /></c:if>
@@ -13,14 +16,14 @@
 	      data-search="true">
 			<thead>
 		        <tr>
-		            <th data-field="id" data-sortable="true">ID</th>
-		            <th data-field="name" data-sortable="true">Name</th>
-		            <th data-field="level" data-sortable="true">Level</th>
-		            <th data-field="schedule" data-sortable="true">Schedule</th>
-		            <th data-field="price" data-sortable="true">Price</th>
-		            <th data-field="min" data-sortable="true">Min G</th>
-		            <th data-field="max" data-sortable="true">Max G</th>
-		            <th data-field="active" data-sortable="true">Is active</th>
+		            <th data-field="id" data-sortable="true"><fmt:message key="admin.activitymanage.list.id" /></th>
+		            <th data-field="name" data-sortable="true"><fmt:message key="admin.activitymanage.list.name" /></th>
+		            <th data-field="level" data-sortable="true"><fmt:message key="admin.activitymanage.list.level" /></th>
+		            <th data-field="schedule" data-sortable="true"><fmt:message key="admin.activitymanage.list.schedule" /></th>
+		            <th data-field="price" data-sortable="true"><fmt:message key="admin.activitymanage.list.price" /></th>
+		            <th data-field="min" data-sortable="true"><fmt:message key="admin.activitymanage.list.ming" /></th>
+		            <th data-field="max" data-sortable="true"><fmt:message key="admin.activitymanage.list.maxg" /></th>
+		            <th data-field="active" data-sortable="true"><fmt:message key="admin.activitymanage.list.isactive" /></th>
 		            <th></th>
 		            <th></th>
 		        </tr>
@@ -37,20 +40,20 @@
 		        	<td><c:out value="${activity.maximumGroup}" /></td>
 		        	<td><c:choose>
 		        			<c:when test="${activity.isActive()}">
-		        				Yes	
+		        				<fmt:message key="admin.activitymanage.list.yes" />	
 		        			</c:when>
 		        			<c:otherwise>
-		        				No
+		        				<fmt:message key="admin.activitymanage.list.no" />
 		        			</c:otherwise>
 		        		</c:choose></td>
-		        	<td><a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><span class="label label-info">Details</span></a></td>
+		        	<td><a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><span class="label label-info"><fmt:message key="admin.activitymanage.list.details" /></span></a></td>
 		        	<td>
 		        		<c:choose>
 		        			<c:when test="${activity.isActive()}">
-		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/disable/${activity.idAct}.html"><span class="label label-warning">Inactivate</span></a>	
+		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/disable/${activity.idAct}.html"><span class="label label-warning"><fmt:message key="admin.activitymanage.list.activate" /></span></a>	
 		        			</c:when>
 		        			<c:otherwise>
-		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/enable/${activity.idAct}.html"><span class="label label-success">Activate</span></a>
+		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/enable/${activity.idAct}.html"><span class="label label-success"><fmt:message key="admin.activitymanage.list.inactivate" /></span></a>
 		        			</c:otherwise>
 		        		</c:choose>
 		        	</td>

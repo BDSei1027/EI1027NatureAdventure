@@ -77,14 +77,14 @@
 			<div class="col-lg-12">
 				<form:label path="description" for="description" class="control-label">Description <em>(EN)</em></form:label>
 				<form:textarea path="description" class="form-control" rows="3" />
-				<form:errors path="description" />
+				<form:errors path="description" class="text-danger" />
 			</div>
 		</div>
 		<div class="row form-group">
 			<div class="col-lg-12">
 				<form:label path="descripcion" for="descripcion" class="control-label">Description <em>(ES)</em></form:label>
 				<form:textarea path="descripcion" class="form-control" rows="3" />
-				<form:errors path="descripcion" />
+				<form:errors path="descripcion"  class="text-danger" />
 			</div>
 		</div>
 		<div class="text-center">

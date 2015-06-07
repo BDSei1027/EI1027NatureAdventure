@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <t:template>
 <jsp:body>
 	<c:if test="${not empty error}">
@@ -9,42 +11,41 @@
 			<c:when test="${error eq 0}">
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  Activity <strong><c:out value="${id}" /> added</strong> successfully.
+			  <fmt:message key="admin.activitymanage.alert.1" /> <strong><c:out value="${id}" /> <fmt:message key="admin.activitymanage.alert.add" /></strong> <fmt:message key="admin.activitymanage.alert.success" />.
 			</div>
 			</c:when>
 			<c:when test="${error eq 1}">
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  Activity <strong><c:out value="${id}" /> updated</strong> successfully.
+			  <fmt:message key="admin.activitymanage.alert.1" /> <strong><c:out value="${id}" /> <fmt:message key="admin.activitymanage.alert.updated" /></strong> <fmt:message key="admin.activitymanage.alert.success" />.
 			</div>
 			</c:when>
 		</c:choose>
 	</c:if>
-	<h4>Activity management</h4>
+	<h4><fmt:message key="admin.activitymanage.title" /></h4>
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="${pageContext.request.contextPath}/admin/activityManagement.html">All</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/activityManagement/onlyActive.html">Only active</a>
-				<li><a href="${pageContext.request.contextPath}/admin/activityManagement/onlyInactive.html">Only inactive</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/activityManagement/add.html">New activity</a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}/admin/activityManagement.html"><fmt:message key="admin.activitymanage.menu.all" /></a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/activityManagement/onlyActive.html"><fmt:message key="admin.activitymanage.menu.active" /></a>
+				<li><a href="${pageContext.request.contextPath}/admin/activityManagement/onlyInactive.html"><fmt:message key="admin.activitymanage.menu.inactive" /></a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/activityManagement/add.html"><fmt:message key="admin.activitymanage.menu.activity" /></a></li>
 			</ul>
 		</div>
 		<div id="help" class="col-lg-10">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title">Help!</h3>
+					<h3 class="panel-title"><fmt:message key="admin.activitymanage.helptitle" /></h3>
 				</div>
 				<div class="panel-body">
-					<p>The following table lists all the activities, which are in the data base.</p>
-					<p>To see the instructors which are assigned to the activity, click on <span class="label label-info">Details</span>. Also
-					you can disable or enable the activity cliking on <span class="label label-success">Activate</span> or <span class="label label-warning">Inactivate</span>.</p>
-					<p>In menu of the left, you can choose how do you want the data and add more activities.</p>
+					<p><fmt:message key="admin.activitymanage.helpcontent1" /></p>
+					<p><fmt:message key="admin.activitymanage.helpcontent2" /> <span class="label label-info"><fmt:message key="admin.activitymanage.helpcontent.details" /></span>. <fmt:message key="admin.activitymanage.helpcontent3" /> <span class="label label-success"><fmt:message key="admin.activitymanage.helpcontent.activate" /></span> <fmt:message key="admin.activitymanage.helpcontent4" /> <span class="label label-warning"><fmt:message key="admin.activitymanage.helpcontent.inactivate" /></span>.</p>
+					<p><fmt:message key="admin.activitymanage.helpcontent5" /></p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<h6 class="subtitle">List of the activities</h6>
+	<h6 class="subtitle"><fmt:message key="admin.activitymanage.list.title" /></h6>
 	<t:tablaActivity />
 
 </jsp:body>

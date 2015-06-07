@@ -2,27 +2,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!-- HAY Q REVISARLA -->
+
+
 <t:template>
 	<jsp:body>
-	<h4>Booking <strong><c:out value="${booking.idBooking}" /></strong> details</h4>
+	<h4><fmt:message key="instructor.details.title.1" /> <strong><c:out value="${booking.idBooking}" /></strong> <fmt:message key="instructor.details.title.2" /></h4>
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Booking <c:out value="${booking.idBooking}" /></h3>
+					<h3 class="panel-title"><fmt:message key="instructor.details.form.title.1" /> <c:out value="${booking.idBooking}" /></h3>
 				</div>
 				<div class="panel-body">
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon">Booking ID</div>
+							<div class="input-group-addon"><fmt:message key="instructor.details.form.bid" /></div>
 							<div class="form-control"><c:out value="${booking.idBooking}" /></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon">Activity ID</div>
+							<div class="input-group-addon"><fmt:message key="instructor.details.form.aid" /></div>
 							<div class="form-control"><c:out value="${booking.idAct}" /></div>
 							<div class="input-group-addon"><a data-toggle="collapse" href="#collapseActivity" aria-expanded="false">
 								<span class="caret"></span></a>
@@ -32,25 +34,25 @@
   							<div class="well well-sm">
 								<div class="form-group">
 									<div class="input-group">
-										<div class="input-group-addon">Activity</div>
+										<div class="input-group-addon"><fmt:message key="instructor.details.form.activity" /></div>
 										<div class="form-group"><c:out value="${activity.name}" /></div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<div class="input-group-addon">Level</div>
+										<div class="input-group-addon"><fmt:message key="instructor.details.form.level" /></div>
 										<div class="form-group"><c:out value="${activity.level}" /></div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<div class="input-group-addon">Schedule</div>
+										<div class="input-group-addon"><fmt:message key="instructor.details.form.schedule" /></div>
 										<div class="form-group"><c:out value="${activity.schedule}" /></div>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<div class="input-group-addon">Place</div>
+										<div class="input-group-addon"><fmt:message key="instructor.details.form.place" /></div>
 										<div class="form-group"><c:out value="${activity.place}" /></div>
 									</div>
 								</div>
@@ -59,27 +61,27 @@
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon">Date</div>
+							<div class="input-group-addon"><fmt:message key="instructor.details.form.date" /></div>
 							<div class="form-control"><c:out value="${booking.dateActivity}" /></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon">Group</div>
+							<div class="input-group-addon"><fmt:message key="instructor.details.form.group" /></div>
 							<div class="form-control"><c:out value="${booking.groupSize}" /></div>
 							<div class="input-group-addon">Pers.</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon">Information</div>
+							<div class="input-group-addon"><fmt:message key="instructor.details.form.info" /></div>
 							<div class="form-control" style="height:auto;">
 								<c:choose>
 									<c:when test="${empty booking.information}">
-										<div class="text-muted">No information</div>
+										<div class="text-muted"><fmt:message key="instructor.details.form.noinfo" /></div>
 									</c:when>
 									<c:otherwise>
-										Expand...
+										<fmt:message key="instructor.details.form.expand" />
 									</c:otherwise>								
 								</c:choose>
 							</div>
@@ -102,18 +104,18 @@
 		<div class="col-lg-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Client's information</h3>
+					<h3 class="panel-title"><fmt:message key="instructor.details.form.title.cli" /></h3>
 				</div>
 				<div class="panel-body">
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon">Name</div>
+							<div class="input-group-addon"><fmt:message key="instructor.details.form.cli.name" /></div>
 							<div class="form-control"><c:out value="${client.name}" /></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<div class="input-group-addon">Last name</div>
+							<div class="input-group-addon"><fmt:message key="instructor.details.form.cli.ln" /></div>
 							<div class="form-control"><c:out value="${client.lastName}" /></div>
 						</div>
 					</div>

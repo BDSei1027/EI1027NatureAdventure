@@ -1,6 +1,8 @@
 <%@ tag description="Tabla para mostrar instructores"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <c:if test="${not empty error and (error eq 0)}"><c:set scope="page" var="type" value="success" /></c:if>
 <c:if test="${not empty error and (error eq 1)}"><c:set scope="page" var="type" value="info" /></c:if>
@@ -13,15 +15,15 @@
      data-search="true">
 	<thead>
         <tr>
-            <th data-field="name" data-sortable="true">Name</th>
-            <th data-field="lname" data-sortable="true">Last name</th>
-            <th data-field="ssn" data-sortable="true">ssNumber</th>
-            <th data-field="idn" data-sortable="true">idNumber</th>
-            <th data-field="email" data-sortable="true">Email</th>
+            <th data-field="name" data-sortable="true"><fmt:message key="admin.instructormanage.list.name" /></th>
+            <th data-field="lname" data-sortable="true"><fmt:message key="admin.instructormanage.list.lastname" /></th>
+            <th data-field="ssn" data-sortable="true"><fmt:message key="admin.instructormanage.list.ssnumber" /></th>
+            <th data-field="idn" data-sortable="true"><fmt:message key="admin.instructormanage.list.idnumber" /></th>
+            <th data-field="email" data-sortable="true"><fmt:message key="admin.instructormanage.list.email" /></th>
             <!-- <th data-field="tlf" data-sortable="true">Telephone</th> -->
-            <th data-field="expire" data-sortable="true">Expire date</th>
-            <th data-field="activities" data-sortable="true">Activities</th>
-            <th data-field="active" data-sortable="true">is Active?</th>
+            <th data-field="expire" data-sortable="true">E<fmt:message key="admin.instructormanage.list.expire" /></th>
+            <th data-field="activities" data-sortable="true"><fmt:message key="admin.instructormanage.list.activities" /></th>
+            <th data-field="active" data-sortable="true"><fmt:message key="admin.instructormanage.list.isactive" /></th>
             <th></th>
             <th></th>
         </tr>
@@ -45,14 +47,14 @@
         				No
         			</c:otherwise>
         		</c:choose></td> 
-        	<td><a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/${instructor.ssNumber}.html"><span class="label label-info">Details</span></a></td>
+        	<td><a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/${instructor.ssNumber}.html"><span class="label label-info"><fmt:message key="admin.instructormanage.list.details" /></span></a></td>
         	<td>
         		<c:choose>
         			<c:when test="${instructor.isActive()}">
-        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/disable/${instructor.ssNumber}.html"><span class="label label-warning">Inactivate</span></a>	
+        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/disable/${instructor.ssNumber}.html"><span class="label label-warning"><fmt:message key="admin.instructormanage.list.activate" /></span></a>	
         			</c:when>
         			<c:otherwise>
-        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${instructor.ssNumber}.html"><span class="label label-success">Activate</span></a>
+        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${instructor.ssNumber}.html"><span class="label label-success"><fmt:message key="admin.instructormanage.list.inactive" /></span></a>
         			</c:otherwise>
         		</c:choose>
         </tr>

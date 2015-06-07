@@ -2,20 +2,20 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 
 <t:template>
 <jsp:body>
-	<h4>WARNING: Restricted area!</h4>
+	<h4><fmt:message key="restricted.title" /></h4>
 	<div style="padding: 20px;">
-		<p>Sorry boy, you are trying to enter an area you have not permission</p>
+		<p><fmt:message key="restricted.msg1" /></p>
 		
-		<p>Go back to the main page, <a href="${pageContext.request.contextPath}/index.jsp">click here</a>.</p>
+		<p><fmt:message key="restricted.back" /> <a href="${pageContext.request.contextPath}/index.jsp"><fmt:message key="restricted.back.link" /></a>.</p>
 		<div class="hidden">
-			<p class="text-danger"> If you are trying to access an restricted area and you will enter, please
-			contact with us, with the following anonymous form, for solve those possible security problems. </p>
+			<p class="text-danger"><fmt:message key="restricted.msg2" /> <fmt:message key="restricted.msg3" /> </p>
 			<div style="padding-left: 40px; margin-bottom: 15px;"><button id="openModal" data-toggle="modal" data-target="#contactModal" type="button" class="btn btn-danger">Open contact</button></div>
-			<p class="text-danger">Thank you <strong>little bastard!</strong></p>
+			<p class="text-danger"><fmt:message key="restricted.thank.1" /> <strong><fmt:message key="restricted.thank.2" /></strong></p>
 		</div>
 	</div>
 	<!-- MODAL -->
@@ -36,13 +36,13 @@
 								<form:errors path="to" class="text-danger" />
 							</div>
 							<div class="form-group">
-								<form:label path="message" for="message" class="control-label">Message</form:label>
+								<form:label path="message" for="message" class="control-label"><fmt:message key="restricted.message" /></form:label>
 								<form:textarea path="message" id="message" class="form-control" />
 							</div>
 					</div>
 					<div class="modal-footer">
 						<div class="text-right">
-							<button type="submit" class="btn btn-primary" id="LoginButton">Send</button>
+							<button type="submit" class="btn btn-primary" id="LoginButton"><fmt:message key="restricted.send" /></button>
 						</div>
 					</div>
 				</form:form>	

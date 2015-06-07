@@ -4,6 +4,9 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
+
+
+<fmt:setLocale value="${lang}" />
 <fmt:setBundle basename="WEB-INF/language/messages" />
 
 <html lang="${lang}">

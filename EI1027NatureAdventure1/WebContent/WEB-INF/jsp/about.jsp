@@ -2,6 +2,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+
 
 <c:set var="github" scope="page" value="https://github.com/BDSei1027"/>
 <c:set var="githubrepo" scope="page" value="https://github.com/BDSei1027/EI1027NatureAdventure"/>
@@ -12,17 +14,13 @@
 
 <t:template>
 <jsp:body>
-    <h4>About us</h4>
+    <h4><fmt:message key="about.title" /></h4>
     <div style="padding-left: 5%;">
-		<p>We are NatureAdventure.</p>
-		<p>What is NatureAdventure? NatureAdventure is a business that manage adventure activities with instructors.
-		The activities can be done when you want. You only need to make the booking and our staff will assign an
-		instructor for your activity, and be ready for the adrenaline</p>
-		<p>This information system is a project for an assignament of the subject <em>EI1027, Disseny i implementació de
-		sistemes de la informació</em> and <em>EI 1023, Fonaments de l'enginyeria del programari</em>.</p>
-		<p>The sources of this project are in Github. Our team is <a class="high" href="${github}"><strong>@BDSei1027</strong></a> and the
-		repository is <a class="high" href="${githubrepo}"><strong>EI1027NatureAdventure</strong></a>.</p>
-		<h3>The team is composed by</h3>
+		<p><fmt:message key="about.text01" /></p>
+		<p><fmt:message key="about.text02" /></p>
+		<p><fmt:message key="about.text03" /> <em><fmt:message key="about.subject01" /></em> <fmt:message key="about.text04" /> <em><fmt:message key="about.subject02" /></em>.</p>
+		<p><fmt:message key="about.text05" /> <a class="high" href="${github}"><strong>@BDSei1027</strong></a> <fmt:message key="about.text06" /> <a class="high" href="${githubrepo}"><strong>EI1027NatureAdventure</strong></a>.</p>
+		<h3><fmt:message key="about.team.title" /></h3>
 		<div class="team">
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default">
@@ -45,7 +43,7 @@
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">Email:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong style="color: inherit;">GitHub:</strong> <a href="${dsh}">@serrano94</a></p>
-											<p><Strong style="color: inherit;">Information:</strong></p>
+											<p><Strong style="color: inherit;"><fmt:message key="about.information" /></strong></p>
 										</div>
 									</div>
 								</div>
@@ -73,7 +71,7 @@
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong style="color: inherit;">GitHub:</strong> <a href="${cdd}">@cddl</a></p>
-											<p><Strong style="color: inherit;">Information:</strong></p>
+											<p><Strong style="color: inherit;"><fmt:message key="about.information" /></strong></p>
 										</div>
 									</div>
 								</div>
@@ -101,7 +99,7 @@
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
 											<p><strong style="color: inherit;">GitHub:</strong> <a href="${rdp}">@ratadp</a></p>
-											<p><Strong style="color: inherit;">Information:</strong></p>
+											<p><Strong style="color: inherit;"><fmt:message key="about.information" /></strong></p>
 										</div>
 									</div>
 								</div>

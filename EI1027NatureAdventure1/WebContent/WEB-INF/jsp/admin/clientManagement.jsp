@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:template>
 <jsp:body>
@@ -9,42 +10,34 @@
 			<c:when test="${error eq 0}">
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  Client <strong><c:out value="${id}" /> modified</strong> successfully.
+			  <fmt:message key="admin.clientmanage.alert.1" /> <strong><c:out value="${id}" /> <fmt:message key="admin.clientmanage.alert.mod" /></strong> <fmt:message key="admin.clientmanage.alert.success" />.
 			</div>
 			</c:when>
 			<c:when test="${error eq 2}">
 			<div class="alert alert-warning alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  Client <strong><c:out value="${id}" /> deleted</strong>.
+			  <fmt:message key="admin.clientmanage.alert.1" /> <strong><c:out value="${id}" /> <fmt:message key="admin.clientmanage.alert.del" /></strong>.
 			</div>
 			</c:when>
 		</c:choose>
 	</c:if>
-	<h4>Client management</h4>
+	<h4><fmt:message key="admin.clientmanage.title" /></h4>
 	<div id="action&help" class="row">
-		<!-- <div id="action" class="col-lg-2">
-			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="${pageContext.request.contextPath}/admin/instructorManagement.html">All</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyActive.html">Only active</a>
-				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyInactive.html">Only inactive</a></li>
-				<li><a href="${pageContext.request.contextPath}/admin/instructorManagement/add.html">New instructor</a></li>
-			</ul>
-		</div>
-		<div id="help" class="col-lg-10"> -->
+
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title">Help!</h3>
+					<h3 class="panel-title"><fmt:message key="admin.clientmanage.helptitle" /></h3>
 				</div>
 				<div class="panel-body">
-					<p>The following table lists all the clients, which are in the data base.</p>
-					<p>To see details of the client, click on <span class="label label-info">Details</span>.</p>
-					<p>If you need to contact with the client, go to <span class="label label-info">Details</span> and then click on <strong class="high">Contact</strong>.</p>
-					<p>You can delete a client with its user with <span class="label label-danger">Delete</span>. <strong class="high"> Be care!</strong></p>
+					<p><fmt:message key="admin.clientmanage.helpcontent1" /></p>
+					<p><fmt:message key="admin.clientmanage.helpcontent2" /> <span class="label label-info"><fmt:message key="admin.clientmanage.helpcontent.details" /></span>.</p>
+					<p><fmt:message key="admin.clientmanage.helpcontent3" /> <span class="label label-info"><fmt:message key="admin.clientmanage.helpcontent.details" /></span> <fmt:message key="admin.clientmanage.helpcontent4" /> <strong class="high"><fmt:message key="admin.clientmanage.helpcontent5" /></strong>.</p>
+					<p><fmt:message key="admin.clientmanage.helpcontent6" /> <span class="label label-danger"><fmt:message key="admin.clientmanage.helpcontent.delete" /></span>. <strong class="high"> <fmt:message key="admin.clientmanage.helpcontent7" /></strong></p>
 				</div>
 			</div>
 		<!-- </div> -->
 	</div>
-	<h6 class="subtitle">List of the clients</h6>
+	<h6 class="subtitle"><fmt:message key="admin.clientmanage.list.title" /></h6>
 	<t:tablaClients />
 </jsp:body>
 </t:template>

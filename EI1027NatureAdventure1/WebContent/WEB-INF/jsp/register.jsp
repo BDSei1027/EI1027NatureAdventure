@@ -1,39 +1,41 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <t:template>
 	<jsp:body>
-	<h4>Sign up</h4>
-	<p>Congratulation, you decided to sign up in our system.</p>
-	<p>The privileage of been registered are:</p>
+	<h4><fmt:message key="reg.signup" /></h4>
+	<p><fmt:message key="reg.info1" /></p>
+	<p><fmt:message key="reg.info2" /></p>
 	<ul>
-		<li>Faster bookings</li>
-		<li>Save your bookings.</li>
-		<li>Subscribe to our newsletter.</li>
+		<li><fmt:message key="reg.info3" /></li>
+		<li><fmt:message key="reg.info4" /></li>
+		<li><fmt:message key="reg.info5" /></li>
 	</ul>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Sign up form</h3>
+			<h3 class="panel-title"><fmt:message key="reg.form" /></h3>
 		</div>
 		<div class="panel-body">
 			<form:form method="post" modelAttribute="register" action="${pageContext.request.contextPath}/register.html" role="form">
 				<div class="row form-group">
-					<form:label path="name" for="nam" class="col-lg-2 control-label">Name </form:label>
+					<form:label path="name" for="nam" class="col-lg-2 control-label"><fmt:message key="reg.name" /> </form:label>
 					<div class="col-lg-10">				
 						<form:input path="name" type="text" class="form-control" id="nam" placeholder="Enter your name" />
 						<form:errors path="name" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="lastName" for="lname" class="col-lg-2 control-label">Last name </form:label>
+					<form:label path="lastName" for="lname" class="col-lg-2 control-label"><fmt:message key="reg.lastname" /> </form:label>
 					<div class="col-lg-10">
 						<form:input path="lastName" type="text" class="form-control" id="lname" placeholder="Enter your last name"/>
 					<form:errors path="lastName" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="email" for="email" class="col-lg-2 control-label">E-mail </form:label>
+					<form:label path="email" for="email" class="col-lg-2 control-label"><fmt:message key="reg.email" /> </form:label>
 					<div class="col-lg-10">
 						<div class="input-group">
 						<form:input path="email" type="email" class="form-control" id="email" placeholder="Enter your email"/>
@@ -43,33 +45,33 @@
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="id" for="id" class="col-lg-2 control-label">ID number </form:label>
+					<form:label path="id" for="id" class="col-lg-2 control-label"><fmt:message key="reg.idnumber" /> </form:label>
 					<div class="col-lg-10">
 						<form:input path="id" type="text" class="form-control" id="id" placeholder="Enter your identification number"/>
 						<form:errors path="id" class="text-danger" />
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="password" for="pass" class="col-lg-2 control-label">Password </form:label>
+					<form:label path="password" for="pass" class="col-lg-2 control-label"><fmt:message key="reg.password" /> </form:label>
 					<div class="col-lg-10">
 						<form:input path="password" type="password" class="form-control" id="pass" placeholder="Enter your password"/>
 						<form:errors path="password" class="text-danger" />
 					</div>
 				</div>
 				<div id="selectlanguage" class="row" style="margin-bottom: 15px;">
-					<div class="col-lg-2 labelReg">Choose language</div>
+					<div class="col-lg-2 labelReg"><fmt:message key="reg.choose" /></div>
 					<div class="col-lg-10">
 						<form:select path="language" data-toggle="select" class="form-control select select-primary mrs mbm">
 							<optgroup>
-								<form:option value="EN">English</form:option>
-								<form:option value="ES">Spanish</form:option>
+								<form:option value="EN"><fmt:message key="language.en" /></form:option>
+								<form:option value="ES"><fmt:message key="language.es" /></form:option>
 							</optgroup>
 						</form:select>
 					</div>
 				</div>
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">Conditions and terms</h3>	
+						<h3 class="panel-title"><fmt:message key="reg.cond" /></h3>	
 					</div>
 					<div class="panel-body" style="max-height: 200px;overflow-y: auto">
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut mattis sapien, et efficitur tortor. Sed metus erat, mattis aliquam porttitor consectetur, varius viverra diam. Sed porttitor metus sed lacus tincidunt pulvinar. Etiam molestie neque porta, tincidunt velit ac, dictum nunc. Etiam ut ante eu elit aliquam iaculis. Curabitur placerat pulvinar dui nec lobortis. Fusce volutpat sapien ut nisi dictum porta. Aenean venenatis nisl ut accumsan dapibus. Pellentesque porta nibh eros, et tempor turpis ullamcorper sit amet. Cras elementum pretium est, sit amet commodo ligula congue non. Duis posuere mauris at faucibus condimentum.</p>
@@ -81,7 +83,7 @@
 				</div>
 				<div style="padding-left:40%;">
 						<form:label path="tocs" class="checkbox" for="toc">
-							<form:checkbox id="toc" path="tocs" data-toggle="checkbox"/> Do you accept the TOCS?
+							<form:checkbox id="toc" path="tocs" data-toggle="checkbox"/> <fmt:message key="reg.tocs" />
 							<br><form:errors path="tocs" class="text-danger"></form:errors>
 						</form:label>
 				</div>
@@ -89,8 +91,8 @@
 				
 				<div class="text-center" style="margin-top: 20px;">
 					<div class="btn-group">
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<button type="reset" class="btn btn-danger">Clear</button>
+						<button type="submit" class="btn btn-primary"><fmt:message key="reg.submit" /></button>
+						<button type="reset" class="btn btn-danger"><fmt:message key="reg.reset" /></button>
 					</div>
 				</div>
 			</form:form>

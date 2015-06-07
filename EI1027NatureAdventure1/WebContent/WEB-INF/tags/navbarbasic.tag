@@ -11,33 +11,33 @@
 				<div class="modal-header" id="LoginModalHead">
 					<div class="row">
 							<button type="button" class="close pull-right" data-dismiss="modal" style="padding-right: 4%; margin-top: 2px;">&times;</button>
-							<h4 class="pull-left">Sign in!</h4>
+							<h4 class="pull-left"><fmt:message key="login.signin" />!</h4>
 						</div>
 				</div>
 				<form role="form" action="${pageContext.request.contextPath}/login.html" method="post">
 					<div class="modal-body" id="LoginModalBody">
 							<div class="form-group row">
-								<label for="user" class="control-label col-lg-2">Username </label>
+								<label for="user" class="control-label col-lg-2"><fmt:message key="login.user" /> </label>
 								<div class="col-lg-10">
 									<input type="text" name="user" class="form-control" id="user" placeholder="Username" />
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="pass" class="control-label col-lg-2">Password </label>
+								<label for="pass" class="control-label col-lg-2"><fmt:message key="login.pass" /> </label>
 								<div class="col-lg-10">
 									<input type="password" name="password" class="form-control" id="pass" placeholder="Password" />
 								</div>
 							</div>
 							<div class="form-group">
 							<label class="checkbox" for="remem">
-								<input class="custom-checkbox" type="checkbox" id="remem" name="remem" value="true"/> Remember me:
+								<input class="custom-checkbox" type="checkbox" id="remem" name="remem" value="true"/> <fmt:message key="login.rem" />
 							</label>
 							</div>
 					</div>	
 					<div class="modal-footer" id="LoginModalFooter">
 						<div class="pull-left">
-						<p>Not a member? <a href="${pageContext.request.contextPath}/register.html">Sign Up</a></p>
-	          			<p>Forgot <a href="#">Password?</a></p>
+						<p>Not a member? <a href="${pageContext.request.contextPath}/register.html"><fmt:message key="login.sigup" /></a></p>
+	          			<p><fmt:message key="login.forgot" /> <a href="#"><fmt:message key="login.forgot.a" /></a></p>
 	          			</div>
 	          			<div class="pull-right">
 		          			<div class="btn-group" style="margin-top: 5px;">
