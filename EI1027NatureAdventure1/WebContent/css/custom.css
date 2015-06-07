@@ -109,26 +109,6 @@ strong {
 	font-size: 14px;
 }
 
-.modal-header-warning {
-	background-color: #f39c12;
-	border-color: #cf8316;
-}
-
-.modal-header-success {
-	background-color: #2ecc71;
-	border-color: #3E8F3E;
-}
-
-.modal-header-info {
-	background-color: #2980b9;
-	border-color: #245580;
-}
-
-.modal-header-danger {
-	background-color: #e74c3c;
-	border-color: #B92C28;
-}
-
 /* alerts*/
 .alert > strong {
 	color: inherit;
@@ -193,7 +173,15 @@ footer p {
 }
 
 .footer-col-2 {
-	margin-top: 1%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+@media screen and (min-width: 700px) {
+	.footer-col-2 {
+		text-align: right;
+		margin-top: 1%;
+	}
 }
 
 /* Barra de lengujes */
@@ -550,4 +538,82 @@ footer p {
 	border-right: 1px solid #DDD;
 	border-bottom: 1px solid #DDD;
 	border-radius: 0px 0px 4px 4px;
+}
+
+
+/* portada */
+.portada {
+	margin-top: 4%;
+	margin-bottom: 3%;
+	padding-bottom: 70px;
+	border-radius: 6px;
+	border-bottom: 3px solid #ecf0f1;
+	text-align: center;
+}
+
+.portada > h1 {
+	margin-bottom: 0px;
+}
+
+.portada > h5 {
+	margin-top: 0px;
+}
+
+.offer {
+	width: 95%;
+	margin:auto;
+	border-radius: 6px;
+	margin-bottom: 10px;
+}
+
+.offer > .offer-img {
+	height: 190px;
+	width: 509px;
+	margin: 0px;
+	border-radius: 6px;
+	background-size: 800px 400px;
+	background-position: 0px -50px;
+    background-repeat: no-repeat;
+    border: 2px solid rgba(47,65,84)
+}
+
+.offer > .offer-img > p {
+	margin: 0px;
+	color: #FFF;
+	-webkit-text-stroke: 1px #34495E;
+	text-shadow:
+   -1px -1px 0 #2c3e50,  
+    1px -1px 0 #2c3e50,
+    -1px 1px 0 #2c3e50,
+     1px 1px 0 #2c3e50;
+	padding-top: 30%;
+	padding-left: 3%;
+	font-size: 22px;
+	font-weight: 700;
+	text-align: left;
+}
+
+.offer > .offer-img > p > small {
+	font-weight: normal;
+	font-style: italic;
+}
+
+ .offer-space-top {
+	padding-bottom: 7px;
+	border-top: 3px solid #34495E;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 6px;
+	border-radius: 10px;
+}
+
+ .offer-text {
+	padding: 0px 2%;
+	padding-left: 2%;
+	margin-bottom: 0px;
+	font-size: 13px;
+}
+
+ .offer-text > strong {
+	color: inherit;
 }

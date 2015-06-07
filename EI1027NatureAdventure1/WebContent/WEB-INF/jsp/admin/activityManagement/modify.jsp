@@ -18,10 +18,17 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<form:label path="name" for="name" class="control-label col-lg-2">Name</form:label>
+			<form:label path="name" for="name" class="control-label col-lg-2">Name <em>(EN)</em></form:label>
 			<div class="col-lg-10">
 				<form:input path="name" id="name" class="form-control" />
 				<form:errors path="name" id="nameerr" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<form:label path="nombre" for="nom" class="control-label col-lg-2">Name <em>(ES)</em></form:label>
+			<div class="col-lg-10">
+				<form:input path="nombre" id="nom" class="form-control" />
+				<form:errors path="nombre" id="nomerr" class="text-danger" />
 			</div>
 		</div>
 		<div class="form-group row">
@@ -64,6 +71,20 @@
 			<div class="col-lg-10">
 				<form:input path="maximumGroup" id="max" class="form-control" />
 				<form:errors path="maximumGroup" id="maxerr" class="text-danger" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-lg-12">
+				<form:label path="description" for="description" class="control-label">Description <em>(EN)</em></form:label>
+				<form:textarea path="description" class="form-control" rows="3" />
+				<form:errors path="description" />
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-lg-12">
+				<form:label path="descripcion" for="descripcion" class="control-label">Description <em>(ES)</em></form:label>
+				<form:textarea path="descripcion" class="form-control" rows="3" />
+				<form:errors path="descripcion" />
 			</div>
 		</div>
 		<div class="text-center">

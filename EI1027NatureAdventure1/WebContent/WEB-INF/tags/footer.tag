@@ -14,10 +14,10 @@
 	
 	      <div class="col-lg-5"></div>
 	      <div class="col-lg-5 footer-col-2">
-	  			<p style="font-size: 20px;" class="text-muted text-right"> Website designed for <strong>NatureAdventure</strong></p>
-	      	<p class="text-muted text-right">EI1027 - Disseny i Implementació de Sistemes d'Informació<br>
+	  			<p style="font-size: 20px;" class="text-muted"> Website designed for <strong>NatureAdventure</strong></p>
+	      	<p class="text-muted">EI1027 - Disseny i Implementació de Sistemes d'Informació<br>
 	        EI1023 - Fonaments de l'enginyeria del programari.</p>
-	        <p class="text-right" style="padding-right: 5%; font-size: 20px;"><a href="#">Universitat Jaume I</a></p>
+	        <p style="padding-right: 5%; font-size: 20px;"><a href="#">Universitat Jaume I</a></p>
 	      </div>
 	    </div>
     </div>

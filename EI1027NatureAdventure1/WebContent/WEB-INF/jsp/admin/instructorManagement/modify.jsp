@@ -152,7 +152,9 @@
 	</div>
 	<script type="text/javascript">
 	    $('.datepicker').datepicker({
-	    	format: 'dd/mm/yyyy'
+	    	format: 'dd/mm/yyyy',
+	    	weekStart: 1,
+	    	language: 'es'
 	    })
 	</script>
 </jsp:body>

@@ -13,12 +13,26 @@
 		<div class="container-fluid">
 		<form:form method="post" modelAttribute="activity" role="form">
 			<div class="row form-group">
-				<form:label path="name" for="name" class="col-lg-2 control-label">Name </form:label>
+				<form:label path="name" for="name" class="col-lg-2 control-label">Name <em>(EN)</em></form:label>
 				<div class="col-lg-10">
-					<form:input path="name" type="text" class="form-control" id="name" placeholder="Enter name of the activity" />
+					<div class="input-group">
+					<div class="input-group-addon">EN</div>
+					<form:input path="name" type="text" class="form-control" id="name" placeholder="Enter the Name" />
+					</div>
 					<form:errors path="name" class="text-danger" />
 				</div>
 			</div>
+			<div class="row form-group">
+				<form:label path="nombre" for="nom" class="col-lg-2 control-label">Name <em>(ES)</em></form:label>
+				<div class="col-lg-10">
+					<div class="input-group">
+					<div class="input-group-addon">ES</div>
+					<form:input path="nombre" type="text" class="form-control" id="nom" placeholder="Introduce el nombre" />
+					</div>
+					<form:errors path="nombre" class="text-danger" />
+				</div>
+			</div>
+			
 			<div class="row form-group">
 				<form:label path="level" for="lvl" class="col-lg-2 control-label">Level </form:label>
 				<div class="col-lg-10">
@@ -70,6 +84,20 @@
 				<div class="col-lg-10">
 					<form:input path="maximumGroup" type="number" class="form-control" id="max" placeholder="Enter the maximum group"/>
 					<form:errors path="maximumGroup" class="text-danger" />
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12">
+					<form:label path="description" for="description" class="control-label">Description <em>(EN)</em></form:label>
+					<form:textarea path="description" class="form-control" rows="3" />
+					<form:errors path="description" />
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-lg-12">
+					<form:label path="descripcion" for="descripcion" class="control-label">Description <em>(ES)</em></form:label>
+					<form:textarea path="descripcion" class="form-control" rows="3" />
+					<form:errors path="descripcion" />
 				</div>
 			</div>
 			<div class="text-center">
