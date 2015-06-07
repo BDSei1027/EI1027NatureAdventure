@@ -96,7 +96,7 @@ public class MainIdentification extends AbstractController{
 		//Get the page that called the login
 		StringBuffer nextPage = (StringBuffer) session.getAttribute("nextPage");
 		
-		response.addCookie(new Cookie("lang", user.getLanguage()));
+		session.setAttribute("lang", user.getLanguage());
 		//Return the page that called the login or go to the main page
 		if(nextPage != null){
 			session.removeAttribute("nextPage");

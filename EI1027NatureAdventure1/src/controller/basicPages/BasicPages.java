@@ -4,10 +4,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import classes.User;
 import controller.basics.AbstractController;
 
@@ -16,7 +14,7 @@ import controller.basics.AbstractController;
 public class BasicPages extends AbstractController {	
 	
 	@RequestMapping(value="/es")
-	public String esLanguage(HttpServletResponse response, HttpSession session, HttpServletRequest request){
+	public String esLanguage(HttpServletResponse response, HttpSession session){
 		User user = (User) session.getAttribute("user");
 		
 		if(user!=null){
@@ -24,14 +22,13 @@ public class BasicPages extends AbstractController {
 			service.updateUser(user);
 		}
 		
-		response.addCookie(new Cookie("lang", "ES"));
+		session.setAttribute("lang", "ES");
 		
-		StringBuffer nextPage = request.getRequestURL();
-		return "redirect:"+nextPage;
+		return "redirect:index.html";
 	}
 	
 	@RequestMapping(value="/en")
-	public String enLanguage(HttpServletResponse response, HttpSession session, HttpServletRequest request){
+	public String enLanguage(HttpServletResponse response, HttpSession session){
 		User user = (User) session.getAttribute("user");
 		
 		if(user!=null){
@@ -39,16 +36,16 @@ public class BasicPages extends AbstractController {
 			service.updateUser(user);
 		}
 		
-		response.addCookie(new Cookie("lang", "EN"));
+		session.setAttribute("lang", "EN");
 		
-		StringBuffer nextPage = request.getRequestURL();
-		return "redirect:"+nextPage;
+		return "redirect:index.html";
 	}
 
 	@RequestMapping(value="/index")
 	public String indexPage(){
 		return "index";
 	}
+	
 	
 	@RequestMapping(value="/activities")
 	public String activitiesPage(){
@@ -59,4 +56,5 @@ public class BasicPages extends AbstractController {
 	public String aboutPage(){
 		return "about";
 	}
+	
 }
