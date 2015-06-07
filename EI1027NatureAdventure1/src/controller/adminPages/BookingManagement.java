@@ -65,7 +65,28 @@ public class BookingManagement extends AbstractController {
 	public String bookingToPending(@PathVariable int idBooking){
 		service.bookingToPending(idBooking);
 		
-		return "forward:/admin/bookingManagement/"+2+"&"+idBooking+".html";
+		return "forward:/admin/bookingManagement/"+1+"&"+idBooking+".html";
+	}
+	
+	@RequestMapping(value="/pendings")
+	public String pendingActivitiesPage(Model model){
+		model.addAttribute("bookingList", service.getPendingBookings());
+		
+		return "admin/bookingManagement/pending";
+	}
+	
+	@RequestMapping(value="/declined")
+	public String declinedActivitiesPage(Model model){
+		model.addAttribute("bookingList", service.getDeclinedBookings());
+		
+		return "admin/bookingManagement/declined";
+	}
+	
+	@RequestMapping(value="/accepted")
+	public String acceptedActivitiesPage(Model model){
+		model.addAttribute("bookingList", service.getAcceptedBookings());
+		
+		return "admin/bookingManagement/accepted";
 	}
 	
 }
