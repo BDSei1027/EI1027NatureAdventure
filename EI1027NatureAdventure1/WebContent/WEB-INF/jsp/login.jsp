@@ -29,7 +29,7 @@
 				</form:label>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg btn-block"><fmt:message key="login.signin" /></button>
-            <fmt:message key="login.forgot" /><a class="login-link" href="#"><fmt:message key="login.forgot.a" /></a>
+            <a class="login-link" href="#"><fmt:message key="login.forgot" /><fmt:message key="login.forgot.a" /></a>
             <div class="logoLogin">NatureAdventure</div>
         </form:form>
 </div>	

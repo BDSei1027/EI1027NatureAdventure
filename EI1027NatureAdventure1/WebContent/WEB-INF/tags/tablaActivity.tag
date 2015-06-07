@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:message key="" />
-
 <c:if test="${not empty error and (error eq 0)}"><c:set scope="page" var="type" value="success" /></c:if>
 <c:if test="${not empty error and (error eq 1)}"><c:set scope="page" var="type" value="info" /></c:if>
 	<!-- TABLA -->

@@ -21,7 +21,7 @@
 <link href="${pageContext.request.contextPath}/css/flat-ui.css" rel="stylesheet">
 
 <link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap-datepicker3.m¡n.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
 
 
 
@@ -32,7 +32,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.0/bootstrap-table.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/flat-ui.min.js"></script>
+<!-- <script src="${pageContext.request.contextPath}/js/flat-ui.min.js"></script> -->
 
 <script src="${pageContext.request.contextPath}/js/application.js"></script>
 <script src="${pageContext.request.contextPath}/js/prettify.min.js"></script>

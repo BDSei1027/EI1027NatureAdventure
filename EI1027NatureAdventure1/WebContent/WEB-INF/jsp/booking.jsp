@@ -20,7 +20,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Sign up form</div>
 			<div class="panel-body">
-			<form:form modelAttribute="clientregister" method="post" role="form">
+			<form:form modelAttribute="client" method="post" role="form">
 			<div class="row form-group">
 					<form:label path="name" for="nam" class="col-lg-2 control-label"><fmt:message key="reg.name" /> </form:label>
 					<div class="col-lg-10">				

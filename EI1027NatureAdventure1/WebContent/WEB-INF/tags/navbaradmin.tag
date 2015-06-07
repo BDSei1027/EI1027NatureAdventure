@@ -18,7 +18,7 @@
     <ul class="nav navbar-nav navbar-left">
         <li><a href="${pageContext.request.contextPath}/"><fmt:message key="nav.index"/></a></li>
         <li><a href="${pageContext.request.contextPath}/activities.html"><fmt:message key="nav.activities"/></a></li>
-		<li><a href="${pageContext.request.contextPath}/help.html"><fmt:message key="nav.help"/></a></li>
+		<!-- <li><a href="${pageContext.request.contextPath}/help.html"><fmt:message key="nav.help"/></a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text" id="navtext"><fmt:message key="nav.welcome"/> <strong><c:out value="${user.name}" /></strong></p></li>

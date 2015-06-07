@@ -4,45 +4,44 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<<fmt:message key="" />
 <t:template>
 	<jsp:body>
 		<c:if test="${not empty error and (error eq 2)}">
 		<div class="alert alert-warning alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  Activity <strong><c:out value="${id}" /> deleted</strong> from instructor <strong><c:out value="${instructor.name} ${instructor.lastName}" /></strong>.
+			  <fmt:message key="admin.instructormanage.modify.alert.1" /> <strong><c:out value="${id}" /> <fmt:message key="admin.instructormanage.modify.alert.warning.1" /></strong> <fmt:message key="admin.instructormanage.modify.alert.warning.2" /> <strong><c:out value="${instructor.name} ${instructor.lastName}" /></strong>.
 			</div>
 		</c:if>
 		
 		<c:if test="${not empty error and (error eq 0)}">
 		<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  Activity <strong><c:out value="${id}" /> added</strong> to instructor <strong><c:out value="${instructor.name} ${instructor.lastName}" /></strong>.
+			  <fmt:message key="admin.instructormanage.modify.alert.1" /> <strong><c:out value="${id}" /> <fmt:message key="admin.instructormanage.modify.alert.success.2" /></strong> <fmt:message key="admin.instructormanage.modify.alert.success.3" /> <strong><c:out value="${instructor.name} ${instructor.lastName}" /></strong>.
 			</div>
 		</c:if>
 	
-	<h4>Instructor management</h4>
-	<h6 class="subtitle">Modify instructor <strong>${instructor.name} ${instructor.lastName}</strong> <small>${instructor.idNumber}</small></h6>
+	<h4><fmt:message key="admin.instructormanage.title" /></h4>
+	<h6 class="subtitle"><fmt:message key="admin.instructormanage.modify.title" /> <strong>${instructor.name} ${instructor.lastName}</strong> <small>${instructor.idNumber}</small></h6>
 	<div class="col-lg-5">
 		<form:form method="post" modelAttribute="instructor" role="form">
 			<div class="form-group">
-				<form:label path="name" for="nam" class="control-label">Name: </form:label>
+				<form:label path="name" for="nam" class="control-label"><fmt:message key="admin.instructormanage.modify.form.name" /> </form:label>
 				<form:input path="name" type="text" class="form-control" id="nam" />
 				<form:errors path="name" class="text-danger" />
 			</div>
 			<div class="form-group">
-				<form:label path="lastName" for="lname" class="control-label">Last name: </form:label>
+				<form:label path="lastName" for="lname" class="control-label"><fmt:message key="admin.instructormanage.modify.form.ln" /> </form:label>
 				<form:input path="lastName" type="text" class="form-control" id="lname" />
 				<form:errors path="lastName" class="text-danger" />
 			</div>
 			<div class="form-group">
-				<form:label path="ssNumber" for="ssn" class="control-label">SS number: </form:label>
+				<form:label path="ssNumber" for="ssn" class="control-label"><fmt:message key="admin.instructormanage.modify.form.ssn" /> </form:label>
 				<form:hidden path="ssNumber" />
 				<div class="form-control" id="ssn"><c:out value="${instructor.ssNumber}" /></div>
 				<form:errors path="ssNumber" class="text-danger" />
 			</div>
 			<div class="form-group">
-				<form:label path="idNumber" for="idn" class="control-label">ID number: </form:label>
+				<form:label path="idNumber" for="idn" class="control-label"><fmt:message key="admin.instructormanage.modify.form.idn" /> </form:label>
 				<form:hidden path="idNumber" />
 				<div class="form-control" id="ssn"><c:out value="${instructor.idNumber}" /></div>
 				<form:errors path="idNumber" class="text-danger" />
@@ -53,26 +52,22 @@
 				<form:errors path="email" class="text-danger" />
 			</div>
 			<div class="form-group">
-				<form:label path="telephone" for="tlf" class="control-label"> Telephone: </form:label>
+				<form:label path="telephone" for="tlf" class="control-label"><fmt:message key="admin.instructormanage.modify.form.tlf" /> </form:label>
 				<form:input path="telephone" type="tel" class="form-control" id="tlf" />
 				<form:errors path="telephone" class="text-danger" />
 			</div>
-			<div class="form-group">
-				<form:label path="expireDate" for="edate" class="control-label">Expire date: </form:label>
-				<form:input path="expireDate" type="text" class="form-control datepicker" readonly="true" id="edate" cssStyle="background-color: #FFF; color:#34495E; border-color: #9B9B9B"/>
-				<form:errors path="expireDate" class="text-danger" />
-			</div>
+			<form:hidden path="expireDate" />
 			
 			<div class="text-center">
 				<div class="btn-group">
-					<button type="submit" class="btn btn-primary">Submit</button>
-					<button type="reset" class="btn btn-danger">Clear</button>
+					<button type="submit" class="btn btn-primary"><fmt:message key="admin.instructormanage.modify.form.btn.submit" /></button>
+					<button type="reset" class="btn btn-danger"><fmt:message key="admin.instructormanage.modify.form.btn.cancel" /></button>
 					<c:choose>
 			        	<c:when test="${instructor.isActive()}">
-			        		<a href="${pageContext.request.contextPath}/admin/instructorManagement/disable/${instructor.ssNumber}.html"><button class="btn btn-warning">Set inactive</button></a>	
+			        		<a href="${pageContext.request.contextPath}/admin/instructorManagement/disable/${instructor.ssNumber}.html"><button class="btn btn-warning"><fmt:message key="admin.instructormanage.modify.form.btn.inact" /></button></a>	
 			        	</c:when>
 			        	<c:otherwise>
-			        		<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${instructor.ssNumber}.html"><button class="btn btn-success">Set active</button></a>
+			        		<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${instructor.ssNumber}.html"><button class="btn btn-success"><fmt:message key="admin.instructormanage.modify.form.btn.act" /></button></a>
 			        	</c:otherwise>
 			        </c:choose>
 			    </div>
@@ -82,24 +77,23 @@
 		
 	<div class="col-lg-1"> </div>
 	<div class="col-lg-6">
-			<h6>Activities from this instructor</h6>
+			<h6><fmt:message key="admin.instructormanage.modify.tb.title" /></h6>
 			<div class="row">
-				<p>Clicking on the <strong class="high">Add activity</strong> button you can add an activity for this instructor 
-				and clicking on the <strong class="high">Delete</strong> button will remove	the activity selected.</p>
+				<p><fmt:message key="admin.instructormanage.modify.tb.msg" /></p>
 		
 				<div class="text-center">
-					<a href="${pageContext.request.contextPath}/admin/instructorManagement/addActivity/${instructor.ssNumber}.html"><button class="btn btn-primary">Add activity</button></a>
+					<a href="${pageContext.request.contextPath}/admin/instructorManagement/addActivity/${instructor.ssNumber}.html"><button class="btn btn-primary"><fmt:message key="" /></button></a>
 				</div>
 			</div>
 		
-		<h6 class="h7">This instructor can teach</h6>
+		<h6 class="h7"><fmt:message key="admin.instructormanage.modify.tb.subtitle" /></h6>
 		<div class="row">
 		
 			<table class="table table-striped">
 		 	<thead>
 		 		<tr>
-		 			<th class="col-lg-2">ID activity</th>
-		 			<th class="col-lg-8">Name</th>
+		 			<th class="col-lg-2"><fmt:message key="admin.instructormanage.modify.tb.idact" /></th>
+		 			<th class="col-lg-8"><fmt:message key="admin.instructormanage.modify.tb.name" /></th>
 		 			<th class="col-lg-2"></th>
 		 		</tr>
 		 	</thead>
@@ -111,26 +105,26 @@
 							<div class="modal-content">
 								<div class="modal-header" id="delecteActivityModalHead">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Delete activity <c:out value="${act.name}" /></h4>
+									<h4 class="modal-title"><fmt:message key="admin.instructormanage.modify.modal.title" /> <c:out value="${act.name}" /></h4>
 								</div>
 								<div class="modal-body" id="deleteActivityModalBody">
 									<div class="row">
-										<p>Are you sure you want delete the following activity from this instructor?</p>
+										<p><fmt:message key="admin.instructormanage.modify.modal.msg" /></p>
 									</div>
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="modalList">
 												<dl>
-									              <dt>Name</dt><dd><c:out value="${instructor.name}" /> <c:out value="${instructor.lastName}" /></dd>
-									              <dt>SSN</dt><dd><c:out value="${instructor.ssNumber}" /></dd>
+									              <dt><fmt:message key="admin.instructormanage.modify.tb.name" /></dt><dd><c:out value="${instructor.name}" /> <c:out value="${instructor.lastName}" /></dd>
+									              <dt><fmt:message key="admin.instructormanage.modify.modal.snn" /></dt><dd><c:out value="${instructor.ssNumber}" /></dd>
 									            </dl>
 								            </div>
 										</div>
 										<div class="col-lg-6" style="border-left:1px solid #ECF0F1;">
 											<div class="modalList">
 												<dl>
-									              <dt>Name</dt><dd><c:out value="${act.name}" /></dd>
-									              <dt>ID</dt><dd><c:out value="${act.idAct}" /></dd>
+									              <dt><fmt:message key="admin.instructormanage.modify.tb.name" /></dt><dd><c:out value="${act.name}" /></dd>
+									              <dt><fmt:message key="admin.instructormanage.modify.tb.idact" /></dt><dd><c:out value="${act.idAct}" /></dd>
 									            </dl>
 								            </div>
 
@@ -138,12 +132,12 @@
 									</div>
 								</div>	
 								<div class="modal-footer" id="deleteActivityModalFooter">
-									<div style="font-size: 14px; float:left"><strong>Caution!</strong> This action is not reversible.</div>
+									<div style="font-size: 14px; float:left"><fmt:message key="admin.instructormanage.modify.modal.foot" /></div>
 									<div class="pull-right">
 										<a href="${pageContext.request.contextPath}/admin/instructorManagement/removeActivity/${instructor.ssNumber}&${act.idAct}.html">
-											<button type="button" class="btn btn-danger" id="deleteActBtnModal">Delete</button>
+											<button type="button" class="btn btn-danger" id="deleteActBtnModal"><fmt:message key="admin.instructormanage.modify.modal.btn.del" /></button>
 										</a>
-										<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+										<button type="button" class="btn btn-info" data-dismiss="modal"><fmt:message key="admin.instructormanage.modify.form.btn.cancel" /></button>
 									</div>
 								</div>
 							</div>
@@ -153,7 +147,7 @@
 		 			<td>${act.idAct}</td>
 		 			<td>${act.name}</td>
 		 			
-		 			<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteActModal${act.idAct}">Delete</button></td>
+		 			<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteActModal${act.idAct}"><fmt:message key="admin.instructormanage.modify.modal.btn.del" /></button></td>
 		 		</tr>
 		 		</c:forEach>
 		 		</tbody>
@@ -164,7 +158,6 @@
 	    $('.datepicker').datepicker({
 	    	format: 'dd/mm/yyyy',
 	    	weekStart: 1,
-	    	language: 'es'
 	    })
 	</script>
 </jsp:body>

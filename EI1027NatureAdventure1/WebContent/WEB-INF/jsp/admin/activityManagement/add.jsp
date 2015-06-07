@@ -3,8 +3,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:message key="" />
-
 <t:template>
 <jsp:body>
 <h4><fmt:message key="admin.activitymanage.title" /></h4>

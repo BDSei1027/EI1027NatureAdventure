@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div class="row form-group">
-					<form:label path="email" for="email" class="col-lg-2 control-label"><fmt:message key="reg.email" /> </form:label>
+					<form:label path="email" for="email" class="col-lg-2 control-label">Email </form:label>
 					<div class="col-lg-10">
 						<div class="input-group">
 						<form:input path="email" type="email" class="form-control" id="email" placeholder="Enter your email"/>
@@ -63,8 +63,8 @@
 					<div class="col-lg-10">
 						<form:select path="language" data-toggle="select" class="form-control select select-primary mrs mbm">
 							<optgroup>
-								<form:option value="EN"><fmt:message key="language.en" /></form:option>
-								<form:option value="ES"><fmt:message key="language.es" /></form:option>
+								<form:option value="EN"><fmt:message key="languages.en" /></form:option>
+								<form:option value="ES"><fmt:message key="languages.es" /></form:option>
 							</optgroup>
 						</form:select>
 					</div>

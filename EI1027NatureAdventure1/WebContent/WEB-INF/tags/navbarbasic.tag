@@ -36,7 +36,7 @@
 					</div>	
 					<div class="modal-footer" id="LoginModalFooter">
 						<div class="pull-left">
-						<p>Not a member? <a href="${pageContext.request.contextPath}/register.html"><fmt:message key="login.sigup" /></a></p>
+						<p>Not a member? <a href="${pageContext.request.contextPath}/register.html"><fmt:message key="login.signup" /></a></p>
 	          			<p><fmt:message key="login.forgot" /> <a href="#"><fmt:message key="login.forgot.a" /></a></p>
 	          			</div>
 	          			<div class="pull-right">
@@ -65,7 +65,7 @@
     <ul class="nav navbar-nav navbar-left">
         <li><a href="${pageContext.request.contextPath}/"><fmt:message key="nav.index"/></a></li>
         <li><a href="${pageContext.request.contextPath}/activities.html"><fmt:message key="nav.activities" /></a></li>
-		<li><a href="${pageContext.request.contextPath}/help.html"><fmt:message key="nav.help" /></a></li>
+		<!-- <li><a href="${pageContext.request.contextPath}/help.html"><fmt:message key="nav.help" /></a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#loginModal" data-toggle="modal" data-target="#LoginModal"><fmt:message key="nav.login" /></a></li>
