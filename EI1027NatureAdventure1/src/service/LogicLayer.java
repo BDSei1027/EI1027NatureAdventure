@@ -580,6 +580,7 @@ public class LogicLayer {
 		if(myStatus==null) return;
 		myStatus.setDateRevision(new Date());
 		myStatus.setStatus("pending");
+		myStatus.setSsNumber(null);
 		this.updateStatus(myStatus);
 		
 		Booking bok = this.getBooking(idBooking);
