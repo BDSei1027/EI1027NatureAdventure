@@ -113,7 +113,7 @@
 			<div class="form-group row">
 				<form:label path="groupSize" class="col-lg-2 control-label">Group size</form:label>
 				<div class="col-lg-10">
-				<form:input path="groupSize" type="number" class="form-control" />
+				<form:input path="groupSize" type="number" class="form-control" id="grSz" onchange="updatePrice()"/>
 				<form:errors path="groupSize" class="text-danger" />
 				</div>
 			</div>
@@ -136,7 +136,7 @@
 			<div class="control-label col-lg-2">Price: </div>
 			<div class="col-lg-10">
 				<div class="input-group">
-					<div class="form-control"><!-- PRECIO AQUI --></div>
+					<div class="form-control"><p id="price"></p><!-- PRECIO AQUI --></div>
 					<div class="input-group-addon">&euro;</div>
 				</div>
 			</div>
@@ -154,6 +154,13 @@
 
 	
 
+<script>
+function updatePrice() {
+	var priceAct = <c:out value="${priceAct}"/>
+    var groupSize = document.getElementById("grSz").setAttribute("value",x);
+    document.getElementById("price").setAttribute("value",priceAct*groupSize);
+}
+</script>
 
 </jsp:body>
 </t:template>

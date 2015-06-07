@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import classes.Activity;
 import classes.Booking;
 import classes.Client;
+import classes.ClientRegister;
 import controller.basics.AbstractController;
 
 
@@ -37,10 +38,11 @@ public class BasicPages extends AbstractController {
 		
 		Activity act = service.getActivity(idAct);
 		
-		model.addAttribute("client", new Client());
+		model.addAttribute("client", new ClientRegister());
 		model.addAttribute("booking", booking);
 		if(locale.getLanguage().equalsIgnoreCase("en")) model.addAttribute("actName", act.getName());
 		else model.addAttribute("actName", act.getNombre());
+		model.addAttribute("actPrice", act.getPrice());
 		
 		return "booking";
 	}
