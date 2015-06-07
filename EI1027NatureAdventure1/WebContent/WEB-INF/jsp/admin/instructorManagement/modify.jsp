@@ -7,7 +7,14 @@
 		<c:if test="${not empty error and (error eq 2)}">
 		<div class="alert alert-warning alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  Activity <strong><c:out value="${id}" /> deleted</strong> from <strong>instructor</strong>, <c:out value="${instructor.ssNumber}" />.
+			  Activity <strong><c:out value="${id}" /> deleted</strong> from instructor <strong><c:out value="${instructor.name} ${instructor.lastName}" /></strong>.
+			</div>
+		</c:if>
+		
+		<c:if test="${not empty error and (error eq 0)}">
+		<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  Activity <strong><c:out value="${id}" /> added</strong> to instructor <strong><c:out value="${instructor.name} ${instructor.lastName}" /></strong>.
 			</div>
 		</c:if>
 	

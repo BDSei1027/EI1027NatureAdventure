@@ -65,7 +65,7 @@ public class BookingManagement extends AbstractController {
 	public String bookingToPending(@PathVariable int idBooking){
 		service.bookingToPending(idBooking);
 		
-		return "forward:/admin/bookingManagement/"+1+"&"+idBooking+".html";
+		return "forward:/admin/bookingManagement/"+2+"&"+idBooking+".html";
 	}
 	
 }

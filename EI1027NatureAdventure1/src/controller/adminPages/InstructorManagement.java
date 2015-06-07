@@ -116,7 +116,7 @@ public class InstructorManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/modify/{idInstructor}/{resCode}&{idCode}")
-	public String instructorsModifyPage(@PathVariable int resCode, @PathVariable String idCode, @PathVariable String idInstructor, Model model){
+	public String instructorsModifyPage(@PathVariable String idInstructor, @PathVariable int resCode, @PathVariable String idCode, Model model){
 		Instructor instructor = service.getInstructor(idInstructor);
 		Collection<Activity> colActivities = service.getAllActivities(instructor); 
 		
@@ -161,16 +161,17 @@ public class InstructorManagement extends AbstractController {
 	
 	@RequestMapping(value="/addActivity/{idInstructor}", method=RequestMethod.POST)
 	public String instructorsAddActivity(@PathVariable String idInstructor, HttpServletRequest request){
-		service.addInstructed(idInstructor, Integer.parseInt(request.getParameter("newAct")));
+		int idAct = Integer.parseInt(request.getParameter("newAct"));
+		service.addInstructed(idInstructor, idAct);
 		
-		return "redirect:/admin/instructorManagement/addActivity/" + idInstructor + ".html";
+		return "forward:/admin/instructorManagement/modify/"+idInstructor+"/"+0+"&"+idAct+".html";
 	}
 
 	@RequestMapping(value="/removeActivity/{idInstructor}&{idActivity}")
 	public String instructorsRemoveActivity(@PathVariable String idInstructor, @PathVariable Integer idActivity){
 		service.removeInstructed(idInstructor, idActivity);
 		
-		return "forward:/admin/instructorManagement/modify/"+idInstructor+"/"+2+"&"+idInstructor+".html";
+		return "forward:/admin/instructorManagement/modify/"+idInstructor+"/"+2+"&"+idActivity+".html";
 	}
 
 }
