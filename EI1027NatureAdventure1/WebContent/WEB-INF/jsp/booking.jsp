@@ -8,6 +8,7 @@
 
 
 <t:template>
+
 <jsp:body>
 	<h4>Creating a booking</h4>
 	<h6 class="subtitle">Hi! Customer</h6>
@@ -20,7 +21,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Sign up form</div>
 			<div class="panel-body">
-			<form:form modelAttribute="clientregister" method="post" role="form">
+			<form:form modelAttribute="client" method="post" role="form">
 			<div class="row form-group">
 					<form:label path="name" for="nam" class="col-lg-2 control-label"><fmt:message key="reg.name" /> </form:label>
 					<div class="col-lg-10">				
@@ -113,10 +114,11 @@
 			<div class="form-group row">
 				<form:label path="groupSize" class="col-lg-2 control-label">Group size</form:label>
 				<div class="col-lg-10">
-				<form:input path="groupSize" type="number" class="form-control" id="grSz" onchange="updatePrice()"/>
+				<form:input path="groupSize" type="number" class="form-control" id="grSz" onclick="javascript:updatePrice();"/>
 				<form:errors path="groupSize" class="text-danger" />
 				</div>
 			</div>
+
 			<div class="form-group row">
 				<div class="col-lg-12">
 					<form:label path="information" class="control-label">Information</form:label>
@@ -136,7 +138,7 @@
 			<div class="control-label col-lg-2">Price: </div>
 			<div class="col-lg-10">
 				<div class="input-group">
-					<div class="form-control"><p id="price"></p><!-- PRECIO AQUI --></div>
+					<div class="form-control" ><p id="prc"></p><!-- PRECIO AQUI --></div>
 					<div class="input-group-addon">&euro;</div>
 				</div>
 			</div>
@@ -154,11 +156,12 @@
 
 	
 
-<script>
-function updatePrice() {
-	var priceAct = <c:out value="${priceAct}"/>
-    var groupSize = document.getElementById("grSz").setAttribute("value",x);
-    document.getElementById("price").setAttribute("value",priceAct*groupSize);
+<script type="text/javascript">
+function updatePrice()
+{
+	var priceAct = 5;
+    var groupSize = document.getElementById("grSz").getAttribute("value");
+    document.getElementById("prc").innerHTML = groupSize;
 }
 </script>
 
