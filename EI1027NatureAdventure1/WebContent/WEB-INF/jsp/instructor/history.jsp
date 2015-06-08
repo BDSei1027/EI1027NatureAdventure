@@ -7,6 +7,15 @@
 
 <t:template>
 <jsp:body>
+
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/instructor/history.html"><fmt:message key="breadcrumbs.instr.history" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/instructor.html"><fmt:message key="breadcrumbs.instr.main" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+	</div>
+	
 <!-- Quizas me excedi con la funcionalidad lo podemos hacer mas basico al principio -->
 	<div class="intructorList">
 		<h4><fmt:message key="instructor.bookhistory.title" /></h4>

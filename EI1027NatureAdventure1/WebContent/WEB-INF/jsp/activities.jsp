@@ -7,6 +7,13 @@
 
 <t:template>
 <jsp:body>
+
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+		<span class="fui-arrow-right"></span> 
+		<a href="${pageContext.request.contextPath}/activities.html">Activities</a>
+	</div>
+
 	<h4><fmt:message key="activities.title" /></h4>
 	<c:forEach var="act" items="${activityList}">
 	<c:if test="${lang eq 'ES'}">

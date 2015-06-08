@@ -5,6 +5,15 @@
 
 <t:template>
 <jsp:body>
+
+	<div class="crumbs">
+	<a href="${pageContext.request.contextPath}/customer/history.html"><fmt:message key="breadcrumbs.cust.history" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/customer.html"><fmt:message key="breadcrumbs.cust.main" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+	</div>
+
 	<div class="clientMain">
 		<h4><fmt:message key="client.history.welcome1" /> <c:out value="${client.clientName}" /></h4>
 		<p><fmt:message key="client.history.welcome2" /> <strong><c:out value="${client.clientName}" /></strong></p>

@@ -8,6 +8,26 @@
 <t:template>
 <jsp:body>
 
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyInactive.html"><fmt:message key="breadcrumbs.admin.onlyinactive" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement.html"><fmt:message key="breadcrumbs.admin.instr" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+		<span class="fui-arrow-right"></span> 
+		<a href="${pageContext.request.contextPath}/admin.html">Admin</a> 
+		<span class="fui-arrow-right"></span> 
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement.html">Instructor</a> 
+		<span class="fui-arrow-right"></span> 
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyInactive.html">Only inactive</a>
+	</div>
+
 	<h4><fmt:message key="admin.instructormanage.title" /></h4>
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">

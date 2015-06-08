@@ -35,10 +35,10 @@
 						<div class="panel-body">
 							<div class="miembro">
 								<div class="media">
-									<div class="media-left">
+									<div class="col-lg-2">
 										<img src="cuiner.jpg" class="media-object about-img" alt="64x64" >
 									</div>
-									<div class="media-body">
+									<div class="col-lg-10">
 										<h5 class="media-heading">David Serrano Hernández</h5>
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">Email:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
@@ -63,10 +63,10 @@
 						<div class="panel-body">
 							<div class="miembro">
 								<div class="media">
-									<div class="media-left">
+									<div class="col-lg-2">
 										<img src="cuiner.jpg" class="media-object about-img" alt="64x64">
 									</div>
-									<div class="media-body">
+									<div class="col-lg-10">
 										<h5 class="media-heading">Catalín Denís Damían</h5>
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>
@@ -91,10 +91,10 @@
 						<div class="panel-body">
 							<div class="miembro">
 								<div class="media">
-									<div class="media-left">
+									<div class="col-lg-2">
 										<img src="cuiner.jpg" class="media-object about-img" alt="64x64">
 									</div>
-									<div class="media-body">
+									<div class="col-lg-10">
 										<h5 class="media-heading">Borja Blasco García</h5>
 										<div class="miembro-text">
 											<p><strong style="color: inherit;">E-mail:</strong> <a href="mailto:">alxxxxxx@uji.es</a></p>

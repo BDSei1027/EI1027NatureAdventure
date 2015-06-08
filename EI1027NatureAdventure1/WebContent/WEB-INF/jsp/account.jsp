@@ -34,6 +34,16 @@
 		</c:when>
 		
 	</c:choose>
+	
+	<div class="crumbs">
+		 <a href="${pageContext.request.contextPath}/account.html">Account</a>
+		 <span class="fui-arrow-left"></span> 
+		<c:if test="${user.type eq 2 }"><a href="${pageContext.request.contextPath}/customer.html"><fmt:message key="breadcrumbs.admin.cli" /></a></c:if>
+		<c:if test="${user.type eq 1 }"><a href="${pageContext.request.contextPath}/instructor.html"><fmt:message key="breadcrumbs.admin.instr" /></a></c:if>
+		<span class="fui-arrow-left"></span> 
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+	
 	<h4><fmt:message key="account.title" /></h4>
 	<h6 class="subtitle"><fmt:message key="account.subtitle" /></h6>
 	<div class="row">
@@ -91,8 +101,8 @@
 								</div>
 								<div class="text-center">
 									<div class="btn-group">
-										<button type="submit" class="btn btn-primary"><fmt:message key="account.btn.change" /></button>
-										<button type="reset" class="btn btn-danger"><fmt:message key="account.btn.clear" /></button>
+										<button type="submit" class="btn btn-primary"><fmt:message key="account.form.btn.change" /></button>
+										<button type="reset" class="btn btn-danger"><fmt:message key="account.form.btn.clear" /></button>
 									</div>
 								</div>
 							</form:form>
@@ -142,7 +152,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="form-group row">
-						<label class="control-label col-lg-2"><fmt:message key="account.form.account" /> </label>
+						<label class="control-label col-lg-2"><fmt:message key="account.form.user" /> </label>
 						<div class="col-lg-10">
 							<div class="form-control">${user.user}</div>
 						</div>
@@ -164,8 +174,8 @@
 						</div>
 						<div class="text-center">
 							<div class="btn-group">
-								<button type="submit" class="btn btn-primary"><fmt:message key="account.form.bnt.pass" /></button>
-								<button type="reset" class="btn btn-danger"><fmt:message key="account.form.bnt.clear" /></button>
+								<button type="submit" class="btn btn-primary"><fmt:message key="account.form.btn.pass" /></button>
+								<button type="reset" class="btn btn-danger"><fmt:message key="account.form.btn.clear" /></button>
 							</div>
 						</div>
 					</form:form>

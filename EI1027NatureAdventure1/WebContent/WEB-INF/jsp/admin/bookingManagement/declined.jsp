@@ -8,6 +8,16 @@
 <t:template>
 <jsp:body>
 
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/BookingManagement/declined.html"><fmt:message key="breadcrumbs.admin.book.declined" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/BookingManagement.html"><fmt:message key="breadcrumbs.admin.book" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+
 	<!-- Estan los campos de Form:form preparados no se porque falla -->
 	<h4><fmt:message key="admin.bookingmanage.title" /></h4>
 	<div id="actionsHelp" class="row">

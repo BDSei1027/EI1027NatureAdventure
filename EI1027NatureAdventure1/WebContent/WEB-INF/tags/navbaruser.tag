@@ -16,7 +16,7 @@
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-left">
         <li><a href="${pageContext.request.contextPath}/"><fmt:message key="nav.index" /></a></li>
-        <li><a href="${pageContext.request.contextPath}/activities.html"><fmt:message key="nav.activites" /></a></li>
+        <li><a href="${pageContext.request.contextPath}/activities.html"><fmt:message key="nav.activities" /></a></li>
 		<!-- <li><a href="${pageContext.request.contextPath}/help.html"><fmt:message key="nav.help" /></a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -24,7 +24,7 @@
       <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><fmt:message key="nav.actions" /> <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
            <li><a href="${pageContext.request.contextPath}/customer.html"><fmt:message key="nav.cli.ProxBook" /></a></li>
-           <li><a href="${pageContext.request.contextPath}/customer/history.html"><fmt:message key="nav.PastBook" /></a></li>
+           <li><a href="${pageContext.request.contextPath}/customer/history.html"><fmt:message key="nav.cli.PastBook" /></a></li>
            <li class="divider"></li>
            <li><a href="${pageContext.request.contextPath}/account.html"><fmt:message key="nav.account" /></a></li>
          </ul>

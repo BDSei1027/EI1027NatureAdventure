@@ -5,6 +5,18 @@
 
 <t:template>
 <jsp:body>
+
+
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement/add.html"><fmt:message key="breadcrumbs.admin.instr.add" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement.html"><fmt:message key="breadcrumbs.admin.instr" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+
 <h4><fmt:message key="admin.instructormanage.title" /></h4>
 <h6 class="subtitle"><fmt:message key="admin.addinstructor.title" /></h6>
 <div class="panel panel-default">

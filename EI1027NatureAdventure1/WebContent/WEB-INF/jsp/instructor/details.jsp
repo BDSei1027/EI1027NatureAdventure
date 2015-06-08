@@ -8,6 +8,14 @@
 
 <t:template>
 	<jsp:body>
+		<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/instructor/details/${booking.idBooking}.html"><fmt:message key="breadcrumbs.instr.book" /> <em>${booking.idBooking}</em></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/instructor.html"><fmt:message key="breadcrumbs.instr.main" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+	</div>
+	
 	<h4><fmt:message key="instructor.details.title.1" /> <strong><c:out value="${booking.idBooking}" /></strong> <fmt:message key="instructor.details.title.2" /></h4>
 	<div class="row">
 		<div class="col-lg-6">

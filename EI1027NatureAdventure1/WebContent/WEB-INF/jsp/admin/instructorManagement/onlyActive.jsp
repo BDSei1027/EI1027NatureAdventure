@@ -7,6 +7,17 @@
 
 <t:template>
 <jsp:body>
+	
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement/onlyActive.html"><fmt:message key="breadcrumbs.admin.onlyactive" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement.html"><fmt:message key="breadcrumbs.admin.instr" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+	
 
 	<!-- Estan los campos de Form:form preparados no se porque falla -->
 	<h4><fmt:message key="admin.instructormanage.title" /></h4>

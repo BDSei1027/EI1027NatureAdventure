@@ -20,6 +20,16 @@
 			</div>
 		</c:if>
 	
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/${instructor.ssNumber}.html"><fmt:message key="breadcrumbs.admin.instr.mod" /><em>${instructor.name}</em></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement.html"><fmt:message key="breadcrumbs.admin.instr" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+	
 	<h4><fmt:message key="admin.instructormanage.title" /></h4>
 	<h6 class="subtitle"><fmt:message key="admin.instructormanage.modify.title" /> <strong>${instructor.name} ${instructor.lastName}</strong> <small>${instructor.idNumber}</small></h6>
 	<div class="col-lg-5">
@@ -82,7 +92,7 @@
 				<p><fmt:message key="admin.instructormanage.modify.tb.msg" /></p>
 		
 				<div class="text-center">
-					<a href="${pageContext.request.contextPath}/admin/instructorManagement/addActivity/${instructor.ssNumber}.html"><button class="btn btn-primary"><fmt:message key="" /></button></a>
+					<a href="${pageContext.request.contextPath}/admin/instructorManagement/addActivity/${instructor.ssNumber}.html"><button class="btn btn-primary"><fmt:message key="admin.instructormanage.modify.tb.btn" /></button></a>
 				</div>
 			</div>
 		

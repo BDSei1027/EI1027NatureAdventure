@@ -6,7 +6,16 @@
 
 <t:template>
 <jsp:body>
-
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/activityManagement/onlyActive.html"><fmt:message key="breadcrumbs.admin.onlyactive" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/activityManagement.html"><fmt:message key="breadcrumbs.admin.act" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+	
 	<h4><fmt:message key="admin.activitymanage.title" /></h4>
 	<div id="actionsHelp" class="row">
 		<div id="action" class="col-lg-2">

@@ -7,6 +7,16 @@
 <t:template>
 	<jsp:body>
 		
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/BookingManagement/details/${booking.innerIdBooking}.html"><fmt:message key="breadcrumbs.admin.book.details"  /> <em>${booking.innerIdBooking}</em></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/BookingManagement.html"><fmt:message key="breadcrumbs.admin.book" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+		
     <h4><fmt:message key="admin.book.details.title" /></h4>
 	<h6 class="subtitle"><fmt:message key="admin.book.details.details" /> <strong style="padding-left: 10px;">${booking.innerIdBooking}</strong></h6>
   <div role="tabpanel">

@@ -22,6 +22,17 @@
 			</c:when>
 		</c:choose>
 	</c:if>
+	
+	<div class="crumbs">		
+		<a href="${pageContext.request.contextPath}/admin/clientManagement/details/${client.clientId}"><fmt:message key="breadcrumbs.admin.cli.details" /> <em>${client.clientName}</em></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/clientManagement.html"><fmt:message key="breadcrumbs.admin.cli" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>	
+	
 	<h4><fmt:message key="admin.clientmanage.title" /></h4>
 	<h6 class="subtitle"><fmt:message key="admin.client.details.cli" />  <strong><c:out value="${client.clientId}" /></strong></h6>
 	<div style="width: 80%;">

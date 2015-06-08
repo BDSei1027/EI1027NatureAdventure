@@ -12,6 +12,15 @@
 			  <fmt:message key="admin.usermanage.alert.1" /> <strong><c:out value="${id}" /> <fmt:message key="admin.usermanage.alert.2" /></strong>.
 			</div>
 	</c:if>
+	
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/userManagement.html"><fmt:message key="breadcrumbs.admin.usermanage" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+	
 	<h4><fmt:message key="admin.usermanage.title" /></h4>
 	<div id="help" class="row">
 		<div class="panel panel-info">

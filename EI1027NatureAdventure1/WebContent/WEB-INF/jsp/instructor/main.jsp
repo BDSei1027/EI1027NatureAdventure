@@ -3,10 +3,14 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 
-
-
 <t:template>
 <jsp:body>
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/instructor.html"><fmt:message key="breadcrumbs.instr.main" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+	</div>
+
 		<h4><fmt:message key="instructor.assignedbookings.welcome1" /> <strong><c:out value="${name}" /></strong></h4>
 		<p><fmt:message key="instructor.assignedbookings.welcome2" /></p>
 		

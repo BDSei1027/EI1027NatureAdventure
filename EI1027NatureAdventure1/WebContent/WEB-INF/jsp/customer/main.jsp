@@ -5,6 +5,13 @@
 
 <t:template>
 <jsp:body>
+
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/customer.html"><fmt:message key="breadcrumbs.cust.main" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+	</div>
+
 	<div class="clientMain">
 		<h4><fmt:message key="client.activebookings.welcome" /> <c:out value="${name}" /></h4>
 		<p class="subtitle"><fmt:message key="client.activebookings.info1" /> <strong><c:out value="${name}" /></strong><fmt:message key="client.activebookings.info2" /></p>

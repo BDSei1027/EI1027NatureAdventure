@@ -7,6 +7,17 @@
 
 <t:template>
 	<jsp:body>
+	
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><fmt:message key="breadcrumbs.admin.act.details" /> <em>${activity.name}</em></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/activityManagement.html"><fmt:message key="breadcrumbs.admin.act" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+	
 	<h4><fmt:message key="admin.activitymanage.title" /></h4>
 	<h6 class="subtitle"><fmt:message key="admin.activitymanage.modify.title" /> <strong>${activity.name}</strong> <small>${activity.idAct}</small></h6>
 	

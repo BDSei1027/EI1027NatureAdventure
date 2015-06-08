@@ -21,6 +21,12 @@
 			</div>
 		</c:when>
 		</c:choose>
+		
+		<div class="crumbs">
+			<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin.main" /></a> 
+			<span class="fui-arrow-left"></span>
+			<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
+		</div>
 	  <div class="row">
       <div class="col-lg-6">
         <h3><fmt:message key="admin.adminpage.welcome" /> <c:out value="${user.name}" /></h3>

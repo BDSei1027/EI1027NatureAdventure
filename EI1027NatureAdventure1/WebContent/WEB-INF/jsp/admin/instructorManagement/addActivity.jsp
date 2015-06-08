@@ -4,9 +4,24 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:message key="" />
 <t:template>
 	<jsp:body>
+	
+	
+	
+	<div class="crumbs">
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/addActivity/${instructor.ssNumber}.html"><fmt:message key="breadcrumbs.admin.instr.addact" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement/modify/${instructor.ssNumber}.html"><fmt:message key="breadcrumbs.admin.instr.mod" /><em>${instructor.name}</em></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin/instructorManagement.html"><fmt:message key="breadcrumbs.admin.instr" /></a>
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
+		<span class="fui-arrow-left"></span>
+		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a>
+	</div>
+	
+	
 	<h4><fmt:message key="admin.instructormanage.title" /></h4>
 	<h6 class="subtile"><fmt:message key="admin.instructor.addActivity.title" /> <strong>${instructor.name} ${instructor.lastName}</strong> (<em>${instructor.idNumber}</em>)</h6>
 	
