@@ -1,5 +1,7 @@
-# EI1027NatureAdventure
+EI1027NatureAdventure
 =========================
+
+![NatureAdventure](http://i.imgur.com/oDkK5C8.png)
 
 Este repositorio es para el trabajo de una asignatura de la carrera, donde tenemos que realizar un proyecto para una empresa.
 Es la continuación del proyecto de otra asignatura del primer semestre.
