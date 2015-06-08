@@ -177,8 +177,8 @@ footer p {
 	margin-top: 10px;
 }
 
-@media screen and (min-width: 700px) {
-	.footer-col-2 {
+@media screen and (min-width: 400px) {
+	.col-2 {
 		text-align: right;
 		margin-top: 1%;
 	}

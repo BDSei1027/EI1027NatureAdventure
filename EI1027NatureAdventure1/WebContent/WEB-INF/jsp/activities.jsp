@@ -13,9 +13,9 @@
 		<c:choose>
 			<c:when test="${act.level eq 0}"><c:set var="lvl" value="Básico" /></c:when>
 			<c:when test="${act.level eq 1}"><c:set var="lvl" value="Fácil" /></c:when>
-			<c:when test="${act.level eq 2}"><c:set var="lvl" value="Medio" /> /></c:when>
-			<c:when test="${act.level eq 3}"><c:set var="lvl" value="Alto" /> /></c:when>
-		<c:choose>
+			<c:when test="${act.level eq 2}"><c:set var="lvl" value="Medio" /></c:when>
+			<c:when test="${act.level eq 3}"><c:set var="lvl" value="Alto" /></c:when>
+		</c:choose>
 	</c:if>
 	<c:if test="${lang eq 'EN'}">
 		<c:choose>
