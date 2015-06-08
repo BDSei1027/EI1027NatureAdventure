@@ -9,17 +9,22 @@
 <jsp:body>
 	<h4><fmt:message key="activities.title" /></h4>
 	<c:forEach var="act" items="${activityList}">
-	<c:set var="lvl1" value="<fmt:message key="activities.lvl.0" />" />
-	<c:set var="lvl2" value="<fmt:message key="activities.lvl.1" />" />
-	<c:set var="lvl3" value="<fmt:message key="activities.lvl.2" />" />
-	<c:set var="lvl4" value="<fmt:message key="activities.lvl.3" />" />
-	
-	<c:choose>
-		<c:when test="${act.level eq 0}"><c:set var="lvl" value="${lvl1}" /></c:when>
-		<c:when test="${act.level eq 1}"><c:set var="lvl" value="${lvl2}" /></c:when>
-		<c:when test="${act.level eq 2}"><c:set var="lvl" value="${lvl3}" />" /></c:when>
-		<c:when test="${act.level eq 3}"><c:set var="lvl" value="${lvl4}" />" /></c:when>
-	</c:choose>
+	<c:if test="${lang eq 'ES'}">
+		<c:choose>
+			<c:when test="${act.level eq 0}"><c:set var="lvl" value="Básico" /></c:when>
+			<c:when test="${act.level eq 1}"><c:set var="lvl" value="Fácil" /></c:when>
+			<c:when test="${act.level eq 2}"><c:set var="lvl" value="Medio" /> /></c:when>
+			<c:when test="${act.level eq 3}"><c:set var="lvl" value="Alto" /> /></c:when>
+		<c:choose>
+	</c:if>
+	<c:if test="${lang eq 'EN'}">
+		<c:choose>
+			<c:when test="${act.level eq 0}"><c:set var="lvl" value="Begginer" /></c:when>
+			<c:when test="${act.level eq 1}"><c:set var="lvl" value="Easy" /></c:when>
+			<c:when test="${act.level eq 2}"><c:set var="lvl" value="Medium" /> /></c:when>
+			<c:when test="${act.level eq 3}"><c:set var="lvl" value="High" /> /></c:when>
+		</c:choose>
+	</c:if>
 	<div class="activity">
 	<a href="#collapseAct${act.idAct}" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">
 		<div class="activity-title">
