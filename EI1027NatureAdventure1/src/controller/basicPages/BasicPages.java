@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import classes.Activity;
 import classes.Booking;
-import classes.Client;
 import classes.ClientRegister;
 import controller.basics.AbstractController;
 
@@ -45,6 +45,11 @@ public class BasicPages extends AbstractController {
 		model.addAttribute("actPrice", act.getPrice());
 		
 		return "booking";
+	}
+	
+	@RequestMapping(value="/activities/newBooking/{idAct}", method=RequestMethod.POST)
+	public String newBookingForm(Locale locale, @PathVariable int idAct, Model model) {
+		return "complete";
 	}
 	
 	@RequestMapping(value="/about")

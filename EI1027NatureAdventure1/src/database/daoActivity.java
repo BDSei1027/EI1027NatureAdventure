@@ -46,7 +46,7 @@ public class daoActivity implements DaoInterface {
 				activity.setNombre(rs.getString("nombre"));
 				activity.setDescription(rs.getString("description"));
 				activity.setDescripcion(rs.getString("descripcion"));
-				activity.setDescripcion(rs.getString("image"));
+				activity.setImage(rs.getString("image"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

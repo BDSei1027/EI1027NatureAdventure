@@ -7,16 +7,15 @@
 
 <t:template>
 <jsp:body>
-
 	<div class="crumbs">
+	<a href="${pageContext.request.contextPath}/activities.html"><fmt:message key="nav.activities" /></a> 
+		<span class="fui-arrow-left"></span>
 		<a href="${pageContext.request.contextPath}/"><span class="fui-home"></span></a> 
-		<span class="fui-arrow-right"></span> 
-		<a href="${pageContext.request.contextPath}/activities.html">Activities</a>
 	</div>
 
 	<h4><fmt:message key="activities.title" /></h4>
 	<c:forEach var="act" items="${activityList}">
-	<c:if test="${lang eq 'ES'}">
+	<c:if test="${lang eq 'es'}">
 		<c:choose>
 			<c:when test="${act.level eq 0}"><c:set var="lvl" value="Básico" /></c:when>
 			<c:when test="${act.level eq 1}"><c:set var="lvl" value="Fácil" /></c:when>
@@ -24,19 +23,19 @@
 			<c:when test="${act.level eq 3}"><c:set var="lvl" value="Alto" /></c:when>
 		</c:choose>
 	</c:if>
-	<c:if test="${lang eq 'EN'}">
+	<c:if test="${lang eq 'en'}">
 		<c:choose>
 			<c:when test="${act.level eq 0}"><c:set var="lvl" value="Begginer" /></c:when>
 			<c:when test="${act.level eq 1}"><c:set var="lvl" value="Easy" /></c:when>
-			<c:when test="${act.level eq 2}"><c:set var="lvl" value="Medium" /> /></c:when>
-			<c:when test="${act.level eq 3}"><c:set var="lvl" value="High" /> /></c:when>
+			<c:when test="${act.level eq 2}"><c:set var="lvl" value="Medium" /></c:when>
+			<c:when test="${act.level eq 3}"><c:set var="lvl" value="High" /></c:when>
 		</c:choose>
 	</c:if>
 	<div class="activity">
 	<a href="#collapseAct${act.idAct}" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">
 		<div class="activity-title">
-	    		<c:if test="${lang eq 'EN'}"><c:out value="${act.name}" /></c:if>
-	        	<c:if test="${lang eq 'ES'}"><c:out value="${act.nombre}" /></c:if>
+	    		<c:if test="${lang == 'en'}"><c:out value="${act.name}" /></c:if>
+	        	<c:if test="${lang == 'es'}"><c:out value="${act.nombre}" /></c:if>
 	    		<small><c:out value="${lvl}" /></small>
     	</div>
     	</a>
@@ -44,8 +43,8 @@
 	    	<div class="activity-body row">
 	        	<div class="col-lg-5">
 	        		<div class="activity-name">
-					<c:if test="${lang eq 'EN'}"><h4><c:out value="${act.name}" /></h4></c:if>
-	        		<c:if test="${lang eq 'ES'}"><h4><c:out value="${act.nombre}" /></h4></c:if>
+					<c:if test="${lang eq 'en'}"><h4><c:out value="${act.name}" /></h4></c:if>
+	        		<c:if test="${lang eq 'es'}"><h4><c:out value="${act.nombre}" /></h4></c:if>
 	        		</div>
 	        		<div class="activity-info">
 	        			<div class="activity-level">
@@ -69,8 +68,8 @@
 	    		<div class="col-lg-7">
 	    			<div class="activity-description">
 	    				<h6><fmt:message key="activities.description" /></h6>
-	    				<c:if test="${lang eq 'EN'}"><p><c:out value="${act.description}" /></p></c:if>
-	    				<c:if test="${lang eq 'ES'}"><p><c:out value="${act.descripcion}" /></p></c:if>
+	    				<c:if test="${lang eq 'en'}"><p><c:out value="${act.description}" /></p></c:if>
+	    				<c:if test="${lang eq 'es'}"><p><c:out value="${act.descripcion}" /></p></c:if>
 	    			</div>
 	    		</div> <!-- col -->
 	    		<button class="btn btn-primary btn-lg btn-block activity-btn" onClick="javascript:location.href = '${pageContext.request.contextPath}/activities/newBooking/${act.idAct}.html';"><fmt:message key="activities.btn" />!</button>

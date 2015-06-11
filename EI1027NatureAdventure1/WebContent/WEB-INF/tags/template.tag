@@ -4,8 +4,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
-
-<fmt:setLocale value="${lang}" />
+<c:set var="lang" value="${pageContext.response.locale}" scope="session"/>
 <fmt:setBundle basename="WEB-INF/language/messages" />
 
 <html lang="${lang}">
