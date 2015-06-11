@@ -713,9 +713,7 @@ public class LogicLayer {
 	 * @param clientID
 	 */
 	public void deleteClient(String clientID){
-		Client myClient = this.getClient(clientID);
-		if (myClient==null) return;
-		daoClient.deleteElement(myClient);
+		daoClient.deleteElement(clientID);
 	}
 	
 	/** Upadate a client in the database

@@ -21,7 +21,7 @@
             <th data-field="idn" data-sortable="true"><fmt:message key="admin.instructormanage.list.idnumber" /></th>
             <th data-field="email" data-sortable="true"><fmt:message key="admin.instructormanage.list.email" /></th>
             <!-- <th data-field="tlf" data-sortable="true">Telephone</th> -->
-            <th data-field="expire" data-sortable="true">E<fmt:message key="admin.instructormanage.list.expire" /></th>
+            <th data-field="expire" data-sortable="true"><fmt:message key="admin.instructormanage.list.expire" /></th>
             <th data-field="activities" data-sortable="true"><fmt:message key="admin.instructormanage.list.activities" /></th>
             <th data-field="active" data-sortable="true"><fmt:message key="admin.instructormanage.list.isactive" /></th>
             <th></th>

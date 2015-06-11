@@ -43,6 +43,22 @@
 			</div>
 		</c:if>
 		<c:forEach var="booking" items="${bookings}">
+			<c:if test="${lang eq 'es'}">
+				<c:choose>
+					<c:when test="${booking.level eq 0}"><c:set var="lvl" value="Básico" /></c:when>
+					<c:when test="${booking.level eq 1}"><c:set var="lvl" value="Fácil" /></c:when>
+					<c:when test="${booking.level eq 2}"><c:set var="lvl" value="Medio" /></c:when>
+					<c:when test="${booking.level eq 3}"><c:set var="lvl" value="Alto" /></c:when>
+				</c:choose>
+			</c:if>
+			<c:if test="${lang eq 'en'}">
+				<c:choose>
+					<c:when test="${booking.level eq 0}"><c:set var="lvl" value="Begginer" /></c:when>
+					<c:when test="${booking.level eq 1}"><c:set var="lvl" value="Easy" /></c:when>
+					<c:when test="${booking.level eq 2}"><c:set var="lvl" value="Medium" /></c:when>
+					<c:when test="${booking.level eq 3}"><c:set var="lvl" value="High" /></c:when>
+				</c:choose>
+			</c:if>
 			    <div class="booking">
 			    	<a href="#collapseAct${booking.idBooking}" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">
 			    	<div class="booking-title">
@@ -62,7 +78,7 @@
 			    	<div class="collapse" id="collapseAct${booking.idBooking}">
 				    	<div class="booking-body row">
 				        	<div class="col-lg-5">
-				        		<div class="booking-activity"><h4 style="margin-bottom: 0px;"><c:out value="${booking.nameActivity}" /> <small><c:out value="${booking.level}" /></small></h4></div>
+				        		<div class="booking-activity"><h4 style="margin-bottom: 0px;"><c:out value="${booking.nameActivity}" /> <small><c:out value="${lvl}" /></small></h4></div>
 				        		<div class="booking-id"><fmt:message key="client.activebookings.form.id" /> <c:out value="${booking.idBooking}" /></div>
 				        	</div>
 				        	<div class="col-lg-3">

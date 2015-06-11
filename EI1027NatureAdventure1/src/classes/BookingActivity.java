@@ -16,7 +16,7 @@ public class BookingActivity {
 	private String nameActivity;
 	private Date dateActivity;
 	private String schedule;
-	private String level;
+	private int level;
 	private int groupSize;
 	private float price;
 	private String place;
@@ -92,30 +92,14 @@ public class BookingActivity {
 		this.place = place;
 	}
 
-	public String getLevel() {
+	public int getLevel() {
 		return level;
 	}
 
-	public void setLevel(String level) {
+	public void setLevel(int level) {
 		this.level = level;
 	}
 	
-	public void setLevel(int level) {
-		switch (level) {
-			case 0:
-				this.level = "Beginner";
-				break;
-			case 1:
-				this.level = "Easy";
-				break;
-			case 2:
-				this.level = "Medium";
-				break;
-			case 3:
-				this.level = "High";
-				break;
-		}
-	}
 
 	public int getStatus() {
 		return status;

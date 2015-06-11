@@ -56,7 +56,7 @@ public class BookingActivityValidator implements Validator{
 			}
 			
 		}
-		if(myActivity.getLevel().equals("")){
+		if(myActivity.getLevel() <= 0){
 			if(language.equals("ES")){
 				errors.rejectValue("groupSize","valorNegativo","Este campo no puede ser menor o igual a cero");//Este campo no puede ser menor o igual a cero
 			}else if(language.equals("EN") || language != null){

@@ -43,7 +43,7 @@
 						</div>
 					</div>
 						<div class="modal-body" id="changeModalBody">
-							<div style="font-size: 14px;"><fmt:message key="admin.clientmanage.modal.text" /> <strong><c:out value="${client.clientId}"/></strong>?</div>
+							<div style="font-size: 14px;"><fmt:message key="admin.clientmanage.modal.text" /> <strong><c:out value="${cli.clientId}"/></strong>?</div>
 							<div class="modalList">
 								<div class="title"><fmt:message key="admin.clientmanage.modal.dl.title" /></div>
 								<dl>
@@ -56,7 +56,7 @@
 							<p class="pull-left" style="font-size: 14px;"><fmt:message key="admin.clientmanage.modal.foot" /></p>
 	          				<div class="pull-right">
 		          				<div class="btn-group">
-			            			<a href="${pageContext.request.contextPath}/admin/clientManagement/deleteClient/${cli.clientId}" class="btn btn-danger"><fmt:message key="admin.clientmanage.modal.btn.dlt" /></a>
+			            			<a href="${pageContext.request.contextPath}/admin/clientManagement/deleteClient/${cli.clientId}.html" class="btn btn-danger"><fmt:message key="admin.clientmanage.modal.btn.dlt" /></a>
 			            			<button type="button" class="btn btn-primary" data-dismiss="modal"><fmt:message key="admin.clientmanage.modal.btn.cancel" /></button>
 		            			</div>
 							</div>
