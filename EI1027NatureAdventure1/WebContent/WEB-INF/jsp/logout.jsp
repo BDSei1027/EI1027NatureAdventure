@@ -6,6 +6,7 @@
 
 <t:template>
 <jsp:body>
+<c:set var="lang" value="${pageContext.response.locale}" scope="page"/>
 	<h4><fmt:message key="logout.thank0" /></h4>
 	
 	<p><fmt:message key="logout.thank1" /></p>

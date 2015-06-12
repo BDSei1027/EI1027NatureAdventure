@@ -24,7 +24,10 @@ strong {
 }
 
 .noread {
-	background-color: #FFF;
+	opacity: 1; 
+	background-color: #FFF; 
+	border-color: #BDC3C7; 
+	color: inherit;
 }
 
 .modalList > dl {
@@ -549,7 +552,7 @@ footer p {
 }
 
 .about-banner:hover {
-	color: #1ABC9C;
+	color: #f39c12;
 }
 
 .about-img {
@@ -780,3 +783,39 @@ footer p {
 .activity-btn {
 	margin-top: 20px;
 }
+
+.help {
+	border-radius: 6px;
+	border: 1px solid #79cdbc;
+	padding: 0px;
+	background-color: #86e0cc;
+}
+
+.help > .help-heading{
+	font-size: 16px;
+	font-weight: 700;
+	color: #1abc9c;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 3px 12px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom: 1px solid #79cdbc;
+	background-color: #86e0cc;
+}
+
+.help > .help-body {
+	text-align: justify;
+	font-size: 15px;
+	padding: 4px 15px;
+	background-color: #FFF;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.user > p {
+	padding-left: 20px;
+}
+
+
+
