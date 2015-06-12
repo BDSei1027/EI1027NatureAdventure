@@ -21,7 +21,7 @@
 		<div class="col-lg-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><fmt:message key="instructor.details.form.title.1" /> <c:out value="${booking.idBooking}" /></h3>
+					<h3 class="panel-title"><fmt:message key="instructor.details.form.title" /> <c:out value="${booking.idBooking}" /></h3>
 				</div>
 				<div class="panel-body">
 					<div class="form-group">
@@ -38,8 +38,8 @@
 								<span class="caret"></span></a>
 							</div>
 						</div>
-						<div class="collapse" id="collapseEActivity">
-  							<div class="well well-sm">
+						<div class="collapse" id="collapseActivity">
+  							<div class="">
 								<div class="form-group">
 									<div class="input-group">
 										<div class="input-group-addon"><fmt:message key="instructor.details.form.activity" /></div>
@@ -93,11 +93,11 @@
 									</c:otherwise>								
 								</c:choose>
 							</div>
-							<c:if test="${empty booking.information}">
-								<div class="input-group-addon"><a data-toggle="collapse" href="#collapseActivity" aria-expanded="false">
+							<c:if test="${not empty booking.information}">
+								<div class="input-group-addon"><a data-toggle="collapse" href="#collapseInfo" aria-expanded="false">
 									<span class="caret"></span></a>
 								</div>
-								<div class="collapse" id="collapseActivity">
+								<div class="collapse" id="collapseInfo">
 									<div class="well">
 										${booking.information}
 									</div>
@@ -118,19 +118,19 @@
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><fmt:message key="instructor.details.form.cli.name" /></div>
-							<div class="form-control"><c:out value="${client.name}" /></div>
+							<div class="form-control"><c:out value="${client.clientName}" /></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><fmt:message key="instructor.details.form.cli.ln" /></div>
-							<div class="form-control"><c:out value="${client.lastName}" /></div>
+							<div class="form-control"><c:out value="${client.clientLastName}" /></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<div class="form-control"><c:out value="${client.email}" /></div>
-							<div class="input-group-addon"><a href="mailto:<c:out value="${client.email}" />"><span class=" glyphicon glyphicon-envelope"></span></a></div>
+							<div class="form-control"><c:out value="${client.clientEmail}" /></div>
+							<div class="input-group-addon"><a href="mailto:<c:out value="${client.clientEmail}" />"><span class=" glyphicon glyphicon-envelope"></span></a></div>
 						</div>
 					</div>
 				</div>

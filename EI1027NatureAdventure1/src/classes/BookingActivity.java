@@ -11,7 +11,7 @@ public class BookingActivity {
 	 * Clase de envoltura para mostrar datos en el cliente e instructores 
 	 * con los datos de la actividad y la reserva
 	 */
-	
+	private int innerIdBooking;
 	private int idBooking;
 	private String nameActivity;
 	private Date dateActivity;
@@ -27,6 +27,18 @@ public class BookingActivity {
 	public BookingActivity() {
 		super();
 	}
+	
+	public int getInnerIdBooking() {
+		return innerIdBooking;
+	}
+
+
+
+	public void setInnerIdBooking(int innerIdBooking) {
+		this.innerIdBooking = innerIdBooking;
+	}
+
+
 
 	public int getIdBooking() {
 		return idBooking;
