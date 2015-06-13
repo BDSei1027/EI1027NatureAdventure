@@ -118,7 +118,7 @@ public class MainIdentification extends AbstractController{
 			else if(cookie.getName().equals("token")) cookie.setMaxAge(0);
 		}
 		
-		session.invalidate();
+		session.setAttribute("user", null);
 		return "logout";		
 	}
 	

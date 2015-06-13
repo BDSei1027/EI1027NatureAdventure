@@ -1,6 +1,5 @@
 package controller.interceptors;
  
-import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -13,11 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.propertyeditors.LocaleEditor;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.support.RequestContextUtils;
-
 import service.LogicLayer;
 import validators.SessionValidator;
  
