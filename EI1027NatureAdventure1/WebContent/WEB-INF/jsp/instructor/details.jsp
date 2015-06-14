@@ -24,85 +24,70 @@
 					<h3 class="panel-title"><fmt:message key="instructor.details.form.title" /> <c:out value="${booking.idBooking}" /></h3>
 				</div>
 				<div class="panel-body">
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><fmt:message key="instructor.details.form.bid" /></div>
+					<div class="form-group row">
+						<div class="control-label col-lg-3"><fmt:message key="instructor.details.form.bid" /></div>
+						<div class="col-lg-9">
 							<div class="form-control"><c:out value="${booking.idBooking}" /></div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><fmt:message key="instructor.details.form.aid" /></div>
-							<div class="form-control"><c:out value="${booking.idAct}" /></div>
-							<div class="input-group-addon"><a data-toggle="collapse" href="#collapseActivity" aria-expanded="false">
-								<span class="caret"></span></a>
-							</div>
-						</div>
-						<div class="collapse" id="collapseActivity">
-  							<div class="">
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-addon"><fmt:message key="instructor.details.form.activity" /></div>
-										<div class="form-group"><c:out value="${activity.name}" /></div>
+					<div class="form-group row">
+						<div class="control-label col-lg-3"><fmt:message key="instructor.details.form.aid" /></div>
+							<div class="col-lg-9">
+								<div class="input-group">
+									<div class="form-control"><c:out value="${booking.idAct}" /></div>
+									<div class="input-group-addon"><a data-toggle="collapse" href="#collapseActivity" aria-expanded="false">
+										<span class="fui-triangle-down" style="color: #FFF;"></span></a>
 									</div>
 								</div>
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-addon"><fmt:message key="instructor.details.form.level" /></div>
-										<div class="form-group"><c:out value="${activity.level}" /></div>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-addon"><fmt:message key="instructor.details.form.schedule" /></div>
-										<div class="form-group"><c:out value="${activity.schedule}" /></div>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group">
-										<div class="input-group-addon"><fmt:message key="instructor.details.form.place" /></div>
-										<div class="form-group"><c:out value="${activity.place}" /></div>
-									</div>
-								</div>
+								<div class="collapse" id="collapseActivity">
+  							<div class="well well-sm" style="margin-top: 5px; margin-bottom: 0px; font-size: 14px;">
+  								<dl style="margin-bottom: 0px;">
+  								<dt><fmt:message key="instructor.details.form.activity" /></dt> <c:if test="${lang eq 'es'}"><dd>${activity.nombre}</dd></c:if><c:if test="${lang eq 'en'}"><dd>${activity.name}</dd></c:if>
+  								<dt><fmt:message key="instructor.details.form.level" /></dt> <dd>${activity.level}</dd>
+  								<dt><fmt:message key="instructor.details.form.schedule" /></dt> <dd>${activity.schedule}</dd>
+  								<dt><fmt:message key="instructor.details.form.place" /></dt> <dd>${activity.place}</dd>
+  								</dl>
   							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><fmt:message key="instructor.details.form.date" /></div>
+						</div> <!-- collapse -->
+							</div>
+					</div> <!-- form group -->
+					<div class="form-group row ">
+						<div class="control-label col-lg-3"><fmt:message key="instructor.details.form.date" /></div>
+						<div class="col-lg-9">
 							<div class="form-control"><c:out value="${booking.dateActivity}" /></div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><fmt:message key="instructor.details.form.group" /></div>
+					<div class="form-group row">
+						<div class="control-label col-lg-3"><fmt:message key="instructor.details.form.group" /></div>
+						<div class="col-lg-9">
 							<div class="form-control"><c:out value="${booking.groupSize}" /></div>
-							<div class="input-group-addon">Pers.</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><fmt:message key="instructor.details.form.info" /></div>
-							<div class="form-control" style="height:auto;">
-								<c:choose>
-									<c:when test="${empty booking.information}">
-										<div class="text-muted"><fmt:message key="instructor.details.form.noinfo" /></div>
-									</c:when>
-									<c:otherwise>
-										<fmt:message key="instructor.details.form.expand" />
-									</c:otherwise>								
-								</c:choose>
-							</div>
-							<c:if test="${not empty booking.information}">
-								<div class="input-group-addon"><a data-toggle="collapse" href="#collapseInfo" aria-expanded="false">
-									<span class="caret"></span></a>
-								</div>
-								<div class="collapse" id="collapseInfo">
-									<div class="well">
-										${booking.information}
+					<div class="form-group row">
+						<div class="control-label col-lg-3"><fmt:message key="instructor.details.form.info" /></div>
+						<div class="col-lg-9">
+							<c:choose>
+								<c:when test="${empty booking.information}">
+									<div class="form-control">
+										<fmt:message key="instructor.details.form.noinfo" />
 									</div>
-								</div>
-							</c:if>
+								</c:when>
+								<c:otherwise>
+									<div class="input-group">
+										<div class="form-control">
+											<fmt:message key="instructor.details.form.expand" />
+										</div>
+										<div class="input-group-addon"><a data-toggle="collapse" href="#collapseInfo" aria-expanded="false">
+											<span class="fui-triangle-down" style="color: #FFF;"></span></a>
+										</div>
+									</div>
+									<div class="collapse" id="collapseInfo">
+										<div class="well well-sm" style="font-size: 14px; margin-top: 5px; margin-right: 42px; border-radius: 6px;">
+											${booking.information}
+										</div>
+									</div>
+								</c:otherwise>								
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -115,22 +100,25 @@
 					<h3 class="panel-title"><fmt:message key="instructor.details.form.title.cli" /></h3>
 				</div>
 				<div class="panel-body">
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><fmt:message key="instructor.details.form.cli.name" /></div>
+					<div class="form-group row">
+						<div class="control-label col-lg-3"><fmt:message key="instructor.details.form.cli.name" /></div>
+						<div class="col-lg-9">
 							<div class="form-control"><c:out value="${client.clientName}" /></div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><fmt:message key="instructor.details.form.cli.ln" /></div>
+					<div class="form-group row">
+						<div class="control-label col-lg-3"><fmt:message key="instructor.details.form.cli.ln" /></div>
+						<div class="col-lg-9">
 							<div class="form-control"><c:out value="${client.clientLastName}" /></div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
+						<div class="control-label col-lg-3">Email</div>
+						<div class="col-lg-9">
 						<div class="input-group">
 							<div class="form-control"><c:out value="${client.clientEmail}" /></div>
-							<div class="input-group-addon"><a href="mailto:<c:out value="${client.clientEmail}" />"><span class=" glyphicon glyphicon-envelope"></span></a></div>
+							<div class="input-group-addon"><a href="mailto:<c:out value="${client.clientEmail}" />"><span class=" glyphicon glyphicon-envelope" style="color: #FFF;"></span></a></div>
+						</div>
 						</div>
 					</div>
 				</div>

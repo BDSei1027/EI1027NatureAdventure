@@ -294,6 +294,8 @@ footer p {
 .stadistics > dl > dt {
 	float:left;
 	width: 50%;
+	font-weight: normal;
+	color: inherit;
 }
 
 .stadistics > dl > dd {
@@ -817,5 +819,21 @@ footer p {
 	padding-left: 20px;
 }
 
+dl {
+	padding-left: 20px;
+	width: 100%;
+	overflow: hidden;
+}
 
+dl > dt {
+	float:left;
+	width: 50%;
+	font-weight: bold;
+	color: #1abc9c;
+}
+
+dl > dd {
+	float:right;
+	width: 50%;
+}
 

@@ -150,18 +150,18 @@
 											<div class="modal-content">
 												<div class="modal-header modal-header-success" id="assignModalHead">
 													<button type="button" class="close" data-dismiss="modal">&times;</button>
-													<h4><span class="glyphicon glyphicon-user"></span> Assign instructor</h4>
-												</div>
+													<h4><fmt:message key="admin.bookingmanage.status.modal.5.title" /></h4>
+												</div> 
 												<div class="modal-body" id="assignModalBody">
-									         		<p>Are you sure you want assign the following instructor for this booking?</p>
+									         		<p><fmt:message key="admin.bookingmanage.status.modal.5.msg" /></p>
 									         		<div class="row">
 									         			<div class="col-lg-6">
-									         				<p class="text-center"><strong>Inner ID Booking</strong> <c:out value="${booking.innerIdBooking}" /></p>
-									           				<p class="text-center"><strong>ID Booking</strong> <c:out value="${booking.idBooking}" /></p>
+									         				<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.iid" /></strong> <c:out value="${booking.innerIdBooking}" /></p>
+									           				<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.id" /></strong> <c:out value="${booking.idBooking}" /></p>
 									         			</div>
 									         			<div class="col-lg-6">
-									         				<p class="text-center"><strong>Instructor ID</strong> <c:out value="${instructor.ssNumber}" /></p>
-									           				<p class="text-center"><strong>ID Booking</strong> <c:out value="${booking.idBooking}" /></p>
+									         				<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.instrid" /></strong> <c:out value="${instructor.ssNumber}" /></p>
+									           				<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.instrucname" /></strong> <c:out value="${instructor.name}" /></p>
 									         			</div>
 									         		</div>
 									           		
@@ -169,7 +169,7 @@
 									       		<div class="modal-footer" id="assignModalFooter">
 									         		<div class="pull-right">
 									           			<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/assignInstructor/${booking.innerIdBooking}&${instructor.ssNumber}.html"><button class="btn btn-success"><fmt:message key="admin.bookingmanage.status.pending.list.assign" /></button></a>
-									           			<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+									           			<button class="btn btn-primary" data-dismiss="modal"><fmt:message key="admin.bookingmanage.status.modal.btn.cancel" /></button>
 									         		</div>
 									       		</div>
 											</div>
@@ -290,7 +290,7 @@
             <div class="col-lg-10">
               <div class="input-group">
                 <div class="form-control"><c:out value="${client.clientEmail}" /></div>
-                <div class="input-group-addon"><a href="mailto:${client.clientEmail}">@</a></div>
+                <div class="input-group-addon"><a href="mailto:${client.clientEmail}" style="color: #FFF">@</a></div>
               </div>
             </div>
           </div>
@@ -303,7 +303,7 @@
         <hr>
         <form method="post" role="form">
           <div class="form-group row">
-            <label for="actId" class="col-lg-2"><fmt:message key="admin.book.details.activityinfo.title" /></label>
+            <label for="actId" class="col-lg-2"><fmt:message key="admin.book.details.activityinfo.id" /></label>
             <div class="col-lg-10">
               <div id="actId" class="form-control"><c:out value="${activity.idAct}" /></div>
             </div>
@@ -367,8 +367,12 @@
 					</div>
 					<div class="modal-body" id="declineModalBody">
 		         		<p><fmt:message key="admin.bookingmanage.status.modal.1.msg" /></p>
-		           		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.iid" /></strong> <c:out value="${booking.innerIdBooking}" /></p>
-		           		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.id" /></strong> <c:out value="${booking.idBooking}" /></p>
+		           		<div class="modalList text-center">
+	            			<dl>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.iid" /></dt> <dd><c:out value="${booking.innerIdBooking}" /></dd>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.id" /></dt> <dd><c:out value="${booking.idBooking}" /></dd>
+	              			</dl>
+	              		</div>
 					</div>
 		       		<div class="modal-footer" id="declineModalFooter">
 		         		<div class="pull-right">
@@ -391,8 +395,12 @@
 	  				</div>
 	  				<div class="modal-body" id="changePendingModalBody">
 	            		<p><fmt:message key="admin.bookingmanage.status.modal.2.msg" /></p>
-	              		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.iid" /></strong> <c:out value="${booking.innerIdBooking}" /></p>
-	              		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.id" /></strong> <c:out value="${booking.idBooking}" /></p>
+	              		<div class="modalList text-center">
+	            			<dl>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.iid" /></dt> <dd><c:out value="${booking.innerIdBooking}" /></dd>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.id" /></dt> <dd><c:out value="${booking.idBooking}" /></dd>
+	              			</dl>
+	              		</div>
 	              		<p class="text-center"><strong class="text-danger"><fmt:message key="admin.bookingmanage.status.modal.declined" /></strong> <span class="glyphicon glyphicon-chevron-right"></span> <strong class="text-warning"><fmt:message key="admin.bookingmanage.status.modal.pending" /></strong></p>
 	  				</div>
 	          		<div class="modal-footer" id="changePendingModalFooter">
@@ -416,8 +424,12 @@
 	  				</div>
 	  				<div class="modal-body" id="changePendingModalBody">
 	            		<p><fmt:message key="admin.bookingmanage.status.modal.3.msg" /></p>
-	              		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.iid" /></strong> <c:out value="${booking.innerIdBooking}" /></p>
-	              		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.id" /></strong> <c:out value="${booking.idBooking}" /></p>
+	              		<div class="modalList text-center">
+	            			<dl>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.iid" /></dt> <dd><c:out value="${booking.innerIdBooking}" /></dd>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.id" /></dt> <dd><c:out value="${booking.idBooking}" /></dd>
+	              			</dl>
+	              		</div>
 	              		<p class="text-center"><strong class="text-success"><fmt:message key="admin.bookingmanage.status.modal.accepted" /></strong> <span class="glyphicon glyphicon-chevron-right"></span> <strong class="text-warning"><fmt:message key="admin.bookingmanage.status.modal.pending" /></strong></p>
 	  				</div>
 	          		<div class="modal-footer" id="changePendingModalFooter">
@@ -438,8 +450,12 @@
 	  				</div>
 	  				<div class="modal-body" id="changeDeclineModalBody">
 	            		<p><fmt:message key="admin.bookingmanage.status.modal.4.msg" /></p>
-	              		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.iid" /></strong> <c:out value="${booking.innerIdBooking}" /></p>
-	              		<p class="text-center"><strong><fmt:message key="admin.bookingmanage.status.modal.id" /></strong> <c:out value="${booking.idBooking}" /></p>
+	            		<div class="modalList text-center">
+	            			<dl>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.iid" /></dt> <dd><c:out value="${booking.innerIdBooking}" /></dd>
+			              		<dt><fmt:message key="admin.bookingmanage.status.modal.id" /></dt> <dd><c:out value="${booking.idBooking}" /></dd>
+	              			</dl>
+	              		</div>
 	              		<p class="text-center"><strong class="text-success"><fmt:message key="admin.bookingmanage.status.modal.accepted" /></strong> <span class="glyphicon glyphicon-chevron-right"></span> <strong class="text-danger"><fmt:message key="admin.bookingmanage.status.modal.declined" /></strong></p>
 	  				</div>
 	          		<div class="modal-footer" id="changePendingModalFooter">

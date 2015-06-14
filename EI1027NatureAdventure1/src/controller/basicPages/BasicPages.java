@@ -50,7 +50,11 @@ public class BasicPages extends AbstractController {
 	@RequestMapping(value="/activities/createBooking/{idAct}", method=RequestMethod.POST)
 	public String newBookingForm(@ModelAttribute("booking") Booking booking, @PathVariable int idAct, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		booking.setClientId(user.getName());
+		Activity act = service.getActivity(idAct);
+
+		booking.setPrice(act.getPrice() * booking.getGroupSize());
+		booking.setClientId(user.getUser());
+
 		service.addBooking(booking);
 		
 		return "complete";

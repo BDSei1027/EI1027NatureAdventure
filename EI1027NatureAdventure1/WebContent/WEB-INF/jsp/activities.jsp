@@ -72,7 +72,7 @@
 	    				<c:if test="${lang eq 'es'}"><p><c:out value="${act.descripcion}" /></p></c:if>
 	    			</div>
 	    		</div> <!-- col -->
-	    		<button class="btn btn-primary btn-lg btn-block activity-btn" onClick="javascript:location.href = '${pageContext.request.contextPath}/activities/newBooking/${act.idAct}.html';"><fmt:message key="activities.btn" />!</button>
+	    		<button class="btn btn-primary btn-lg btn-block activity-btn" onClick="javascript:location.href = '${pageContext.request.contextPath}/activities/createBooking/${act.idAct}.html';"><fmt:message key="activities.btn" />!</button>
 	  		</div> <!-- body -->
   		</div>
    	</div> <!-- acti -->
