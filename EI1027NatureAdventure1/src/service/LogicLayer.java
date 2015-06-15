@@ -70,9 +70,24 @@ public class LogicLayer {
 	 * Pide una conexion a traves de los daos de la ID max
 	 */
 	private void inicializarIds() {
+		try {
 		this.innerBookingID = daoBooking.getMaxInnerID();
+		} catch (Exception e) {
+			this.innerBookingID = 0;
+			System.out.println("innerbooking id = 0");
+		}
+		try {
 		this.activeBookingID = daoBooking.getMaxActiveID();
+		} catch (Exception e) {
+			this.activeBookingID = 0;
+			System.out.println("idBooking = 0");
+		}
+		try {
 		this.activityID = daoActivity.getMaxID();
+		} catch (Exception e) {
+			this.activityID = 0;
+			System.out.println("activityID = 0");
+		}
 	}
 
 	
