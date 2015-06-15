@@ -3,6 +3,28 @@ table {
 	font-size: 14px;
 }
 
+strong {
+	color: #1ABC9C;
+}
+
+dl {
+	padding-left: 20px;
+	width: 100%;
+	overflow: hidden;
+}
+
+dl > dt {
+	float:left;
+	width: 50%;
+	font-weight: bold;
+	color: #1abc9c;
+}
+
+dl > dd {
+	float:right;
+	width: 50%;
+}
+
 .subtitle {
 	padding-left: 3%;
 }
@@ -17,10 +39,6 @@ table {
 	/* Para STRONG además con diferente color */
 	font-weight: 700;
 	color: #f39c12;
-}
-
-strong {
-	color: #1ABC9C;
 }
 
 .noread {
@@ -256,6 +274,9 @@ footer p {
 	line-height: 2.3;
 }
 
+#condandterms {
+	font-size: 13px;
+}
 
 .width-50 {
 	width: 50%;
@@ -819,21 +840,9 @@ footer p {
 	padding-left: 20px;
 }
 
-dl {
-	padding-left: 20px;
-	width: 100%;
-	overflow: hidden;
+.optional {
+	margin-left: 3%;
+	padding-left: 2%;
+	font-size: 13px;
+	border-left: 10px double #ecf0f1;
 }
-
-dl > dt {
-	float:left;
-	width: 50%;
-	font-weight: bold;
-	color: #1abc9c;
-}
-
-dl > dd {
-	float:right;
-	width: 50%;
-}
-

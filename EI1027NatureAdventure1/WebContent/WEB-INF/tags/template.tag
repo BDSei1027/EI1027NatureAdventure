@@ -28,7 +28,7 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> -->
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/select2.min.js"></script>
-<script src="${pageContext.request.contextPath}//js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.0/bootstrap-table.min.js"></script>
