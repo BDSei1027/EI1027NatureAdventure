@@ -1,6 +1,5 @@
 package validators;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
@@ -10,7 +9,6 @@ import classes.DoublePassword;
 import classes.User;
 
 public class DoublePasswordValidator  implements Validator {
-	@Autowired
 	MessageSource msgSrc; 
 	
 	public DoublePasswordValidator() {
