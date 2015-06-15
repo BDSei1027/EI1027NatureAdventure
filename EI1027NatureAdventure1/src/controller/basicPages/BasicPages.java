@@ -6,11 +6,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import validators.BookingValidator;
+import validators.ClientRegisterValidator;
 import classes.Activity;
 import classes.Booking;
 import classes.Client;
@@ -50,7 +53,15 @@ public class BasicPages extends AbstractController {
 	}
 	
 	@RequestMapping(value="/activities/createBooking/{idAct}", method=RequestMethod.POST)
-	public String newBookingForm(@ModelAttribute("client") Client client, @ModelAttribute("booking") Booking booking, @PathVariable int idAct, Model model, HttpSession session) {
+	public String newBookingForm(@ModelAttribute("client") ClientRegister clientR, @ModelAttribute("booking") Booking booking, @PathVariable int idAct, Model model, HttpSession session, BindingResult bindingResult) {
+		
+		new ClientRegisterValidator().validate(clientR, bindingResult);
+		new BookingValidator().validate(booking, bindingResult);
+		if(bindingResult.hasErrors()){
+			model.addAttribute(service.getActivity(idAct));
+			return "booking";
+		}
+		Client client = clientR.getClient();
 		User user = (User) session.getAttribute("user");
 		
 		
@@ -60,8 +71,14 @@ public class BasicPages extends AbstractController {
 		booking.setPrice(act.getPrice() * booking.getGroupSize());
 		booking.setClientId(clientId);
 
-		service.addBooking(booking);
-		
+			
+			service.addBooking(booking);
+
+		try{
+			if(client.getClientId()!= null) service.addClient(client);
+		} catch (Exception e){
+			service.updateClient(client);
+		}
 		return "complete";
 	}
 	
