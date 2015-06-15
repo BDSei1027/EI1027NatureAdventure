@@ -96,47 +96,47 @@
 
 	<!--Validators-->
 	<bean class="validators.ActivityValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 	
 	<bean class="validators.BookingActivityValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 
 	<bean class="validators.BookingValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 	
 	<bean class="validators.ClientRegisterValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 	
 	<bean class="validators.ClientValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 
 	<bean class="validators.DoublePasswordValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 
 	<bean class="validators.EmailValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 	
 	<bean class="validators.InstructorValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>	
 	
 	<bean class="validators.SessionValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 	
 	<bean class="validators.StatusValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>	
 	
 	<bean class="validators.UserValidator">
-		<property name="msgSrc" value="messageSource"
+		<property name="msgSrc" value="messageSource"/>
 	</bean>
 	
 	<!--Page formatter-->
