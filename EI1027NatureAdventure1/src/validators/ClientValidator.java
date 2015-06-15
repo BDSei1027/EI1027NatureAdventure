@@ -1,5 +1,6 @@
 package validators;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
@@ -9,6 +10,7 @@ import classes.Client;
 
 
 public class ClientValidator implements Validator {
+	@Autowired
 	MessageSource msgSrc; 
 	
 	public ClientValidator() {
