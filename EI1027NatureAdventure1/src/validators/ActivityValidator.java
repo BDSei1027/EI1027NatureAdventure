@@ -40,4 +40,13 @@ public class ActivityValidator implements Validator {
 		}
 
 	}
+
+	public MessageSource getMsgSrc() {
+		return msgSrc;
+	}
+
+	public void setMsgSrc(MessageSource msgSrc) {
+		this.msgSrc = msgSrc;
+	}
+	
 }

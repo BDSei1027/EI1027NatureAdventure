@@ -9,13 +9,10 @@ import classes.BookingActivity;
 
 
 public class BookingActivityValidator implements Validator{
-	String language = "EN"; 
 	MessageSource msgSrc;
 	
 	public BookingActivityValidator() {
 		super();
-//		String idioma = LocaleContextHolder.getLocale().getLanguage();
-//		language = idioma.toUpperCase();
 	}
 
 	@Override
@@ -44,6 +41,14 @@ public class BookingActivityValidator implements Validator{
 		if(myActivity.getPrice()<=0){
 			errors.rejectValue("price", "negative value", msgSrc.getMessage("validator.bookingactivityvalidator.price", null, LocaleContextHolder.getLocale()));
 		}
+	}
+
+	public MessageSource getMsgSrc() {
+		return msgSrc;
+	}
+
+	public void setMsgSrc(MessageSource msgSrc) {
+		this.msgSrc = msgSrc;
 	}
 
 }
