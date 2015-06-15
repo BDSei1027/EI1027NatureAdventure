@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import classes.Activity;
 import classes.Booking;
+import classes.Client;
 import classes.ClientRegister;
 import classes.User;
 import controller.basics.AbstractController;
@@ -41,6 +42,7 @@ public class BasicPages extends AbstractController {
 		
 		Activity act = service.getActivity(idAct);
 		
+		model.addAttribute("client", new ClientRegister());
 		model.addAttribute("booking", booking);
 		model.addAttribute("activity", act);
 		
@@ -48,12 +50,15 @@ public class BasicPages extends AbstractController {
 	}
 	
 	@RequestMapping(value="/activities/createBooking/{idAct}", method=RequestMethod.POST)
-	public String newBookingForm(@ModelAttribute("booking") Booking booking, @PathVariable int idAct, Model model, HttpSession session) {
+	public String newBookingForm(@ModelAttribute("client") Client client, @ModelAttribute("booking") Booking booking, @PathVariable int idAct, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		
+		
+		String clientId = client.getClientId() == null? user.getName(): client.getClientId();
 		Activity act = service.getActivity(idAct);
 
 		booking.setPrice(act.getPrice() * booking.getGroupSize());
-		booking.setClientId(user.getUser());
+		booking.setClientId(clientId);
 
 		service.addBooking(booking);
 		
