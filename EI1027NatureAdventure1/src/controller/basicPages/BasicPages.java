@@ -73,13 +73,14 @@ public class BasicPages extends AbstractController {
 		}
 		Booking booking = clientBooking.getBooking();
 		
+		Activity act = service.getActivity(idAct);
 		new BookingValidator().validate(booking, bindingResult);
-		if(service.getActivity(idAct).getMaximumGroup() < clientBooking.getGroupSize())  bindingResult.rejectValue("groupSize", "grMax","GrSize");
+		if(act.getMaximumGroup() < clientBooking.getGroupSize())  bindingResult.rejectValue("groupSize", "grMax","GrSize");
+		if(act.getMinimumGroup() > clientBooking.getGroupSize())  bindingResult.rejectValue("groupSize", "grMax","GrSize");
 		
 		User user = (User) session.getAttribute("user");
 
 		String clientId = client.getClientId() == null? user.getName(): client.getClientId();
-		Activity act = service.getActivity(idAct);
 
 		booking.setPrice(act.getPrice() * booking.getGroupSize());
 		booking.setClientId(clientId);
