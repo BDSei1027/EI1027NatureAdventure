@@ -82,11 +82,6 @@
 	        <bean class="controller.interceptors.AccountInterceptor" />
 	    </mvc:interceptor>
 	    
-	    <mvc:interceptor>
-	        <mvc:mapping path="/activity/createBooking/**"/>
-	        <bean class="controller.interceptors.ActivityInterceptor" />
-	    </mvc:interceptor>
-	    
 		<bean class="controller.interceptors.LanguajeInterceptor">
       		<property name="paramName" value="lang"/>
       		<property name="service" ref="service"/>

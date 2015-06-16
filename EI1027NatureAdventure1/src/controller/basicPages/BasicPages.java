@@ -1,6 +1,7 @@
 package controller.basicPages;
 
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +18,7 @@ import validators.ClientRegisterValidator;
 import classes.Activity;
 import classes.Booking;
 import classes.Client;
+import classes.ClientBookingEnvelope;
 import classes.ClientRegister;
 import classes.User;
 import controller.basics.AbstractController;
@@ -45,28 +47,37 @@ public class BasicPages extends AbstractController {
 		
 		Activity act = service.getActivity(idAct);
 		
-		model.addAttribute("client", new ClientRegister());
-		model.addAttribute("booking", booking);
+		model.addAttribute("registerEnvelope", new ClientBookingEnvelope());
 		model.addAttribute("activity", act);
 		
 		return "booking";
 	}
 	
 	@RequestMapping(value="/activities/createBooking/{idAct}", method=RequestMethod.POST)
-	public String newBookingForm(@ModelAttribute("client") ClientRegister clientR, @ModelAttribute("booking") Booking booking, @PathVariable int idAct, Model model, HttpSession session, BindingResult bindingResult) {
-		System.out.println("entra");
-		new ClientRegisterValidator().validate(clientR, bindingResult);
-		new BookingValidator().validate(booking, bindingResult);
-		if(service.getActivity(idAct).getMaximumGroup() < booking.getGroupSize())  bindingResult.rejectValue("groupSize", "grMax","GrSize");
-		if(bindingResult.hasErrors()){
-			model.addAttribute(service.getActivity(idAct));
-			return "booking";
+	public String newBookingForm(@ModelAttribute("regiterEnvelope") ClientBookingEnvelope clientBooking, @PathVariable int idAct, Model model, HttpSession session, BindingResult bindingResult, Locale locale) {
+		Client client = clientBooking.getClient();
+		if(client.getClientId()!=null){
+			new ClientRegisterValidator().validate(client, bindingResult);
+			if(bindingResult.hasErrors()){
+				model.addAttribute(service.getActivity(idAct));
+				return "booking";
+			}
+			try{
+				service.addClient(client);
+			} catch (Exception e){
+				model.addAttribute(service.getActivity(idAct));
+				if(locale.getLanguage().equals("es")) bindingResult.rejectValue("clientId","repId","El cliente ya existe");
+				if(locale.getLanguage().equals("en")) bindingResult.rejectValue("clientId","repId","The client already exists");
+				return "booking";
+			}
 		}
+		Booking booking = clientBooking.getBooking();
 		
-		Client client = clientR.getClient();
+		new BookingValidator().validate(booking, bindingResult);
+		if(service.getActivity(idAct).getMaximumGroup() < clientBooking.getGroupSize())  bindingResult.rejectValue("groupSize", "grMax","GrSize");
+		
 		User user = (User) session.getAttribute("user");
-		
-		
+
 		String clientId = client.getClientId() == null? user.getName(): client.getClientId();
 		Activity act = service.getActivity(idAct);
 
@@ -74,13 +85,7 @@ public class BasicPages extends AbstractController {
 		booking.setClientId(clientId);
 
 			
-			service.addBooking(booking);
-
-		try{
-			if(client.getClientId()!= null) service.addClient(client);
-		} catch (Exception e){
-			service.updateClient(client);
-		}
+		service.addBooking(booking);
 		return "complete";
 	}
 	
