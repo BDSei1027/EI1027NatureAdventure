@@ -33,7 +33,7 @@ public class BasicPages extends AbstractController {
 	
 	@RequestMapping(value="/activities")
 	public String activitiesPage(Model model){
-		model.addAttribute("activityList", service.getAllActivities());
+		model.addAttribute("activityList", service.getAllActivitiesActive());
 		return "activities";
 	}
 	

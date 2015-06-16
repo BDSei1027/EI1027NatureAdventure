@@ -28,9 +28,11 @@
 	        </thead>
 	        <tbody>
 		        <c:forEach var="activity" items="${activityList}" >
+		        <c:if test="${lang eq 'en'}"><c:set var="name" value="${activity.name}" /></c:if>
+		        <c:if test="${lang eq 'es'}"><c:set var="name" value="${activity.nombre}" /></c:if>
 		        <tr <c:if test="${not empty id and (id eq activity.idAct)}">class="${type}"</c:if>> 
 		        	<td><c:out value="${activity.idAct}" /></td>
-		        	<td><c:out value="${activity.name}" /></td>
+		        	<td><c:out value="${name}" /></td>
 		        	<td><c:out value="${activity.level}" /></td>
 		        	<td style="text-transform: capitalize;"><c:out value="${activity.schedule}" /></td>
 		        	<td><c:out value="${activity.price}" /></td>
@@ -48,10 +50,10 @@
 		        	<td>
 		        		<c:choose>
 		        			<c:when test="${activity.isActive()}">
-		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/disable/${activity.idAct}.html"><span class="label label-warning"><fmt:message key="admin.activitymanage.list.activate" /></span></a>	
+		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/disable/${activity.idAct}.html"><span class="label label-warning"><fmt:message key="admin.activitymanage.list.inactivate" /></span></a>	
 		        			</c:when>
 		        			<c:otherwise>
-		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/enable/${activity.idAct}.html"><span class="label label-success"><fmt:message key="admin.activitymanage.list.inactivate" /></span></a>
+		        				<a href="${pageContext.request.contextPath}/admin/activityManagement/enable/${activity.idAct}.html"><span class="label label-success"><fmt:message key="admin.activitymanage.list.activate" /></span></a>
 		        			</c:otherwise>
 		        		</c:choose>
 		        	</td>
