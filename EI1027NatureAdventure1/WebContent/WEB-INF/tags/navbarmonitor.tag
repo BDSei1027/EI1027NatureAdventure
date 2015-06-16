@@ -22,7 +22,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><p class="navbar-text" id="navtext"><fmt:message key="nav.welcome"/> <strong><c:out value="${user.name}" /></strong></p></li>
-      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><fmt:message key="nav.actions"/> <span class="caret"></span></a>
+      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><fmt:message key="nav.actions"/> <span class="fui-triangle-down"></span></a>
          <ul class="dropdown-menu" role="menu">
            <li><a href="${pageContext.request.contextPath}/instructor.html"><fmt:message key="nav.instr.List"/></a></li>
 		   <li><a href="${pageContext.request.contextPath}/instructor/history.html"><fmt:message key="nav.instr.PastList"/></a></li>

@@ -169,7 +169,7 @@
 						<div class="form-group row">
 							<form:label path="groupSize" class="col-lg-3 control-label"><fmt:message key="booking.book.size" /></form:label>
 							<div class="col-lg-9">
-							<form:input path="groupSize" type="number" class="form-control" id="grSz" oninput="javascript:updatePrice();"/>
+							<form:input path="groupSize" type="number" class="form-control" id="grSz" required="true" oninput="javascript:updatePrice();"/>
 							<form:errors path="groupSize" class="text-danger" />
 							</div>
 						</div>

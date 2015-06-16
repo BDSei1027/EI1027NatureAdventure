@@ -31,7 +31,7 @@
 					</div>
 					<div class="panel-body">
 						<p><fmt:message key="client.activebookings.helpcontent1" /></p>
-						<p><fmt:message key="client.activebookings.helpcontent2" /> <span class="caret"></span> <fmt:message key="client.activebookings.helpcontent3" /></p>
+						<p><fmt:message key="client.activebookings.helpcontent2" /> <span class="fui-triangle-down"></span> <fmt:message key="client.activebookings.helpcontent3" /></p>
 					</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 		<c:if test="${empty bookings}">
 			<div class="nobooking" style="margin-top: 15px;">
 				<h5 class="text-center text-muted"><fmt:message key="client.activebookings.nobooking1" /></h5>
-				<h6 class="text-center text-muted"><fmt:message key="client.activebookings.nobooking2" /> <a href="${pageContext.request.contextPath}/activities.html" style="font-weight: bold">client.activebookings.nobooking3</a></h6>
+				<h6 class="text-center text-muted"><fmt:message key="client.activebookings.nobooking2" /> <a href="${pageContext.request.contextPath}/activities.html" style="font-weight: bold"><fmt:message key="client.activebookings.nobooking3" /></a></h6>
 			</div>
 		</c:if>
 		<c:forEach var="booking" items="${bookings}">
