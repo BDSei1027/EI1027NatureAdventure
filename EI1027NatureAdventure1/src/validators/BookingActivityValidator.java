@@ -1,6 +1,5 @@
 package validators;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -9,10 +8,12 @@ import classes.BookingActivity;
 
 
 public class BookingActivityValidator implements Validator{
-	MessageSource msgSrc;
+	String language = "EN"; 
 	
 	public BookingActivityValidator() {
 		super();
+		String idioma = LocaleContextHolder.getLocale().getLanguage();
+		language = idioma.toUpperCase();
 	}
 
 	@Override
@@ -24,31 +25,53 @@ public class BookingActivityValidator implements Validator{
 	public void validate(Object obj, Errors errors) {
 		BookingActivity myActivity = (BookingActivity) obj;
 		if(myActivity.getIdBooking()<0){
-			errors.rejectValue("id","valorNegativo",msgSrc.getMessage("validator.bookingactivityvalidator.id", null, LocaleContextHolder.getLocale()));
+			if(language.equals("ES")){
+				errors.rejectValue("id","valorNegativo","Hay un problema con el id");//Hay un problema con el id
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("id","valorNegativo","There is a problem with the id");//Hay un problema con el id
+			}
+			
 		}
 		if(myActivity.getNameActivity().equals("")){
-			errors.rejectValue("name","nombreNulo","validator.bookingactivityvalidator.name");
+			if(language.equals("ES")){
+				errors.rejectValue("name","nombreNulo","Este campo no puede ser nulo");//Este campo no puede ser nulo
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("name","nombreNulo","This field cannot be null");//Este campo no puede ser nulo
+			}
+			
 		}
 		if(myActivity.getPlace().equals("")){
-			errors.rejectValue("place","lugarNulo",msgSrc.getMessage("validator.bookingactivityvalidator.place", null, LocaleContextHolder.getLocale()));
+			if(language.equals("ES")){
+				errors.rejectValue("place","lugarNulo","Este campo no puede ser nulo");//Este campo no puede ser nulo
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("place","lugarNulo","This field cannot be null");//Este campo no puede ser nulo
+			}
+			
 		}
 		if(myActivity.getGroupSize()<=0){
-			errors.rejectValue("groupSize","valorNegativo",msgSrc.getMessage("validator.bookingactivityvalidator.groupsize", null, LocaleContextHolder.getLocale()));
+			if(language.equals("ES")){
+				errors.rejectValue("groupSize","valorNegativo","Este campo no puede ser menor o igual a cero");//Este campo no puede ser menor o igual a cero
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("groupSize","valorNegativo","This field cannot be lower or equal than 0");//Este campo no puede ser menor o igual a cero
+			}
+			
 		}
 		if(myActivity.getLevel() <= 0){
-			errors.rejectValue("level","valorNegativo",msgSrc.getMessage("validator.bookingactivityvalidator.level", null, LocaleContextHolder.getLocale()));
+			if(language.equals("ES")){
+				errors.rejectValue("groupSize","valorNegativo","Este campo no puede ser menor o igual a cero");//Este campo no puede ser menor o igual a cero
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("groupSize","valorNegativo","This field cannot be lower or equal than 0");//Este campo no puede ser menor o igual a cero
+			}
+			
 		}
 		if(myActivity.getPrice()<=0){
-			errors.rejectValue("price", "negative value", msgSrc.getMessage("validator.bookingactivityvalidator.price", null, LocaleContextHolder.getLocale()));
+			if(language.equals("ES")){
+				errors.rejectValue("price", "negative value", "El precio debe ser mayor que 0"); //El precio debe ser mayor que 0
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("price", "negative value", "The price must be greater than 0"); //El precio debe ser mayor que 0
+			}
+			errors.rejectValue("price", "negative value", "The price must be greater than 0"); //El precio debe ser mayor que 0
 		}
-	}
-
-	public MessageSource getMsgSrc() {
-		return msgSrc;
-	}
-
-	public void setMsgSrc(MessageSource msgSrc) {
-		this.msgSrc = msgSrc;
 	}
 
 }

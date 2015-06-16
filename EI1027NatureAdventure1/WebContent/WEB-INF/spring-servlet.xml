@@ -44,7 +44,6 @@
 	<context:component-scan base-package="database" />
 	<context:component-scan base-package="classes" />	
 	<context:component-scan base-package="service" />
-	<context:component-scan base-package="validators" />
 		
 	<!--Interceptors-->
 	<mvc:interceptors>
@@ -95,46 +94,6 @@
 
 	</mvc:interceptors>	
 
-	<!--Validators-->
-	<bean class="validators.ActivityValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
-	
-	<bean class="validators.BookingActivityValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
-
-	<bean class="validators.BookingValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
-	
-	<bean class="validators.ClientRegisterValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
-	
-	<bean class="validators.ClientValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
-
-	<bean class="validators.DoublePasswordValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
-
-	<bean class="validators.EmailValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
-	
-	<bean class="validators.InstructorValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>	
-		
-	<bean class="validators.StatusValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>	
-	
-	<bean class="validators.UserValidator">
-		<property name="msgSrc" ref="messageSource"/>
-	</bean>
 	
 	<!--Page formatter-->
 	<bean id="viewResolver"
