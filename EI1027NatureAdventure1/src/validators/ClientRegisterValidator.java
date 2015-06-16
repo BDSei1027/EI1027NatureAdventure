@@ -51,35 +51,35 @@ public class ClientRegisterValidator implements Validator{
 		}
 		if(client.getId().trim().length()!=9){
 			if(language.equals("ES")){
-				
+				errors.rejectValue("language", "digitos","Este campo no puede ser nulo");
 			}else if(language.equals("EN") || language != null){
-				
+				errors.rejectValue("language", "digitos","This field cannot be null");
 			}
-			errors.rejectValue("id", "digitos","The length must be 9 characters");//La longitud debe ser de 9 carácteres
+			
 		}
 		if(!client.isTocs()){
 			if(language.equals("ES")){
-				
+				errors.rejectValue("tocs", "tocsContent","Debes aceptar las condiciones para registrarte");
 			}else if(language.equals("EN") || language != null){
-				
+				errors.rejectValue("tocs", "tocsContent","You must accept the conditions to register");
 			}
-			errors.rejectValue("tocs", "tocsContent","You must accept the conditions to register");//Debes aceptar las condiciones para poder registrarte
+			
 		}
 		if(client.getLanguage().trim().equals("")){
 			if(language.equals("ES")){
-				
+				errors.rejectValue("language", "languageChoice","Debes escoger lenguaje preferido");
 			}else if(language.equals("EN") || language != null){
-				
+				errors.rejectValue("language", "languageChoice","You must choose your favorite language");
 			}
-			errors.rejectValue("language", "languageChoice","You must choose your favorite language");//Debes escoger lenguaje preferido
+			
 		}
 		if(client.getPassword().trim().length() == 0) {
 			if(language.equals("ES")){
-				
+				errors.rejectValue("password", "digitos","La contraseña esta vacía");
 			}else if(language.equals("EN") || language != null){
-				
+				errors.rejectValue("password", "digitos","The password cannot be null");
 			}
-			errors.rejectValue("password", "digitos","The password cannot be null");//La contraseña esta vacía
+			
 		} else if(client.getPassword().trim().length()< 8) {
 			if(language.equals("ES")){
 				errors.rejectValue("password", "digitos","La longitud debe ser de al menos 8 carácteres");//La longitud debe ser de al menos 8 carácteres
