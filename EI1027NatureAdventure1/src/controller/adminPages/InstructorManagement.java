@@ -2,10 +2,9 @@ package controller.adminPages;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,18 +71,24 @@ public class InstructorManagement extends AbstractController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
+	public String instructorsAddPage(@ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult, Locale locale){
 		//Check the instructor input format
 		InstructorValidator validator = new InstructorValidator();
 		validator.validate(instructor, bindingResult);
 		
 		if(bindingResult.hasErrors()) return "admin/instructorManagement/add";
 		
-		service.addInstructor(instructor);
+		try{
+			service.addInstructor(instructor);
 		
-		// Create the user associated with the instructor using its telephone as password.
-		User newUser = service.createUserFrom(instructor);
-		service.addUser(newUser);
+			// Create the user associated with the instructor using its telephone as password.
+			User newUser = service.createUserFrom(instructor);
+			service.addUser(newUser);
+		} catch (Exception e){
+			if(locale.getLanguage().equals("en")) bindingResult.rejectValue("SsNumber", "repInstr", "Instructor already existing");
+			if(locale.getLanguage().equals("es")) bindingResult.rejectValue("SsNumber", "repInstr", "El instructor ya existe en la base de datos");
+			return "admin/instructorManagement/add";
+		}
 		
 		return "forward:/admin/instructorManagement/"+0+"&"+instructor.getSsNumber()+".html";
 	}

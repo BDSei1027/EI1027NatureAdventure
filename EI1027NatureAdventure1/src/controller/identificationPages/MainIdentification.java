@@ -1,5 +1,6 @@
 package controller.identificationPages;
 
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -139,16 +140,25 @@ public class MainIdentification extends AbstractController{
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String registerForm(@ModelAttribute("register") ClientRegister clientRegister, BindingResult bindingResult, HttpSession session) {
+	public String registerForm(@ModelAttribute("register") ClientRegister clientRegister, BindingResult bindingResult, HttpSession session, Locale locale) {
 		//Correct field format validator
 		new ClientRegisterValidator().validate(clientRegister, bindingResult);
 		if (bindingResult.hasErrors()) return "register";
 		
-		User user = service.createUserFrom(clientRegister);
-		service.addClient(service.createClientFrom(clientRegister));
-		service.addUser(user);
 		
-		session.setAttribute("user", user);
+		try{
+			User user = service.createUserFrom(clientRegister);
+			
+			service.addClient(service.createClientFrom(clientRegister));
+			service.addUser(user);
+			
+			session.setAttribute("user", user);
+		} catch(Exception e){
+			if(locale.getLanguage().equals("es")) bindingResult.rejectValue("client", "repCli", "El cliente ya existe");
+			if(locale.getLanguage().equals("es")) bindingResult.rejectValue("client", "repCli", "The client already exists");
+			return "register";
+		}
+		
 		
 		return "redirect:/index.jsp";
 	}

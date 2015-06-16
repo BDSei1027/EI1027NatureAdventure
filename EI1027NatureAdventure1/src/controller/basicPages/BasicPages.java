@@ -57,10 +57,12 @@ public class BasicPages extends AbstractController {
 		
 		new ClientRegisterValidator().validate(clientR, bindingResult);
 		new BookingValidator().validate(booking, bindingResult);
+		if(service.getActivity(idAct).getMaximumGroup() < booking.getGroupSize())  bindingResult.rejectValue("groupSize", "grMax","GrSize");
 		if(bindingResult.hasErrors()){
 			model.addAttribute(service.getActivity(idAct));
 			return "booking";
 		}
+		
 		Client client = clientR.getClient();
 		User user = (User) session.getAttribute("user");
 		

@@ -1,8 +1,7 @@
 package controller.adminPages;
 
 import java.util.LinkedList;
-
-import javax.servlet.http.HttpSession;
+import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,11 +51,17 @@ public class ActivityManagement extends AbstractController{
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String activityManagementAdd(@ModelAttribute("activity") Activity activity, BindingResult bindingResult){		
+	public String activityManagementAdd(@ModelAttribute("activity") Activity activity, BindingResult bindingResult, Locale locale){		
 		new ActivityValidator().validate(activity, bindingResult);
 		if(bindingResult.hasErrors()) return "admin/activityManagement/add";
 		
-		service.addActivity(activity);
+		try{
+			service.addActivity(activity);
+		} catch(Exception e){
+			if(locale.getLanguage().equals("en")) bindingResult.rejectValue("idAct", "repAct", "Activity already existing");
+			if(locale.getLanguage().equals("es")) bindingResult.rejectValue("idAct", "repAct", "Actividad ya existente");
+			return "admin/activityManagement/add";
+		}
 		
 		
 		return "redirect:/admin/activityManagement/"+0+"&"+activity.getIdAct()+".html";
