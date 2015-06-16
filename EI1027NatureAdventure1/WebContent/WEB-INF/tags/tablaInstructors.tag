@@ -51,10 +51,10 @@
         	<td>
         		<c:choose>
         			<c:when test="${instructor.isActive()}">
-        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/disable/${instructor.ssNumber}.html"><span class="label label-warning"><fmt:message key="admin.instructormanage.list.activate" /></span></a>	
+        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/disable/${instructor.ssNumber}.html"><span class="label label-warning"><fmt:message key="admin.instructormanage.list.inactive" /></span></a>	
         			</c:when>
         			<c:otherwise>
-        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${instructor.ssNumber}.html"><span class="label label-success"><fmt:message key="admin.instructormanage.list.inactive" /></span></a>
+        				<a href="${pageContext.request.contextPath}/admin/instructorManagement/enable/${instructor.ssNumber}.html"><span class="label label-success"><fmt:message key="admin.instructormanage.list.activate" /></span></a>
         			</c:otherwise>
         		</c:choose>
         </tr>

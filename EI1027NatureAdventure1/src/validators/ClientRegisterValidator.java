@@ -51,9 +51,9 @@ public class ClientRegisterValidator implements Validator{
 		}
 		if(client.getId().trim().length()!=9){
 			if(language.equals("ES")){
-				errors.rejectValue("language", "digitos","Este campo no puede ser nulo");
+				errors.rejectValue("id", "digitos","Este campo debe tener 9 carácteres");
 			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("language", "digitos","This field cannot be null");
+				errors.rejectValue("id", "digitos","This field must be at least 9 characters");
 			}
 			
 		}

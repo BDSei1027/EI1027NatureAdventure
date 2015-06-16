@@ -73,7 +73,7 @@
 				<div class="col-lg-10">
 					<div class="input-group">
       					<div class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></div>
-							<form:input path="price" type="text" class="form-control" id="price" placeholder="Enter the price" />
+							<form:input path="price" type="number" step="0.01" class="form-control" id="price" placeholder="Enter the price" />
 						</div>
 					<form:errors path="price" class="text-danger" />
 				</div>

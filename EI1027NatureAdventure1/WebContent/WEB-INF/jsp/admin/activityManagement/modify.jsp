@@ -8,8 +8,11 @@
 <t:template>
 	<jsp:body>
 	
+	<c:if test="${lang eq 'en'}"><c:set var="name" value="${activity.name}" /></c:if>
+	<c:if test="${lang eq 'es'}"><c:set var="name" value="${activity.nombre}" /></c:if>
+	
 	<div class="crumbs">
-		<a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><fmt:message key="breadcrumbs.admin.act.details" /> <em>${activity.name}</em></a> 
+		<a href="${pageContext.request.contextPath}/admin/activityManagement/modify/${activity.idAct}.html"><fmt:message key="breadcrumbs.admin.act.details" /> <em>${name}</em></a> 
 		<span class="fui-arrow-left"></span>
 		<a href="${pageContext.request.contextPath}/admin/activityManagement.html"><fmt:message key="breadcrumbs.admin.act" /></a>
 		<span class="fui-arrow-left"></span>
@@ -19,7 +22,7 @@
 	</div>
 	
 	<h4><fmt:message key="admin.activitymanage.title" /></h4>
-	<h6 class="subtitle"><fmt:message key="admin.activitymanage.modify.title" /> <strong>${activity.name}</strong> <small>${activity.idAct}</small></h6>
+	<h6 class="subtitle"><fmt:message key="admin.activitymanage.modify.title" /> <strong>${name}</strong> <small>${activity.idAct}</small></h6>
 	
 	<form:form method="post" modelAttribute="activity" role="form">
 		<div class="form-group row">
@@ -54,14 +57,18 @@
 		<div class="form-group row">
 			<form:label path="schedule" for="sch" class="control-label col-lg-2"><fmt:message key="admin.activitymanage.addactivity.form.schedule" /></form:label>
 			<div class="col-lg-10">
-				<form:input path="schedule" id="sch" class="form-control" />
-				<form:errors path="schedule" id="scherr" class="text-danger" />
+				<form:select path="schedule" class="form-control select select-primary mrs mbm" data-toggle="select">
+						<form:option value="morning"><fmt:message key="admin.activitymanage.addactivity.form.schedule.morn" /></form:option>
+						<form:option value="evening"><fmt:message key="admin.activitymanage.addactivity.form.schedule.eve" /></form:option>
+						<form:option value="night"><fmt:message key="admin.activitymanage.addactivity.form.schedule.night" /></form:option>
+						<form:option value="midnight"><fmt:message key="admin.activitymanage.addactivity.form.schedule.mid" /></form:option>
+				</form:select>
 			</div>
 		</div>
 		<div class="form-group row">
 			<form:label path="price" for="price" class="control-label col-lg-2"><fmt:message key="admin.activitymanage.addactivity.form.price" /></form:label>
 			<div class="col-lg-10">
-				<form:input path="price" id="price" type="number" class="form-control" />
+				<form:input path="price" id="price" type="number" step="0.01" class="form-control" />
 				<form:errors path="price" id="priceerr" class="text-danger" />
 			</div>
 		</div>

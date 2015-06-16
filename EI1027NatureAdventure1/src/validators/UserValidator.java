@@ -1,7 +1,5 @@
 package validators;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -27,12 +25,25 @@ public class UserValidator implements Validator {
 		
 		if (user.getUser().trim().equals("")){
 			if(language.equals("ES")){
+				errors.rejectValue("user", "obligatorio", "Es necesario introducir un valor");//Es necesario introducir un valor
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("user", "obligatorio", "A value must be introduced");//Es necesario introducir un valor
+			}
+		}
+		if (user.getUser().trim().equals("")){
+			if(language.equals("ES")){
 				errors.rejectValue("name", "obligatorio", "Es necesario introducir un valor");//Es necesario introducir un valor
 			}else if(language.equals("EN") || language != null){
 				errors.rejectValue("name", "obligatorio", "A value must be introduced");//Es necesario introducir un valor
 			}
-			
-
+		}
+		
+		if (user.getPassword().trim().equals("")){
+			if(language.equals("ES")){
+				errors.rejectValue("password", "obligatorio", "Este campo no puede quedar vacío");//Es necesario introducir un valor
+			}else if(language.equals("EN") || language != null){
+				errors.rejectValue("password", "obligatorio", "This field cannot be null");//Es necesario introducir un valor
+			}
 		}
 		
 	}
