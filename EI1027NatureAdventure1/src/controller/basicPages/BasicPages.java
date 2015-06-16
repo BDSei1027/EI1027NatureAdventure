@@ -54,7 +54,7 @@ public class BasicPages extends AbstractController {
 	
 	@RequestMapping(value="/activities/createBooking/{idAct}", method=RequestMethod.POST)
 	public String newBookingForm(@ModelAttribute("client") ClientRegister clientR, @ModelAttribute("booking") Booking booking, @PathVariable int idAct, Model model, HttpSession session, BindingResult bindingResult) {
-		
+		System.out.println("entra");
 		new ClientRegisterValidator().validate(clientR, bindingResult);
 		new BookingValidator().validate(booking, bindingResult);
 		if(service.getActivity(idAct).getMaximumGroup() < booking.getGroupSize())  bindingResult.rejectValue("groupSize", "grMax","GrSize");

@@ -23,7 +23,7 @@
 		<div id="help&action" class="row">
 			<div id="menu" class="col-lg-2">
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="${pageContext.request.contextPath}/instructor/main.html"><fmt:message key="instructor.bookhistory.menu.all" /></a></li>
+					<li><a href="${pageContext.request.contextPath}/instructor.html"><fmt:message key="instructor.bookhistory.menu.all" /></a></li>
 					<li class="active"><a href="${pageContext.request.contextPath}/instructor/history.html"><fmt:message key="instructor.bookhistory.menu.history" /></a>
 					<li><a href="mailto:admin@natureadventure.uji.es"><fmt:message key="instructor.bookhistory.menu.contactboss" /></a></li>
 				</ul>
