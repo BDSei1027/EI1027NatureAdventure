@@ -54,7 +54,7 @@ public class BasicPages extends AbstractController {
 	}
 	
 	@RequestMapping(value="/activities/createBooking/{idAct}", method=RequestMethod.POST)
-	public String newBookingForm(@ModelAttribute("regiterEnvelope") ClientBookingEnvelope clientBooking, @PathVariable int idAct, Model model, HttpSession session, BindingResult bindingResult, Locale locale) {
+	public String newBookingForm(@ModelAttribute("registerEnvelope") ClientBookingEnvelope clientBooking, @PathVariable int idAct, Model model, HttpSession session, BindingResult bindingResult, Locale locale) {
 		Client client = clientBooking.getClient();
 		if(client.getClientId()!=null){
 			new ClientRegisterValidator().validate(client, bindingResult);
