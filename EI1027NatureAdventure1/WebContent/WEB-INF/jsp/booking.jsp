@@ -72,7 +72,7 @@
 			<div class="form-group row">
 				<form:label path="groupSize" class="col-lg-3 control-label"><fmt:message key="booking.book.size" /></form:label>
 				<div class="col-lg-9">
-				<form:input path="groupSize" type="number" step="0.01" class="form-control" id="grSz" oninput="javascript:updatePrice();"/>
+				<form:input path="groupSize" type="number" step="1" class="form-control" id="grSz" oninput="javascript:updatePrice();"/>
 				<form:errors path="groupSize" class="text-danger" />
 				</div>
 			</div>
@@ -104,7 +104,7 @@
 		<div class="text-center" style="margin-top: 20px;">
 			<div class="btn-group">
 				<button type="submit" class="btn btn-primary"><fmt:message key="booking.btn.submit" /></button>
-				<button type="reset" class="btn btn-danger"><fmt:message key="booking.btn.clear" /></button>
+				<button type="reset" class="btn btn-danger" onClick="javascript:clearField();"><fmt:message key="booking.btn.clear" /></button>
 			</div>
 		</div>
 		</form:form>
@@ -124,7 +124,12 @@ var price = ${activity.price}
 function updatePrice()
 {
     var groupSize = document.getElementById("grSz").value;
-    document.getElementById("prc").innerHTML = price*groupSize;
+    precioTotal = price * groupSize
+    document.getElementById("prc").innerHTML = precioTotal.toFixed(2);
+}
+function clearField()
+{
+	document.getElementById("prc").innerHTML = '';
 }
 </script>
 <c:if test="${lang eq 'es'}">

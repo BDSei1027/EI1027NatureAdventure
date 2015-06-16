@@ -23,6 +23,7 @@ public class BookingValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
+		System.out.println("Entra");
 		Booking booking = (Booking) obj;
 		
 		if(booking.getGroupSize()<=0){

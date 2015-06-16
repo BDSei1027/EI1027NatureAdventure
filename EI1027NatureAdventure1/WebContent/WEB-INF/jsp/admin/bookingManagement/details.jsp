@@ -94,15 +94,15 @@
           </div>
           <div class="form-group">
             <label class="control-label"><fmt:message key="admin.book.details.bookingInfo.extra" /></label>
-            <textarea class="form-control" rows="3" placeholder="Extra information" disabled>${booking.information}</textarea>
+            <textarea class="form-control" rows="3" placeholder="No extra information" style="opacity: 1; background-color: #FFF; border-color: #BDC3C7; color: inherit;" readonly >${booking.information}</textarea>
           </div>
         </form>
 
           <div class="panel panel-default">
             <c:choose>
-            	<c:when test="${empty status or status.status eq 'pending'}">
+            	<c:when test="${empty status or status.status eq 'pending' or empty status.status}">
             		<c:set scope="page" var="modals" value="1" />
-            		<a data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="true" aria-controls="collapse">
+            		<a data-toggle="collapse" href="#collapse" aria-expanded="true" aria-controls="collapse">
 	            	<div class="panel-heading panel-header-warning" role="tab" id="heading">
 	              		<h4 class="panel-title"><fmt:message key="admin.book.details.status.title" /></h4>
 	            	</div>
@@ -185,7 +185,7 @@
             	</c:when>
             	<c:when test="${status.status eq 'accepted'}">
             		<c:set scope="page" var="modals" value="3" />
-            		<a data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="true" aria-controls="collapse">
+            		<a data-toggle="collapse" href="#collapse" aria-expanded="true" aria-controls="collapse">
 			          <div class="panel-heading panel-header-success" role="tab" id="heading">
 			            <h4 class="panel-title"><fmt:message key="admin.bookingmanage.status.declined.title" /></h4>
 			          </div>
@@ -224,7 +224,7 @@
             	</c:when>
             	<c:when test="${status.status eq 'declined'}">
             		<c:set scope="page" var="modals" value="2" />
-            		<a data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="true" aria-controls="collapse">
+            		<a data-toggle="collapse" href="#collapse" aria-expanded="true" aria-controls="collapse">
 			            <div class="panel-heading panel-header-danger" role="tab" id="heading">
 			              <h4 class="panel-title"><fmt:message key="admin.bookingmanage.status.declined.title" /></h4>
 			            </div>
