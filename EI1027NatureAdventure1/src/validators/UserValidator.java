@@ -1,7 +1,5 @@
 package validators;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
