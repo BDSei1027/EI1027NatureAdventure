@@ -21,14 +21,6 @@ public class ClientRegister {
 		super();
 	}
 
-	public Client getClient(){
-		Client client = new Client();
-		client.setClientId(this.id);
-		client.setClientName(this.name);
-		client.setClientLastName(this.lastName);
-		client.setClientEmail(this.email);
-		return client;
-	}
 	public ClientRegister(ClientRegister cl) {
 		super();
 		this.id = cl.getId();

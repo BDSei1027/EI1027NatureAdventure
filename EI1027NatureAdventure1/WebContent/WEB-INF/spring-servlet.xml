@@ -82,6 +82,11 @@
 	        <bean class="controller.interceptors.AccountInterceptor" />
 	    </mvc:interceptor>
 	    
+	    <mvc:interceptor>
+	        <mvc:mapping path="/activities/**"/>
+	        <bean class="controller.interceptors.ActivityInterceptor" />
+	    </mvc:interceptor>
+	    
 		<bean class="controller.interceptors.LanguajeInterceptor">
       		<property name="paramName" value="lang"/>
       		<property name="service" ref="service"/>
@@ -112,7 +117,7 @@
 	<bean id="email" class="classes.Email" />
 	<bean id="doublepassword" class="classes.DoublePassword" />
 	<bean id="token" class="classes.Token" />
-	<bean id="clientReg" class="classes.ClientBookingEnvelope" />
+	
 	<!-- Repositories -->
 	
 	<bean id="activityDAO" class="database.daoActivity">
