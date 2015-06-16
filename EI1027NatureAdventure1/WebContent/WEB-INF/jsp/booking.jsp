@@ -142,6 +142,17 @@
 				</div>
 			</div>
 			</c:if>
+			<c:if test="${not empty user}">
+			<form:form modelAttribute="client" method="post" role="form">
+				<form:hidden path="name" />
+				<form:hidden path="lastName" />
+				<form:hidden path="email" />
+				<form:hidden path="id" />
+				<form:hidden path="password" />
+				<form:hidden path="language" />
+				<form:hidden path="tocs" />
+			</form:form>
+			</c:if>
 
 			<div class="panel panel-info">
 	<div class="panel-heading"><h5 class="panel-title"><fmt:message key="booking.book" /></h5></div>
@@ -149,12 +160,11 @@
 		<form:form modelAttribute="booking" action="${pageContext.request.contextPath}/activities/createBooking/${activity.idAct}.html" method="post" role="form">
 			<h5 class="text-center"><fmt:message key="booking.book.act" /> <c:out value="${actName}" /></h5>
 			<div class="form-group row">
-				<form:label path="dateActivity" class="col-lg-3 control-label"><fmt:message key="booking.book.date" /></form:label>
+				<form:label path="dateActivity"  class="col-lg-3 control-label"><fmt:message key="booking.book.date" /></form:label>
 				<div class="col-lg-9">
 					<div class="input-group">
-						<form:input path="dateActivity" class="form-control" type="text" readonly="true" cssStyle="background-color: #FFF; opacity: 1; border-color: #BDC3C7; color: inherit;" />
-						
-						<div class="input-group-addon"><span class="fui-calendar datepicker"></span></div>
+						<form:input path="dateActivity" id="date" class="form-control datepicker" type="text" readonly="true" cssStyle="background-color: #FFF; opacity: 1; border-color: #BDC3C7; color: inherit;" />
+						<div class="input-group-addon"><span class="fui-calendar"></span></div>
 					</div>
 					<form:errors path="dateActivity" class="text-danger" />
 				</div>
@@ -221,6 +231,7 @@ function clearField()
 {
 	document.getElementById("prc").innerHTML = '';
 }
+
 </script>
 <c:if test="${lang eq 'es'}">
 	<script>
@@ -228,7 +239,12 @@ function clearField()
 	    	format: 'dd/mm/yyyy',
 	    	weekStart: 1,
 	    	language: 'es'
-	    })
+	    });
+function updateDate()
+{
+	var date = $('.datepicker').getDate();
+	document.getElementById("date").innerHTML = date;
+}
 	</script>
 </c:if>
 <c:if test="${lang eq 'en'}">
