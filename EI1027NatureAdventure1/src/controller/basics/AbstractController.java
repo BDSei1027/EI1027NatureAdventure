@@ -12,6 +12,10 @@ import service.LogicLayer;
 
 public abstract class AbstractController {
 	
+	public static final int RESULT_ADD = 0;
+	public static final int RESULT_MODIFY = 1;
+	public static final int RESULT_DELETE = 2;
+	
 	protected LogicLayer service;
 	
 	@InitBinder

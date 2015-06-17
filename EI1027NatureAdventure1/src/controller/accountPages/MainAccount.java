@@ -1,6 +1,5 @@
 package controller.accountPages;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -20,31 +19,49 @@ import validators.DoublePasswordValidator;
 import validators.InstructorValidator;
 
 
+/**
+ *Controller that manages the personal information page
+ */
 @Controller 
 @RequestMapping(value="/account")
 public class MainAccount extends AbstractController{
 	
 	
+	public static final int ADMIN = 0;
+	public static final int INSTRUCTOR1 = 1;
+	public static final int CLIENT = 2;
+
+
 	/**
-	 * Method that adds the user data to the model, so the page displays it
+	 * Manages the function "my account" that every type of user has
 	 * @param model Page model
 	 * @param session User session
-	 * @return The page with the user data
+	 * @return Account.jps
 	 */
 	@RequestMapping
 	public String acoountPage(Model model, HttpSession session){
+		//Logged data
 		User user = (User) session.getAttribute("user");
 		
-		
-		if (user.getType() == 0) return "redirect:/admin.html";
-		if (user.getType() == 1) model.addAttribute("instructor", service.getInstructor(user));
-		if (user.getType() == 2) model.addAttribute("client", service.getClient(user));
+		//Gives the model the required data based on the user type
+		if (user.getType() == ADMIN) return "redirect:/admin.html";
+		if (user.getType() == INSTRUCTOR1) model.addAttribute("instructor", service.getInstructor(user));
+		if (user.getType() == CLIENT) model.addAttribute("client", service.getClient(user));
 
+		//And gives also a field with the password and its confirmation
 		model.addAttribute("doublepassword", new DoublePassword());
+		
 		return "account";
 		
 	}
 	
+	/**
+	 * Updates the client information based on the data passed through post. 
+	 * @param model Model of the page
+	 * @param client Client information
+	 * @param bindingResult Error handler
+	 * @return Account.jsp with the modified model and bindingResult.
+	 */
 	@RequestMapping(value="/updateClient", method=RequestMethod.POST)
 	public String updateClientPage(Model model, @ModelAttribute("client") Client client, BindingResult bindingResult){
 		model.addAttribute("doublepassword", new DoublePassword());
@@ -58,6 +75,13 @@ public class MainAccount extends AbstractController{
 	}
 	
 	
+	/**
+	 * Updates the instructor information based on the data passed through post. 
+	 * @param model Injected model
+	 * @param instructor Instructor data
+	 * @param bindingResult Error handler
+	 * @return Account.jsp with the modified model and bindingResult.
+	 */
 	@RequestMapping(value="/updateInstructor",  method=RequestMethod.POST)
 	public String updateInstructorPage(Model model, @ModelAttribute("instructor") Instructor instructor, BindingResult bindingResult){
 		model.addAttribute("doublepassword", new DoublePassword());
@@ -71,9 +95,16 @@ public class MainAccount extends AbstractController{
 	}
 	
 	
+	/**
+	 * Updates the password of any account
+	 * @param model Injected model
+	 * @param doublePasswd The new password and its confirmation
+	 * @param bindingResult Error handler
+	 * @param session Session containing the user
+	 * @return Account.jsp with the modified model and bindingResult.
+	 */
 	@RequestMapping(value="/updateAuth", method=RequestMethod.POST)
-	public String updateAuthPage(Model model, @ModelAttribute("doublepassword") DoublePassword doublePasswd, BindingResult bindingResult, HttpServletRequest request, HttpSession session){
-		//TODO UserValidator
+	public String updateAuthPage(Model model, @ModelAttribute("doublepassword") DoublePassword doublePasswd, BindingResult bindingResult, HttpSession session){
 		new DoublePasswordValidator().validate(doublePasswd, bindingResult);
 		
 		User user = (User) session.getAttribute("user");
