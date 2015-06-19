@@ -27,12 +27,6 @@ import database.daoSessionToken;
 import database.daoStatus;
 import database.daoUser;
 
-//Implementación palera 
-//TODO trabajar en memoria
-//TODO guardar en fichero local
-//TODO subir cada X tiempo
-//TODO boton subir ++
-
 @SuppressWarnings(value = {"unchecked", "unused"})
 @Service
 public class LogicLayer {
@@ -89,11 +83,6 @@ public class LogicLayer {
 			System.out.println("activityID = 0");
 		}
 	}
-
-	
-	/*
-	 * ALPHA VERSION
-	 */
 	
 	public void init() {
 		inicializarIds();
@@ -110,10 +99,10 @@ public class LogicLayer {
 	 */
 	public void addInstructor(Instructor instructor){
 		if (instructor.getActivities() == null) instructor.setActivities(new ArrayList<Integer>());
-		
 		daoInstructor.addElement(instructor);
 		
 	}
+	
 	
 	/**
 	 * Set inactive an instructor from the database. The ssNumber is required
@@ -123,7 +112,6 @@ public class LogicLayer {
 	public void inactiveInstructor(String code){
 		Instructor myInstructor= this.getInstructor(code);
 		if (myInstructor==null)	return;
-		
 		myInstructor.setActive(false);
 	    this.updateInstructor(myInstructor);
 		
@@ -132,10 +120,8 @@ public class LogicLayer {
 	public void activeInstructor(String code) {
 		Instructor myInstructor= this.getInstructor(code);
 		if (myInstructor==null)	return;
-		
 		myInstructor.setActive(true);
 	    this.updateInstructor(myInstructor);
-		
 	}
 	
 	/**
@@ -247,10 +233,10 @@ public class LogicLayer {
 	 * Instruidas subzone
 	 */
 	
-	/**
-	 * 
+	/** 
+	 * Method to obtain all the activities which are instructed by a certain instructor
 	 * @param instructor
-	 * @return
+	 * @return All the activities instructed by the instructor given
 	 */
 	public Collection<Activity> getAllActivities(Instructor instructor){
 //		daoInstructor myDaoInstructor = (daoInstructor) daoInstructor;
@@ -307,7 +293,7 @@ public class LogicLayer {
 	}
 	
 	/**
-	 * Set inactive an activity from the database. The ssNumber is required
+	 * Set inactive an activity from the database. The ssNumber is required.
 	 * @param idActivity of the activity
 	 */
 	public void inactiveActivity(int code){
@@ -326,7 +312,7 @@ public class LogicLayer {
 	
 	
 	/**
-	 * Set acive an activity from the database. The ssNumber is required
+	 * Set active an activity from the database. The ssNumber is required.
 	 * @param idActivity of the activity
 	 */
 	public void activateActivity(int code){
@@ -344,7 +330,7 @@ public class LogicLayer {
 	}
 	
 	/**
-	 * Update an activity from the database. This operation is only allowed when the activity was registered before in the database
+	 * Update an activity from the database. This operation is only allowed when the activity was registered before in the database.
 	 * @param The activity
 	 */
 	public void updateActivity(Activity activity){
@@ -353,7 +339,7 @@ public class LogicLayer {
 	
 	/**
 	 * Given a code a activity is delivered. If the activity doesn't exist in the database it returns null 
-	 *@return an activity or null
+	 *@return An activity or null
 	 */
 	public Activity getActivity(int code){
 		Activity myActivity = (Activity) daoActivity.getElement(code);
@@ -362,7 +348,7 @@ public class LogicLayer {
 	
 	/**Given a code a activity is delivered. If the activity doesn't exist in the database it returns null 
 	 * @param name
-	 * @return an activity or null
+	 * @return An activity or null
 	 */
 	public Activity getActivity(String name){
 		Activity myActivity = (Activity) daoActivity.getElement(name);
@@ -430,8 +416,7 @@ public class LogicLayer {
 		
 	}
 	
-	
-	/** Retrieves the desired booking
+	/** Retrieve the desired booking
 	 * @param id
 	 * @return The booking
 	 */
@@ -451,18 +436,30 @@ public class LogicLayer {
 	}
 	
 	
+	/** Get all the BookingActivity related with a certain instructor
+	 * @param instructor
+	 * @return All the BookingActivity related with the instructor
+	 */
 	public Collection<BookingActivity> getAllBookingsActivityInstructor(Instructor instructor){
 		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getElementsBookingActivityInstructor(instructor.getSsNumber());
 		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
+	/** Get all the BookingActivity related with a certain client
+	 * @param A Client
+	 * @return All the BookingActivity related with the client
+	 */
 	public Collection<BookingActivity> getAllBookingsActivityClient(Client cl){
 		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getElementsBookingActivityClient(cl.getClientId());
 		Collection<BookingActivity> allBookingsClasses= allBookings.values();
 		return allBookingsClasses;
 	}
 	
+	/** Get all the BookingActivity which booking is active related with a certain client
+	 * @param A Client
+	 * @return All the BookingActivity with an active Booking related with the client
+	 */
 	public Collection<BookingActivity> getActiveBookings(Client client){
 		String idClient = client.getClientId();
 		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getActiveBookingsWithClient(idClient);
@@ -470,6 +467,10 @@ public class LogicLayer {
 		return allBookingsClasses;
 	}
 	
+	/** Get all the BookingActivity that represents bookings done related with a certain client
+	 * @param client
+	 * @return All the BookingActivity done in the past related with the client
+	 */
 	public Collection<BookingActivity> getPastBookings(Client client){
 		String idClient = client.getClientId();
 		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getPastBookingsWithClient(idClient);
@@ -477,6 +478,10 @@ public class LogicLayer {
 		return allBookingsClasses;
 	}
 	
+	/** Get all the BookingActivity which booking is active related with a certain instructor
+	 * @param instructor
+	 * @return All the BookingActivity with an active Booking related with the instructor
+	 */
 	public Collection<BookingActivity> getActiveBooking(Instructor instructor){
 		String ssNumber = instructor.getSsNumber();
 		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getActiveBookingsWithInstructor(ssNumber);
@@ -484,6 +489,10 @@ public class LogicLayer {
 		return allBookingsClasses;
 	}
 	
+	/** Get all the BookingActivity that represents bookings done related with a certain instructor
+	 * @param instructor
+	 * @return All the BookingActivity done in the past related with the instructor
+	 */
 	public Collection<BookingActivity> getPastBooking(Instructor instructor){
 		String ssNumber = instructor.getSsNumber();
 		Map<Integer,BookingActivity> allBookings = (Map<Integer,BookingActivity>) daoBooking.getPastBookingsWithInstructor(ssNumber);
@@ -491,6 +500,9 @@ public class LogicLayer {
 		return allBookingsClasses;
 	}
 	
+	/** Retrieve the number of pending Bookings
+	 * @return the number of pending bookings
+	 */
 	public Integer getPendingBookingsCount(){
 		return daoBooking.getPendingBookingsCount();
 	}
@@ -499,22 +511,22 @@ public class LogicLayer {
 	 * STATUS ZONE
 	 */
 	
-	/** Add a status in the database
-	 * @param status
+	/** Add a Status in the database
+	 * @param Status
 	 */
 	public void addStatus(Status status){
 		daoStatus.addElement(status);
 	}
 	
-	/** Delete a status from the database
-	 * @param status
+	/** Delete a Status from the database
+	 * @param Status
 	 */
 	public void deleteStatus(Status status){
 		daoStatus.deleteElement(status.getIDbooking());
 	}
 	
-	/**update a status in the database
-	 * @param status
+	/**update a Status in the database
+	 * @param Status
 	 */
 	public void updateStatus(Status status){
 		daoStatus.updateElement(status);
@@ -531,17 +543,16 @@ public class LogicLayer {
 	}
 	
 	/**
-	 * Change the status of the status to pending
-	 * @param status
+	 * Change the status of the Status to pending
+	 * @param Status
 	 */
 	public void changeToPending(Status status) {
-		/* status.setDateRevision(null);
-		status.setSsNumber(null);
-		status.setStatus(null);
-		daoStatus.updateElement(status); */
 		daoStatus.deleteElement(status.getIDbooking());
 	}
 	
+	/** Change the status of the Status to declined
+	 * @param Status
+	 */
 	public void changeToDeclined(Status status) {
 		status.setDateRevision(new Date());
 		status.setSsNumber(null);
@@ -549,18 +560,27 @@ public class LogicLayer {
 		daoStatus.updateElement(status);
 	}
 	
+	/** Retrieve all the Bookings which are pending
+	 * @return All the pending Bookings
+	 */
 	public Collection<Booking> getPendingBookings(){
 		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getPendingBookings();
 		Collection<Booking> allBookingsPending= allBookings.values();
 		return allBookingsPending;
 	}
 	
+	/** Get all the active Bookings registered in the system
+	 * @return All the active Bookings
+	 */
 	public Collection<Booking> getActiveBookings(){
 		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getActiveBookings();
 		Collection<Booking> allBookingsActive= allBookings.values();
 		return allBookingsActive;
 	}
 	
+	/** Get all the declined Bookings registered in the system
+	 * @return All the declined Bookings
+	 */
 	public Collection<Booking> getDeclinedBookings(){
 		Map<Integer,Booking> allBookings = (Map<Integer,Booking>) daoBooking.getDeclinedBookings();
 		Collection<Booking> allBookingsDecline= allBookings.values();
@@ -568,7 +588,7 @@ public class LogicLayer {
 	}
 	
 	
-	/** Retrieves a status.
+	/** Retrieve a status.
 	 * @param booking
 	 * @return The status
 	 */
@@ -585,6 +605,10 @@ public class LogicLayer {
 		return allStatusClasses;
 	}
 	
+	/** Assign a certain instructor with a Booking
+	 * @param ssNumber
+	 * @param idBooking
+	 */
 	public void assignInstructorToBooking(String ssNumber, int idBooking){
 		Status myStatus = this.getStatus(idBooking);
 		if(myStatus==null) return;
@@ -598,6 +622,9 @@ public class LogicLayer {
 		daoBooking.updateElement(bok);
 	}
 	
+	/** Make a certain booking declined
+	 * @param idBooking
+	 */
 	public void declineBooking(int idBooking){
 		Status myStatus = this.getStatus(idBooking);
 		if(myStatus==null) return;
@@ -611,6 +638,9 @@ public class LogicLayer {
 		daoBooking.updateElement(bok);
 	}
 	
+	/** Make a certain booking pending
+	 * @param idBooking
+	 */
 	public void bookingToPending(int idBooking){
 		Status myStatus = this.getStatus(idBooking);
 		if(myStatus==null) return;
@@ -622,8 +652,6 @@ public class LogicLayer {
 		Booking bok = this.getBooking(idBooking);
 		bok.setIdBooking(null);
 		daoBooking.updateElement(bok);
-		
-		
 	}
 	
 	/*
@@ -692,7 +720,7 @@ public class LogicLayer {
 		
 	}
 	
-	/** Retrieves all the users from the database
+	/** Retrieve all the users from the database
 	 * @return
 	 */
 	public Collection<User> getAllUsers(){
@@ -731,7 +759,7 @@ public class LogicLayer {
 		daoClient.deleteElement(clientID);
 	}
 	
-	/** Upadate a client in the database
+	/** Update a client in the database
 	 * @param client
 	 */
 	public void updateClient(Client client){
@@ -739,7 +767,7 @@ public class LogicLayer {
 		daoClient.updateElement(client);
 	}
 	
-	/** Retrieves the desired Client. The clientID is required
+	/** Retrieve the desired Client. The clientID is required
 	 * @param clientID
 	 * @return
 	 */
@@ -748,7 +776,7 @@ public class LogicLayer {
 		return myClient;
 	}
 	
-	/** Retrieves the desired Client
+	/** Retrieve the desired Client
 	 * @param user
 	 * @return The client
 	 */
@@ -757,6 +785,9 @@ public class LogicLayer {
 		
 	}
 	
+	/** Get all the clients registered in the system
+	 * @return All the clients
+	 */
 	public Collection<Client> getAllClients(){
 		Map<String,Client> allClients =  (Map<String, Client>) daoClient.getElements();
 		Collection<Client> allClientsClasses = allClients.values();
@@ -764,6 +795,10 @@ public class LogicLayer {
 		
 	}
 	
+	/** Create an User which represents a instructor given
+	 * @param instructor
+	 * @return A User which represents a instructor
+	 */
 	public User createUserFrom(Instructor instructor) {
 		User newUser = new User();
 		newUser.setUser(instructor.getIdNumber());
@@ -775,6 +810,10 @@ public class LogicLayer {
 	}
 	
 	
+	/** Create a Client given a ClientRegister
+	 * @param cl
+	 * @return The desired Client
+	 */
 	public Client createClientFrom(ClientRegister cl) {
 		Client client = new Client();
 		client.setClientId(cl.getId());
@@ -784,6 +823,10 @@ public class LogicLayer {
 		return client;
 	}
 	
+	/** Create a user given a ClientRegister
+	 * @param cl
+	 * @return The desired user
+	 */
 	public User createUserFrom(ClientRegister cl) {
 		User newUser = new User();
 		newUser.setUser(cl.getId());
@@ -794,42 +837,21 @@ public class LogicLayer {
 		return newUser;
 	}
 	
+	/** Get the User count of the system
+	 * @return The number of User registered
+	 */
 	public Integer getUserCount(){
 		return daoUser.getUserCount();
 	}
-	
-	
-	/*
-	 * AVALIABLE ACTIVITIES FOR BOOKING ZONE
-	 */
-	
-	
-	
-	
-//	/**
-//	 * @param myProposal
-//	 */
-//	public void addAvaliableForBooking(AvaliableForBooking myProposal){
-//		daoAvaliable.addElement(myProposal);
-//	}
-//	
-//	public void deleteAvaliableForBooking(AvaliableForBooking myProposal){
-//		
-//	}
-//	
-//	public void updateAvaliableForBooking(AvaliableForBooking myProposal){
-//		
-//	}
-//	
-//	public AvaliableForBooking getAvaliableForBooking(){
-//		
-//	}
-	
 	
 	/*
 	 * TOKEN ZONE
 	 */
 	
+	/** Set a token to an User
+	 * @param userName
+	 * @param tokenString
+	 */
 	public void setToken(String userName, String tokenString) {
 		Token token = new Token(); token.setUser(userName); token.setToken(tokenString);
 		try {
@@ -840,6 +862,11 @@ public class LogicLayer {
 
 	}
 	
+	/** Validate a token of an user
+	 * @param userName
+	 * @param tokenString
+	 * @return A boolean value which represents its validation
+	 */
 	public boolean validateToken(String userName, String tokenString) {
 		Token token = (Token) daoToken.getElement(userName);
 		
@@ -848,6 +875,9 @@ public class LogicLayer {
 		return false;
 	}
 	
+	/** Delete a token of an user
+	 * @param tokenUser
+	 */
 	public void deleteToken(String tokenUser) {
 		daoToken.deleteElement(tokenUser);
 	}
