@@ -12,6 +12,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import validators.SessionValidator;
  
 
+/**
+ * Intercepter that only allows costumers to enter the costumer pages
+ */
 public class CustomerInterceptor extends HandlerInterceptorAdapter  {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

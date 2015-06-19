@@ -14,10 +14,19 @@ import classes.User;
 import controller.basics.AbstractController;
 
 
+/**
+ * Controller that manages the pages the customer is allowed to see
+ */
 @Controller
 @RequestMapping("/customer")
 public class MainCustomer extends AbstractController {	
 	
+	/**
+	 * Method that returns the costumer his/her information
+	 * @param model Injected model
+	 * @param session Session to get the info from
+	 * @return Main.jsp with the modified model
+	 */
 	@RequestMapping
 	public String costumerPage(Model model, HttpSession session){
 		Client client = service.getClient((User) session.getAttribute("user"));
@@ -30,6 +39,12 @@ public class MainCustomer extends AbstractController {
 		return "customer/main";
 	}
 	
+	/**
+	 * Returns the booking that the customer had
+	 * @param model Injected model
+	 * @param session Session to get the user from
+	 * @return History.jsp with the modified model
+	 */
 	@RequestMapping(value="/history")
 	public String costumerRecords(Model model, HttpSession session){
 		Client client = service.getClient((User) session.getAttribute("user"));

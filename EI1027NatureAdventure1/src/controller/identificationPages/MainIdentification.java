@@ -27,6 +27,9 @@ import classes.Email;
 import classes.User;
 
 
+/**
+ * Controller that manages the identification pages
+ */
 @Controller
 public class MainIdentification extends AbstractController{
 
@@ -105,7 +108,8 @@ public class MainIdentification extends AbstractController{
 	/**
 	 * Method used to logout the user
 	 * @param session Http session that contains the user data
-	 * @return Bye page
+	 * @param request Request used to delete the rememberMe cookies
+	 * @return Logout.jsp
 	 */
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession session, HttpServletRequest request){
@@ -125,20 +129,34 @@ public class MainIdentification extends AbstractController{
 	
 	/**
 	 * Method used to redirect from a restricted area
-	 * @return
+	 * @param model Injected model
+	 * @return Restricted.jsp 
 	 */
 	@RequestMapping(value="/restricted")
 	public String restricted(Model model){
-		model.addAttribute("email",new Email());
+		model.addAttribute("email",new Email()); //Future uses
 		return "restricted";
 	}
 
+	/**
+	 * Returns the register form
+	 * @param model Injected model
+	 * @return Register.jsp with the modified model
+	 */
 	@RequestMapping(value="/register")
 	public String register(Model model) {
 		model.addAttribute("register", new ClientRegister());
 		return "register";
 	}
 	
+	/**
+	 * Processes the data from the costumer register
+	 * @param clientRegister Object containing all the data from the form
+	 * @param bindingResult Error handler
+	 * @param session Session to save the user
+	 * @param locale Language
+	 * @return Redirect to index.html
+	 */
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String registerForm(@ModelAttribute("register") ClientRegister clientRegister, BindingResult bindingResult, HttpSession session, Locale locale) {
 		//Correct field format validator
@@ -160,28 +178,57 @@ public class MainIdentification extends AbstractController{
 		}
 		
 		
-		return "redirect:/index.jsp";
+		return "redirect:/index.html";
 	}
 	
+	/**
+	 * (work in progress)
+	 * Password recovery form, (future uses)
+	 * @param model Injected model
+	 * @return Recoverpassword.jsp with the modified model
+	 */
 	@RequestMapping(value="/passwordRecovery")
 	public String recoveryPage(Model model){
 		model.addAttribute("email", new Email());
 		return "recverpassword";
 	}
 	
+	/**
+	 * (work in progress)
+	 * Processes the data from the password recovery form (future uses)
+	 * @param email Email used in the account
+	 * @param model Injected model
+	 * @return Recoverpassword.jsp with the result code (old version, error code is used)
+	 */
 	@RequestMapping(value="/passwordRecovery", method=RequestMethod.POST)
 	public String recoveryPage(@ModelAttribute("email") Email email, Model model){
 
 		model.addAttribute("error", 0);
-		return "recverpassword";
+		return "recoverpassword";
 	}
 	
+	/**
+	 * (work in progress)
+	 * Method that verifies the recovery token to process the account recovery
+	 * @param token String token obtained by the email
+	 * @param model Injected model
+	 * @return Recoverpassword.jsp (not implemented yet, future impl)
+	 */
 	@RequestMapping(value="/passwordRecoveryAuth?{token}")
 	public String recoveryAuthPage(@PathVariable String token, Model model){
 		model.addAttribute("doublepassword", new DoublePassword());
 		return "recverpasswordauth";
 	}
 	
+	/**
+	 * (work in progress)
+	 * Method that verifies the recovery token to process the account recovery
+	 * @param model Injected model
+	 * @param token String token obtained by the email
+	 * @param passwd New password and its confirmation
+	 * @param bindingResult Error handler
+	 * @return Recoverpasswordauth.jsp with the error
+	 */
 	@RequestMapping(value="/passwordRecoveryAuth?{token}", method=RequestMethod.POST)
 	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult){
 		new DoublePasswordValidator().validate(passwd, bindingResult);

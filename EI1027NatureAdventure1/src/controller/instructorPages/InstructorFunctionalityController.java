@@ -16,6 +16,9 @@ import classes.User;
 import controller.basics.AbstractController;
 
 
+/**
+ * Controller that manages the pages from the instructor view
+ */
 @Controller
 @RequestMapping(value="/instructor")
 public class InstructorFunctionalityController extends AbstractController{
@@ -25,7 +28,7 @@ public class InstructorFunctionalityController extends AbstractController{
 	 * Method that injects the activity list assigned to a instructor
 	 * @param model Model of the page
 	 * @param session Session of the user
-	 * @return Main monitors page
+	 * @return Main.jsp with the modified model
 	 */
 	@RequestMapping
 	public String monitorPage(Model model, HttpSession session){
@@ -42,6 +45,12 @@ public class InstructorFunctionalityController extends AbstractController{
 		
 	}
 	
+	/**
+	 * Returns the details of the booking {idBooking}
+	 * @param idBooking The id of the booking
+	 * @param model Injected model
+	 * @return Details.jsp with the modified model
+	 */
 	@RequestMapping(value="/details/{idBooking}")
 	public String detailsPage(@PathVariable int idBooking, Model model){
 		Booking booking = service.getBooking(idBooking);
@@ -53,6 +62,12 @@ public class InstructorFunctionalityController extends AbstractController{
 		return "instructor/details";
 	}
 	
+	/**
+	 * Shows the past bookings assigned to the instructor
+	 * @param model Injected model
+	 * @param session Session to get the instructor from
+	 * @return History.jsp with the modified model
+	 */
 	@RequestMapping(value="/history")
 	public String pastBookings(Model model, HttpSession session){
 		Instructor instructor = service.getInstructor((User) session.getAttribute("user"));
