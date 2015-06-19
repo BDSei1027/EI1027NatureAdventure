@@ -1,5 +1,5 @@
 package classes;
-
+//NOTA: Clase no usada en implementacion actual
 import java.util.Date;
 
 import org.springframework.stereotype.Component;

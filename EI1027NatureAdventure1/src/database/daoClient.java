@@ -27,8 +27,8 @@ public class daoClient implements DaoInterface {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
-	/*
-	 * RowMapper for the class Client
+	/**
+	 * This class makes a Client from the database outputs
 	 */
 	private static final class ClientMapper implements RowMapper<Client> {
 		public Client mapRow(ResultSet rs, int rowNum) throws SQLException {

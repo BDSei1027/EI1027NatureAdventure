@@ -27,8 +27,8 @@ public class daoStatus implements DaoInterface {
 		this.dataSource = new JdbcTemplate(dataSource);
 	}
 	
-	/*
-	 * RowMapper for the class Status
+	/**
+	 * This class makes a Status from the database outputs
 	 */
 	private static final class StatusMapper implements RowMapper<Status> {
 		public Status mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -113,6 +113,10 @@ public class daoStatus implements DaoInterface {
 		return map;
 	}
 	
+	/** Method to obtain the status of a certain Booking
+	 * @param id
+	 * @return The status
+	 */
 	public String getStatus(int id) {
 		String sql = "SELECT status FROM Status WHERE inneridbooking = ?;";
 		List<String> list = dataSource.query(sql, new RowMapper<String>() {

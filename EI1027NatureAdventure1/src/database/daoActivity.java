@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Activity;
-//TODO ¿Un metodo para dar de baja una actividad? (cambiar isActive a false), lo mismo para activar (se podria hacer que fuesen una misma)
+
 @Repository
 public class daoActivity implements DaoInterface {
 
@@ -28,7 +28,7 @@ public class daoActivity implements DaoInterface {
 	}
 	
 	/**
-	 * This class make an activity from the database outputs
+	 * This class makes an activity from the database outputs
 	 */
 	private static final class ActivityMapper implements RowMapper<Activity> {
 		public Activity mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -206,7 +206,6 @@ public class daoActivity implements DaoInterface {
 		return map;
 	}
 	
-	
 	/**
 	 * Method to get the instructors that can supervise this activity
 	 * @param idAct Integer with the idact
@@ -217,9 +216,9 @@ public class daoActivity implements DaoInterface {
     	return (List<String>) dataSource.queryForList(sql, String.class, idAct);
 	}
 	
-	// TODO cambiamos el nombre?
+
 	/**
-	 * Methos to add an Instructor that can supervise the activity
+	 * Method to add an Instructor that can supervise the activity
 	 * @param idact Activity's identifier
 	 * @param ssnum Instructor's identifier
 	 */

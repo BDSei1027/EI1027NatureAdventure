@@ -27,8 +27,8 @@ public class daoUser implements DaoInterface {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
-	/*
-	 * RowMapper for the class User
+	/**
+	 * This class makes a User from the database outputs
 	 */
 	private final static class UserMapper implements RowMapper<User> {
 		@Override
@@ -45,7 +45,6 @@ public class daoUser implements DaoInterface {
 			}
 			return user;
 		}
-		
 	}
 	
 	/**
@@ -133,6 +132,9 @@ public class daoUser implements DaoInterface {
 		dataSource.update(sql, u.getName(), u.getLanguage(), u.getUser());
 	}
 
+	/** Method to obtain the number of users registered in the system
+	 * @return The number of users
+	 */
 	public Integer getUserCount(){
 		String sql = "SELECT COUNT(*) FROM login;";
 		return dataSource.queryForObject(sql, Integer.class);

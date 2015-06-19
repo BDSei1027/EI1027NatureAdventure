@@ -17,7 +17,7 @@ public interface DaoInterface {
 	
 	/**
 	 * Method to update an Object in the DB
-	 * @param element Objecto to update
+	 * @param element Object to update
 	 */
 	public void updateElement(Object element);
 	

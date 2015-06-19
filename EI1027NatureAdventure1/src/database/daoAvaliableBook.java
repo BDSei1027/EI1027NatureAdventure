@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.AvaliableForBooking;
-
+//NOTA: DAO no usado por la implementación actual
 @Repository
 public class daoAvaliableBook implements DaoInterface {
 
@@ -27,8 +27,8 @@ public class daoAvaliableBook implements DaoInterface {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
-	/*
-	 * RowMapper for the class Instructor
+	/**
+	 * This class makes a AvaliableForBooking from the database outputs
 	 */
 	private final static class AvaliableMapper implements RowMapper<AvaliableForBooking> {
 		@Override

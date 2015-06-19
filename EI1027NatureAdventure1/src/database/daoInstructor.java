@@ -28,8 +28,8 @@ public class daoInstructor implements DaoInterface {
 		this.dataSource = new JdbcTemplate(datasource);
 	}
 	
-	/*
-	 * RowMapper for the class Instructor
+	/**
+	 * This class makes a Instructor from the database outputs
 	 */
 	private static final class InstructorMapper implements RowMapper<Instructor> {
 		public Instructor mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -146,7 +146,6 @@ public class daoInstructor implements DaoInterface {
 		return (List<Integer>) dataSource.queryForList(sql, Integer.class, id);
 	}
 	
-	// TODO cambiamos el nombre?
 	/**
 	 * Method to add an activity that the instructor can supervise into instruidas
 	 * @param ssnum Instructor's identifier
@@ -157,7 +156,6 @@ public class daoInstructor implements DaoInterface {
 		dataSource.update(sql, idact, ssnum);
 	}
 	
-	// TODO cambiamos el nombre?
 	/**
 	 * Method to add some activities that the instructor can supervise into instruidas
 	 * @param ssnum Instructor's identifier
@@ -224,6 +222,9 @@ public class daoInstructor implements DaoInterface {
 		return list;
 	}
 
+	/** Method to obtain the active instructors of the system
+	 * @return A map with the instructors
+	 */
 	public Map<String, Instructor> getElementsActive() {
 		String sql = "SELECT * FROM instructor WHERE isactive = true;";
 		Map<String, Instructor> map = new HashMap<String, Instructor>();
@@ -235,6 +236,9 @@ public class daoInstructor implements DaoInterface {
 		return map;
 	}
 
+	/** Method to obtain the inactive instructors of the system
+	 * @return A map with the instructors
+	 */
 	public Map<String, Instructor> getElementsInactive() {
 		String sql = "SELECT * FROM instructor WHERE isactive = false;";
 		Map<String, Instructor> map = new HashMap<String, Instructor>();
@@ -246,6 +250,10 @@ public class daoInstructor implements DaoInterface {
 		return map;
 	}
 
+	/** Method to obtain all the activities without instructor
+	 * @param ssnum
+	 * @return A list with the activities
+	 */
 	public List<Activity> getAllActivitiesFromNoInstructor(String ssnum) {
 		String subsql = "SELECT idact FROM instruidas WHERE ssnumber = ?";
 		String sql = "SELECT act.* FROM activity AS act WHERE idact NOT IN (" + subsql + ");";
@@ -272,12 +280,21 @@ public class daoInstructor implements DaoInterface {
 		return list;
 	}
 	
+	/** Method to obtain the number of bookings related with a certain client
+	 * @param ssnum
+	 * @return The number of booking related to the client
+	 */
 	public Integer getNumberBookings(String ssnum) {
 		String sql = "SELECT COUNT(*) FROM status as st JOIN booking as b USING(inneridbooking) WHERE st.ssnumber = ? AND CURRENT_DATE < dateactivity;";
 		return dataSource.queryForObject(sql, new Object[] {ssnum}, Integer.class);
 	}
 
 	
+	/** Method to get the available instructors to be assigned to a Booking
+	 * @param idAct
+	 * @param innerIdBooking
+	 * @return A map with the instructors
+	 */
 	public Map<String, Instructor> getAvaliableInstructorsToAssign(int idAct, int innerIdBooking){
 		String sql = "SELECT i.* " +
 					"FROM instruidas as inidas JOIN instructor AS i USING(ssNumber)" +

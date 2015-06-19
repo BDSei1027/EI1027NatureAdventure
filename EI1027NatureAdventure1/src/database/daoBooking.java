@@ -35,8 +35,8 @@ public class daoBooking implements DaoInterface {
 		this.daoStatus = daoStatus;
 	}
 	
-	/*
-	 * RowMapper for the class Booking
+	/**
+	 * This class makes a Booking from the database outputs
 	 */
 	private final static class BookingMapper implements RowMapper<Booking> {
 		public Booking mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -58,8 +58,8 @@ public class daoBooking implements DaoInterface {
 		}
 	}
 	
-	/*
-	 * RowMapper for the class BookingActivity
+	/**
+	 * This class makes a BookingActivity from the database outputs
 	 */
 	private final static class BookingActivityMapper implements RowMapper<BookingActivity> {
 		public BookingActivity mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -206,6 +206,10 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
+	/** Method to retrieve all the active bookingactivities with instructor
+	 * @param ssNumber
+	 * @return A map with the BookingActivity
+	 */
 	public Map<Integer, BookingActivity> getActiveBookingsWithInstructor(String ssNumber){
 		String sql = "SELECT book.inneridbooking, book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
@@ -218,6 +222,10 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
+	/** Method to retrieve all the past bookingactivities with instructor
+	 * @param ssNumber
+	 * @return A map with the BookingActivity
+	 */
 	public Map<Integer, BookingActivity> getPastBookingsWithInstructor(String ssNumber){
 		String sql = "SELECT book.inneridbooking, book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
@@ -230,6 +238,10 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
+	/** Method to obtain the active bookings with client
+	 * @param idClient
+	 * @return A map with the BookingActivity
+	 */
 	public Map<Integer, BookingActivity> getActiveBookingsWithClient(String idClient) {
 		String sql = "SELECT book.inneridbooking, book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
@@ -242,6 +254,10 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 
+	/** Method to obtain all the bookings done with client
+	 * @param idClient
+	 * @return A map with the BookingActivity
+	 */
 	public Map<Integer, BookingActivity> getPastBookingsWithClient(String idClient) {
 		String sql = "SELECT book.inneridbooking, book.idbooking, act.name, book.dateactivity, act.schedule, act.leveldif, book.price, book.groupsize, act.place, st.daterevision, st.status "
 				+ "FROM booking AS book JOIN status AS st USING(inneridbooking) JOIN activity AS act USING(idact) "
@@ -254,6 +270,9 @@ public class daoBooking implements DaoInterface {
 		return map;
 	}
 	
+	/** Method to obtain the number of pending bookings
+	 * @return the number of pending bookings
+	 */
 	public Integer getPendingBookingsCount(){
 		String sql = "SELECT COUNT(*) FROM status WHERE status LIKE 'pending';";
 		return dataSource.queryForObject(sql, Integer.class);
@@ -279,7 +298,10 @@ public class daoBooking implements DaoInterface {
 	}
 
 	
-	public Object getActiveBookings(){
+	/** Method to obtain all the active bookings of the system
+	 * @return A map with the Booking
+	 */
+	public Map<Integer, Booking> getActiveBookings(){
 		String sql = "SELECT b.* FROM status AS s JOIN booking AS b USING(inneridbooking) WHERE status = 'accepted';";
 		
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
@@ -292,7 +314,10 @@ public class daoBooking implements DaoInterface {
 
 	}
 	
-	public Object getPendingBookings(){
+	/** Method to obtain all the pending bookings of the system
+	 * @return A map with the Booking
+	 */
+	public Map<Integer, Booking> getPendingBookings(){
 		String sql = "SELECT b.* FROM status AS s JOIN booking AS b USING(inneridbooking) WHERE status = 'pending';";
 		
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
@@ -304,7 +329,10 @@ public class daoBooking implements DaoInterface {
 		return map;
 
 	}
-	public Object getDeclinedBookings(){
+	/** Method to obtain the declined bookings
+	 * @return A map with the booking
+	 */
+	public Map<Integer, Booking> getDeclinedBookings(){
 		String sql = "SELECT b.* FROM status AS s JOIN booking AS b USING(inneridbooking) WHERE status = 'declined';";
 		
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
@@ -316,8 +344,5 @@ public class daoBooking implements DaoInterface {
 		return map;
 
 	}
-	
-	
-	
 	
 }

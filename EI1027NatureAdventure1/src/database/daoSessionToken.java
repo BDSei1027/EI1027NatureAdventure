@@ -26,8 +26,8 @@ public class daoSessionToken implements DaoInterface {
 		this.dataSource = new JdbcTemplate(dataSource);
 	}
 
-	/*
-	 * RowMapper for the class Token
+	/**
+	 * This class makes a Token from the database outputs
 	 */
 	private static final class TokenMapper implements RowMapper<Token> {
 		public Token mapRow(ResultSet rs, int rowNum) throws SQLException {
