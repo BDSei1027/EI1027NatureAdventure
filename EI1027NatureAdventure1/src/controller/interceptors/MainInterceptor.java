@@ -17,6 +17,9 @@ import service.LogicLayer;
 import validators.SessionValidator;
  
 
+/**
+ * Intercepter used for the "remember me" function
+ */
 public class MainInterceptor extends HandlerInterceptorAdapter  {
 	
 	private LogicLayer service;

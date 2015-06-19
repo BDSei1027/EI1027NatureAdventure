@@ -12,6 +12,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import validators.SessionValidator;
  
 
+/**
+ * Intercepter that checks if the user is logged before entering the account page
+ */
 public class AccountInterceptor extends HandlerInterceptorAdapter  {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

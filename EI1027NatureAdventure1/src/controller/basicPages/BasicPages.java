@@ -19,29 +19,46 @@ import classes.Activity;
 import classes.Booking;
 import classes.Client;
 import classes.ClientBookingEnvelope;
-import classes.ClientRegister;
 import classes.User;
 import controller.basics.AbstractController;
 
 
+/**
+ * Controller that manages pages that does not belong to any secction
+ */
 @Controller
 public class BasicPages extends AbstractController {	
 
+	/**
+	 * Method that returns the main page of the web
+	 * @return Index.jsp
+	 */
 	@RequestMapping(value="/index")
 	public String indexPage(){
 		return "index";
 	}
 	
-	
+	/**
+	 * Method that returns the activity list to book
+	 * @param model Inject model
+	 * @return Activities.jsp with the modified model
+	 */
 	@RequestMapping(value="/activities")
 	public String activitiesPage(Model model){
 		model.addAttribute("activityList", service.getAllActivitiesActive());
 		return "activities";
 	}
 	
+	/**
+	 * Returns the form to create a new booking
+	 * @param idAct Id of the activity to book
+	 * @param model Injected model
+	 * @return Booing.jsp with the modified model.
+	 */
 	@RequestMapping(value="/activities/createBooking/{idAct}")
 	public String newBookingPage(@PathVariable int idAct, Model model){
 		Booking booking = new Booking();
+		//Some of the booking attributes are already known
 		booking.setIdAct(idAct);
 		booking.setDateCreation(new Date());
 		
@@ -53,9 +70,20 @@ public class BasicPages extends AbstractController {
 		return "booking";
 	}
 	
+	/**
+	 * Processes the information to create a new booking
+	 * @param clientBooking Object containing the client and the booking
+	 * @param idAct Id of the activity
+	 * @param model Injected model
+	 * @param session Session used to get the user
+	 * @param bindingResult Error handler
+	 * @param locale Language
+	 * @return Complete.jsp with the modified model.
+	 */
 	@RequestMapping(value="/activities/createBooking/{idAct}", method=RequestMethod.POST)
 	public String newBookingForm(@ModelAttribute("registerEnvelope") ClientBookingEnvelope clientBooking, @PathVariable int idAct, Model model, HttpSession session, BindingResult bindingResult, Locale locale) {
 		Client client = clientBooking.getClient();
+		//Check if the user wants to register
 		if(client.getClientId()!=null){
 			new ClientRegisterValidator().validate(client, bindingResult);
 			if(bindingResult.hasErrors()){
@@ -65,6 +93,7 @@ public class BasicPages extends AbstractController {
 			try{
 				service.addClient(client);
 			} catch (Exception e){
+				//this that means the client already exists
 				model.addAttribute(service.getActivity(idAct));
 				if(locale.getLanguage().equals("es")) bindingResult.rejectValue("clientId","repId","El cliente ya existe");
 				if(locale.getLanguage().equals("en")) bindingResult.rejectValue("clientId","repId","The client already exists");
@@ -90,6 +119,10 @@ public class BasicPages extends AbstractController {
 		return "complete";
 	}
 	
+	/**
+	 * Returns the about us page
+	 * @return About.jsp
+	 */
 	@RequestMapping(value="/about")
 	public String aboutPage(){
 		return "about";

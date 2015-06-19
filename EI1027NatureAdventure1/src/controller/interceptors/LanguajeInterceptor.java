@@ -9,6 +9,9 @@ import classes.User;
 import service.LogicLayer;
 import validators.SessionValidator;
 
+/**
+ * Intercepter that changes the account language when the user changes the page langauge
+ */
 public class LanguajeInterceptor extends org.springframework.web.servlet.i18n.LocaleChangeInterceptor {
 	
 	private LogicLayer service;

@@ -23,9 +23,6 @@ import controller.basics.AbstractController;
 @RequestMapping("/admin/activityManagement")
 public class ActivityManagement extends AbstractController{
 
-//TODO Parm: "error":integer =  0 add | 1 update
-//TODO Parm: "id"   :integer = [0,*] activity id
-	
 	
 	/**
 	 * Returns the base activity management page.
@@ -94,7 +91,7 @@ public class ActivityManagement extends AbstractController{
 		}
 		
 		
-		return "redirect:/admin/activityManagement/"+RESULT_ADD+"&"+activity.getIdAct()+".html";
+		return "redirect:/admin/activityManagement/"+RESULT_ADD_OR_ACCEPT+"&"+activity.getIdAct()+".html";
 	}
 	
 	/**

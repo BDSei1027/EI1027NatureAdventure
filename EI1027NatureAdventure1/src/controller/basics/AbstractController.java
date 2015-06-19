@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import service.LogicLayer;
 
+/**
+ * Base abstract class for all controllers
+ */
 public abstract class AbstractController {
 	
-	public static final int RESULT_ADD = 0;
+	public static final int RESULT_ADD_OR_ACCEPT = 0;
 	public static final int RESULT_MODIFY = 1;
-	public static final int RESULT_DELETE = 2;
+	public static final int RESULT_DELETE_OR_DENY = 2;
 	
 	protected LogicLayer service;
 	

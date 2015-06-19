@@ -12,6 +12,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import validators.SessionValidator;
  
 
+/**
+ * Intercepter that allows only admin user to enter the admin pages
+ */
 public class AdminInterceptor extends HandlerInterceptorAdapter  {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

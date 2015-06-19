@@ -12,6 +12,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import validators.SessionValidator;
  
 
+/**
+ * Intercepter that checks if the user is not logget to enter the login page
+ */
 public class IdentificationInterceptor extends HandlerInterceptorAdapter  {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
