@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import classes.Token;
 
 @Repository
-public class daoSessionToken implements DaoInterface {
+public class daoSessionToken {
 	private JdbcTemplate dataSource;
 
 	public daoSessionToken() {
@@ -40,16 +40,10 @@ public class daoSessionToken implements DaoInterface {
 
 	/**
 	 * Method to add a token into the DB
-	 * 
-	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element
 	 *            Token, class Token
 	 */
-	@Override
-	public void addElement(Object element) {
-		if (!Token.class.equals(element.getClass()))
-			return;
-		Token tk = (Token) element;
+	public void addElement(Token tk) {
 		String sql = "INSERT INTO sessionTokens(username, token)"
 				+ " VALUES(?, ?);";
 		dataSource.update(sql, tk.getUser(), tk.getToken());
@@ -57,14 +51,10 @@ public class daoSessionToken implements DaoInterface {
 
 	/**
 	 * Method to remove a Token from the DB
-	 * 
-	 * @see database.DaoInterface#deleteElement(java.lang.Object)
 	 * @param element
 	 *            String with the token's user
 	 */
-	@Override
-	public void deleteElement(Object element) {
-		String user = (String) element;
+	public void deleteElement(String user) {
 		String sql = "DELETE FROM sessionTokens WHERE username = ?;";
 		dataSource.update(sql, user);
 
@@ -72,16 +62,10 @@ public class daoSessionToken implements DaoInterface {
 
 	/**
 	 * Method to update a Token in the DB
-	 * 
-	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element
 	 *            Token
 	 */
-	@Override
-	public void updateElement(Object element) {
-		if (!Token.class.equals(element.getClass()))
-			return;
-		Token tk = (Token) element;
+	public void updateElement(Token tk) {
 		String sql = "UPDATE sessionTokens SET token = ? WHERE username = ?;";
 		dataSource.update(sql, tk.getToken(), tk.getUser());
 
@@ -89,15 +73,11 @@ public class daoSessionToken implements DaoInterface {
 
 	/**
 	 * Method to obtain a Token from the DB
-	 * 
-	 * @see database.DaoInterface#getElement(java.lang.Object)
 	 * @param identifier
 	 *            String with the token's identifier
 	 * @return a Token with all the field
 	 */
-	@Override
-	public Object getElement(Object identifier) {
-		String user = (String) identifier;
+	public Token getElement(String user) {
 		String sql = "SELECT * FROM sessionTokens WHERE username = ?;";
 		List<Token> list = dataSource.query(sql, new TokenMapper(), user);
 		if (list.size() == 0 || list.size() < 1)
@@ -109,12 +89,9 @@ public class daoSessionToken implements DaoInterface {
 
 	/**
 	 * Method to obtain all the Token from the DB
-	 * 
-	 * @see database.DaoInterface#getElements()
 	 * @return Map<String, Token>, key: token's user, value: Token
 	 */
-	@Override
-	public Object getElements() {
+	public Map<String, Token> getElements() {
 		String sql = "SELECT * FROM sessionTokens;";
 		List<Token> list = dataSource.query(sql, new TokenMapper());
 		Map<String, Token> map = new HashMap<String, Token>();

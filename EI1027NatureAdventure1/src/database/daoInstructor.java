@@ -16,7 +16,7 @@ import classes.Activity;
 import classes.Instructor;
 
 @Repository
-public class daoInstructor implements DaoInterface {
+public class daoInstructor {
 
 	private JdbcTemplate dataSource;
 	
@@ -52,29 +52,22 @@ public class daoInstructor implements DaoInterface {
 	
 	/**
 	 * Method to add an Instructor into the DB
-	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Instructor, class Instructor
 	 */
-	@Override
-	public void addElement(Object element) {
-		if(!(element instanceof Instructor)) return;
-		Instructor instr = (Instructor) element;
+	public void addElement(Instructor instructor) {
 		String sql = "INSERT INTO Instructor(ssNumber,idNumber,name,lastname,email,telephone, isActive, expireDate) "
 							+ "values(?, ?, ?, ?, ?, ?, ?, ?);";
-		dataSource.update(sql, instr.getSsNumber(), instr.getIdNumber(), instr.getName(), instr.getLastName(), instr.getEmail(), instr.getTelephone(), instr.isActive(), instr.getExpireDate());
-		if (instr.getActivities().size() != 0) {
-			addActivities(instr.getSsNumber(), instr.getActivities());
+		dataSource.update(sql, instructor.getSsNumber(), instructor.getIdNumber(), instructor.getName(), instructor.getLastName(), instructor.getEmail(), instructor.getTelephone(), instructor.isActive(), instructor.getExpireDate());
+		if (instructor.getActivities().size() != 0) {
+			addActivities(instructor.getSsNumber(), instructor.getActivities());
 		}
 	}
 
 	/**
 	 * Method to remove an Instructor from the DB
-	 * @see database.DaoInterface#deleteElement(java.lang.Object)
 	 * @param element String with the ssNumber
 	 */
-	@Override
-	public void deleteElement(Object element) {
-		String id = (String) element;
+	public void deleteElement(String id) {
 		String sql = "DELETE FROM instructor WHERE ssNumber = ?;";
 		dataSource.update(sql, id);
 		deleteInstructorFromActivities(id);
@@ -82,13 +75,9 @@ public class daoInstructor implements DaoInterface {
 
 	/**
 	 * Method to update an Instructor in the DB
-	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Instructor, class Instructor
 	 */
-	@Override
-	public void updateElement(Object element) {
-		if(!(element instanceof Instructor)) return;
-		Instructor instr = (Instructor) element;
+	public void updateElement(Instructor instr) {
 		String sql = "UPDATE instructor " + "SET "
 					+ "idNumber = ?," + "name = ?," + "lastname = ?,"
 					+ "email = ?," + "telephone = ?, " + " isActive = ?, " + "expireDate = ? " + "WHERE ssNumber = ?;";
@@ -97,13 +86,10 @@ public class daoInstructor implements DaoInterface {
 
 	/**
 	 * Method to obtain an Instructor from the DB
-	 * @see database.DaoInterface#getElement(java.lang.Object)
 	 * @param identifier String with the ssNumber
 	 * @return an Instructor with all the field, includes Activities
 	 */
-	@Override
-	public Object getElement(Object identifier) {
-		String id = (String) identifier;
+	public Instructor getElement(String id) {
 		String sql;
 		if (id.length() > 9) sql = "SELECT * FROM instructor WHERE ssnumber = ?;";
 		else sql = "SELECT * FROM instructor WHERE idnumber = ?";
@@ -121,11 +107,9 @@ public class daoInstructor implements DaoInterface {
 
 	/**
 	 * Method to obtain all the instructors from the DB
-	 * @see database.DaoInterface#getElements()
 	 * @return Map<String, Instructor>, key: ssnumber, value: Instructor with all the fields, includes Activities
 	 */
-	@Override
-	public Object getElements() {
+	public Map<String, Instructor> getElements() {
 		String sql = "SELECT * FROM instructor;";
 		Map<String, Instructor> map = new HashMap<String, Instructor>();
 		List<Instructor> list = dataSource.query(sql, new InstructorMapper());

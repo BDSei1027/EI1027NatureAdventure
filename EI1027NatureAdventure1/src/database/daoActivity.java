@@ -1,5 +1,6 @@
 package database;
 
+import java.io.InvalidClassException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import classes.Activity;
 
 @Repository
-public class daoActivity implements DaoInterface {
+public class daoActivity {
 
 	private JdbcTemplate dataSource;
 	
@@ -56,51 +57,34 @@ public class daoActivity implements DaoInterface {
 	
 	/**
 	 * Method to add an Activity into the DB
-	 * @see database.DaoInterface#addElement(java.lang.Object)
-	 * @param element Activity, class Activity
+	 * @param class Activity
+	 * @throws InvalidClassException 
 	 */
-	@Override
-	public void addElement(Object element) {
-		if(!(element instanceof Activity)) return;
-		// Cast Object to Activity
-		Activity activity = (Activity) element;
+	public void addElement(Activity activity) {
 		String sql = "INSERT INTO activity(idact, name, leveldif, schedule, price, place, mingroup, maxgroup, isactive, nombre, description, descripcion, image) " +
                             "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		dataSource.update(sql, activity.getIdAct(), activity.getName(), activity.getLevel(), activity.getSchedule(), activity.getPrice(),
 				activity.getPlace(), activity.getMinimumGroup(), activity.getMaximumGroup(), activity.isActive(), activity.getNombre(), activity.getDescription(), activity.getDescripcion(), activity.getImage());
-		
-//		// Get the instructors who can teach it
-//		List<String> listIns = activity.getInstructors();
-//		addInstructors(activity.getIdAct(), listIns);
 	}
 
 	/**
 	 * Method to remove an Activity from the DB
-	 * @see database.DaoInterface#deleteElement(java.lang.Object)
 	 * @param element Integer with the idAct
 	 */
-	@Override
-	public void deleteElement(Object element) {
-		// Cast Object to int
-		int id = (int) element;
+	public void deleteElement(int idAct) {
 		// delete activity
 		String sql = "DELETE FROM activity WHERE idact = ?;";
-		dataSource.update(sql, id);
+		dataSource.update(sql, idAct);
 		// delete relation activity-instructor
 		sql = "DELETE FROM instruidas WHERE idact = ?;";
-		dataSource.update(sql, id);
+		dataSource.update(sql, idAct);
 	}
 	
 	/**
 	 * Method to update an Activity in the DB
-	 * @see database.DaoInterface#updateElement(java.lang.Object)
-	 * @param element Activity, class Instructor
+	 * @param class Activity
 	 */
-	@Override
-	public void updateElement(Object element) {
-		if(!(element instanceof Activity)) return;
-		// Cast Objecto to Activity
-		Activity activity = (Activity) element;
+	public void updateElement(Activity activity) {
 		String sql = "UPDATE activity SET name = ?, leveldif = ?, schedule = ?," +
             "price = ?, place = ?, mingroup = ?, maxgroup = ?, isactive = ? , nombre = ?, description = ?, descripcion = ?, image = ?" +
                             "WHERE idact = ?;";
@@ -111,28 +95,32 @@ public class daoActivity implements DaoInterface {
 
 	/**
 	 * Method to obtain an Activity from the DB
-	 * @see database.DaoInterface#getElement(java.lang.Object)
-	 * @param identifier Integer with the idAct or String with the name
+	 * @param identifier Integer with the idAct
 	 * @return an Activity with all the field, includes Instructors
 	 */
-	@Override
-	public Object getElement(Object identifier) {
-		String sql;
+	public Activity getElement(int idAct) {
 		Activity act = null;
-		List<Activity> list = null;
-		if (identifier instanceof Integer) { // Si es un entero es el ID
-			int id = (int) identifier;
-			sql = "SELECT * FROM activity WHERE idact=?;";
-			list = dataSource.query(sql, new ActivityMapper(), id);
-			if (list.size() == 0 || list.size() > 1) act = null;
-			else act = list.get(0);
-		} else if (identifier instanceof String) { // Si es una String es el nombre
-			String name = (String) identifier;
-			sql = "SELECT * FROM activity WHERE name = ?;";
-			list = dataSource.query(sql, new ActivityMapper(), name);
-			if (list.size() == 0 || list.size() > 1) act = null;
-			else act = list.get(0);
-		}
+		String sql = "SELECT * FROM activity WHERE idact=?;";
+		List<Activity> list = dataSource.query(sql, new ActivityMapper(), idAct);
+		if (list.size() == 0 || list.size() > 1) act = null;
+		act = list.get(0);
+		
+		if (act != null)
+			act.setInstructors(getInstructorActivity(act.getIdAct()));
+		return act;
+	}
+
+	/**
+	 * Method to obtain an Activity from the DB
+	 * @param String with the name
+	 * @return an Activity with all the field, includes Instructors
+	 */
+	public Activity getElement(String name) {
+		Activity act;
+		String sql = "SELECT * FROM activity WHERE name = ?;";
+		List<Activity> list = dataSource.query(sql, new ActivityMapper(), name);
+		if (list.size() == 0 || list.size() > 1) act = null;
+		act = list.get(0);
 		
 		if (act != null)
 			act.setInstructors(getInstructorActivity(act.getIdAct()));
@@ -141,11 +129,9 @@ public class daoActivity implements DaoInterface {
 
 	/**
 	 * Method to obtain all the activities from the DB
-	 * @see database.DaoInterface#getElements()
 	 * @return Map<Integer, Activity>, key: idact, value: Activity with all the fields, includes Instructors
 	 */
-	@Override
-	public Object getElements() {
+	public Map<Integer, Activity> getElements() {
 		String sql = "SELECT * FROM activity;";
 		List<Activity> list = dataSource.query(sql, new ActivityMapper());
 		Map<Integer, Activity> map = new HashMap<Integer, Activity>();

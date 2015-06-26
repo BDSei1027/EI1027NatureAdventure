@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import classes.Status;
 
 @Repository
-public class daoStatus implements DaoInterface {
+public class daoStatus {
 
 	private JdbcTemplate dataSource;
 	
@@ -43,13 +43,9 @@ public class daoStatus implements DaoInterface {
 	
 	/**
 	 * Method to add an Status into the DB
-	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Status, class Status
 	 */
-	@Override
-	public void addElement(Object element) {
-		if(!(element instanceof Status)) return;
-		Status st = (Status) element;
+	public void addElement(Status st) {
 		String sql = "INSERT INTO Status(inneridbooking, dateRevision, status, ssnumber)"
 				+ " VALUES(?, ?, ?, ?);";
 		dataSource.update(sql, st.getIDbooking(), st.getDateRevision(), st.getStatus(), st.getSsNumber());
@@ -57,25 +53,18 @@ public class daoStatus implements DaoInterface {
 
 	/**
 	 * Method to remove an Status from the DB
-	 * @see database.DaoInterface#deleteElement(java.lang.Object)
 	 * @param element Integer with the booking's identifier
 	 */
-	@Override
-	public void deleteElement(Object element) {
-		int id = (int) element;
+	public void deleteElement(int id) {
 		String sql = "DELETE FROM Status WHERE inneridbooking = ?;";
 		dataSource.update(sql, id);
 	}
 
 	/**
 	 * Method to update an Status in the DB
-	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Status, class Status
 	 */
-	@Override
-	public void updateElement(Object element) {
-		if(!(element instanceof Status)) return;
-		Status st = (Status) element;
+	public void updateElement(Status st) {
 		String sql = "UPDATE Status SET inneridbooking = ?, "
 				+ "dateRevision = ?, "
 				+ "status = ?, "
@@ -86,13 +75,10 @@ public class daoStatus implements DaoInterface {
 
 	/**
 	 * Method to obtain an Status from the DB
-	 * @see database.DaoInterface#getElement(java.lang.Object)
 	 * @param identifier Integer with the booking's identifier
 	 * @return a Status with all the field
 	 */
-	@Override
-	public Object getElement(Object identifier) {
-		int id = (int) identifier;
+	public Status getElement(int id) {
 		String sql = "SELECT * FROM Status WHERE inneridbooking = ?;";
 		List<Status> list = dataSource.query(sql, new StatusMapper(), id);
 		if (list.size() == 0 || list.size() < 1) return null;
@@ -101,11 +87,9 @@ public class daoStatus implements DaoInterface {
 
 	/**
 	 * Method to obtain all the status from the DB
-	 * @see database.DaoInterface#getElements()
 	 * @return Map<Integer, Status>, key: booking's id, value: Status 
 	 */
-	@Override
-	public Object getElements() {
+	public Map<Integer, Status> getElements() {
 		String sql = "SELECT * FROM Status;";
 		List<Status> list = dataSource.query(sql, new StatusMapper());
 		Map<Integer, Status> map = new HashMap<Integer, Status>();

@@ -14,11 +14,10 @@ import org.springframework.stereotype.Repository;
 
 import classes.Booking;
 import classes.BookingActivity;
-import classes.Instructor;
 import classes.Status;
 
 @Repository
-public class daoBooking implements DaoInterface {
+public class daoBooking {
 
 	private JdbcTemplate dataSource;
 	private daoStatus daoStatus;
@@ -85,30 +84,23 @@ public class daoBooking implements DaoInterface {
 	
 	/**
 	 * Method to add a Booking into the DB, also add the status in its table
-	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Booking, class Booking
 	 */
-	@Override
-	public void addElement(Object element) {
-		if(!(element instanceof Booking)) return;
-		Booking book = (Booking) element;
+	public void addElement(Booking booking) {
 		String sql = "INSERT INTO Booking(inneridbooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, idBooking) "
 							+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
-		dataSource.update(sql, book.getInnerIdBooking(), book.getGroupSize(), book.getDateActivity(), book.getDateCreation(), book.getClientId(), book.getPrice(), book.getIdAct(), book.getInformation(), book.getIdBooking());
+		dataSource.update(sql, booking.getInnerIdBooking(), booking.getGroupSize(), booking.getDateActivity(), booking.getDateCreation(), booking.getClientId(), booking.getPrice(), booking.getIdAct(), booking.getInformation(), booking.getIdBooking());
 		Status status = new Status();
-		status.setIDbooking(book.getInnerIdBooking());
+		status.setIDbooking(booking.getInnerIdBooking());
 		daoStatus.addElement(status);
 
 	}
 
 	/**
 	 * Method to remove a Booking from the DB
-	 * @see database.DaoInterface#deleteElement(java.lang.Object)
 	 * @param element Integer with the identifier
 	 */
-	@Override
-	public void deleteElement(Object element) {
-		int id = (int) element;
+	public void deleteElement(Integer id) {
 		// Si se borra la reserva el status tambien
 		daoStatus.deleteElement(id);
 		String sql = "DELETE FROM booking WHERE inneridbooking = ?;";
@@ -117,13 +109,9 @@ public class daoBooking implements DaoInterface {
 
 	/**
 	 * Method to update a Booking in the DB
-	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Booking, class Booking
 	 */
-	@Override
-	public void updateElement(Object element) {
-		if(!(element instanceof Booking)) return;
-		Booking book = (Booking) element;
+	public void updateElement(Booking booking) {
 		String sql = "UPDATE Booking " + "SET "
 				+ "groupSize = ?," 
 				+ "dateActivity = ?,"
@@ -134,18 +122,15 @@ public class daoBooking implements DaoInterface {
 				+ "information = ?," 
 				+ "idBooking = ?" 
 				+ " WHERE innerIdBooking = ?;";
-		dataSource.update(sql, book.getGroupSize(), book.getDateActivity(), book.getDateCreation(), book.getClientId(), book.getPrice(),book.getIdAct(), book.getInformation(), book.getIdBooking(), book.getInnerIdBooking());
+		dataSource.update(sql, booking.getGroupSize(), booking.getDateActivity(), booking.getDateCreation(), booking.getClientId(), booking.getPrice(),booking.getIdAct(), booking.getInformation(), booking.getIdBooking(), booking.getInnerIdBooking());
 	}
 
 	/**
 	 * Method to obtain a Booking from the DB
-	 * @see database.DaoInterface#getElement(java.lang.Object)
 	 * @param identifier Intenger with the identifier
 	 * @return a Booking with all the field
 	 */
-	@Override
-	public Object getElement(Object identifier) {
-		int id = (int) identifier;
+	public Booking getElement(int id) {
 		String sql = "SELECT inneridbooking, groupSize, dateActivity, dateCreation, clientId, price, idAct, information, idBooking"
 				+ " FROM booking "
 				+ "WHERE inneridbooking = ?;";
@@ -159,11 +144,9 @@ public class daoBooking implements DaoInterface {
 
 	/**
 	 * Method to obtain all the bookings from the DB
-	 * @see database.DaoInterface#getElements()
 	 * @return Map<Integer, Booking>, key: id, value: Booking 
 	 */
-	@Override
-	public Object getElements() {
+	public Map<Integer, Booking> getElements() {
 		String sql = "SELECT * FROM booking;";
 		Map<Integer, Booking> map = new HashMap<Integer, Booking>();
 		List<Booking> list = dataSource.query(sql, new BookingMapper());
@@ -297,7 +280,6 @@ public class daoBooking implements DaoInterface {
 		return dataSource.queryForObject(sql, Integer.class);
 	}
 
-	
 	/** Method to obtain all the active bookings of the system
 	 * @return A map with the Booking
 	 */
@@ -311,7 +293,6 @@ public class daoBooking implements DaoInterface {
 			map.put(book.getInnerIdBooking(), book);
 		}
 		return map;
-
 	}
 	
 	/** Method to obtain all the pending bookings of the system
@@ -327,8 +308,8 @@ public class daoBooking implements DaoInterface {
 			map.put(book.getInnerIdBooking(), book);
 		}
 		return map;
-
 	}
+	
 	/** Method to obtain the declined bookings
 	 * @return A map with the booking
 	 */
@@ -342,7 +323,6 @@ public class daoBooking implements DaoInterface {
 			map.put(book.getInnerIdBooking(), book);
 		}
 		return map;
-
 	}
 	
 }

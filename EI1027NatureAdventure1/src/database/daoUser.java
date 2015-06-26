@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import classes.User;
 
 @Repository
-public class daoUser implements DaoInterface {
+public class daoUser {
 
 	private JdbcTemplate dataSource;
 	
@@ -49,59 +49,46 @@ public class daoUser implements DaoInterface {
 	
 	/**
 	 * Method to add an User into the DB
-	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element class User
 	 */
-	@Override
-	public void addElement(Object element) {
-		if(!(element instanceof User)) return;
-		User u = (User) element;
+	public void addElement(User user) {
 		String sql = "INSERT INTO login(id, password, name, type, language) VALUES(?, ?, ?, ?, ?);";
-		dataSource.update(sql, u.getUser(), u.getPassword(), u.getName(), u.getType(), u.getLanguage());
+		dataSource.update(sql, user.getUser(), user.getPassword(), user.getName(), user.getType(), user.getLanguage());
 	}
 
 	/**
 	 * Method to remove an User from the DB
-	 * @see database.DaoInterface#deleteElement(java.lang.Object)
-	 * @param element String with the id or class User
+	 * @param username String with the id
 	 */
-	@Override
-	public void deleteElement(Object element) {
-		String user = "";
-		if (element instanceof String)
-			user = (String) element;
-		else if (element instanceof User) {
-			User usuario = (User) element;
-			user = usuario.getUser();
-		}
+	public void deleteElement(String username) {
 		String sql = "DELETE FROM login WHERE id = ?;";
-		dataSource.update(sql, user);
-
+		dataSource.update(sql, username);
 	}
 
 	/**
+	 * Method to remove an User from the DB
+	 * @param user class User
+	 */
+	public void deleteElement(User user) {
+		String sql = "DELETE FROM login WHERE id = ?;";
+		dataSource.update(sql, user.getUser());
+	}
+	
+	/**
 	 * Method to update an User in the DB, with password and type, better use <b>updateElementWithoutPassword</b>
-	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Class User
 	 */
-	@Override
-	public void updateElement(Object element) {
-		if(!(element instanceof User)) return;
-		User u = (User) element;
+	public void updateElement(User user) {
 		String sql = "UPDATE login SET password = ?, name = ?, type = ?, language = ? WHERE id = ?;";
-		dataSource.update(sql, u.getPassword(), u.getName(), u.getType(), u.getLanguage(), u.getUser());
-
+		dataSource.update(sql, user.getPassword(), user.getName(), user.getType(), user.getLanguage(), user.getUser());
 	}
 
 	/**
 	 * Method to obtain an User from the DB
-	 * @see database.DaoInterface#getElement(java.lang.Object)
 	 * @param identifier String with the id
 	 * @return an User
 	 */
-	@Override
-	public Object getElement(Object identifier) {
-		String user = (String) identifier;
+	public User getElement(String user) {
 		String sql = "SELECT * FROM login WHERE id = ?;";
 		List<User> list = dataSource.query(sql, new UserMapper(), user);
 		if (list.size() == 0 || list.size() > 1) return null;
@@ -110,11 +97,9 @@ public class daoUser implements DaoInterface {
 
 	/**
 	 * Method to obtain all the users in the DB
-	 * @see database.DaoInterface#getElements()
 	 * @return Map<Integer, User>, key: id, value: User
 	 */
-	@Override
-	public Object getElements() {
+	public Map<String, User> getElements() {
 		Map<String, User> map = new HashMap<String, User>();
 		String sql = "SELECT * FROM login;";
 		List<User> list = dataSource.query(sql, new UserMapper());

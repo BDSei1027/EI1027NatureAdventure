@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import classes.Client;
 
 @Repository
-public class daoClient implements DaoInterface {
+public class daoClient {
 	
 	private JdbcTemplate dataSource;
 	
@@ -43,57 +43,43 @@ public class daoClient implements DaoInterface {
 	
 	/**
 	 * Method to add an Client into the DB
-	 * @see database.DaoInterface#addElement(java.lang.Object)
 	 * @param element Client, class Client
 	 */
-	@Override
-	public void addElement(Object element) {
-		if(!(element instanceof Client)) return;
-		Client cl = (Client) element;
+	public void addElement(Client client) {
 		String sql = "INSERT INTO Client(clientId, clientName, clientLastName, clientEmail) "
 							+ "values(?, ?, ?, ?);";
-		dataSource.update(sql, cl.getClientId(), cl.getClientName(), cl.getClientLastName(), cl.getClientEmail());
+		dataSource.update(sql, client.getClientId(), client.getClientName(), client.getClientLastName(), client.getClientEmail());
 	}
 
 	/**
 	 * Method to remove an Client from the DB
-	 * @see database.DaoInterface#deleteElement(java.lang.Object)
 	 * @param element String with the identifier
 	 */
-	@Override
-	public void deleteElement(Object element) {
-		String id = (String) element;
+	public void deleteElement(String id) {
 		String sql = "DELETE FROM Client WHERE clientId=?;";
 		dataSource.update(sql, id);
 	}
 
 	/**
 	 * Method to update an Client in the DB
-	 * @see database.DaoInterface#updateElement(java.lang.Object)
 	 * @param element Client, class Client
 	 */
-	@Override
-	public void updateElement(Object element) {
-		if(!(element instanceof Client)) return;
-		Client cl = (Client) element;
+	public void updateElement(Client client) {
 		String sql = "UPDATE Client " + "SET "
 					+ "clientId = ?," 
 					+ "clientName = ?," 
 					+ "clientLastName = ?,"
 					+ "clientEmail = ?" 
 					+ " WHERE clientId = ?;";
-		dataSource.update(sql, cl.getClientId(), cl.getClientName(), cl.getClientLastName(), cl.getClientEmail(), cl.getClientId());
+		dataSource.update(sql, client.getClientId(), client.getClientName(), client.getClientLastName(), client.getClientEmail(), client.getClientId());
 	}
 
 	/**
 	 * Method to obtain an Client from the DB
-	 * @see database.DaoInterface#getElement(java.lang.Object)
 	 * @param identifier String with the identifier
 	 * @return a Client with all the field
 	 */
-	@Override
-	public Object getElement(Object identifier) {
-		String id = (String) identifier;
+	public Client getElement(String id) {
 		String sql = "SELECT * FROM Client WHERE clientId=?;";
 		List<Client> list = dataSource.query(sql, new ClientMapper(), id);
 		if (list.size() == 0 || list.size() < 1) return null;
@@ -102,11 +88,9 @@ public class daoClient implements DaoInterface {
 
 	/**
 	 * Method to obtain all the clients from the DB
-	 * @see database.DaoInterface#getElements()
 	 * @return Map<String, Client>, key: id, value: Client 
 	 */
-	@Override
-	public Object getElements() {
+	public Map<String, Client> getElements() {
 		String sql = "SELECT * FROM Client;";
 		List<Client> list = dataSource.query(sql, new ClientMapper());
 		Map<String, Client> map = new HashMap<String, Client>();
