@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,6 +13,7 @@ public class User {
 	private int type = -1;
 	private String language;
 	private boolean rememberMe;
+	private Date lastLogin;
 
 	public User() {
 		super();
@@ -22,6 +25,7 @@ public class User {
 		this.setPassword(user.getPassword());
 		this.setType(user.getType());
 		this.setLanguage(user.getLanguage());
+		this.setLastLogin(user.getLastLogin());
 	}
 
 	public String getUser() {
@@ -70,6 +74,14 @@ public class User {
 
 	public void setRememberMe(boolean rememberMe) {
 		this.rememberMe = rememberMe;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
 	public void clearPassword() {
