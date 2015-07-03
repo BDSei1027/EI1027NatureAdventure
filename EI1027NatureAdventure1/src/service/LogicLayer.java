@@ -50,7 +50,9 @@ public class LogicLayer {
 	private PasswordEncryptor encryptor = new BasicPasswordEncryptor(); 
 	
 	// Recuperacion de passwords
-	private RecoverPasswordSystem recoverPass = new RecoverPasswordSystem();
+	//private RecoverPasswordSystem recoverPass = new RecoverPasswordSystem();
+	
+	private InstructorLayer insLayer;
 	
 	/**
 	 * Inicializa las IDs para que se puedan autoincrementar.
@@ -98,8 +100,7 @@ public class LogicLayer {
 	 * @param The instructor
 	 */
 	public void addInstructor(Instructor instructor){
-		if (instructor.getActivities() == null) instructor.setActivities(new ArrayList<Integer>());
-		daoInstructor.addElement(instructor);
+		insLayer.addInstructor(instructor);
 		
 	}
 	
@@ -110,18 +111,11 @@ public class LogicLayer {
 	 * 
 	 */
 	public void inactiveInstructor(String code){
-		Instructor myInstructor= this.getInstructor(code);
-		if (myInstructor==null)	return;
-		myInstructor.setActive(false);
-	    this.updateInstructor(myInstructor);
-		
+		insLayer.inactiveInstructor(code);
 	}
 	
 	public void activeInstructor(String code) {
-		Instructor myInstructor= this.getInstructor(code);
-		if (myInstructor==null)	return;
-		myInstructor.setActive(true);
-	    this.updateInstructor(myInstructor);
+		insLayer.activeInstructor(code);
 	}
 	
 	/**
@@ -130,7 +124,7 @@ public class LogicLayer {
 	 * 
 	 */
 	public void inactiveInstructor(Instructor instructor){
-		this.inactiveInstructor(instructor.getIdNumber());
+		insLayer.inactiveInstructor(instructor);
 		
 	}
 	
@@ -139,8 +133,7 @@ public class LogicLayer {
 	 * @param The instructor
 	 */
 	public void updateInstructor(Instructor instructor){
-		if (this.getInstructor(instructor.getSsNumber()) == null) return;
-		daoInstructor.updateElement(instructor);
+		insLayer.updateInstructor(instructor);
 	}
 
 	/**
@@ -148,13 +141,11 @@ public class LogicLayer {
 	 *@return an instructor or null
 	 */
 	public Instructor getInstructor(String ssNumber){
-		Instructor myInstructor = (Instructor) daoInstructor.getElement(ssNumber);
-		return myInstructor;
+		return insLayer.getInstructor(ssNumber);
 	}
 	
 	public Instructor getInstructor(User user){
-		Instructor myInstructor= (Instructor) daoInstructor.getElement(user.getUser());
-		return myInstructor;
+		return insLayer.getInstructor(user);
 	}
 	
 	/**
@@ -162,9 +153,7 @@ public class LogicLayer {
 	 * @return A collection of Instructor with all instructors
 	 */
 	public Collection<Instructor> getAllInstructors(){ //Devuelvo solo lista de Instructores para facilitar tarea a la vista
-		Map<String,Instructor> allInstructors = (Map<String,Instructor>) daoInstructor.getElements();
-		Collection<Instructor> allInstructorsClasses= allInstructors.values();
-		return allInstructorsClasses;
+		return insLayer.getAllInstructors();
 	}
 	
 	/**
@@ -172,9 +161,7 @@ public class LogicLayer {
 	 * @return A collection of active Instructors 
 	 */
 	public Collection<Instructor> getAllInstructorsActive() {
-		Map<String, Instructor> map = (Map<String, Instructor>) daoInstructor.getElementsActive();
-		Collection<Instructor> collection = map.values();
-		return collection;
+		return insLayer.getAllInstructorsActive();
 	}
 	
 	/**
@@ -182,9 +169,7 @@ public class LogicLayer {
 	 * @return A collection of inactive Instructors 
 	 */
 	public Collection<Instructor> getAllInstructorsInacctive() {
-		Map<String, Instructor> map = (Map<String, Instructor>) daoInstructor.getElementsInactive();
-		Collection<Instructor> collection = map.values();
-		return collection;
+		return insLayer.getAllInstructorsInacctive();
 	}
 
 	/**
@@ -192,8 +177,7 @@ public class LogicLayer {
 	 * @param The instructor 
 	 */
 	public void setInstructorAvailable(Instructor instructor){
-		instructor.setActive(true);
-		daoInstructor.updateElement(instructor);	
+		insLayer.setInstructorAvailable(instructor);
 	}
 		
 	/**
@@ -202,7 +186,7 @@ public class LogicLayer {
 	 * @return Number of bookings to do
 	 */
 	public Integer getBookingsToDo(String ssnum) {
-		return daoInstructor.getNumberBookings(ssnum);
+		return insLayer.getBookingsToDo(ssnum);
 	}
 	
 	/**
@@ -211,7 +195,7 @@ public class LogicLayer {
 	 * @return Number of bookings to do
 	 */
 	public Integer getBookingsToDo(Instructor instructor) {
-		return this.getBookingsToDo(instructor.getSsNumber());
+		return insLayer.getBookingsToDo(instructor);
 	}
 	
 	
@@ -220,11 +204,7 @@ public class LogicLayer {
 	 * @return
 	 */
 	public Collection<Instructor> getAvaliableInstructorsToAssign(int innerIdBooking){ //idAct, innerIdBooking
-		Booking myBooking = (Booking) daoBooking.getElement(innerIdBooking);
-		int idAct = myBooking.getIdAct();
-		Map<String,Instructor> allInstructorsAvaliableMap = (Map<String,Instructor>) daoInstructor.getAvaliableInstructorsToAssign(idAct, innerIdBooking);
-		Collection<Instructor> allInstructorsAvaliable= allInstructorsAvaliableMap.values();
-		return allInstructorsAvaliable;
+		return insLayer.getAvaliableInstructorsToAssign(innerIdBooking);
 	}
 	
 	
@@ -239,14 +219,7 @@ public class LogicLayer {
 	 * @return All the activities instructed by the instructor given
 	 */
 	public Collection<Activity> getAllActivities(Instructor instructor){
-//		daoInstructor myDaoInstructor = (daoInstructor) daoInstructor;
-//		List <Integer> myData = (List<Integer>) myDaoInstructor.getActivitiesInstructor(instructor.getSsNumber());
-//		Collection<Activity> myActivities= new LinkedList<Activity>();
-//		for(int i=0;i<myData.size();i++){
-//			myActivities.add((Activity) daoActivity.getElement(myData.get(i)));
-//		}
-//		return myActivities;
-		return daoInstructor.getAllActivitiesFromInstructor(instructor.getSsNumber());
+		return insLayer.getAllActivities(instructor);
 	}
 	
 	/**
@@ -255,7 +228,7 @@ public class LogicLayer {
 	 * @return Collection<Activity>
 	 */
 	public Collection<Activity> getNoInstruidasActivities(Instructor instructor) {
-		return daoInstructor.getAllActivitiesFromNoInstructor(instructor.getSsNumber());
+		return insLayer.getNoInstruidasActivities(instructor);
 	}
 
 	/**
@@ -264,8 +237,7 @@ public class LogicLayer {
 	 * @param idActivity idact of the activity
 	 */
 	public void addInstructed(String idMonitor, Integer idActivity) {
-		daoInstructor dao = (daoInstructor) daoInstructor;
-		dao.addActivity(idMonitor, idActivity);
+		insLayer.addInstructed(idMonitor, idActivity);
 	}
 	
 	/**
@@ -274,8 +246,7 @@ public class LogicLayer {
 	 * @param idActivity idact of the activity
 	 */
 	public void removeInstructed(String idMonitor, Integer idActivity) {
-		daoInstructor dao = (daoInstructor) daoInstructor;
-		dao.deleteInstructorFromActivity(idMonitor, idActivity);
+		insLayer.removeInstructed(idMonitor, idActivity);
 	}
 	
 	/*
@@ -360,7 +331,7 @@ public class LogicLayer {
 	 * @return A collection of Activity  with all activities
 	 */
 	public Collection<Activity> getAllActivities(){ //Devuelvo solo lista de actividades para facilitar tarea a la vista
-		Map<String,Activity> allInstructors = (Map<String,Activity>) daoActivity.getElements();
+		Map<Integer,Activity> allInstructors = (Map<Integer,Activity>) daoActivity.getElements();
 		Collection<Activity> allInstructorsClasses= allInstructors.values();
 		return allInstructorsClasses;
 		
@@ -405,7 +376,7 @@ public class LogicLayer {
 	public void deleteBooking(int id){
 		Booking myBooking = this.getBooking(id);
 		if(myBooking==null) return;
-		daoBooking.deleteElement(myBooking);
+		daoBooking.deleteElement(id);
 	}
 	
 	/** Delete the booking in the database
@@ -917,4 +888,13 @@ public class LogicLayer {
 		this.daoToken = daoToken;
 	}
 
+	public InstructorLayer getInsLayer() {
+		return insLayer;
+	}
+
+	public void setInsLayer(InstructorLayer insLayer) {
+		this.insLayer = insLayer;
+	}
+
+	
 }

@@ -149,6 +149,12 @@
 		<property name="dataSource" ref="jdbc" />
 	</bean>
 	
+	<!-- Sublayers -->
+	<bean id="insLayer" class="service.InstructorLayer">
+		<property name="daoBooking" ref="bookingDAO" />
+		<property name="daoInstructor" ref="instructorDAO" />
+	</bean>
+	
 	
 	 <!-- Service -->
 	<bean id="service" class="service.LogicLayer" init-method="init">
@@ -160,6 +166,7 @@
 		<property name="daoUser" ref="userDAO" />
 		<property name="daoAvaliable" ref="avaliablebookDAO" />
 		<property name="daoToken" ref="tokenDAO" />
+		<property name="insLayer" ref="insLayer" />
 	</bean>
 
 </beans>
