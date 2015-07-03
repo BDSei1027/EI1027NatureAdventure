@@ -118,7 +118,7 @@
 						<div style="clear:both;"></div>
 					</div>
       			</form:form>
-			</div>
+			</div> <!-- modal content -->
 		</div>
 	</div><!-- modal -->
 	</jsp:body>

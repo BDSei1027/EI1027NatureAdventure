@@ -11,6 +11,7 @@ public class Note {
 	
 	private int id;
 	private Date dateCreation;
+	private String title;
 	private String note;
 	private boolean isRead;
 	
@@ -32,6 +33,14 @@ public class Note {
 
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getNote() {
