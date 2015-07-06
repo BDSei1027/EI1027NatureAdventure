@@ -154,19 +154,28 @@
 		<property name="daoBooking" ref="bookingDAO" />
 		<property name="daoInstructor" ref="instructorDAO" />
 	</bean>
+	<bean id="actLayer" class="service.ActivityLayer">
+		<property name="daoActivity" ref="activityDAO" />
+	</bean>
+	<bean id="bokLayer" class="service.BookingLayer">
+		<property name="daoBooking" ref="bookingDAO" />
+		<property name="daoStatus" ref="statusDAO" />
+	</bean>
+	<bean id="useLayer" class="service.UserLayer">
+		<property name="daoUser" ref="userDAO" />
+	</bean>
+	<bean id="tokLayer" class="service.TokenLayer">
+		<property name="daoToken" ref="tokenDAO" />
+	</bean>
 	
 	
 	 <!-- Service -->
 	<bean id="service" class="service.LogicLayer" init-method="init">
-		<property name="daoActivity" ref="activityDAO" />
-		<property name="daoBooking" ref="bookingDAO" />
-		<property name="daoClient" ref="clientDAO" />
-		<property name="daoInstructor" ref="instructorDAO" />
-		<property name="daoStatus" ref="statusDAO" />
-		<property name="daoUser" ref="userDAO" />
-		<property name="daoAvaliable" ref="avaliablebookDAO" />
-		<property name="daoToken" ref="tokenDAO" />
 		<property name="insLayer" ref="insLayer" />
+		<property name="actLayer" ref="actLayer" />
+		<property name="bokLayer" ref="bokLayer" />
+		<property name="useLayer" ref="useLayer" />
+		<property name="tokLayer" ref="tokLayer" />
 	</bean>
 
 </beans>
