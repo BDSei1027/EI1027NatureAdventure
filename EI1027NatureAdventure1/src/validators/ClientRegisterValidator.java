@@ -1,18 +1,14 @@
 package validators;
 
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import classes.ClientRegister;
 
 public class ClientRegisterValidator implements Validator{
-	String language = "EN"; 
 	
 	public ClientRegisterValidator() {
 		super();
-		String idioma = LocaleContextHolder.getLocale().getLanguage();
-		language = idioma.toUpperCase();
 	}
 
 	@Override
@@ -25,69 +21,28 @@ public class ClientRegisterValidator implements Validator{
 		ClientRegister client = (ClientRegister) obj;
 		
 		if (client.getName().trim().equals("")){
-			if(language.equals("ES")){
-				errors.rejectValue("name", "nameContent","Este campo no puede estar vacío");
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("name", "nameContent","This field cannot be null");
-			}
-			
+			errors.rejectValue("name", "validator.clientregistervalidator.name","Este campo no puede estar vacío");
 		}
 		if(client.getLastName().trim().equals("")){
-			if(language.equals("ES")){
-				errors.rejectValue("lastName", "lastNameContent","Este campo no puede estar vacío");//Este campo no puede estar vacío
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("lastName", "lastNameContent","This field cannot be null");//Este campo no puede estar vacío
-			}
-			
+			errors.rejectValue("lastName", "validator.clientregistervalidator.lastname","Este campo no puede estar vacío");//Este campo no puede estar vacío
 		}
 		if(!client.getEmail().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
-			if(language.equals("ES")){
-				errors.rejectValue("email", "emailAdrress","Debes introducir un email valido");//Debes introducir un email valido
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("email", "emailAdrress","A valid email address must be introduced");//Debes introducir un email valido
-			}
-					
+			errors.rejectValue("email", "validator.clientregistervalidator.email","Debes introducir un email valido");//Debes introducir un email valido	
 		}
 		if(client.getId().trim().length()!=9){
-			if(language.equals("ES")){
-				errors.rejectValue("id", "digitos","Este campo debe tener 9 carácteres");
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("id", "digitos","This field must be at least 9 characters");
-			}
-			
+			errors.rejectValue("id", "validator.clientregistervalidator.language","Este campo debe tener 9 carácteres");
 		}
 		if(!client.isTocs()){
-			if(language.equals("ES")){
-				errors.rejectValue("tocs", "tocsContent","Debes aceptar las condiciones para registrarte");
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("tocs", "tocsContent","You must accept the conditions to register");
-			}
-			
+			errors.rejectValue("tocs", "validator.clientregistervalidator.tocs","Debes aceptar las condiciones para registrarte");
 		}
 		if(client.getLanguage().trim().equals("")){
-			if(language.equals("ES")){
-				errors.rejectValue("language", "languageChoice","Debes escoger lenguaje preferido");
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("language", "languageChoice","You must choose your favorite language");
-			}
-			
+			errors.rejectValue("language", "validator.clientregistervalidator.id","Debes escoger lenguaje preferido");
 		}
 		if(client.getPassword().trim().length() == 0) {
-			if(language.equals("ES")){
-				errors.rejectValue("password", "digitos","La contraseña esta vacía");
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("password", "digitos","The password cannot be null");
-			}
-			
+				errors.rejectValue("password", "validator.clientregistervalidator.password01","La contraseña esta vacía");
 		} else if(client.getPassword().trim().length()< 8) {
-			if(language.equals("ES")){
-				errors.rejectValue("password", "digitos","La longitud debe ser de al menos 8 carácteres");//La longitud debe ser de al menos 8 carácteres
-			}else if(language.equals("EN") || language != null){
-				errors.rejectValue("password", "digitos","The length must be at least 8 characters");//La longitud debe ser de al menos 8 carácteres
-			}
-			
+			errors.rejectValue("password", "validator.clientregistervalidator.password02","La longitud debe ser de al menos 8 carácteres");//La longitud debe ser de al menos 8 carácteres
 		}
 	}
-
 }
