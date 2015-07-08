@@ -49,6 +49,7 @@
       		<li><a href="${pageContext.request.contextPath}/admin/bookingManagement.html"><fmt:message key="admin.adminpage.menu.bookingmanage" /></a></li>
             <li><a href="${pageContext.request.contextPath}/admin/clientManagement.html"><fmt:message key="admin.adminpage.menu.clientmanage" /></a></li>
             <li><a href="${pageContext.request.contextPath}/admin/userManagement.html"><fmt:message key="admin.adminpage.menu.usermanage" /></a></li>
+            <li><a href="#newNoteModal" data-toggle="modal" data-target="#newNoteModal"><fmt:message key="admin.adminpage.menu.newnote" /></a></li>
             <li class="danger"><a href="#changeModal" data-toggle="modal" data-target="#changeModal"><fmt:message key="admin.adminpage.menu.changepass" /></a></li>
     	</ul>
       </div> <!-- col -->
@@ -65,10 +66,18 @@
         </div>
 
         <h6 class="subtitle"><fmt:message key="admin.adminpage.menu.news.title" /></h6>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis accumsan nisl. Proin dui ipsum, facilisis maximus ex vitae, dapibus venenatis nisl. Ut finibus vitae arcu quis vestibulum. Cras finibus enim id magna dictum, quis ornare odio suscipit. Curabitur porttitor dui id tempor malesuada. Nullam sit amet gravida neque, nec placerat elit. Praesent auctor tempus magna, eu ornare nulla ornare non. Ut molestie volutpat condimentum. Nulla tristique risus sed feugiat scelerisque. Sed varius pulvinar lorem, nec tempor ipsum dapibus sit amet. In eget tincidunt mi, sit amet aliquam tortor. Fusce molestie eget est vel lobortis. Donec dui purus, sagittis hendrerit pulvinar mattis, rhoncus a sapien. In elementum, mi et malesuada pretium, massa arcu consectetur massa, et imperdiet erat ligula nec diam. Curabitur et purus nec magna luctus posuere. </p>
-<p> Mauris sollicitudin tempor sem, eu tristique quam ultricies in. Nullam placerat ultrices sem eu aliquam. Quisque turpis enim, pretium et sodales et, consectetur et elit. Sed tincidunt lacus non ligula pharetra fringilla. Ut eget ante quis est rhoncus convallis nec id mauris. Suspendisse accumsan lorem et gravida dignissim. Donec ut nibh leo. Vivamus pulvinar congue ligula. Donec auctor vel ex id vehicula. Nulla pellentesque molestie velit in auctor. Etiam varius erat ante, id ornare tellus fermentum eu. Etiam egestas velit ut lacinia lacinia. </p>
-<p> Integer sollicitudin dolor lacus, vel finibus tellus faucibus ut. Donec elementum eleifend tempor. Donec condimentum tempus risus placerat tincidunt. Proin non velit viverra, maximus felis et, porttitor massa. Nunc non sapien sem. Proin ultrices eu ex vitae venenatis. Vestibulum at congue nisi. In elementum est ut ipsum commodo porta. Etiam lacinia, nisl vitae ultricies cursus, ex ligula dignissim dolor, id placerat dolor ipsum vel felis. </p>
-<p> Praesent quam dolor, posuere efficitur iaculis vel, varius nec nisi. Phasellus id purus nunc. Donec fringilla augue vel odio facilisis malesuada. Praesent pellentesque pharetra semper. Duis pharetra velit sed ligula imperdiet porta ut sed mauris. Sed sagittis nec est quis ullamcorper. Curabitur sit amet maximus tortor, et blandit nulla. Vestibulum nunc leo, dapibus eget porta eget, luctus sed ex. Aliquam ut dolor sem. Aenean vulputate dapibus tempus. Praesent sollicitudin id ligula eu suscipit. In dignissim tortor arcu, sed imperdiet tortor sagittis vel. </p>
+        <!-- Muestra de las notas -->
+        <c:forEach items="notas" var="nota">
+          <div class="note">
+            <div class="note-header"><c:out value="${nota.title}" /> <a class="pull-right" href="${pageContext.request.contextPath}/admin/deleteNote/${nota.id}" style="color: #34495E;">&times;</a> </div>
+            <div class="note-body">
+              <c:out value="${nota.note}" />
+            </div>
+            <div class="note-footer">
+              <c:out value="${nota.dateCreation}" />
+            </div>
+          </div> <!-- class note -->
+        </c:forEach>
       </div>
     </div> <!-- row -->
 
@@ -112,6 +121,45 @@
 	          			<div class="pull-right">
 	          				<div class="btn-group">
 		            			<button type="submit" class="btn btn-danger"><fmt:message key="admin.adminpage.modal.btn.1" /></button>
+		            			<button type="button" class="btn btn-primary" data-dismiss="modal"><fmt:message key="admin.adminpage.modal.btn.2" /></button>
+	            			</div>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+      			</form:form>
+			</div> <!-- modal content -->
+		</div>
+	</div><!-- modal -->
+	    <div class="modal fade" id="newNoteModal" tabindex='-1' role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" id="newModalHead">
+					<div class="row">
+						<button type="button" class="close pull-right" data-dismiss="modal" style="padding-right: 4%; margin-top: 2px;">&times;</button>
+						
+						<h4 class="pull-left"><fmt:message key="admin.adminpage.modal.note.title" /></h4>
+					</div>
+				</div>
+        		<form:form modelAttribute="note" role="form" action="${pageContext.request.contextPath}/admin/newNote.html" method="post">
+					<div class="modal-body" id="changeModalBody">
+						<div style="font-size: 14px;"><fmt:message key="admin.adminpage.modal.note.msg" /></div>
+						<form:hidden path="id" />
+						<form:hidden path="dateCreation" />
+						<div class="form-group">
+							<form:label path="title" for="title" class="control-label"><fmt:message key="admin.adminpage.modal.note.title" /> </form:label>
+							<form:input path="title" type="text" id="title" class="form-control" placeholder="Title" />
+							<form:errors path="title" />
+						</div>
+						<div class="form-group">
+							<form:label path="note" for="msg" class="control-label"><fmt:message key="admin.adminpage.modal.note.msg" /> </form:label>
+							<form:input path="note" type="text" class="form-control" id="msg" placeholder="Write your note..." />
+							<form:errors path="note" />
+						</div>
+					</div>
+					<div class="modal-footer" id="newModalFooter">
+	          			<div class="pull-right">
+	          				<div class="btn-group">
+		            			<button type="submit" class="btn btn-primary"><fmt:message key="admin.adminpage.modal.btn.3" /></button>
 		            			<button type="button" class="btn btn-primary" data-dismiss="modal"><fmt:message key="admin.adminpage.modal.btn.2" /></button>
 	            			</div>
 						</div>
