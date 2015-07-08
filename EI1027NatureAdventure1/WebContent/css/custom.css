@@ -846,3 +846,34 @@ footer p {
 	font-size: 13px;
 	border-left: 10px double #ecf0f1;
 }
+
+.note {
+	background-color: #FCFCFC;
+	border: 1px solid #f5f7f8;
+	border-radius: 6px;
+	padding: 8px 15px;
+	font-size: 13px;
+}
+
+.note > .note-header {
+	font-family: serif;
+	font-style: italic;
+	font-weight: 550;
+	font-size: 15px;
+}
+
+.note-header a {
+	color: #34495E;
+}
+
+.note > .note-body {
+	padding-left: 2.5%;
+}
+
+.note > .note-footer {
+	text-align: right;
+	font-family: serif;
+	font-style: italic;
+	font-size: 14px;
+	color: #BDC3C7;
+}
