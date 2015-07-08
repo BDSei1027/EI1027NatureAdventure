@@ -167,6 +167,12 @@
 	<bean id="tokLayer" class="service.TokenLayer">
 		<property name="daoToken" ref="tokenDAO" />
 	</bean>
+	<bean id="notLayer" class="service.NoteLayer">
+		<property name="daoNote" ref="noteDAO" />
+	</bean>
+	<bean id="opiLayer" class="service.OpinionLayer">
+		<property name="daoOpinion" ref="opinionDAO" />
+	</bean>
 	
 	
 	 <!-- Service -->
@@ -176,6 +182,8 @@
 		<property name="bokLayer" ref="bokLayer" />
 		<property name="useLayer" ref="useLayer" />
 		<property name="tokLayer" ref="tokLayer" />
+		<property name="notLayer" ref="notLayer" />
+		<property name="opiLayer" ref="opiLayer" />
 	</bean>
 
 </beans>

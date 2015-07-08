@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.jasypt.util.password.BasicPasswordEncryptor;
@@ -15,6 +16,8 @@ import classes.BookingActivity;
 import classes.Client;
 import classes.ClientRegister;
 import classes.Instructor;
+import classes.Note;
+import classes.Opinion;
 import classes.Status;
 import classes.Token;
 import classes.User;
@@ -23,6 +26,7 @@ import database.daoAvaliableBook;
 import database.daoBooking;
 import database.daoClient;
 import database.daoInstructor;
+import database.daoOpinion;
 import database.daoSessionToken;
 import database.daoStatus;
 import database.daoUser;
@@ -36,6 +40,8 @@ public class LogicLayer {
 	private UserLayer useLayer;
 	private ClientLayer cliLayer;
 	private TokenLayer tokLayer;
+	private NoteLayer notLayer;
+	private OpinionLayer opiLayer;
 	
 	/**
 	 * Inicializa las IDs para que se puedan autoincrementar.
@@ -698,6 +704,68 @@ public class LogicLayer {
 		tokLayer.deleteToken(tokenUser);
 	}
 	
+	/*
+	 * NOTE ZONE
+	 */
+	
+	public void addNote(Note note){
+		notLayer.addNote(note);
+	}
+	
+	public void deleteNote(int id){
+		notLayer.deleteNote(id);
+	}
+	
+	public void updateNote(Note note){
+		notLayer.updateNote(note);
+	}
+	
+	public Note getNote(int id){
+		return notLayer.getNote(id);
+	}
+	
+	public Collection<Note> getAllNotes(){
+		return notLayer.getAllNotes();
+	}
+	
+	
+	/*
+	 * OPINION ZONE
+	 */
+	
+	public void addOpinion(Opinion opinion){
+		opiLayer.addOpinion(opinion);
+	}
+	
+	public void deleteOpinion(String clientid, int idAct){
+		opiLayer.deleteOpinion(clientid, idAct);
+	}
+	
+	public void updateOpinion(Opinion opinion){
+		opiLayer.updateOpinion(opinion);
+	}
+	
+	public Opinion getOpinion(String clientid, int idAct){
+		return opiLayer.getOpinion(clientid, idAct);
+	}
+	
+	public Collection<Opinion> getAllOpinions(){
+		return opiLayer.getAllOpinions();
+	}
+	
+	public void deleteAllOpinionsFromActivity(int idAct){
+		opiLayer.deleteAllOpinionsFromActivity(idAct);
+	}
+	
+	public Collection<Opinion> getOpinionsFromActivity(int idAct){
+		return opiLayer.getOpinionsFromActivity(idAct);
+	}
+	
+	public Collection<Opinion> getOpinionsFromClient(String clientID){
+		return opiLayer.getOpinionsFromClient(clientID);
+	}
+	
+	
 	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
 	
@@ -727,6 +795,14 @@ public class LogicLayer {
 
 	public void setTokLayer(TokenLayer tokLayer) {
 		this.tokLayer = tokLayer;
+	}
+
+	public void setNotLayer(NoteLayer notLayer) {
+		this.notLayer = notLayer;
+	}
+
+	public void setOpiLayer(OpinionLayer opiLayer) {
+		this.opiLayer = opiLayer;
 	}
 
 	
