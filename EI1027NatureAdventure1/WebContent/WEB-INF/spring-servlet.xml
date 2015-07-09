@@ -173,6 +173,9 @@
 	<bean id="opiLayer" class="service.OpinionLayer">
 		<property name="daoOpinion" ref="opinionDAO" />
 	</bean>
+	<bean id="cliLayer" class="service.ClientLayer">
+		<property name="daoClient" ref="clientDAO" />
+	</bean>
 	
 	
 	 <!-- Service -->
@@ -184,6 +187,7 @@
 		<property name="tokLayer" ref="tokLayer" />
 		<property name="notLayer" ref="notLayer" />
 		<property name="opiLayer" ref="opiLayer" />
+		<property name="cliLayer" ref="cliLayer" />
 	</bean>
 
 </beans>

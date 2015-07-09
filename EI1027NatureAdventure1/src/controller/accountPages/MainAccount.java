@@ -28,7 +28,7 @@ public class MainAccount extends AbstractController{
 	
 	
 	public static final int ADMIN = 0;
-	public static final int INSTRUCTOR1 = 1;
+	public static final int INSTRUCTOR = 1;
 	public static final int CLIENT = 2;
 
 
@@ -36,7 +36,7 @@ public class MainAccount extends AbstractController{
 	 * Manages the function "my account" that every type of user has
 	 * @param model Page model
 	 * @param session User session
-	 * @return Account.jps
+	 * @return Account.jps with the modified model
 	 */
 	@RequestMapping
 	public String acoountPage(Model model, HttpSession session){
@@ -45,7 +45,7 @@ public class MainAccount extends AbstractController{
 		
 		//Gives the model the required data based on the user type
 		if (user.getType() == ADMIN) return "redirect:/admin.html";
-		if (user.getType() == INSTRUCTOR1) model.addAttribute("instructor", service.getInstructor(user));
+		if (user.getType() == INSTRUCTOR) model.addAttribute("instructor", service.getInstructor(user));
 		if (user.getType() == CLIENT) model.addAttribute("client", service.getClient(user));
 
 		//And gives also a field with the password and its confirmation
