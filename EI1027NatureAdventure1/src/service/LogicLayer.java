@@ -730,7 +730,7 @@ public class LogicLayer {
 	
 	
 	/*
-	 * OPINION ZONE
+	 * OPINION ZONE 
 	 */
 	
 	public void addOpinion(Opinion opinion){

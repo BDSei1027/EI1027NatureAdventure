@@ -43,7 +43,7 @@ public class ClientLayer {
 		daoClient.deleteElement(clientID);
 	}
 	
-	/** Update a client in the database
+	/** Update a client in the database 
 	 * @param client
 	 */
 	public void updateClient(Client client){

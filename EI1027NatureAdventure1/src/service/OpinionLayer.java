@@ -26,7 +26,7 @@ public class OpinionLayer {
 	
 	public Opinion getOpinion(String clientid, int idAct){
 		return daoOpinion.getElement(clientid, idAct);
-	}
+	} 
 	
 	public Collection<Opinion> getAllOpinions(){
 		return daoOpinion.getElements();

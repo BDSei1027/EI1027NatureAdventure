@@ -27,7 +27,7 @@ public class NoteLayer {
 	
 	public Note getNote(int id){
 		return daoNote.getElement(id);
-	}
+	} 
 	
 	public Collection<Note> getAllNotes(){
 		List<Note> myList = daoNote.getElements();
