@@ -32,6 +32,7 @@
 	    <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 	
+	
 	<!-- Spring's Components -->
 	<context:component-scan base-package="controller/adminPages" />
 	<context:component-scan base-package="controller/accountPages" />
