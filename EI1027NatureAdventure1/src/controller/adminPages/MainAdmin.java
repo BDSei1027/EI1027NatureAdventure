@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import validators.DoublePasswordValidator;
 import classes.DoublePassword;
+import classes.Note;
 import classes.User;
 import controller.basics.AbstractController;
 
@@ -37,7 +38,8 @@ public class MainAdmin extends AbstractController {
 		
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");     
 		String dateToday = df.format(new Date());
-				
+		
+		model.addAttribute("note", new Note());
 		model.addAttribute("dateToday",dateToday);
 		model.addAttribute("numbookings", service.getPendingBookingsCount());
 		model.addAttribute("numclients", service.getUserCount());
@@ -70,7 +72,7 @@ public class MainAdmin extends AbstractController {
 	
 	/**
 	 * Processes the try to change the admin password
-	 * @param passwd Object containing the password and its connrimation
+	 * @param passwd Object containing the password and its confirmation
 	 * @param bindingResult Error handler
 	 * @param session Session to get the user from
 	 * @return Redirect to the main page with the result
@@ -83,6 +85,16 @@ public class MainAdmin extends AbstractController {
 		User user = (User) session.getAttribute("user");
 		user.setPassword(passwd.getPassword());
 		service.updateUser(user);
+		
+		return "forward:/admin/"+RESULT_ADD_OR_ACCEPT+".html";
+	}
+	
+	@RequestMapping(value="/newNote", method=RequestMethod.POST)
+	public String newNote(@ModelAttribute("note") Note note,BindingResult bindingResult){
+		new NoteValidator().validate(note, bindingResult);
+		if(bindingResult.hasErrors()) return "forward:/admin/"+RESULT_DELETE_OR_DENY+".html";
+		
+		service.addNote(note);
 		
 		return "forward:/admin/"+RESULT_ADD_OR_ACCEPT+".html";
 	}

@@ -22,19 +22,7 @@ import controller.basics.AbstractController;
 
 
 @Controller
-public class BasicPages extends AbstractController {	
-
-	@RequestMapping(value="/index")
-	public String indexPage(){
-		return "index";
-	}
-	
-	
-	@RequestMapping(value="/activities")
-	public String activitiesPage(Model model){
-		model.addAttribute("activityList", service.getAllActivities());
-		return "activities";
-	}
+public class ActivityBookingController extends AbstractController {		
 	
 	@RequestMapping(value="/activities/createBooking/{idAct}")
 	public String newBookingPage(@PathVariable int idAct, Model model){
@@ -85,10 +73,4 @@ public class BasicPages extends AbstractController {
 		
 		return "complete";
 	}
-	
-	@RequestMapping(value="/about")
-	public String aboutPage(){
-		return "about";
-	}
-	
 }
