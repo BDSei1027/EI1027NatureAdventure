@@ -42,6 +42,7 @@ public class LogicLayer {
 	private TokenLayer tokLayer;
 	private NoteLayer notLayer;
 	private OpinionLayer opiLayer;
+	private MailLayer maiLayer;
 	
 	/**
 	 * Inicializa las IDs para que se puedan autoincrementar.
@@ -765,6 +766,13 @@ public class LogicLayer {
 		return opiLayer.getOpinionsFromClient(clientID);
 	}
 	
+	/*
+	 * MAIL ZONE 
+	 */
+	
+	public void enviarMailRegistrado(Client client){
+		maiLayer.enviarMailRegistrado(client);
+	}
 	
 	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
@@ -803,6 +811,10 @@ public class LogicLayer {
 
 	public void setOpiLayer(OpinionLayer opiLayer) {
 		this.opiLayer = opiLayer;
+	}
+
+	public void setMaiLayer(MailLayer maiLayer) {
+		this.maiLayer = maiLayer;
 	}
 
 	

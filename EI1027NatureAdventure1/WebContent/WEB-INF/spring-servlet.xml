@@ -218,6 +218,7 @@
 		<property name="notLayer" ref="notLayer" />
 		<property name="opiLayer" ref="opiLayer" />
 		<property name="cliLayer" ref="cliLayer" />
+		<property name="maiLayer" ref="maiLayer" />
 	</bean>
 
 </beans>
