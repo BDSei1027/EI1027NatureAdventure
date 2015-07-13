@@ -31,6 +31,31 @@
 	    <property name="basename" value="WEB-INF/language/messages"/>
 	    <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+    
+   	<!-- Mail Config -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    	<property name="host"><value>smtp.gmail.com</value></property>
+        <property name="port"><value>587</value></property>
+        <property name="protocol"><value>smtp</value></property>
+        <property name="username"><value>AdmNatureAdventure@gmail.com</value></property>
+        <property name="password"><value>admin1994}</value></property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.quitwait">false</prop>
+            </props>
+        </property>
+	</bean>
+
+	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+   		<property name="from" value="customerservice@mycompany.com"/>
+	</bean>
+
+	<bean id="orderManager" class="com.mycompany.businessapp.support.SimpleOrderManager">
+    	<property name="mailSender" ref="mailSender"/>
+   		<property name="templateMessage" ref="templateMessage"/>
+	</bean>
 	
 	
 	<!-- Spring's Components -->
