@@ -202,7 +202,11 @@
 	<bean id="cliLayer" class="service.ClientLayer">
 		<property name="daoClient" ref="clientDAO" />
 	</bean>
-	
+	<bean id="maiLayer" class="service.MailLayer">
+		<property name= "messageSource" ref="messageSource" />
+		<property name= "mailSender" ref="mailSender" />
+		<property name= "templateMessage" ref="templateMessage" />
+	</bean>
 	
 	 <!-- Service -->
 	<bean id="service" class="service.LogicLayer" init-method="init">
