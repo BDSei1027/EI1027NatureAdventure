@@ -37,6 +37,5 @@ public abstract class AbstractController {
 		this.service = service;
 	}
 	
-	
 
 }

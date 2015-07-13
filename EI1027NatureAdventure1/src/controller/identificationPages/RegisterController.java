@@ -47,7 +47,6 @@ public class RegisterController extends AbstractController{
 		new ClientRegisterValidator().validate(clientRegister, bindingResult);
 		if (bindingResult.hasErrors()) return "register";
 		
-		
 		try{
 			User user = service.createUserFrom(clientRegister);
 			
@@ -56,8 +55,7 @@ public class RegisterController extends AbstractController{
 			
 			session.setAttribute("user", user);
 		} catch(Exception e){
-			if(locale.getLanguage().equals("es")) bindingResult.rejectValue("id", "repCli", "El cliente ya existe");
-			if(locale.getLanguage().equals("en")) bindingResult.rejectValue("id", "repCli", "The client already exists");
+			bindingResult.rejectValue("id", "repCli");
 			return "register";
 		}
 		
