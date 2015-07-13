@@ -15,7 +15,7 @@ import database.daoBooking;
 import database.daoInstructor;
 
 @SuppressWarnings(value = {"unchecked", "unused"})
-@Repository
+@Repository 
 public class InstructorLayer {
 
 	private daoBooking daoBooking;

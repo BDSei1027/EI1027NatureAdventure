@@ -188,6 +188,6 @@
 		<property name="notLayer" ref="notLayer" />
 		<property name="opiLayer" ref="opiLayer" />
 		<property name="cliLayer" ref="cliLayer" />
-	</bean>
+	</bean> 
 
 </beans>

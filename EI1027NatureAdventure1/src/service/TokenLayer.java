@@ -28,7 +28,7 @@ public class TokenLayer {
 		}
 
 	}
-	
+	 
 	/** Validate a token of an user
 	 * @param userName
 	 * @param tokenString

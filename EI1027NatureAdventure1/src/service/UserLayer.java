@@ -27,7 +27,7 @@ public class UserLayer {
 	/** Login a user in the system
 	 * @param user
 	 * @param password
-	 * @return The user data
+	 * @return The user data 
 	 */
 	public User loginUser(String user, String password) {
 		User u = (User) daoUser.getElement(user.trim());

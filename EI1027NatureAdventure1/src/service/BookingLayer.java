@@ -15,7 +15,7 @@ import database.daoBooking;
 import database.daoStatus;
 
 @SuppressWarnings(value = {"unchecked", "unused"})
-@Repository
+@Repository 
 public class BookingLayer {
 	private int activeBookingID;
 	private int innerBookingID;

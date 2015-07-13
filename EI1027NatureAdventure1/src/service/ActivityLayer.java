@@ -9,7 +9,7 @@ import classes.Activity;
 import database.daoActivity;
 
 @SuppressWarnings(value = {"unchecked", "unused"})
-@Repository
+@Repository 
 public class ActivityLayer {
 	private int activityID;
 	private daoActivity daoActivity;
