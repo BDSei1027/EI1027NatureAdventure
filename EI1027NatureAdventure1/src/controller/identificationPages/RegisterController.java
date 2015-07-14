@@ -1,6 +1,7 @@
 package controller.identificationPages;
 
 import java.util.Locale;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import controller.basics.AbstractController;
 import validators.ClientRegisterValidator;
+import classes.Client;
 import classes.ClientRegister;
 import classes.User;
 
@@ -49,11 +51,14 @@ public class RegisterController extends AbstractController{
 		
 		try{
 			User user = service.createUserFrom(clientRegister);
+			Client client = service.createClientFrom(clientRegister);
 			
-			service.addClient(service.createClientFrom(clientRegister));
+			service.addClient(client);
 			service.addUser(user);
 			
 			session.setAttribute("user", user);
+			
+			service.enviarMailRegistrado(client);
 		} catch(Exception e){
 			bindingResult.rejectValue("id", "repCli");
 			return "register";
