@@ -74,6 +74,7 @@
             </div>
           </div>
           <p>${description}</p>
+          <button class="btn btn-primary btn-lg btn-block activity-btn" onClick="javascript:location.href = '${pageContext.request.contextPath}/activities/createBooking/${act.idAct}.html';"><fmt:message key="activities.btn" />!</button>
         </div>
       </div>
       
