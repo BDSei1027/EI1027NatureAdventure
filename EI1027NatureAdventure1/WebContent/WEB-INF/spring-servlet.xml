@@ -51,11 +51,6 @@
 	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
    		<property name="from" value="customerservice@mycompany.com"/>
 	</bean>
-
-	<bean id="orderManager" class="com.mycompany.businessapp.support.SimpleOrderManager">
-    	<property name="mailSender" ref="mailSender"/>
-   		<property name="templateMessage" ref="templateMessage"/>
-	</bean>
 	
 	
 	<!-- Spring's Components -->
