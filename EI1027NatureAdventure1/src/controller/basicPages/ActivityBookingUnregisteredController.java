@@ -30,7 +30,7 @@ public class ActivityBookingUnregisteredController extends AbstractController {
 		model.addAttribute("boooking", booking);
 		model.addAttribute("activity", act);
 		
-		return "booking";
+		return "bookingAnon";
 	}
 	
 	@RequestMapping(value="/activities/createBookingUnregistered/{idAct}", method=RequestMethod.POST)
