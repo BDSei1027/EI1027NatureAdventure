@@ -21,7 +21,7 @@
 	<c:if test="${lang eq 'en'}">
 		<c:set var="actName" value="${activity.name}" scope="page" />
 		<c:choose>
-			<c:when test="${activity.level eq 0}"><c:set var="lvl" value="Begginer" /></c:when>
+			<c:when test="${activity.level eq 0}"><c:set var="lvl" value="Beginner" /></c:when>
 			<c:when test="${activity.level eq 1}"><c:set var="lvl" value="Easy" /></c:when>
 			<c:when test="${activity.level eq 2}"><c:set var="lvl" value="Medium" /></c:when>
 			<c:when test="${activity.level eq 3}"><c:set var="lvl" value="High" /></c:when>
