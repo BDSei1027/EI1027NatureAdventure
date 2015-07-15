@@ -13,9 +13,15 @@ public class NoteValidator implements Validator {
 	}
 
 	@Override
-	public void validate(Object arg0, Errors arg1) {
-		// TODO IMPLEMENTAR
+	public void validate(Object obj, Errors errors) {
+		Note note = (Note) obj;
 		
+		if(note.getTitle().trim().equals("")){
+			errors.rejectValue("title","validator.notevalidator.title", "El título no puede estar vacío");
+		}
+		if(note.getNote().trim().equals("")){
+			errors.rejectValue("note","validator.notevalidator.note", "El contenido de la nota no puede estar vacío");
+		}
 	}
 
 	
