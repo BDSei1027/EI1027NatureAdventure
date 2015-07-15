@@ -118,6 +118,9 @@
               	<form:option value="5">5</form:option>
               </form:select>
               </div>
+              <form:hidden path="clientId" />
+              <form:hidden path="idAct" />
+              <form:hidden path="date" />
               <div class="col-lg-6" style="text-align: right;"><button type="submit" class="btn btn-success"><fmt:message key="opinion.op.submit" /></button></div>
             </div>
       	</form:form>
