@@ -15,6 +15,7 @@ import classes.Booking;
 import classes.BookingActivity;
 import classes.Client;
 import classes.ClientRegister;
+import classes.Email;
 import classes.Instructor;
 import classes.Note;
 import classes.Opinion;
@@ -679,6 +680,15 @@ public class LogicLayer {
 		return useLayer.getUserCount();
 	}
 	
+	/** Method to obtain the name of the client given a email
+	 * @param email
+	 * @return
+	 */
+	public String getClientName(Email email){
+		String address = email.getTo();
+		return cliLayer.getClientName(address);
+	}
+	
 	/*
 	 * TOKEN ZONE
 	 */
@@ -777,7 +787,9 @@ public class LogicLayer {
 		maiLayer.enviarmailDeAdminHacia(to, message);
 	}
 	
-	
+	public void sendPasswordRecovery(Email email, String token){
+		maiLayer.sendPasswordRecovery(email, token);
+	}
 	
 	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------

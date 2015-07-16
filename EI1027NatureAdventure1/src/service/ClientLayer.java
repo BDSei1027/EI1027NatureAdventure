@@ -91,6 +91,14 @@ public class ClientLayer {
 		client.setClientEmail(cl.getEmail());
 		return client;
 	}
+	
+	/** Method to obtain the name of the client given a email
+	 * @param email
+	 * @return
+	 */
+	public String getClientName(String email){
+		return this.daoClient.getClientName(email);
+	}
 
 	public void setDaoClient(daoClient daoClient) {
 		this.daoClient = daoClient;

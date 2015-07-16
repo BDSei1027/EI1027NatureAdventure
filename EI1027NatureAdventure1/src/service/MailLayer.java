@@ -8,6 +8,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 import classes.Client;
+import classes.Email;
 
 public class MailLayer implements MessageSourceAware{
 
@@ -49,6 +50,15 @@ public class MailLayer implements MessageSourceAware{
     	this.sendMessage(message, to, subject);
     }
     
+    
+    public void sendPasswordRecovery(Email email, String token){
+    	String message = messageSource.getMessage("mail.recoverpass" ,null, LocaleContextHolder.getLocale());
+    	message+= token;
+    	message+= messageSource.getMessage("mail.recoverpass2" ,null, LocaleContextHolder.getLocale());
+    	String subject = messageSource.getMessage("mail.recoverpasssubject" ,null, LocaleContextHolder.getLocale());
+    	String to = email.getTo();
+    	this.sendMessage(message, to, subject);
+    }
     
 	@Override
 	public void setMessageSource(MessageSource messageSource) {

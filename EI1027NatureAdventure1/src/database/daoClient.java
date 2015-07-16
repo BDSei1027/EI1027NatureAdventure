@@ -111,4 +111,13 @@ public class daoClient {
 		return dataSource.queryForObject(sql, Integer.class, id);
 	}
 
+	
+	/** Method to obtain the name of the client given a email
+	 * @param email
+	 * @return the name
+	 */
+	public String getClientName(String email){
+		String sql = "SELECT clientname FROM client WHERE clientemail = ?;";
+		return dataSource.queryForObject(sql, String.class, email);
+	}
 }
