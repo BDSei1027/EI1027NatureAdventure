@@ -12,9 +12,11 @@ import database.daoNote;
 @Repository
 public class NoteLayer {
 	private daoNote daoNote;
-	//private int noteID;
+	private int noteID;
 	
 	public void addNote(Note note){
+		this.noteID ++;
+		note.setId(noteID);
 		daoNote.addElement(note);
 	}
 	
@@ -39,8 +41,14 @@ public class NoteLayer {
 		this.daoNote = daoNote;
 	}
 	
-//	public void inicializarNoteID(){
-//		this.noteID = daoNote.getMaxID();
-//	}
+	public void inicializarNoteID(){
+		try{
+			this.noteID = daoNote.getMaxID();
+		} catch (Exception e) {
+			this.noteID = 0;
+			System.out.println("noteID = 0");
+		}
+		
+	}
 	
 }

@@ -46,9 +46,9 @@ public class daoNote {
 	
 	
 	public void addElement(Note note) {
-		String sql= "INSERT INTO note(datecreation, title, note, isread)"
+		String sql= "INSERT INTO note(id, datecreation, title, note, isread)"
 				+ "values(?, ?, ?, ?, ?);";
-		dataSource.update(sql, note.getDateCreation(), note.getTitle(), note.getNote(), note.isRead());
+		dataSource.update(sql, note.getId(), note.getDateCreation(), note.getTitle(), note.getNote(), note.isRead());
 	}
 	
 	public void deleteElement(int id) {
