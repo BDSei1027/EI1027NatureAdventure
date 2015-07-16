@@ -36,13 +36,13 @@
 					</div>	
 					<div class="modal-footer" id="LoginModalFooter">
 						<div class="pull-left">
-						<p>Not a member? <a href="${pageContext.request.contextPath}/register.html"><fmt:message key="login.signup" /></a></p>
+						<p><fmt:message key="login.notmem" /> <a href="${pageContext.request.contextPath}/register.html"><fmt:message key="login.signup" /></a></p>
 	          			<p><fmt:message key="login.forgot" /> <a href="#"><fmt:message key="login.forgot.a" /></a></p>
 	          			</div>
 	          			<div class="pull-right">
 		          			<div class="btn-group" style="margin-top: 5px;">
-								<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Sign in</button>
-								<button class="btn btn-danger pull-left" data-dismiss="modal"><span class="fui-cross"></span> Cancel</button>
+								<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span> <fmt:message key="login.signin" /></button>
+								<button class="btn btn-danger pull-left" data-dismiss="modal"><span class="fui-cross"></span> <fmt:message key="login.btn.cancel" /></button>
 							</div>
 	          			</div>
 	          			<div style="clear:both;"></div>

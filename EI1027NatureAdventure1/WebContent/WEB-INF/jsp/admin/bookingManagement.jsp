@@ -32,7 +32,7 @@
 	</c:if>
 	
 	<div class="crumbs">
-		<a href="${pageContext.request.contextPath}/admin/BookingManagement.html"><fmt:message key="breadcrumbs.admin.bookmanage" /></a>
+		<a href="${pageContext.request.contextPath}/admin/bookingManagement.html"><fmt:message key="breadcrumbs.admin.bookmanage" /></a>
 		<span class="fui-arrow-left"></span>
 		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
 		<span class="fui-arrow-left"></span>

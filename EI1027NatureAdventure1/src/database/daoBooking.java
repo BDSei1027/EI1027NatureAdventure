@@ -92,6 +92,7 @@ public class daoBooking {
 		dataSource.update(sql, booking.getInnerIdBooking(), booking.getGroupSize(), booking.getDateActivity(), booking.getDateCreation(), booking.getClientId(), booking.getPrice(), booking.getIdAct(), booking.getInformation(), booking.getIdBooking());
 		Status status = new Status();
 		status.setIDbooking(booking.getInnerIdBooking());
+		status.setStatus("pending");
 		daoStatus.addElement(status);
 
 	}
