@@ -27,7 +27,7 @@
     <!-- Panel -->
 	<div class="panel panel-warning" style="width:570px; margin:auto;">
 		<div class="panel-heading">
-			<h6 class="panel-title"><fmt:message key="recover.panel-title" /></h6>
+			<h6 class="panel-title"><fmt:message key="recover.panel.title" /></h6>
 		</div>
 		<div class="panel-body">
 			<p><fmt:message key="recover.panel.msg" /></p>
@@ -44,8 +44,8 @@
 			</form:form>
 		</div>
 		<div class="panel-footer">
-			<p style="font-size: 12px;"><fmt:message key="recover.foot.1" /></p>
-			<p style="font-size: 12px;"><fmt:message key="recover.foot.2" /></p>
+			<p style="font-size: 12px;"><fmt:message key="recover.panel.foot.1" /></p>
+			<p style="font-size: 12px;"><fmt:message key="recover.panel.foot.2" /></p>
 		</div>
 	</div>
 	</jsp:body>
