@@ -46,10 +46,15 @@ public class PasswordRecoveryController extends AbstractController{
 	 */
 	@RequestMapping(value="/passwordRecovery", method=RequestMethod.POST)
 	public String recoveryPage(@ModelAttribute("email") Email email, Model model){
+		if(email.isEmpty()){
+			model.addAttribute("error", RESULT_DELETE_OR_DENY);
+			return "recoverpasswrd";
+		}
+		
 		service.setToken(service.getUser(email), UUID.randomUUID().toString());
 		service.sendPasswordRecovery(email);
 
-		model.addAttribute("error", 0);
+		model.addAttribute("error", RESULT_ADD_OR_ACCEPT);
 		return "recoverpassword";
 	}
 	
@@ -85,12 +90,12 @@ public class PasswordRecoveryController extends AbstractController{
 			user.setPassword(passwd.getPassword());
 			service.updateUser(user);
 			
-			model.addAttribute("error", 0);
+			model.addAttribute("error", RESULT_ADD_OR_ACCEPT);
 			session.setAttribute("user", user);
 			return "redirect:index.html";
 		}
 		
-		model.addAttribute("error", 1);
+		model.addAttribute("error", RESULT_DELETE_OR_DENY);
 		return "recverpasswordauth";
 	}
 }

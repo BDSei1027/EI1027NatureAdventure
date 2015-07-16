@@ -32,9 +32,6 @@ public class ClientRegisterValidator implements Validator{
 				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
 			errors.rejectValue("email", "validator.clientregistervalidator.email","Debes introducir un email valido");//Debes introducir un email valido	
 		}
-		if(client.getId().trim().length()!=9){
-			errors.rejectValue("id", "validator.clientregistervalidator.language","Este campo debe tener 9 carácteres");
-		}
 		if(!client.isTocs()){
 			errors.rejectValue("tocs", "validator.clientregistervalidator.tocs","Debes aceptar las condiciones para registrarte");
 		}

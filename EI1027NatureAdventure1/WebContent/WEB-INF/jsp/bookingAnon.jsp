@@ -117,7 +117,6 @@
 			<form:hidden path="innerIdBooking" />
 			<form:hidden path="idBooking" />
 			<form:hidden path="idAct" />
-			<form:hidden path="clientId" />
 		
 		<div class="form-group row">
 			<div class="control-label col-lg-2"><fmt:message key="booking.book.price" />: </div>
