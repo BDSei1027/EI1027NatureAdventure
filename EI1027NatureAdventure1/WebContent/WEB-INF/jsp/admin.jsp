@@ -172,7 +172,7 @@
 	          			<div class="pull-right">
 	          				<div class="btn-group">
 		            			<button type="submit" class="btn btn-primary"><fmt:message key="admin.adminpage.modal.btn.3" /></button>
-		            			<button type="button" class="btn btn-primary" data-dismiss="modal"><fmt:message key="admin.adminpage.modal.btn.2" /></button>
+		            			<button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="admin.adminpage.modal.btn.2" /></button>
 	            			</div>
 						</div>
 						<div style="clear:both;"></div>
