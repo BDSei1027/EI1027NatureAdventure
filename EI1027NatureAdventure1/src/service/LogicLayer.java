@@ -689,8 +689,8 @@ public class LogicLayer {
 		return cliLayer.getClientName(address);
 	}
 	
-	public User getUserGivenAToken(String token){
-		return useLayer.getUserGivenAToken(token);
+	public String getUserGivenAToken(String token){
+		return tokLayer.getUserGivenAToken(token);
 	}
 	
 	/*

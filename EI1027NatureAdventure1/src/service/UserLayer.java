@@ -131,15 +131,7 @@ public class UserLayer {
 		return daoUser.getUserCount();
 	}
 	
-	public User getUserGivenAToken(String token){
-		User user;
-		try{
-			user = daoUser.getUserGivenAToken(token);
-			return user;
-		}catch (Exception e){
-			return null;
-		}
-	}
+	
 
 	public void setDaoUser(daoUser daoUser) {
 		this.daoUser = daoUser;

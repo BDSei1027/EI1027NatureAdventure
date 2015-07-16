@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import classes.Token;
+import classes.User;
 
 @Repository
 public class daoSessionToken {
@@ -98,6 +99,11 @@ public class daoSessionToken {
 		for (Token tk : list)
 			map.put(tk.getUser(), tk);
 		return map;
+	}
+	
+	public String getUserGivenAToken(String token){
+		String sql ="SELECT user FROM sessiontokens WHERE st.token = ?;";
+		return dataSource.queryForObject(sql, String.class, token);
 	}
 
 }

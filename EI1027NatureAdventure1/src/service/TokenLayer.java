@@ -3,6 +3,7 @@ package service;
 import org.springframework.stereotype.Repository;
 
 import classes.Token;
+import classes.User;
 import database.daoSessionToken;
 
 @SuppressWarnings(value = {"unchecked", "unused"})
@@ -47,6 +48,16 @@ public class TokenLayer {
 	 */
 	public void deleteToken(String tokenUser) {
 		daoToken.deleteElement(tokenUser);
+	}
+	
+	public String getUserGivenAToken(String token){
+		String user;
+		try{
+			user = daoToken.getUserGivenAToken(token);
+			return user;
+		}catch (Exception e){
+			return null;
+		}
 	}
 
 	public void setDaoToken(daoSessionToken daoToken) {
