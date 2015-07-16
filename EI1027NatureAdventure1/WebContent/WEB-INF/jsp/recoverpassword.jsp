@@ -40,7 +40,7 @@
 					</div>
 					<c:set var="errors"><form:errors path="to"/></c:set>
 				</div>
-				<button class="btn btn-warning pull-right" type=submit><fmt:message key="recover.panel.submit" /></button>
+				<button class="btn btn-warning pull-right" type=submit><fmt:message key="recover.panel.button" /></button>
 			</form:form>
 		</div>
 		<div class="panel-footer">
