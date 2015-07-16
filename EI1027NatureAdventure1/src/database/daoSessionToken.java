@@ -102,7 +102,7 @@ public class daoSessionToken {
 	}
 	
 	public String getUserGivenAToken(String token){
-		String sql ="SELECT user FROM sessiontokens WHERE st.token = ?;";
+		String sql ="SELECT user FROM sessiontokens WHERE token = ?;";
 		return dataSource.queryForObject(sql, String.class, token);
 	}
 
