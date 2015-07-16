@@ -94,10 +94,9 @@ public class PasswordRecoveryController extends AbstractController{
 		if(userName != null){
 			
 			User user = service.getUser(userName);
-			System.out.println(user);
-			user.setPassword(passwd.getPassword());
-			service.updateUser(user);
 			
+			user.setPassword(passwd.getPassword());
+			service.updateUserWithPasswordType(user);
 			session.setAttribute("user", user);
 			
 			service.deleteToken(userName);

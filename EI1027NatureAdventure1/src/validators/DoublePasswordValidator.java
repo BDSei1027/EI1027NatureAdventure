@@ -19,6 +19,9 @@ public class DoublePasswordValidator  implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		DoublePassword dp = (DoublePassword) obj;
+		if(dp.getPassword().length()<6){
+			errors.rejectValue("password", "validator.doublepasswordvalidator.passwordlenght","La contraseña debe contener mas de 6 caracteres");
+		}
 		
 		if (!dp.getPassword().equals(dp.getConfirmation())) {
 			errors.rejectValue("password", "validator.doublepasswordvalidator.password", "Contraseña incorrecta");
