@@ -8,9 +8,9 @@
 	<jsp:body>
 		
 	<div class="crumbs">
-		<a href="${pageContext.request.contextPath}/admin/BookingManagement/details/${booking.innerIdBooking}.html"><fmt:message key="breadcrumbs.admin.book.details"  /> <em>${booking.innerIdBooking}</em></a>
+		<a href="${pageContext.request.contextPath}/admin/bookingManagement/details/${booking.innerIdBooking}.html"><fmt:message key="breadcrumbs.admin.book.details"  /> <em>${booking.innerIdBooking}</em></a>
 		<span class="fui-arrow-left"></span>
-		<a href="${pageContext.request.contextPath}/admin/BookingManagement.html"><fmt:message key="breadcrumbs.admin.book" /></a>
+		<a href="${pageContext.request.contextPath}/admin/bookingManagement.html"><fmt:message key="breadcrumbs.admin.book" /></a>
 		<span class="fui-arrow-left"></span>
 		<a href="${pageContext.request.contextPath}/admin.html"><fmt:message key="breadcrumbs.admin" /></a> 
 		<span class="fui-arrow-left"></span>
