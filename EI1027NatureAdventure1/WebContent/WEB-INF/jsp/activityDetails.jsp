@@ -79,7 +79,7 @@
       </div>
       
       <h6><fmt:message key="opinion.title.opinion" /></h6>
-      <c:forEach items="${opiniones}" var="op">
+      <c:forEach items="${opinions}" var="op">
       <div class="opinion">
         <div class="opinion-date">${op.date}</div>
         <div class="opinion-score">
@@ -92,7 +92,7 @@
         		<c:when test="${op.score eq 5}"><span class="fui-star-2 star-perfect"></span><span class="fui-star-2 star-perfect"></span><span class="fui-star-2 star-perfect"></span><span class="fui-star-2 star-perfect"></span><span class="fui-star-2 star-perfect"></span></c:when>
         	</c:choose>
         <div class="opinion-text">${op.opinion}</div>
-        <div class="opinion-author">-- ${op.clientFullName} --</div>
+        <div class="opinion-author">-- ${op.author} --</div>
       </div>
       </c:forEach>
       
@@ -118,7 +118,6 @@
               	<form:option value="5">5</form:option>
               </form:select>
               </div>
-              <form:hidden path="clientId" />
               <form:hidden path="idAct" />
               <form:hidden path="date" />
               <div class="col-lg-6" style="text-align: right;"><button type="submit" class="btn btn-success"><fmt:message key="opinion.op.submit" /></button></div>
