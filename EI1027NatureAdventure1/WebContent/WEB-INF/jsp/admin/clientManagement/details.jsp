@@ -11,13 +11,13 @@
 			<c:when test="${error eq 0}">
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong><fmt:message key="admin.client.details.alert.success" /> </strong>.
+			  <strong><fmt:message key="admin.client.details.alert.email.success" /> </strong>.
 			</div>
 			</c:when>
-			<c:when test="${error eq 1}">
+			<c:when test="${error eq 2}">
 			<div class="alert alert-danger alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <fmt:message key="admin.client.details.alert.danger" /> 
+			  <fmt:message key="admin.client.details.alert.fail.danger" /> 
 			</div>
 			</c:when>
 		</c:choose>
