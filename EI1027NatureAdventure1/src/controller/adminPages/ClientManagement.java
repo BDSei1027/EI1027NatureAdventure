@@ -1,5 +1,7 @@
 package controller.adminPages;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,6 +67,32 @@ public class ClientManagement extends AbstractController {
 		model.addAttribute("email", email);
 		
 		return "admin/clientManagement/details";
+	}
+	
+	@RequestMapping(value="/details/{idClient}/{rezCode}")
+	public String clientDetailPageRez(@PathVariable String idClient, @PathVariable int rezCode, Model model){
+		Client client = service.getClient(idClient);
+		Email email = new Email();
+		email.setTo(client.getClientEmail());
+		
+		model.addAttribute("client", client);
+		model.addAttribute("email", email);
+		model.addAttribute("error", rezCode);
+		
+		return "admin/clientManagement/details";
+	}
+	
+	@RequestMapping(value="/details/{idClient}/sendmail", method=RequestMethod.POST)
+	public String sendAdminMail(@PathVariable("idClient") String idClient, HttpServletRequest request){
+		String to = request.getParameter("to");
+		String message = request.getParameter("message");
+		if(to.equals("") || message.equals("")) return "forward:/admin/clientManagement/details/"+idClient+"/"+RESULT_DELETE_OR_DENY+".html";
+		try{
+			service.enviarmailDeAdminHacia(to, message);
+		} catch (Exception e){
+			return "forward:/admin/clientManagement/details/"+idClient+"/"+RESULT_DELETE_OR_DENY+".html";
+		}
+		return "forward:/admin/clientManagement/details/"+idClient+"/"+RESULT_ADD_OR_ACCEPT+".html";
 	}
 	
 	/**

@@ -16,6 +16,7 @@ import controller.basics.AbstractController;
 import validators.DoublePasswordValidator;
 import classes.DoublePassword;
 import classes.Email;
+import classes.Token;
 import classes.User;
 
 
@@ -48,12 +49,15 @@ public class PasswordRecoveryController extends AbstractController{
 	public String recoveryPage(@ModelAttribute("email") Email email, Model model){
 		if(email.isEmpty()){
 			model.addAttribute("error", RESULT_DELETE_OR_DENY);
-			return "recoverpasswrd";
+			return "recoverpassword";
 		}
 		
-		String token = UUID.randomUUID().toString();
-		service.setToken(service.getClientName(email), token);
-		service.sendPasswordRecovery(email,token);
+		try{
+			String name = service.getClientName(email);
+			String token = UUID.randomUUID().toString();
+			service.sendPasswordRecovery(email,token);
+			service.setToken(name, token);
+		} catch (Exception e){}
 
 		model.addAttribute("error", RESULT_ADD_OR_ACCEPT);
 		return "recoverpassword";
@@ -81,22 +85,23 @@ public class PasswordRecoveryController extends AbstractController{
 	 * @param bindingResult Error handler
 	 * @return Recoverpasswordauth.jsp with the error
 	 */
-	@RequestMapping(value="/passwordRecoveryAuth?{token}", method=RequestMethod.POST)
-	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, HttpSession session, BindingResult bindingResult){
+	@RequestMapping(value="/passwordRecoveryAuth/{token}", method=RequestMethod.POST)
+	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult, HttpSession session){
 		new DoublePasswordValidator().validate(passwd, bindingResult);
 		if(bindingResult.hasErrors()) return "recoverpasswordauth";
 		
-		if(service.validateToken(passwd.getUser(), token)){
-			User user = service.getUser(passwd.getUser());
-			user.setPassword(passwd.getPassword());
-			service.updateUser(user);
-			
-			model.addAttribute("error", RESULT_ADD_OR_ACCEPT);
-			session.setAttribute("user", user);
-			return "redirect:index.html";
-		}
+		String user = service.getUserGivenAToken(token);
+		System.out.println(user+" "+token);
+//		if(user != null){
+//			
+//			user.setPassword(passwd.getPassword());
+//			service.updateUser(user);
+//			
+//			session.setAttribute("user", user);
+//			return "redirect:index.html";
+//		}
 		
 		model.addAttribute("error", RESULT_DELETE_OR_DENY);
-		return "recverpasswordauth";
+		return "recoverpasswordauth";
 	}
 }
