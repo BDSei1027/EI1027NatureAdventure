@@ -67,7 +67,7 @@
 
         <h6 class="subtitle"><fmt:message key="admin.adminpage.menu.news.title" /></h6>
         <!-- Muestra de las notas -->
-        <c:forEach items="notas" var="nota">
+        <c:forEach items="${notas}" var="nota">
           <div class="note">
             <div class="note-header"><c:out value="${nota.title}" /> <a class="pull-right" href="${pageContext.request.contextPath}/admin/deleteNote/${nota.id}">&times;</a> </div>
             <div class="note-body">

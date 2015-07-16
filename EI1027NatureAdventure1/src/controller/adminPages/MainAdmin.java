@@ -2,6 +2,7 @@ package controller.adminPages;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -40,8 +41,9 @@ public class MainAdmin extends AbstractController {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");     
 		String dateToday = df.format(new Date());
 		
-		model.addAttribute("note", new Note());
-		model.addAttribute("dateToday",dateToday);
+		model.addAttribute("notas", service.getAllNotes());
+//		model.addAttribute("nota", new Note());
+		model.addAttribute("dateToday", dateToday);
 		model.addAttribute("numbookings", service.getPendingBookingsCount());
 		model.addAttribute("numclients", service.getUserCount());
 		model.addAttribute("doublepassword", new DoublePassword());
