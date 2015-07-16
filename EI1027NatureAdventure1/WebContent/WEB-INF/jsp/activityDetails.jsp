@@ -79,7 +79,7 @@
       </div>
       
       <h6><fmt:message key="opinion.title.opinion" /></h6>
-      <c:forEach items="opiniones" var="op">
+      <c:forEach items="${opiniones}" var="op">
       <div class="opinion">
         <div class="opinion-date">${op.date}</div>
         <div class="opinion-score">
