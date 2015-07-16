@@ -37,7 +37,7 @@
 					<div class="modal-footer" id="LoginModalFooter">
 						<div class="pull-left">
 						<p><fmt:message key="login.notmem" /> <a href="${pageContext.request.contextPath}/register.html"><fmt:message key="login.signup" /></a></p>
-	          			<p><fmt:message key="login.forgot" /> <a href="#"><fmt:message key="login.forgot.a" /></a></p>
+	          			<p><fmt:message key="login.forgot" /> <a href="${pageContext.request.contextPath}/passwordRecovery.html"><fmt:message key="login.forgot.a" /></a></p>
 	          			</div>
 	          			<div class="pull-right">
 		          			<div class="btn-group" style="margin-top: 5px;">
