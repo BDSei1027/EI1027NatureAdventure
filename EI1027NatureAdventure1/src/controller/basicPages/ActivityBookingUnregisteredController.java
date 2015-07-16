@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import validators.BookingValidator;
 import validators.ClientValidator;
 import classes.Activity;
+import classes.Booking;
+import classes.Client;
 import classes.ClientBookingEnvelope;
 import controller.basics.AbstractController;
 
@@ -22,13 +24,10 @@ public class ActivityBookingUnregisteredController extends AbstractController {
 	
 	@RequestMapping(value="/activities/createBookingUnregistered/{idAct}")
 	public String newBookingPage(@PathVariable int idAct, Model model){
-		ClientBookingEnvelope envelope = new ClientBookingEnvelope();
-		envelope.setIdAct(idAct);
-		envelope.setDateCreation(new Date());
 		
 		Activity act = service.getActivity(idAct);
 		
-		model.addAttribute("clientBookingEnvelope", envelope);
+		model.addAttribute("clientBookingEnvelope", new ClientBookingEnvelope());
 		model.addAttribute("activity", act);
 		
 		return "bookingAnon";
@@ -36,24 +35,26 @@ public class ActivityBookingUnregisteredController extends AbstractController {
 	
 	@RequestMapping(value="/activities/createBookingUnregistered/{idAct}", method=RequestMethod.POST)
 	public String newBookingForm(@PathVariable int idAct, Model model, @ModelAttribute("clientBookingEnvelope") ClientBookingEnvelope envelope, BindingResult bindingResult) {
-		
 		Activity act = service.getActivity(idAct);
-		new ClientValidator().validate(envelope.getClient(), bindingResult);
-		new BookingValidator().validate(envelope.getBooking(), bindingResult);
+		Client client = envelope.getClient();
+		Booking booking = envelope.getBooking();
+		booking.setIdAct(idAct);
+		booking.setDateCreation(new Date());
+		booking.setClientId(client.getClientId());
+		booking.setPrice(act.getPrice() * envelope.getGroupSize());
+		
+		new ClientValidator().validate(client, bindingResult);
+		new BookingValidator().validate(booking, bindingResult);
 		validateActivityBooking(envelope, act, bindingResult);
 		
 		
-		if (bindingResult.hasErrors()) { 
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("activity", act);
-			System.out.println(bindingResult.getErrorCount());
-			System.out.println(bindingResult.getFieldError());
 			return "bookingAnon";
 		}
 
-		envelope.setPrice(act.getPrice() * envelope.getGroupSize());
-		envelope.setClientId(envelope.getClientId());
-
-		service.addBooking(envelope.getBooking());
+		service.addClient(client);
+		service.addBooking(booking);
 		
 		return "complete";
 	}

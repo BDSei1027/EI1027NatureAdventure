@@ -65,8 +65,8 @@
 			<div class="form-group row">
 				<form:label path="id" class="col-lg-3 control-label"><fmt:message key="booking.book.idcli" /></form:label>
 				<div class="col-lg-9">
-					<form:input path="id" class="form-control" type="text" />
-					<form:errors path="id" class="text-danger" />
+					<form:input path="clientId" class="form-control" type="text" />
+					<form:errors path="clientId" class="text-danger" />
 				</div>
 			</div>
 			<div class="form-group row">
