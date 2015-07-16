@@ -9,8 +9,8 @@ public class Opinion {
 
 	/* Class for the opinions of the users about an activity */
 	
-	private String clientId;
-	private String clientFullName;
+	private int opinionId;
+	private String author;
 	private int idAct;
 	private String opinion;
 	private Date date;
@@ -20,21 +20,26 @@ public class Opinion {
 		super();
 	}
 
-	public String getClientId() {
-		return clientId;
+
+	public int getOpinionId() {
+		return opinionId;
 	}
 
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
+
+	public void setOpinionId(int opinionId) {
+		this.opinionId = opinionId;
 	}
 
-	public String getClientFullName() {
-		return clientFullName;
+
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setClientFullName(String clientFullName) {
-		this.clientFullName = clientFullName;
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
+
 
 	public int getIdAct() {
 		return idAct;

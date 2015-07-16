@@ -739,8 +739,8 @@ public class LogicLayer {
 		opiLayer.addOpinion(opinion);
 	}
 	
-	public void deleteOpinion(String clientid, int idAct){
-		opiLayer.deleteOpinion(clientid, idAct);
+	public void deleteOpinion(int opinionid){
+		opiLayer.deleteOpinion(opinionid);
 	}
 	
 	public void updateOpinion(Opinion opinion){

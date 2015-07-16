@@ -32,8 +32,8 @@ public class daoOpinion {
 		public Opinion mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Opinion op = new Opinion();
 			try {
-				op.setClientId(rs.getString("clientid"));
-				op.setClientFullName(rs.getString("clientfullname"));
+				op.setOpinionId(rs.getInt("opinionid"));
+				op.setAuthor(rs.getString("author"));
 				op.setDate(rs.getDate("date"));
 				op.setIdAct(rs.getInt("idact"));
 				op.setOpinion(rs.getString("opinion"));
@@ -46,14 +46,14 @@ public class daoOpinion {
 	}
 	
 	public void addElement(Opinion opinion) {
-		String sql = "INSERT INTO opinion(clientid, clientfullname, date, idact, opinion, score) "
+		String sql = "INSERT INTO opinion(opinionid, author, date, idact, opinion, score) "
 				+ "VALUES(?, ?, ?, ?, ?, ?);";
-		dataSource.update(sql, opinion.getClientId(), opinion.getClientFullName(), opinion.getDate(), opinion.getIdAct(), opinion.getOpinion(), opinion.getScore());
+		dataSource.update(sql, opinion.getOpinionId(), opinion.getAuthor(), opinion.getDate(), opinion.getIdAct(), opinion.getOpinion(), opinion.getScore());
 	}
 
-	public void deleteElement(String clientid, int idAct) {
-		String sql = "DELETE FROM opinion WHERE clientid = ? AND idact = ?;";
-		dataSource.update(sql, clientid, idAct);
+	public void deleteElement(int opinionid) {
+		String sql = "DELETE FROM opinion WHERE opinionid = ?;";
+		dataSource.update(sql, opinionid);
 	}
 	
 	public void deleteElementFromActivity(int idAct) {
@@ -62,8 +62,8 @@ public class daoOpinion {
 	}
 	
 	public void updateElement(Opinion opinion) {
-		String sql = "UPDATE opinion SET clientfullname = ?, date = ?, opinion = ?, score = ? WHERE clientid = ? AND idact = ?;";
-		dataSource.update(sql, opinion.getClientFullName(), opinion.getDate(), opinion.getOpinion(), opinion.getScore(), opinion.getClientId(), opinion.getIdAct());
+		String sql = "UPDATE opinion SET author = ?, date = ?, opinion = ?, score = ? WHERE opinionid = ?;";
+		dataSource.update(sql, opinion.getAuthor(), opinion.getDate(), opinion.getOpinion(), opinion.getScore(), opinion.getOpinionId(), opinion.getIdAct());
 	}
 	
 	public Opinion getElement(String clientid, int idAct) {
@@ -86,5 +86,10 @@ public class daoOpinion {
 	public List<Opinion> getOpinionsFromClient(String cliendId) {
 		String sql = "SELECT * FROM opinion WHERE clientid = ? ORDER BY date ASC;";
 		return dataSource.query(sql, new OpinionMapper());
+	}
+
+	public int getMaxID() {
+		String sql = "SELECT MAX(opinionid) FROM opinion;";
+		return dataSource.queryForObject(sql, Integer.class);
 	}
 }

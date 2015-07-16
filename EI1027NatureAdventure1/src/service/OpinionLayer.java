@@ -11,13 +11,16 @@ import database.daoOpinion;
 @Repository
 public class OpinionLayer {
 	private daoOpinion daoOpinion;
+	private int opinionID;
 	
 	public void addOpinion(Opinion opinion){
+		this.opinionID++;
+		opinion.setOpinionId(opinionID);
 		daoOpinion.addElement(opinion);
 	}
 	
-	public void deleteOpinion(String clientid, int idAct){
-		daoOpinion.deleteElement(clientid, idAct);
+	public void deleteOpinion(int opinionid){
+		daoOpinion.deleteElement(opinionid);
 	}
 	
 	public void updateOpinion(Opinion opinion){
@@ -48,6 +51,15 @@ public class OpinionLayer {
 		this.daoOpinion = daoOpinion;
 	}
 	
+	public void inicializarNoteID(){
+		try{
+			this.opinionID = daoOpinion.getMaxID();
+		} catch (Exception e) {
+			this.opinionID = 0;
+			System.out.println("noteID = 0");
+		}
+		
+	}
 	
 	
 }

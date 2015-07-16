@@ -39,7 +39,7 @@
 	
 	<div class="row">
       <div class="col-lg-3" id="imagen">
-        <div style="height: 300px; background-color: red;"></div>
+        <div style="height: 300px; background-color: white;"></div>
       </div>
       <div class="col-lg-9">
         <h5>${actName}</h5>
