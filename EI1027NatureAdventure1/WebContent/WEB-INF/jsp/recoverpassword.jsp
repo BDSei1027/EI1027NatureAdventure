@@ -8,10 +8,20 @@
 	<jsp:body>
 	<c:if test="${not empty errors}">
 		<!-- Alerta -->
-	    <div class="alert alert-danger">
-	        <a href="#" class="close" data-dismiss="alert">&times;</a>
-	        <fmt:message key="recover.alert" />
-	    </div>
+	    <c:choose>
+			<c:when test="${error eq 0}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <strong><fmt:message key="passwordrecovery.success" /> </strong>.
+			</div>
+			</c:when>
+			<c:when test="${error eq 2}">
+			<div class="alert alert-danger alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <fmt:message key="passwordrecovery.fail" /> 
+			</div>
+			</c:when>
+		</c:choose>
 	</c:if>
 	<h4><fmt:message key="recover.title" /></h4>
     <!-- Panel -->

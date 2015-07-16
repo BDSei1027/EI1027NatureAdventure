@@ -117,6 +117,11 @@ public class daoUser {
 		dataSource.update(sql, u.getName(), u.getLanguage(), u.getUser());
 	}
 
+	public User getUserGivenAToken(String token){
+		String sql ="SELECT u.* FROM sessiontokens AS st JOIN user AS u ON st.username = u.name WHERE st.token = ?;";
+		return dataSource.queryForObject(sql, new UserMapper(), token);
+	}
+	
 	/** Method to obtain the number of users registered in the system
 	 * @return The number of users
 	 */
