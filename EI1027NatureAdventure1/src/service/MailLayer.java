@@ -23,10 +23,11 @@ public class MailLayer implements MessageSourceAware{
         this.templateMessage = templateMessage;
     }
     
-    public void sendMessage(String message, String to){
+    public void sendMessage(String message, String to, String subject){
     	SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
     	msg.setTo(to);
     	msg.setText(message);
+    	msg.setSubject(subject);
     	try{
     		this.mailSender.send(msg);
     	}
@@ -37,10 +38,18 @@ public class MailLayer implements MessageSourceAware{
     
     public void enviarMailRegistrado(Client client){
     	String to = client.getClientEmail();
-    	String message = messageSource.getMessage("mail.message",null, LocaleContextHolder.getLocale());
-    	this.sendMessage(message, to);
+    	String message = messageSource.getMessage("mail.messagenew",null, LocaleContextHolder.getLocale());
+    	String subject = messageSource.getMessage("mail.messagenewsubject",null, LocaleContextHolder.getLocale());
+    	this.sendMessage(message, to,subject);
     }
 
+    
+    public void enviarmailDeAdminHacia(String to, String message){
+    	String subject = messageSource.getMessage("mail.messageadminsubject" ,null, LocaleContextHolder.getLocale());
+    	this.sendMessage(message, to, subject);
+    }
+    
+    
 	@Override
 	public void setMessageSource(MessageSource messageSource) {
 		this.messageSource= messageSource;

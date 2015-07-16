@@ -84,7 +84,7 @@
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title"><fmt:message key="admin.client.details.modal.title" />  <c:out value="${client.clientEmail}" /></h4>
 						</div>
-						<form:form id="emailForm" method="post" modelAttribute="email" role="form">
+						<form:form id="emailForm" method="post" modelAttribute="email" role="form" action="${pageContext.request.contextPath}/sendmail.html">
 						<div class="modal-body" id="emailModalBody">
 							<div class="form-group">
 								<div class="input-group">

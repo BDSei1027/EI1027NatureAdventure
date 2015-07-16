@@ -773,6 +773,12 @@ public class LogicLayer {
 		maiLayer.enviarMailRegistrado(client);
 	}
 	
+	public void enviarmailDeAdminHacia(String to, String message){
+		maiLayer.enviarmailDeAdminHacia(to, message);
+	}
+	
+	
+	
 	
 //Setter inyectables ---------------------------------------------------------------------------------------------------------------------------
 	
