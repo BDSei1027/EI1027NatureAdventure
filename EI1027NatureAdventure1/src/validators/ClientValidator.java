@@ -3,6 +3,8 @@ package validators;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.aeat.valida.Validador;
+
 import classes.Client;
 
 
@@ -36,7 +38,11 @@ public class ClientValidator implements Validator {
 			errors.rejectValue("email", "validator.clientvalidator.email",
 						"Debes introducir un email valido");// Debes introducir un email valido
 		}
-
+		
+		Validador validadorAgenciaTributaria = new Validador();
+		if(validadorAgenciaTributaria.checkNif(client.getClientId().toUpperCase())<0){
+			errors.rejectValue("clientId", "validator.agencia", "El DNI introducido es incorrecto");
+		}
 	}
 
 }

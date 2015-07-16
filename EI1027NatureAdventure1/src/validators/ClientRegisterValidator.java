@@ -3,6 +3,8 @@ package validators;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.aeat.valida.Validador;
+
 import classes.ClientRegister;
 
 public class ClientRegisterValidator implements Validator{
@@ -43,6 +45,10 @@ public class ClientRegisterValidator implements Validator{
 				errors.rejectValue("password", "validator.clientregistervalidator.password01","La contraseña esta vacía");
 		} else if(client.getPassword().trim().length()< 8) {
 			errors.rejectValue("password", "validator.clientregistervalidator.password02","La longitud debe ser de al menos 8 carácteres");//La longitud debe ser de al menos 8 carácteres
+		}
+		Validador validadorAgenciaTributaria = new Validador();
+		if(validadorAgenciaTributaria.checkNif(client.getId().toUpperCase())<0){
+			errors.rejectValue("clientId", "validator.agencia", "El DNI introducido es incorrecto");
 		}
 	}
 }
