@@ -53,7 +53,7 @@ public class MailLayer implements MessageSourceAware{
     
     public void sendPasswordRecovery(Email email, String token){
     	String message = messageSource.getMessage("mail.recoverpass" ,null, LocaleContextHolder.getLocale());
-    	message+= token;
+    	message+= "http://localhost:8080/EI1027NatureAdventure1/passwordRecoveryAuth/"+ token +".html";
     	message+= messageSource.getMessage("mail.recoverpass2" ,null, LocaleContextHolder.getLocale());
     	String subject = messageSource.getMessage("mail.recoverpasssubject" ,null, LocaleContextHolder.getLocale());
     	String to = email.getTo();
