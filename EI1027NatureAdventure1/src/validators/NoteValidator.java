@@ -23,7 +23,4 @@ public class NoteValidator implements Validator {
 			errors.rejectValue("note","validator.notevalidator.note", "El contenido de la nota no puede estar vacío");
 		}
 	}
-
-	
-	
 }

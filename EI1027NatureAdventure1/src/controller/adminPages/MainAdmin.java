@@ -40,9 +40,11 @@ public class MainAdmin extends AbstractController {
 		
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");     
 		String dateToday = df.format(new Date());
+		Note nota = new Note();
+		nota.setDateCreation(new Date());
 		
 		model.addAttribute("notas", service.getAllNotes());
-		model.addAttribute("note", new Note());
+		model.addAttribute("note", nota);
 		model.addAttribute("dateToday", dateToday);
 		model.addAttribute("numbookings", service.getPendingBookingsCount());
 		model.addAttribute("numclients", service.getUserCount());
