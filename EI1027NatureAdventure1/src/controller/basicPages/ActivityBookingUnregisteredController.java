@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import validators.BookingValidator;
+import validators.ClientValidator;
 import classes.Activity;
 import classes.ClientBookingEnvelope;
 import controller.basics.AbstractController;
@@ -21,28 +22,32 @@ public class ActivityBookingUnregisteredController extends AbstractController {
 	
 	@RequestMapping(value="/activities/createBookingUnregistered/{idAct}")
 	public String newBookingPage(@PathVariable int idAct, Model model){
-		ClientBookingEnvelope booking = new ClientBookingEnvelope();
-		booking.setIdAct(idAct);
-		booking.setDateCreation(new Date());
+		ClientBookingEnvelope envelope = new ClientBookingEnvelope();
+		envelope.setIdAct(idAct);
+		envelope.setDateCreation(new Date());
 		
 		Activity act = service.getActivity(idAct);
 		
-		model.addAttribute("boooking", booking);
+		model.addAttribute("clientBookingEnvelope", envelope);
 		model.addAttribute("activity", act);
 		
 		return "bookingAnon";
 	}
 	
 	@RequestMapping(value="/activities/createBookingUnregistered/{idAct}", method=RequestMethod.POST)
-	public String newBookingForm(@PathVariable int idAct, Model model, @ModelAttribute("booking") ClientBookingEnvelope envelope, BindingResult bindingResult) {
+	public String newBookingForm(@PathVariable int idAct, Model model, @ModelAttribute("clientBookingEnvelope") ClientBookingEnvelope envelope, BindingResult bindingResult) {
+		
 		Activity act = service.getActivity(idAct);
+		new ClientValidator().validate(envelope.getClient(), bindingResult);
 		new BookingValidator().validate(envelope.getBooking(), bindingResult);
 		validateActivityBooking(envelope, act, bindingResult);
 		
 		
-		if (bindingResult.hasErrors()) { 	
+		if (bindingResult.hasErrors()) { 
 			model.addAttribute("activity", act);
-			return "booking";
+			System.out.println(bindingResult.getErrorCount());
+			System.out.println(bindingResult.getFieldError());
+			return "bookingAnon";
 		}
 
 		envelope.setPrice(act.getPrice() * envelope.getGroupSize());

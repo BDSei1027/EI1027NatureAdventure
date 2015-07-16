@@ -1,14 +1,9 @@
 package controller.identificationPages;
 
-import java.util.Locale;
 import java.util.UUID;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import controller.basics.AbstractController;
-import validators.ClientRegisterValidator;
 import validators.DoublePasswordValidator;
-import validators.UserValidator;
-import classes.ClientRegister;
 import classes.DoublePassword;
 import classes.Email;
 import classes.User;
@@ -42,7 +34,7 @@ public class PasswordRecoveryController extends AbstractController{
 	@RequestMapping(value="/passwordRecovery")
 	public String recoveryPage(Model model){
 		model.addAttribute("email", new Email());
-		return "recverpassword";
+		return "recoverpassword";
 	}
 	
 	/**
@@ -54,6 +46,8 @@ public class PasswordRecoveryController extends AbstractController{
 	 */
 	@RequestMapping(value="/passwordRecovery", method=RequestMethod.POST)
 	public String recoveryPage(@ModelAttribute("email") Email email, Model model){
+		service.setToken(service.getUser(email), UUID.randomUUID().toString());
+		service.sendPasswordRecovery(email);
 
 		model.addAttribute("error", 0);
 		return "recoverpassword";
@@ -66,10 +60,10 @@ public class PasswordRecoveryController extends AbstractController{
 	 * @param model Injected model
 	 * @return Recoverpassword.jsp (not implemented yet, future impl)
 	 */
-	@RequestMapping(value="/passwordRecoveryAuth?{token}")
+	@RequestMapping(value="/passwordRecoveryAuth/{token}")
 	public String recoveryAuthPage(@PathVariable String token, Model model){
 		model.addAttribute("doublepassword", new DoublePassword());
-		return "recverpasswordauth";
+		return "recoverpasswordauth";
 	}
 	
 	/**
@@ -82,7 +76,7 @@ public class PasswordRecoveryController extends AbstractController{
 	 * @return Recoverpasswordauth.jsp with the error
 	 */
 	@RequestMapping(value="/passwordRecoveryAuth?{token}", method=RequestMethod.POST)
-	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, BindingResult bindingResult){
+	public String recoveryAuthPage(Model model, @PathVariable String token, @ModelAttribute("doublepassword") DoublePassword passwd, HttpSession session, BindingResult bindingResult){
 		new DoublePasswordValidator().validate(passwd, bindingResult);
 		if(bindingResult.hasErrors()) return "recoverpasswordauth";
 		
@@ -92,7 +86,8 @@ public class PasswordRecoveryController extends AbstractController{
 			service.updateUser(user);
 			
 			model.addAttribute("error", 0);
-			return "recoverpasswordauth";
+			session.setAttribute("user", user);
+			return "redirect:index.html";
 		}
 		
 		model.addAttribute("error", 1);

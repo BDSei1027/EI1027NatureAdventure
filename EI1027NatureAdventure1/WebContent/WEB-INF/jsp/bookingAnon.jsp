@@ -60,7 +60,7 @@
 			<div class="panel panel-info">
 	<div class="panel-heading"><h5 class="panel-title"><fmt:message key="booking.book" /></h5></div>
 	<div class="panel-body">
-		<form:form modelAttribute="clientBookingEnvelope" action="${pageContext.request.contextPath}/activities/createBooking/${activity.idAct}.html" method="post" role="form">
+		<form:form modelAttribute="clientBookingEnvelope" action="${pageContext.request.contextPath}/activities/createBookingUnregistered/${activity.idAct}.html" method="post" role="form">
 			<h5 class="text-center"><fmt:message key="booking.book.act" /> <c:out value="${actName}" /></h5>
 			<div class="form-group row">
 				<form:label path="id" class="col-lg-3 control-label"><fmt:message key="booking.book.idcli" /></form:label>
