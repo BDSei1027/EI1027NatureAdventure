@@ -60,7 +60,7 @@
 			<div class="panel panel-info">
 	<div class="panel-heading"><h5 class="panel-title"><fmt:message key="booking.book" /></h5></div>
 	<div class="panel-body">
-		<form:form modelAttribute="booking" action="${pageContext.request.contextPath}/activities/createBooking/${activity.idAct}.html" method="post" role="form">
+		<form:form modelAttribute="booking" action="${pageContext.request.contextPath}/activities/createBookingRegistered/${activity.idAct}.html" method="post" role="form">
 			<h5 class="text-center"><fmt:message key="booking.book.act" /> <c:out value="${actName}" /></h5>
 			<div class="form-group row">
 				<form:label path="dateActivity" class="col-lg-3 control-label"><fmt:message key="booking.book.date" /></form:label>
@@ -84,12 +84,8 @@
 					<form:errors path="information" class="text-danger" />
 				</div>
 			</div>
-			<form:hidden path="dateCreation" />
-			<form:hidden path="price" />
 			<form:hidden path="innerIdBooking" />
 			<form:hidden path="idBooking" />
-			<form:hidden path="idAct" />
-			<form:hidden path="clientId" />
 		
 		<div class="form-group row">
 			<div class="control-label col-lg-2"><fmt:message key="booking.book.price" />: </div>
