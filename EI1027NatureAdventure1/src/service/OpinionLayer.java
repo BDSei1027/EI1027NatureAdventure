@@ -47,7 +47,7 @@ public class OpinionLayer {
 		this.daoOpinion = daoOpinion;
 	}
 	
-	public void inicializarNoteID(){
+	public void inicializarOpinionID(){
 		try{
 			this.opinionID = daoOpinion.getMaxID();
 		} catch (Exception e) {

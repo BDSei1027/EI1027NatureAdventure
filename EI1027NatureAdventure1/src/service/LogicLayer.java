@@ -60,6 +60,7 @@ public class LogicLayer {
 		bokLayer.inicializarActiveBookingID();
 		actLayer.inicializarActivityID();
 		notLayer.inicializarNoteID();
+		opiLayer.inicializarOpinionID();
 	
 	}
 	
