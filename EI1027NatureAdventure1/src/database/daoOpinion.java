@@ -80,13 +80,9 @@ public class daoOpinion {
 	
 	public List<Opinion> getOpinionsFromActivity(int idAct) {
 		String sql = "SELECT * FROM opinion WHERE idact = ? ORDER BY score DESC;";
-		return dataSource.query(sql, new OpinionMapper());
+		return dataSource.query(sql, new OpinionMapper(), idAct);
 	}
 	
-	public List<Opinion> getOpinionsFromClient(String cliendId) {
-		String sql = "SELECT * FROM opinion WHERE clientid = ? ORDER BY date ASC;";
-		return dataSource.query(sql, new OpinionMapper());
-	}
 
 	public int getMaxID() {
 		String sql = "SELECT MAX(opinionid) FROM opinion;";

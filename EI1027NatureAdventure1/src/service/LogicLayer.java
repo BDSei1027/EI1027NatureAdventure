@@ -763,9 +763,6 @@ public class LogicLayer {
 		return opiLayer.getOpinionsFromActivity(idAct);
 	}
 	
-	public Collection<Opinion> getOpinionsFromClient(String clientID){
-		return opiLayer.getOpinionsFromClient(clientID);
-	}
 	
 	/*
 	 * MAIL ZONE 

@@ -42,10 +42,6 @@ public class OpinionLayer {
 	public Collection<Opinion> getOpinionsFromActivity(int idAct){
 		return daoOpinion.getOpinionsFromActivity(idAct);
 	}
-	
-	public Collection<Opinion> getOpinionsFromClient(String clientID){
-		return daoOpinion.getOpinionsFromClient(clientID);
-	}
 
 	public void setDaoOpinion(daoOpinion daoOpinion) {
 		this.daoOpinion = daoOpinion;
