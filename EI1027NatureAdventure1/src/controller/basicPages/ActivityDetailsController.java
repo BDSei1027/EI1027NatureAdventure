@@ -26,7 +26,7 @@ public class ActivityDetailsController extends AbstractController {
 		opinion.setDate(new Date());
 
 		model.addAttribute("activity", service.getActivity(idAct));
-		model.addAttribute("opinions", service.getAllOpinions());
+		model.addAttribute("opinions", service.getOpinionsFromActivity(idAct));
 		model.addAttribute("opinion",  opinion);
 		return "activityDetails";
 	}
