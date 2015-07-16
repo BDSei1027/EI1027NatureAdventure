@@ -85,7 +85,7 @@ public class ClientLayer {
 	 */
 	public Client createClientFrom(ClientRegister cl) {
 		Client client = new Client();
-		client.setClientId(cl.getId());
+		client.setClientId(cl.getClientId());
 		client.setClientName(cl.getName());
 		client.setClientLastName(cl.getLastName());
 		client.setClientEmail(cl.getEmail());

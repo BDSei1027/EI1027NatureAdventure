@@ -63,7 +63,7 @@
 		<form:form modelAttribute="clientBookingEnvelope" action="${pageContext.request.contextPath}/activities/createBookingUnregistered/${activity.idAct}.html" method="post" role="form">
 			<h5 class="text-center"><fmt:message key="booking.book.act" /> <c:out value="${actName}" /></h5>
 			<div class="form-group row">
-				<form:label path="id" class="col-lg-3 control-label"><fmt:message key="booking.book.idcli" /></form:label>
+				<form:label path="clientId" class="col-lg-3 control-label"><fmt:message key="booking.book.idcli" /></form:label>
 				<div class="col-lg-9">
 					<form:input path="clientId" class="form-control" type="text" />
 					<form:errors path="clientId" class="text-danger" />

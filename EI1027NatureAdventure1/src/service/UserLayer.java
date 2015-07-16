@@ -116,7 +116,7 @@ public class UserLayer {
 	 */
 	public User createUserFrom(ClientRegister cl) {
 		User newUser = new User();
-		newUser.setUser(cl.getId());
+		newUser.setUser(cl.getClientId());
 		newUser.setPassword(cl.getPassword());
 		newUser.setName(cl.getName());
 		newUser.setLanguage(cl.getLanguage());

@@ -48,7 +48,7 @@ public class ClientRegisterValidator implements Validator{
 		}
 		Validador validadorAgenciaTributaria = new Validador();
 		if(validadorAgenciaTributaria.checkNif(client.getId().toUpperCase())<0){
-			errors.rejectValue("clientId", "validator.agencia", "El DNI introducido es incorrecto");
+			errors.rejectValue("id", "validator.agencia", "El DNI introducido es incorrecto");
 		}
 	}
 }

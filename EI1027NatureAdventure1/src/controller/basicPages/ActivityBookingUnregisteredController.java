@@ -35,6 +35,7 @@ public class ActivityBookingUnregisteredController extends AbstractController {
 	
 	@RequestMapping(value="/activities/createBookingUnregistered/{idAct}", method=RequestMethod.POST)
 	public String newBookingForm(@PathVariable int idAct, Model model, @ModelAttribute("clientBookingEnvelope") ClientBookingEnvelope envelope, BindingResult bindingResult) {
+		System.out.println(envelope.getClientId());
 		Activity act = service.getActivity(idAct);
 		Client client = envelope.getClient();
 		Booking booking = envelope.getBooking();
@@ -46,9 +47,10 @@ public class ActivityBookingUnregisteredController extends AbstractController {
 		new ClientValidator().validate(client, bindingResult);
 		new BookingValidator().validate(booking, bindingResult);
 		validateActivityBooking(envelope, act, bindingResult);
-		
+		envelope = new ClientBookingEnvelope();
 		
 		if (bindingResult.hasErrors()) {
+			envelope.setClientId("");
 			model.addAttribute("activity", act);
 			return "bookingAnon";
 		}
