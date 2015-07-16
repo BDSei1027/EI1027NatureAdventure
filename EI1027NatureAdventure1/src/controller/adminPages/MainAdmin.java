@@ -2,7 +2,6 @@ package controller.adminPages;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -62,15 +61,17 @@ public class MainAdmin extends AbstractController {
 	@RequestMapping(value="/{resCode}")
 	public String adminPage(Model model, @PathVariable int resCode){
 		
-		//Date must be formatted
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");     
 		String dateToday = df.format(new Date());
+		Note nota = new Note();
+		nota.setDateCreation(new Date());
 		
-		model.addAttribute("dateToday",dateToday);
+		model.addAttribute("notas", service.getAllNotes());
+		model.addAttribute("note", nota);
+		model.addAttribute("dateToday", dateToday);
 		model.addAttribute("numbookings", service.getPendingBookingsCount());
 		model.addAttribute("numclients", service.getUserCount());
 		model.addAttribute("doublepassword", new DoublePassword());
-		model.addAttribute("error", resCode);
 		
 		return "admin";
 	}
@@ -100,6 +101,14 @@ public class MainAdmin extends AbstractController {
 		if(bindingResult.hasErrors()) return "forward:/admin/"+RESULT_DELETE_OR_DENY+".html";
 		
 		service.addNote(note);
+		
+		return "forward:/admin/"+RESULT_ADD_OR_ACCEPT+".html";
+	}
+	
+	@RequestMapping(value="/deleteNote/{idNote}")
+	public String deleteNote(@PathVariable int idNote){
+		
+		service.deleteNote(idNote);
 		
 		return "forward:/admin/"+RESULT_ADD_OR_ACCEPT+".html";
 	}
