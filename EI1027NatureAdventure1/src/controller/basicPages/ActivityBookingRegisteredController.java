@@ -25,8 +25,7 @@ public class ActivityBookingRegisteredController extends AbstractController {
 	@RequestMapping(value="/activities/createBookingRegistered/{idAct}")
 	public String newBookingPage(@PathVariable int idAct, Model model){
 		Booking booking = new Booking();
-		booking.setIdAct(idAct);
-		booking.setDateCreation(new Date());
+		
 		
 		Activity act = service.getActivity(idAct);
 		
@@ -37,21 +36,25 @@ public class ActivityBookingRegisteredController extends AbstractController {
 	}
 	
 	@RequestMapping(value="/activities/createBookingRegistered/{idAct}", method=RequestMethod.POST)
-	public String newBookingForm(@PathVariable int idAct,  HttpSession session, Model model, @ModelAttribute("booking") Booking booking, BindingResult bindingResult) {
+	public String newBookingForm(@PathVariable int idAct,  HttpSession session, Model model, @ModelAttribute("booking") Booking booking,  BindingResult bindingResult) {
 		User user = (User) session.getAttribute("user");
-		Client client = service.getClient(user);
+		
 		Activity act = service.getActivity(idAct);
 		validateBokingActivity(booking, bindingResult, act);
+		booking.setIdAct(idAct);
+		booking.setClientId(user.getUser());
+		booking.setDateCreation(new Date());
+		booking.setPrice(act.getPrice() * booking.getGroupSize());
 		new BookingValidator().validate(booking, bindingResult);
 		
 		
 		if (bindingResult.hasErrors()) { 	
+			System.out.println(bindingResult.getFieldError());
 			model.addAttribute("activity", act);
-			return "booking";
+			model.addAttribute("booking", booking);
+			return "bookingRegistered";
 		}
 
-		booking.setPrice(act.getPrice() * booking.getGroupSize());
-		booking.setClientId(client.getClientId());
 
 		service.addBooking(booking);
 		
