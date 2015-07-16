@@ -72,6 +72,7 @@ public class MainAdmin extends AbstractController {
 		model.addAttribute("numbookings", service.getPendingBookingsCount());
 		model.addAttribute("numclients", service.getUserCount());
 		model.addAttribute("doublepassword", new DoublePassword());
+		model.addAttribute("error", resCode);
 		
 		return "admin";
 	}
@@ -98,11 +99,11 @@ public class MainAdmin extends AbstractController {
 	@RequestMapping(value="/newNote", method=RequestMethod.POST)
 	public String newNote(@ModelAttribute("note") Note note,BindingResult bindingResult){
 		new NoteValidator().validate(note, bindingResult);
-		if(bindingResult.hasErrors()) return "forward:/admin/"+RESULT_DELETE_OR_DENY+".html";
+		if(bindingResult.hasErrors()) return "forward:/admin/"+4+".html";
 		
 		service.addNote(note);
 		
-		return "forward:/admin/"+RESULT_ADD_OR_ACCEPT+".html";
+		return "forward:/admin/"+3+".html";
 	}
 	
 	@RequestMapping(value="/deleteNote/{idNote}")
@@ -110,6 +111,6 @@ public class MainAdmin extends AbstractController {
 		
 		service.deleteNote(idNote);
 		
-		return "forward:/admin/"+RESULT_ADD_OR_ACCEPT+".html";
+		return "forward:/admin/"+3+".html";
 	}
 }

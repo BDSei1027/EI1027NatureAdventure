@@ -27,9 +27,6 @@ public class OpinionValidator implements Validator {
 		if(opinion.getOpinion().trim().equals("")){
 			errors.rejectValue("opinion","validator.opinionvalidator.opinion","El contenido de la opinión no puede estar vacía");
 		}
-		if(opinion.getScore()<0){
-			errors.rejectValue("score","validator.opinionvalidator.score","La puntuación no puede ser negativa");
-		}
 	}
 
 }

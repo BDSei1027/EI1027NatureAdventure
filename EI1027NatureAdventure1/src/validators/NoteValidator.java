@@ -19,8 +19,5 @@ public class NoteValidator implements Validator {
 		if(note.getTitle().trim().equals("")){
 			errors.rejectValue("title","validator.notevalidator.title", "El título no puede estar vacío");
 		}
-		if(note.getNote().trim().equals("")){
-			errors.rejectValue("note","validator.notevalidator.note", "El contenido de la nota no puede estar vacío");
-		}
 	}
 }

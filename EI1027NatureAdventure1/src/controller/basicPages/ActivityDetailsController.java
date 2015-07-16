@@ -33,6 +33,7 @@ public class ActivityDetailsController extends AbstractController {
 		}
 		
 		model.addAttribute("activity", service.getActivity(idAct));
+		model.addAttribute("opinions", service.getAllOpinions());
 		model.addAttribute("opinion",  opinion);
 		return "activityDetails";
 	}
