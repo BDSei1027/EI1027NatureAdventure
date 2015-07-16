@@ -93,7 +93,7 @@
 			<div class="form-group row">
 				<form:label path="dateActivity" class="col-lg-3 control-label"><fmt:message key="booking.book.date" /></form:label>
 				<div class="col-lg-9">
-					<form:input path="dateActivity" class="form-control datepicker" type="text" readonly="true" cssStyle="background-color: #FFF; opacity: 1; border-color: #BDC3C7; color: inherit;" />
+					<form:input path="dateActivity" class="form-control datepicker" type="text" readonly="true" cssStyle="background-color: #FFF; opacity: 1; border-color: #BDC3C7; color: inherit;" data-date-end-da="60d" />
 					<form:errors path="dateActivity" class="text-danger" />
 				</div>
 			</div>
