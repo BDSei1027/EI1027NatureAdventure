@@ -159,7 +159,6 @@ function clearField()
 	    $('.datepicker').datepicker({
 	    	format: 'dd/mm/yyyy',
 	    	weekStart: 1,
-	    	endDate: '60d',
 	    	todayHighlight: true,
 	    	language: 'es'
 	    })
@@ -170,7 +169,6 @@ function clearField()
 	    $('.datepicker').datepicker({
 	    	format: 'mm/dd/yyyy',
 	    	weekStart: 1,
-	    	endDate: '60d',
 	    	todayHighlight: true,
 	    	language: 'en'
 	    })
