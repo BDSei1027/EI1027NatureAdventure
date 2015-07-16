@@ -51,8 +51,9 @@ public class PasswordRecoveryController extends AbstractController{
 			return "recoverpasswrd";
 		}
 		
-		service.setToken(service.getClientName(email), UUID.randomUUID().toString());
-		service.sendPasswordRecovery(email);
+		String token = UUID.randomUUID().toString();
+		service.setToken(service.getClientName(email), token);
+		service.sendPasswordRecovery(email,token);
 
 		model.addAttribute("error", RESULT_ADD_OR_ACCEPT);
 		return "recoverpassword";
