@@ -94,6 +94,7 @@
         <div class="opinion-text">${op.opinion}</div>
         <div class="opinion-author">-- ${op.author} --</div>
       </div>
+      </div>
       </c:forEach>
       
       <div class="form-op">
