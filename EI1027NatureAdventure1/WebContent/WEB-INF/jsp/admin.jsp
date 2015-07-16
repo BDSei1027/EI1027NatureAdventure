@@ -20,6 +20,18 @@
 			  <fmt:message key="admin.adminpage.alert.danger" />
 			</div>
 		</c:when>
+		<c:when test="${not empty error and error eq 3 }">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <fmt:message key="admin.adminpage.alert.notesuccess" />
+			</div>
+		</c:when>
+		<c:when test="${not empty error and error eq 4 }">
+			<div class="alert alert-success alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <fmt:message key="admin.adminpage.alert.notedanger" />
+			</div>
+		</c:when>
 		</c:choose>
 		
 		<div class="crumbs">
@@ -147,12 +159,12 @@
 						<form:hidden path="dateCreation" />
 						<div class="form-group">
 							<form:label path="title" for="title" class="control-label"><fmt:message key="admin.adminpage.modal.note.notetitle" /> </form:label>
-							<form:input path="title" type="text" id="title" class="form-control" placeholder="Title" />
+							<form:input path="title" type="text" id="title" class="form-control" placeholder="" />
 							<form:errors path="title" />
 						</div>
 						<div class="form-group">
 							<form:label path="note" for="msg" class="control-label"><fmt:message key="admin.adminpage.modal.note.notemsg" /> </form:label>
-							<form:input path="note" type="text" class="form-control" id="msg" placeholder="Write your note..." />
+							<form:input path="note" type="text" class="form-control" id="msg" placeholder="" />
 							<form:errors path="note" />
 						</div>
 					</div>
