@@ -42,7 +42,7 @@ public class MainAdmin extends AbstractController {
 		String dateToday = df.format(new Date());
 		
 		model.addAttribute("notas", service.getAllNotes());
-//		model.addAttribute("nota", new Note());
+		model.addAttribute("note", new Note());
 		model.addAttribute("dateToday", dateToday);
 		model.addAttribute("numbookings", service.getPendingBookingsCount());
 		model.addAttribute("numclients", service.getUserCount());
