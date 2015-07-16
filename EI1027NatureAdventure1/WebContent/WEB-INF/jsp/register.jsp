@@ -62,10 +62,8 @@
 					<div class="col-lg-2 labelReg"><fmt:message key="reg.choose" /></div>
 					<div class="col-lg-10">
 						<form:select path="language" data-toggle="select" class="form-control select select-primary mrs mbm">
-							<optgroup>
 								<form:option value="EN"><fmt:message key="languages.en" /></form:option>
 								<form:option value="ES"><fmt:message key="languages.es" /></form:option>
-							</optgroup>
 						</form:select>
 					</div>
 				</div>

@@ -21,7 +21,7 @@
 
 <link href="${pageContext.request.contextPath}/css/custom.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
-
+<link href="${pageContext.request.contextPath}/css/image-picker.css" rel="stylesheet" />
 
 
 <!-- <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -33,7 +33,7 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.0/bootstrap-table.min.js"></script>
 <!-- <script src="${pageContext.request.contextPath}/js/flat-ui.min.js"></script> -->
-
+<script src="${pageContext.request.contextPath}/js/image-picker.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/application.js"></script>
 <script src="${pageContext.request.contextPath}/js/prettify.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/radiocheck.js"></script>
@@ -88,6 +88,10 @@
         $('select[name="searchfield"]').select2({dropdownCssClass: 'show-select-search'});
         $('select[name="inverse-dropdown-searchfield"]').select2({dropdownCssClass: 'select-inverse-dropdown show-select-search'});
         $(':checkbox').radiocheck();
+        $("select").imagepicker({
+            hide_select : true,
+            show_label  : false
+          });
       });
     </script>
 </body>

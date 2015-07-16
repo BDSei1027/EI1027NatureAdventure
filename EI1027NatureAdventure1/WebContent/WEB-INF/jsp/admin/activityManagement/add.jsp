@@ -113,6 +113,16 @@
 					<form:errors path="descripcion" />
 				</div>
 			</div>
+			<div class="form-group">
+			<form:select path="image" cssClass="image-picker">
+				<form:option value="/img/1.jpg" data-img-src="${pageContext.request.contextPath}/img/1.jpg"><fmt:message key="admin.activitymanage.addactivity.form.image" /> 1</form:option>
+				<form:option value="/img/2.jpg" data-img-src="${pageContext.request.contextPath}/img/2.jpg"><fmt:message key="admin.activitymanage.addactivity.form.image" /> 2</form:option>
+				<form:option value="/img/3.jpg" data-img-src="${pageContext.request.contextPath}/img/3.jpg"><fmt:message key="admin.activitymanage.addactivity.form.image" /> 3</form:option>
+				<form:option value="/img/4.jpg" data-img-src="${pageContext.request.contextPath}/img/4.jpg"><fmt:message key="admin.activitymanage.addactivity.form.image" /> 4</form:option>
+				<form:option value="/img/5.jpg" data-img-src="${pageContext.request.contextPath}/img/5.jpg"><fmt:message key="admin.activitymanage.addactivity.form.image" /> 4</form:option>
+				<form:option value="/img/6.jpg" data-img-src="${pageContext.request.contextPath}/img/6.jpg"><fmt:message key="admin.activitymanage.addactivity.form.image" /> 4</form:option>
+			</form:select>
+			</div>
 			<div class="text-center">
 				<div class="btn-group">
 					<button type="submit" class="btn btn-primary"><fmt:message key="admin.activitymanage.addactivity.form.submit" /></button>

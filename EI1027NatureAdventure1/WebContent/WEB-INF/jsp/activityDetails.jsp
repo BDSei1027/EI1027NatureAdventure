@@ -39,7 +39,7 @@
 	
 	<div class="row">
       <div class="col-lg-3" id="imagen">
-      	<img src="${activity.image}" height="300"></img>
+      	<img src="${pageContext.request.contextPath}${activity.image}" height="300" width="255" style="border-radius: 6px;"></img>
       </div>
       <div class="col-lg-9">
         <h5>${actName}</h5>
@@ -74,7 +74,7 @@
             </div>
           </div>
           <p>${description}</p>
-          <button class="btn btn-primary btn-lg btn-block activity-btn" onClick="javascript:location.href = '${pageContext.request.contextPath}/activities/createBooking/${activity.idAct}.html';"><fmt:message key="activities.btn" />!</button>
+          <button class="btn btn-primary btn-lg btn-block activity-btn" onClick="javascript:location.href = '${pageContext.request.contextPath}/activities/createBooking/${activity.idAct}.html';"><fmt:message key="activities.btn.1" />!</button>
         </div>
       </div>
       
