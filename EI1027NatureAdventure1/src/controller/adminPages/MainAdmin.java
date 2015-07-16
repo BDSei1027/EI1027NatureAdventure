@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import validators.DoublePasswordValidator;
+import validators.NoteValidator;
 import classes.DoublePassword;
 import classes.Note;
 import classes.User;
