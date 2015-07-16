@@ -146,12 +146,12 @@
 						<form:hidden path="id" />
 						<form:hidden path="dateCreation" />
 						<div class="form-group">
-							<form:label path="title" for="title" class="control-label"><fmt:message key="admin.adminpage.modal.note.title" /> </form:label>
+							<form:label path="title" for="title" class="control-label"><fmt:message key="admin.adminpage.modal.note.notetitle" /> </form:label>
 							<form:input path="title" type="text" id="title" class="form-control" placeholder="Title" />
 							<form:errors path="title" />
 						</div>
 						<div class="form-group">
-							<form:label path="note" for="msg" class="control-label"><fmt:message key="admin.adminpage.modal.note.msg" /> </form:label>
+							<form:label path="note" for="msg" class="control-label"><fmt:message key="admin.adminpage.modal.note.notemsg" /> </form:label>
 							<form:input path="note" type="text" class="form-control" id="msg" placeholder="Write your note..." />
 							<form:errors path="note" />
 						</div>
