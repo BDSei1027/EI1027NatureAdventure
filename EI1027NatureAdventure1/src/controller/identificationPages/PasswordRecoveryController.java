@@ -53,10 +53,10 @@ public class PasswordRecoveryController extends AbstractController{
 		}
 		
 		try{
-			String name = service.getClientName(email);
+			String id = service.getClientId(email);
 			String token = UUID.randomUUID().toString();
 			service.sendPasswordRecovery(email,token);
-			service.setToken(name, token);
+			service.setToken(id, token);
 		} catch (Exception e){}
 
 		model.addAttribute("error", RESULT_ADD_OR_ACCEPT);
@@ -90,16 +90,19 @@ public class PasswordRecoveryController extends AbstractController{
 		new DoublePasswordValidator().validate(passwd, bindingResult);
 		if(bindingResult.hasErrors()) return "recoverpasswordauth";
 		
-		String user = service.getUserGivenAToken(token);
-		System.out.println(user+" "+token);
-//		if(user != null){
-//			
-//			user.setPassword(passwd.getPassword());
-//			service.updateUser(user);
-//			
-//			session.setAttribute("user", user);
-//			return "redirect:index.html";
-//		}
+		String userName = service.getUserGivenAToken(token);
+		if(userName != null){
+			
+			User user = service.getUser(userName);
+			System.out.println(user);
+			user.setPassword(passwd.getPassword());
+			service.updateUser(user);
+			
+			session.setAttribute("user", user);
+			
+			service.deleteToken(userName);
+			return "redirect:/index.html";
+		}
 		
 		model.addAttribute("error", RESULT_DELETE_OR_DENY);
 		return "recoverpasswordauth";

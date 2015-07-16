@@ -680,15 +680,6 @@ public class LogicLayer {
 		return useLayer.getUserCount();
 	}
 	
-	/** Method to obtain the name of the client given a email
-	 * @param email
-	 * @return
-	 */
-	public String getClientName(Email email){
-		String address = email.getTo();
-		return cliLayer.getClientName(address);
-	}
-	
 	public String getUserGivenAToken(String token){
 		return tokLayer.getUserGivenAToken(token);
 	}
@@ -836,6 +827,16 @@ public class LogicLayer {
 
 	public void setMaiLayer(MailLayer maiLayer) {
 		this.maiLayer = maiLayer;
+	}
+
+	
+	/** Method to obtain the name of the client given a email
+	 * @param email
+	 * @return
+	 */
+	public String getClientId(Email email){
+		String address = email.getTo();
+		return cliLayer.getClientId(address);
 	}
 
 	

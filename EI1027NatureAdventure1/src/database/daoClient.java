@@ -116,8 +116,8 @@ public class daoClient {
 	 * @param email
 	 * @return the name
 	 */
-	public String getClientName(String email){
-		String sql = "SELECT clientname FROM client WHERE clientemail = ?;";
+	public String getClientId(String email){
+		String sql = "SELECT clientid FROM client WHERE clientemail = ?;";
 		return dataSource.queryForObject(sql, String.class, email);
 	}
 }

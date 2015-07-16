@@ -96,8 +96,8 @@ public class ClientLayer {
 	 * @param email
 	 * @return
 	 */
-	public String getClientName(String email){
-		return this.daoClient.getClientName(email);
+	public String getClientId(String email){
+		return this.daoClient.getClientId(email);
 	}
 
 	public void setDaoClient(daoClient daoClient) {
