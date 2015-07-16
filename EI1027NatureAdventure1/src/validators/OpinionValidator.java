@@ -15,11 +15,8 @@ public class OpinionValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Opinion opinion = (Opinion) obj;
-		if(opinion.getClientFullName().trim().equals("")){
-			errors.rejectValue("clientFullName","validator.opinionvalidator.clientfullname","El nombre del cliente no puede estar vacío");
-		}
-		if(opinion.getClientId().trim().equals("")){
-			errors.rejectValue("clientId","validator.opinionvalidator.clientid","El id del cliente no puede ser nulo");
+		if(opinion.getAuthor().trim().equals("")){
+			errors.rejectValue("author","validator.opinionvalidator.clientfullname","El nombre del cliente no puede estar vacío");
 		}
 		if(opinion.getIdAct()<0){
 			errors.rejectValue("idAct","validator.opinionvalidator.idact","El id de la actividad no puede ser nulo");

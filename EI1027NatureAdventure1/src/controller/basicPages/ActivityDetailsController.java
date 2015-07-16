@@ -38,10 +38,14 @@ public class ActivityDetailsController extends AbstractController {
 		return "activityDetails";
 	}
 	
-	@RequestMapping(value="/activity/idact/newopinion", method=RequestMethod.POST)
-	public String postOpinion(@ModelAttribute("opinion") Opinion opinion, BindingResult bindingResult){
+	@RequestMapping(value="/activity/{idAct}/newOpinion", method=RequestMethod.POST)
+	public String postOpinion(@PathVariable int idAct, HttpSession session, @ModelAttribute("opinion") Opinion opinion, BindingResult bindingResult){
+		User user = (User) session.getAttribute("user");
+		opinion.setClientId(user.getUser());
+		opinion.setIdAct(idAct);
 		new OpinionValidator().validate(opinion,bindingResult);
 		if(bindingResult.hasErrors()) return "activityDetails";
+		
 		
 		service.addOpinion(opinion);
 		

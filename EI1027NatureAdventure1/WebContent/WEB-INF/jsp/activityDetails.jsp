@@ -99,8 +99,8 @@
       <div class="form-op">
       	<form:form modelAttribute="opinion" action="${pageContext.request.contextPath}/activity/${activity.idAct}/newOpinion.html" method="post" role="form" class="width-50" style="margin-left:25%;">
       		<div class="form-group">
-              <form:label path="clientFullName" class="control-label"><fmt:message key="opinion.op.author" /></form:label>
-              <form:input path="clientFullName" type="text" class="form-control" placeholder="Write your name..."></form:input>
+              <form:label path="author" class="control-label"><fmt:message key="opinion.op.author" /></form:label>
+              <form:input path="author" type="text" class="form-control"></form:input>
             </div>
             <div class="form-group">
               <form:label path="opinion" class="control-label"><fmt:message key="opinion.op.opinion" /></form:label>
